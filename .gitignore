@@ -31,3 +31,7 @@ test_output.txt
 gorgo_rename_plan.md
 walkthrough.md
 helot_doctrine.md
+
+# Local Workspace
+docs/
+scripts/
