@@ -14,7 +14,8 @@ If you are using Antigravity or the locally installed Pi Coding Agent, the setup
 
 1. Navigate to your local Pi extensions directory (usually `~/.pi/agent/extensions/`).
 2. Copy `helots_copy.ts` from this repository and save it as `helots.ts`.
-3. The Pi Coding Agent will automatically load the extension, granting the UI tools `helot_run` and `helot_slinger` to the LLM context.
+3. Copy the entire `src/` directory from this repository into the extensions directory (so that `~/.pi/agent/extensions/src/core/engine.ts` exists).
+4. The Pi Coding Agent will automatically load the extension, granting the UI tools `helot_run` and `helot_slinger` to the LLM context.
 
 ### The Agent Prompt (Workflow)
 
