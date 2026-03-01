@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@mariozechner/pi-coding-agent": "^0.55.3",
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "@sinclair/typebox": "^0.34.48",
+    "zod": "^4.3.6"
+  },
+  "name": "helots-pi",
+  "version": "1.0.0",
+  "description": "This repository is managed with the help of Antigravity, a local LLM-powered coding assistant. Antigravity can perform various tasks including:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}

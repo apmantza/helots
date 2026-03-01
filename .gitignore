@@ -1,0 +1,33 @@
+node_modules
+
+# Helots subagent state
+.helot-state/
+.helots/
+custom_state/
+
+# Build files
+dist/
+build/
+*.js
+*.d.ts
+!*.config.js
+
+# Env files
+.env
+
+# Editor
+.vscode/
+
+# Junk & HTML saves
+*.html
+*_files/
+~/
+...
+path
+mcp_request.jsonl
+test_output.txt
+
+# Temp planning
+gorgo_rename_plan.md
+walkthrough.md
+helot_doctrine.md
