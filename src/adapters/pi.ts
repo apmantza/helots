@@ -10,8 +10,18 @@ export default function (pi: ExtensionAPI) {
         try { (pi as any).unregisterTool("edit"); } catch { }
     }
 
-    const llmUrl = process.env.HELOT_LLM_URL || "http://127.0.0.1:8080";
-    const engine = new HelotEngine(new LlamaClient(llmUrl));
+    // The Pi adapter doesn't implement the full config JSON override yet, so we use minimal envs.
+    const config = {
+        llamaUrl: process.env.HELOT_LLM_URL || "http://127.0.0.1:8080",
+        apiKey: process.env.HELOT_API_KEY || "",
+        denseModel: process.env.HELOT_DENSE_MODEL || "Qwen/Qwen3.5-27B",
+        moeModel: process.env.HELOT_MOE_MODEL || "Qwen/Qwen3.5-35B-A3B",
+        stateDir: process.env.HELOT_STATE_DIR || ".helot-state",
+        projectRoot: process.cwd()
+    };
+
+    // Engine automatically creates the new LlamaClient inside now.
+    const engine = new HelotEngine(config);
 
     // Tool: Slinger
     pi.registerTool({
