@@ -220,6 +220,9 @@ export class HelotEngine {
   private builder: Builder;
   private peltast: Peltast;
   private client: LlamaClient;
+  private sessionTotalTokens: number = 0;
+  private currentPhase: string = "Setup";
+  private currentTaskTitle: string = "";
 
   constructor(config: HelotConfig) {
     this.governor = new Governor(config);
@@ -256,6 +259,8 @@ export class HelotEngine {
 
     const globalContext = await this.getGlobalContext();
     mkdirSync(this.governor.config.stateDir, { recursive: true });
+    this.sessionTotalTokens = 0;
+    this.currentPhase = "Gatherer";
 
     // --- 1. GATHERER PHASE (Local Scan) ---
     onUpdate?.({ text: `[Gatherer] Scanning workspace for Project Map...` });
@@ -285,6 +290,8 @@ NEED MORE DATA: [specific research question or file path]
 
 RESPOND ONLY WITH THE CHECKLIST OR DATA REQUEST.`;
 
+    this.currentPhase = "Architect";
+    this.currentTaskTitle = "Designing Implementation Checklist";
     onUpdate?.({ text: `[Aristomenis] Designing implementation strategy...` });
     let checklist = await this.runSubagent('Aristomenis', 'Architect', aristomenisSystem, `Project Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'THINKING_GENERAL', modelName);
 
@@ -318,6 +325,7 @@ RESPOND ONLY WITH THE CHECKLIST OR DATA REQUEST.`;
 
     for (let index = 0; index < tasks.length; index++) {
       const checklistTask = tasks[index];
+      this.currentTaskTitle = checklistTask.replace(/^- \[ \]\s*/, '').split('(')[0].trim();
       onUpdate?.({ text: `🛠️ Starting Task ${index + 1}/${tasks.length}: ${checklistTask}` });
 
       const fileMatch = checklistTask.match(/\(Target:\s*([^\)]+)\)/);
@@ -352,6 +360,7 @@ Output the file content using Markdown blocks:
 \`\`\``;
 
         const builder = this.pickName(runId, `Builder-${index}-${tryCount}`);
+        this.currentPhase = `Builder (Task ${index + 1}/${tasks.length})`;
         onUpdate?.({ text: `[Builder] Designing changes for Task ${index + 1} (Try ${tryCount})...` });
         const builderOut = await this.runSubagent("Builder", builder.name, builderSystem, `Checklist: ${progressContent}\n\nImplementation Plan: ${implementationPlan}`, onUpdate, psiloiMetrics.builder, "THINKING_CODE", modelName);
 
@@ -373,6 +382,7 @@ You are the Peltast. Use THOROUGH REASONING to check if the Builder completed: $
 Verify imports, logic, and formatting. Output: VERDICT: PASS if correct, else FAIL with reason.`;
 
         const peltast = this.pickName(runId, `Peltast-${index}-${tryCount}`);
+        this.currentPhase = `Peltast Verification (Task ${index + 1}/${tasks.length})`;
         onUpdate?.({ text: `[Peltast] Verifying Task ${index + 1}...` });
         const peltastOut = await this.runSubagent("Peltast", peltast.name, peltastSystem,
           `Builder output:\n${builderOut}\n\nVerify this completed the task: ${checklistTask}`,
@@ -408,7 +418,7 @@ Verify imports, logic, and formatting. Output: VERDICT: PASS if correct, else FA
         const cleanTask = checklistTask.replace("- [ ]", "").trim();
         execSync("git add .", { cwd: process.cwd() });
         execSync(`git commit -m "[Aristomenis] ${cleanTask}"`, { cwd: process.cwd() });
-        onUpdate?.({ content: [{ type: "text", text: `📦 Git commited: ${cleanTask}` }] });
+        onUpdate?.({ text: `📦 GIT: [Aristomenis] ${cleanTask} Commited` });
       } catch { }
     }
 
@@ -461,14 +471,18 @@ ${fileContext ? `FILE CONTENT TO ANALYZE:\n${fileContext}` : ""}`;
     ];
 
     let updateBuffer = "";
+    const baseTokensPrior = this.sessionTotalTokens;
     const headerPrefix = `### 🛡️ [${role}] ${name}`;
 
     await this.client.streamCompletion(messages, role as TaskRole, profile, (chunk, m) => {
       fullResponse += chunk;
       updateBuffer += chunk;
 
-      const tpsInfo = `[Prompt: ${m.promptEvalTps.toFixed(1)} t/s | Gen: ${m.genTps.toFixed(1)} t/s]`;
-      const currentHeader = `${headerPrefix} ${tpsInfo}\n---\n`;
+      const currentRequestTokens = m.promptTokens + m.genTokens;
+      this.sessionTotalTokens = baseTokensPrior + currentRequestTokens;
+
+      const metricsInfo = `[${this.currentPhase}] | [Session: ${this.sessionTotalTokens.toLocaleString()} tokens] | [Gen: ${m.genTps.toFixed(1)} t/s]`;
+      const currentHeader = `${headerPrefix}\n**${this.currentTaskTitle}**\n${metricsInfo}\n---\n`;
 
       // Buffer updates to avoid UI overwhelming, but ensure progress is visible
       if (updateBuffer.length > 20 || chunk.includes('\n')) {
@@ -479,7 +493,8 @@ ${fileContext ? `FILE CONTENT TO ANALYZE:\n${fileContext}` : ""}`;
       if (metrics) metrics.out += chunk.length;
     }, () => {
       // Final update for completeness
-      onUpdate?.({ text: `${headerPrefix}\n---\n${fullResponse}` });
+      const metricsInfo = `[${this.currentPhase}] | [Session: ${this.sessionTotalTokens.toLocaleString()} tokens]`;
+      onUpdate?.({ text: `${headerPrefix}\n**${this.currentTaskTitle}**\n${metricsInfo}\n---\n${fullResponse}` });
     });
     return fullResponse;
   }

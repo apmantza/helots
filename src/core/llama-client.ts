@@ -72,7 +72,7 @@ export class LlamaClient {
         messages: { role: string; content: string }[],
         role: TaskRole,
         profileKey: string,
-        onChunk: (chunk: string, metrics: { genTps: number; promptEvalTps: number; isFirstToken: boolean }) => void,
+        onChunk: (chunk: string, metrics: { genTps: number; promptEvalTps: number; isFirstToken: boolean; promptTokens: number; genTokens: number }) => void,
         onEnd: () => void
     ): Promise<void> {
         await this.initializeModels();
@@ -99,7 +99,7 @@ export class LlamaClient {
         messages: { role: string; content: string }[],
         role: TaskRole,
         profileKey: string,
-        onChunk: (chunk: string, metrics: { genTps: number; promptEvalTps: number; isFirstToken: boolean }) => void,
+        onChunk: (chunk: string, metrics: { genTps: number; promptEvalTps: number; isFirstToken: boolean; promptTokens: number; genTokens: number }) => void,
         onEnd: () => void
     ): Promise<void> {
         const targetModel = this.getTargetModel(role);
@@ -186,7 +186,9 @@ export class LlamaClient {
                                     onChunk(content, {
                                         genTps: isFinite(genTps) ? genTps : 0,
                                         promptEvalTps: isFinite(promptEvalTps) ? promptEvalTps : 0,
-                                        isFirstToken: tokenCount === 1
+                                        isFirstToken: tokenCount === 1,
+                                        promptTokens: Math.round(promptEstimate),
+                                        genTokens: tokenCount
                                     });
                                 }
                             }
