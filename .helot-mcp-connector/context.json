@@ -18,7 +18,7 @@
     },
     {
       "path": "antigravity-connector.ts",
-      "size": 7256
+      "size": 7274
     },
     {
       "path": "debug-helots-live.ts",
@@ -66,7 +66,7 @@
     },
     {
       "path": "path\\to\\file.ts",
-      "size": 6
+      "size": 61
     },
     {
       "path": "README.md",
@@ -105,12 +105,20 @@
       "size": 656
     },
     {
+      "path": "src\\core\\builder-orchestrator.ts",
+      "size": 1408
+    },
+    {
       "path": "src\\core\\engine.ts",
-      "size": 35451
+      "size": 22798
     },
     {
       "path": "src\\core\\file-utils.ts",
       "size": 1175
+    },
+    {
+      "path": "src\\core\\governor.ts",
+      "size": 2094
     },
     {
       "path": "src\\core\\llama-client.ts",
@@ -119,6 +127,26 @@
     {
       "path": "src\\core\\model-registry.ts",
       "size": 6402
+    },
+    {
+      "path": "src\\core\\peltast-orchestrator.ts",
+      "size": 1083
+    },
+    {
+      "path": "src\\core\\scout.ts",
+      "size": 4451
+    },
+    {
+      "path": "src\\core\\slinger-orchestrator.ts",
+      "size": 6197
+    },
+    {
+      "path": "src\\core\\text-utils.ts",
+      "size": 699
+    },
+    {
+      "path": "src\\core\\types.ts",
+      "size": 575
     },
     {
       "path": "test-slinger.ts",

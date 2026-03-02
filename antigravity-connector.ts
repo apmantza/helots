@@ -134,24 +134,22 @@ async function main() {
     log(`[PHASE 2] 🏛️  helot_run — Live Execution`);
     log(SEP);
 
-    const implementationPlan = `
-Surgical extraction of stripThinking helper to enhance modularity.
-
-### PHASE 1: UTILITY CREATION
-- [ ] 1. Create src/core/text-utils.ts with the stripThinking function (Target: src/core/text-utils.ts, Action: CREATE) [DEPENDS: none]
-
-### PHASE 2: ENGINE REFACTORING
-- [ ] 2. Remove stripThinking from engine.ts and import it from text-utils.ts (Target: src/core/engine.ts, Action: EDIT) [DEPENDS: 1]
-
-### PHASE 3: VERIFICATION
-- [ ] 3. Verify that the engine still compiles and the helper works as expected (Target: src/core/engine.ts, Action: TEST) [DEPENDS: 2]
-`;
-
     const helotRes = await call('tools/call', {
         name: 'helot_run',
         arguments: {
-            taskSummary: 'Extract stripThinking to text-utils.ts',
-            implementationPlan
+            taskSummary: 'Extract pickName and getGlobalContext to persona-utils.ts',
+            implementationPlan: `
+Surgical extraction of persona-related helpers to enhance modularity.
+
+### PHASE 1: UTILITY CREATION
+- [ ] 1. Create src/core/persona-utils.ts with pickName and getGlobalContext (Target: src/core/persona-utils.ts, Action: CREATE) [DEPENDS: none]
+
+### PHASE 2: ENGINE REFACTORING
+- [ ] 2. Remove pickName and getGlobalContext from engine.ts and import them from persona-utils.ts (Target: src/core/engine.ts, Action: EDIT) [DEPENDS: 1]
+
+### PHASE 3: VERIFICATION
+- [ ] 3. Verify that the engine still compiles and the helpers work as expected (Target: src/core/engine.ts, Action: TEST) [DEPENDS: 2]
+`
         }
     });
 
