@@ -6,6 +6,7 @@ import * as path from 'path';
 import { getAllFiles } from './file-utils.js';
 import { execSync } from 'child_process';
 import { stripThinking } from './text-utils.js';
+import { HelotTask, HelotState, HelotContext } from './types.js';
 
 
 /**
@@ -14,28 +15,6 @@ import { stripThinking } from './text-utils.js';
  * Non-Negotiable: executeRun and runSubagent orchestration logic
  */
 
-interface HelotTask {
-  id: string;
-  description: string;
-  status: 'pending' | 'completed' | 'failed' | 'blocked';
-  file?: string;
-  targetSymbol?: string;
-  lineRange?: [number, number];
-  dependsOn?: string[];
-}
-
-interface HelotState {
-  runId: string;
-  tasks: HelotTask[];
-  currentTaskIndex: number;
-  lastCheckpoint: string;
-}
-
-interface HelotContext {
-  implementationPlan: string;
-  fileMapping: Record<string, string>;
-  progress: HelotState;
-}
 
 /**
  * GOVERNOR (formerly Ephor)
