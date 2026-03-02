@@ -5,6 +5,6 @@
 - [x] 5. Update all function calls to use imported persona utilities (Target: src/core/engine.ts, Symbol: executeSlinger, Action: EDIT)
 - [x] 6. Update imports in engine.ts to remove local definitions (Target: src/core/engine.ts, Action: CREATE)
 - [x] 7. Verify exports in persona-utils.ts match engine.ts requirements (Target: src/core/persona-utils.ts, Action: CREATE)
-- [ ] 8. Compile engine.ts to verify no symbol errors (Target: src/core/engine.ts, Action: CREATE)
+- [x] 8. Compile engine.ts to verify no symbol errors (Target: src/core/engine.ts, Action: CREATE)
 - [ ] 9. Run unit tests on persona-utils.ts (Target: src/core/persona-utils.ts, Action: CREATE)
 - [ ] 10. Verify Slinger integration still works after refactoring (Target: src/core/slinger-orchestrator.ts, Action: CREATE)

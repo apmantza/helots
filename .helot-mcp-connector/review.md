@@ -539,3 +539,350 @@ REASON: Missing `engine.ts` and `persona-utils.ts` context. Cannot verify export
 export const PersonaUtils = {};
 export type Persona = any;
 ```
+
+## Task: *   NEW FILE: `- [ ] N. Create description (Try 1) 
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Role:** Helot subagent in the service of Sparta (The Builder).
+    *   **Tone/Style:** Laconic Simplicity, Spartan/Builder persona.
+    *   **Task:** Create a new file `src/path/new-file.ts` with a description (implied, likely a placeholder or simple export).
+    *   **Format:** Markdown blocks with specific structure (`### [path/to/file.ts]` followed by ```typescript code ```).
+    *   **Constraint:** Minimum code required (Laconism).
+    *   **Input:** "Mission ID: ... Task: * NEW FILE: `- [ ] N. Create description".
+    *   **Context:** No specific "Slice" or full file context provided in the prompt, just the task to create a new file.
+    *   **Safety Check:** No pressure indicators detected (>70%). Proceed.
+
+2.  **Determine Content:**
+    *   The task says "Create description". This is vague. Usually, in a coding context, creating a new file often involves a basic export or a placeholder function/class that describes its purpose.
+    *   Given the instruction "Create description", I should create a file that *has* a description, perhaps a JSDoc comment explaining what the file does, or a simple default export.
+    *   However, the filename is `src/path/new-file.ts`. This looks like a placeholder path. I should use the exact path provided in the task instruction: `src/path/new-file.ts`.
+    *   Content: Minimal valid TypeScript. An empty interface or a simple function with a JSDoc description fits "Create description". Let's go with a simple module with a JSDoc description.
+
+3.  **Drafting the Code:**
+    *   Path: `src/path/new-file.ts`
+    *   Code:
+        ```typescript
+        /**
+         * New file description.
+         */
+        export const description: string = "Initial placeholder";
+        ```
+    *   Actually, "Create description" might mean the task is to *write* the description for a file that doesn't exist yet, but I need to *create* the file.
+    *   Let's keep it extremely laconic. A module with a header comment describing its purpose.
+
+4.  **Formatting:**
+    *   Must use the exact Markdown block format specified:
+        ```
+        ### [path/to/file.ts]
+        ```typescript
+        (code)
+        ```
+        ```
+    *   Wait, the prompt says: `Output the file content using Markdown blocks: ### [path/to/file.ts] \n ```typescript \n(code) \n ``` `
+    *   I need to replace `[path/to/file.ts]` with `src/path/new-file.ts`.
+
+5.  **Refining the Persona:**
+    *   Spartan/Helot Builder.
+    *   Laconic.
+    *   No unnecessary chatter. Just the file output as requested.
+    *   Wait, the prompt says "Output the file content using Markdown blocks". It implies the output *is* the block. I will output only the required block to ensure the Engine saves it correctly.
+
+6.  **Final Check:**
+    *   Path: `src/path/new-file.ts`
+    *   Language: TypeScript
+    *   Content: Minimal valid TS with a description comment.
+    *   Format: Correct Markdown headers and code fences.
+
+7.  **Execution:**
+    *   Construct the markdown.
+
+```markdown
+### src/path/new-file.ts
+```typescript
+/**
+ * New file description.
+ */
+export default class NewFile {
+  constructor() {}
+}
+```
+```
+
+Wait, I need to check the exact format requested in the prompt description:
+`### [path/to/file.ts]`
+```typescript
+(code)
+```
+
+I will follow this exactly.
+
+One more thing: The prompt says "If you skip the blocks, the Engine will NOT save your work." I must ensure the blocks are there.
+I will minimize chatter.
+
+Wait, looking at the task again: "Task: * NEW FILE: `- [ ] N. Create description".
+It might mean I need to create a file that *contains* a description. Or it's a checklist item. Given I am the Builder, I build the file.
+I will provide a minimal TypeScript module with a JSDoc comment.
+
+Let's double check the path. `src/path/new-file.ts`.
+
+Ready.
+
+**Constraint Checklist & Confidence Score:**
+1. Laconism? Yes.
+2. Behavioral Context? N/A (No slice provided).
+3. Context Guard? No pressure.
+4. Structural Mandate? Yes.
+5. Markdown Blocks? Yes.
+
+Confidence Score: 100%.
+
+**Mental Sandbox Simulation:**
+*   Input: Task to create file.
+*   Output: Markdown block with path and code.
+*   Risk: If I add too much text, it violates Laconism. If I miss the markdown headers, the Engine fails.
+*   Decision: Strict adherence to the output template.
+
+**Final Plan:**
+1.  Header: `### src/path/new-file.ts`
+2.  Code block: ```typescript ... ```
+3.  Content: Minimal TS export with description comment.
+4.  No extra text.
+
+Wait, looking at the prompt's example format:
+`Output the file content using Markdown blocks:`
+`### [path/to/file.ts]`
+```typescript
+(code)
+```
+
+I will replicate this structure.
+
+One detail: "If you have NO changes to make, explain why". I am making a change (creation). So I just output the file.
+
+Let's write it.cw### src/path/new-file.ts
+```typescript
+/**
+ * Description for new file.
+ */
+export const description: string = "Module initialization complete.";
+``` 
+
+Verify this completed the task: *   NEW FILE: `- [ ] N. Create description`### src/path/new-file.ts
+```typescript
+/**
+ * New file description.
+ */
+export const description: string = "Initial placeholder";
+``` 
+
+## Task: Compile engine.ts to verify no symbol errors (Try 1)
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Role:** Helot subagent in the service of Sparta.
+    *   **Agent Identity:** The Peltast.
+    *   **Task:** Use THOROUGH REASONING to check if the Builder completed the task: "Compile engine.ts to verify no symbol errors".
+    *   **Output:** VERDICT: PASS or FAIL with reason.
+    *   **Input:** Builder output (which includes code and a claim of PASS).
+
+2.  **Analyze the Builder Output:**
+    *   The Builder claims to have fixed structural issues in `src/core/engine.ts`.
+    *   The Builder provides the full content of `src/core/engine.ts`.
+    *   The Builder claims compilation status is "PASS".
+    *   The Builder lists fixes applied (moved `HelotEngine`, closed `Scout`, etc.).
+
+3.  **Evaluate the Code (Mental Compilation):**
+    *   *Imports:* `import { LlamaClient } from './llama-client.js';` ... `import { Governor } from './governor.js';` etc. These look like standard relative imports. No syntax errors visible.
+    *   *Classes:*
+        *   `class Scout`: Defined. Has constructor, `performReconnaissance`, `getSymbolSlice`.
+        *   Wait, look at the `HelotEngine` class definition. It's defined *after* the `Scout` class.
+        *   `class HelotEngine`: Defined. Constructor instantiates `Governor`, `Scout`, `Builder`, `Peltast`, `LlamaClient`.
+        *   Inside `HelotEngine.executeHelots`:
+            *   Calls `this.scout.getSymbolSlice(...)`.
+            *   Calls `this.pickName(...)`.
+            *   Calls `this.runSubagent(...)`.
+            *   Calls `this.getGlobalContext()`.
+            *   Calls `this.generateSweepReport()` (wait, where is `generateSweepReport` defined in `HelotEngine`? It calls `this.governor.generateSweepReport()`? No, look at the code: `return this.governor.generateSweepReport();`).
+            *   Wait, look at `HelotEngine` methods: `executeHelots`, `executeSlinger`, `runSubagent`, `pickName`, `getGlobalContext`, `generateProgressChecklist`, `skipCompletedTasks`.
+            *   There is a method `generateProgressChecklist(tasksSection: string): string`.
+            *   There is a method `skipCompletedTasks(): void`.
+            *   The Builder code provided *ends* the `HelotEngine` class.
+    *   *Syntax Check:*
+        *   `export interface HelotTask`, `export interface HelotState`, `export interface HelotContext`: Defined at top.
+        *   `class Scout`: Open brace `{`, methods, close brace `}`. Looks okay.
+        *   `export class HelotEngine`: Open brace `{`, methods, close brace `}`.
+        *   Check method closures.
+        *   `executeHelots`: Lots of logic. `const taskNodes...`. `for (let i = 0; i < taskNodes.length; i++) { ... }`. Ends with `return this.governor.generateSweepReport();`. Then `}`.
+        *   `executeSlinger`: Ends with `return ...`. Then `}`.
+        *   `runSubagent`: Ends with `return fullResponse;`. Then `}`.
+        *   `pickName`: Ends with `return { name, city };`. Then `}`.
+        *   `getGlobalContext`: Ends with `return ...`. Then `}`.
+        *   `generateProgressChecklist`: Ends with `return checklist;`. Then `}`.
+        *   `skipCompletedTasks`: Ends. Then `}`.
+        *   End of file.
+    *   *Symbol Errors:*
+        *   Are all referenced symbols defined?
+        *   `Governor`, `Builder`, `Peltast`, `LlamaClient`, `HelotConfig`, `TaskRole` are imported.
+        *   `HelotEngine` references `this.governor.config`.
+        *   `HelotEngine` references `this.client.streamCompletion`.
+        *   `HelotEngine` references `this.runSubagent`.
+        *   `HelotEngine` references `this.pickName`.
+        *   `HelotEngine` references `this.getGlobalContext`.
+        *   Wait, there is a potential issue. `Governor`, `Builder`, `Peltast` are imported *outside*.
+        *   Look at the imports in the provided code:
+            `import { Governor } from './governor.js';`
+            `import { Builder } from './builder-orchestrator.js';`
+            `import { Peltast } from './peltast-orchestrator.js';`
+            `import { HelotConfig, TaskRole } from '../config.js';`
+        *   These imports look syntactically correct for TypeScript.
+    *   *Nested Structures:*
+        *   The Builder claimed earlier that the `HelotEngine` was inside `Scout.getSymbolSlice`. In the provided code, `HelotEngine` is defined *after* `Scout`. This fixes the structural issue mentioned in the "Builder output" narrative (the text *before* the code block in the user prompt describes the *previous* state or the Builder's reasoning process, while the code block *below* is the corrected version).
+        *   Wait, looking closely at the provided "Builder output": It starts with "The user wants me to compile engine.ts...". Then it lists issues found in the *previous* code. Then it says "Let me reorganize this file properly." Then it shows `[src/core/engine.ts]`.
+        *   The code block provided in the output seems to be the *result* of the fix.
+        *   Does the code block have symbol errors?
+        *   I need to verify the TypeScript syntax of the provided code block.
+        *   `import { readFileSync, ... } from 'fs';` - OK.
+        *   `export interface ...` - OK.
+        *   `class Scout { ... }` - OK.
+        *   `export class HelotEngine { ... }` - OK.
+        *   `method { ... }` - OK.
+        *   One potential issue: `spawnSync('pi', ...)` inside `executeHelots`. `spawnSync` is from `child_process`. It's imported as `import { execSync } from 'child_process';`. `spawnSync` is *not* imported in the provided imports list.
+        *   Let's check the imports again:
+            `import { execSync } from 'child_process';`
+            `const { spawnSync } = require('child_process');` -> This is a mix of ES6 import and CommonJS require within the same file. While possible, it's inconsistent. More importantly, `require` might not be available at the top level in strict ES modules without dynamic import or if the file is `.ts` and configured strictly. But often `require` works in Node if configured as ES modules.
+            However, the critical error is `const { spawnSync } = require('child_process');` inside a method. In ES6 modules (implied by `.js` extensions in imports), `require` is not global. This would cause a `ReferenceError: require is not defined` at runtime if strict ES modules, or syntax error if the compiler expects strict TS/JS module structure.
+            Wait, the file is `engine.ts`.
+            Standard TS imports: `import { execSync } from 'child_process';`.
+            Inside the function: `const { spawnSync } = require('child_process');`.
+            In TypeScript targeting ES2015+ modules, `require` is allowed but typically discouraged if imports are used. However, it's not a "Symbol Error" (Compiler Error regarding undefined types) usually, it's a runtime issue.
+            BUT, is there a symbol error?
+            `spawnSync` is used. Is it defined? Yes, via `require`.
+            `readdirSync` is used. Is it imported? `import { ..., readdirSync } from 'fs';`. Yes.
+            `mkdirSync`? Imported.
+            `writeFileSync`? Imported.
+            `readFileSync`? Imported.
+            `existsSync`? Imported.
+            `appendFileSync`? Imported.
+
+        *   Wait, look at `Governor` class usage: `this.governor.generateSweepReport()`. Is `generateSweepReport` defined in `Governor`? The `Governor` class is imported from `./governor.js`. I don't see its code, but I must assume it exists based on the import. The task is to check `engine.ts` for symbol errors.
+        *   Are there any undefined identifiers *within* `engine.ts` scope?
+        *   `HelotConfig`, `TaskRole` - Imported.
+        *   `LlamaClient` - Imported.
+        *   `Governor`, `Builder`, `Peltast` - Imported.
+        *   `Scout` - Defined in file.
+        *   `HelotEngine` - Defined in file.
+        *   `pickName` - Defined in `HelotEngine` class.
+        *   `getGlobalContext` - Defined in `HelotEngine` class.
+        *   `generateProgressChecklist` - Defined in `HelotEngine` class.
+        *   `skipCompletedTasks` - Defined in `HelotEngine` class.
+        *   `runSubagent` - Defined in `HelotEngine` class.
+        *   `executeHelots` - Defined in `HelotEngine` class.
+        *   `executeSlinger` - Defined in `HelotEngine` class.
+        *   `getAllFiles` - Imported from `./file-utils.js`.
+        *   `stripThinking` - Imported from `./text-utils.js`.
+
+    *   **CRITICAL CHECK:** The Builder claimed to have fixed the issue where `HelotEngine` was nested inside `Scout.getSymbolSlice`.
+    *   In the provided code block:
+        `class Scout { ... }` closes properly.
+        `export class HelotEngine { ... }` starts properly after.
+        So the nesting issue is fixed.
+    *   **CRITICAL CHECK:** Are there any symbol errors *in the provided code*?
+    *   `const { spawnSync } = require('child_process');`
+    *   `const fileRegex = /###\s*\[([^\]]+)\]\s*\n\s*```[a-z]*\n([\s\S]*?)\n```/gi;`
+    *   `import { execSync } from 'child_process';`
+    *   If this is a `.ts` file, `require` is typically allowed but usually requires `module` support.
+    *   However, `spawnSync` is used inside `executeHelots`.
+    *   Wait, looking closely at line `const { spawnSync } = require('child_process');`.
+    *   Is `spawnSync` defined? Yes, by the require statement.
+    *   Is it used? Yes.
+    *   Is there a missing import that should have been used? `spawnSync` is from `child_process`. `execSync` is imported from `child_process`. It's better to import `spawnSync` at the top. Using `require` inside a method is technically functional but often flagged by strict linters. However, does it cause a *Symbol Error* (Compile time)? Usually no, unless the environment is strictly ESM without interop.
+    *   Wait, `import ... from './llama-client.js';`. The `.js` extension in imports suggests ES Modules. In TS with ES Modules, `require` is not allowed in the top-level scope, but allowed inside functions if using the `node16` resolution or similar.
+    *   However, the bigger issue is the `Governor` class. The code calls `this.governor.generateSweepReport()`. Does `Governor` class exist? It's imported. We assume it exists.
+    *   What about `HelotConfig`? Imported.
+    *   What about `TaskRole`? Imported.
+
+    *   **Wait, is there a Syntax Error in the Code Block provided?**
+    *   Look at `export class HelotEngine`.
+    *   Look at the end of the file.
+    *   Is the file closed properly? Yes.
+    *   Is there any missing brace?
+    *   Let's check `executeHelots`.
+    *   `const spawnSync = require...`
+    *   `spawnSync('pi', ...)`
+    *   `execSync("git add ...")`
+    *   `execSync(\`git ${gitIdentity}commit...\`)`
+    *   `spawnSync` and `execSync` are from `child_process`. `execSync` is imported. `spawnSync` is required.
+    *   In strict TypeScript compilation, using `require` inside a file that uses `import` might be allowed depending on tsconfig, but it's stylistically bad.
+    *   However, is there a *Symbol Error*?
+    *   Symbol errors usually refer to: Undefined variable, Missing property, Mismatched type.
+    *   `spawnSync` is defined locally.
+    *   `readdirSync` is imported.
+    *   `writeFileSync` is imported.
+    *   `readFileSync` is imported.
+    *   `existsSync` is imported.
+    *   `mkdirSync` is imported.
+    *   `appendFileSync` is imported.
+    *   `join`, `resolve`, `dirname` from 'path'.
+    *   `path` is imported `* as path`.
+    *   `path.resolve` used.
+    *   `path.relative` used.
+    *   `path.dirname` used.
+    *   `path.join` used.
+    *   `path` object usage is correct.
+
+    *   **Wait, one potential issue:**
+    *   `const fileList = getAllFiles(process.cwd(), this.governor.config.stateDir);`
+    *   `getAllFiles` imported.
+    *   `this.governor.config` -> `this.governor` is `Governor`.
+    *   `Governor` constructor receives `config`.
+    *   Does `Governor` have a `config` property? The import says `import { Governor } from './governor.js';`. I can't verify `Governor`'s structure, but the code assumes it has `.config`. This is a dependency assumption, not a symbol error in `engine.ts` itself (unless `Governor` exports `undefined`).
+
+    *   **Wait, look at `getGlobalContext`**
+    *   `async getGlobalContext(): Promise<string>`
+    *   Called inside `executeHelots`.
+    *   Used as `await this.getGlobalContext()`. Correct.
+
+    *   **Wait, look at `runSubagent`**
+    *   `await this.client.streamCompletion(...)`
+    *   `this.client` is `LlamaClient`.
+    *   `this.client.getProps()` inside `executeHelots` and `executeSlinger`.
+
+    *   **Wait, look at `HelotTask` interface.**
+    *   `dependsOn?: string[];`
+    *   Used: `task.dependsOn?.filter(...)`. Correct.
+
+    *   **Wait, look at `spawnSync` issue again.**
+    *   If the compiler checks strictly, `require` might not be recognized if the module resolution isn't set up for it. But usually TS allows it if `esModuleInterop` is true or default `CommonJS`.
+    *   However, `execSync` is imported using ES6 syntax. `spawnSync` is imported using CommonJS syntax. Mixing them is technically valid in JS, but might cause "Require call is not allowed" errors in some strict ESM setups.
+    *   BUT, the task is to verify "no symbol errors".
+    *   The most glaring potential issue is the `HelotEngine` nesting which the Builder claims to have fixed.
+    *   In the provided code, `HelotEngine` is clearly outside `Scout`. `Scout` closes `}` before `HelotEngine` starts.
+    *   So the main complaint from the Builder's own analysis (which was actually analyzing the *previous* state or describing the fix) is addressed.
+
+    *   **Wait, I need to check if the *Builder Output* claims PASS but there are errors.**
+    *   The Builder Output says: "**COMPILATION STATUS: ✅ PASS**".
+    *   My job is to verify this.
+    *   Is there any symbol error?
+    *   Let's check `HelotEngine` constructor.
+    *   `this.governor = new Governor(config);`
+    *   `this.scout = new Scout(config);`
+    *   `this.builder = new Builder(config);`
+    *   `this.peltast = new Peltast(config);`
+    *   `this.client = new LlamaClient(config);`
+    *   All imports match.
+
+    *   **Wait, is `Scout` exported?**
+    *   `class Scout` is not exported. `HelotEngine` is exported.
+    *   `HelotEngine` uses `Scout` internally. That's fine.
+
+    *   **Wait, look at `getSymbolSlice` method.**
+    *   `public getSymbolSlice(filePath: string, symbolName: string): string`
+    *   Inside: `line.includes(\`function ${symbolName}\`)`.
+    *   Backticks used correctly.
+    *   Logic seems sound.
+
+    *   **Wait, look at `spawnSync` again.**
+    *   `const { spawnSync } = require('child_process');`
+    *   If this is a `.ts` file, and it's using ES imports (`import { execSync } from 'child_process'`), the compiler might complain if `require` isn't globally available. However, in Node.js with `module: "node16"` or `"nodenext"`, dynamic require is okay, but static imports are preferred.
+    *   Is it a *Symbol Error*? A symbol error implies TypeScript cannot find the symbol. `require` is a global function in many TS configurations (if `types` includes `node
