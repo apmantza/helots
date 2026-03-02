@@ -255,16 +255,18 @@ SPARTAN BUILDER GUIDELINES:
 1. LACONISM: Use the minimum code required. 
 2. BEHAVIORAL CONTEXT: You have been provided a surgical "Slice" or full file context below. Use it to ensure your edits are precise.
 3. CONTEXT GUARD: If you detect >70% pressure, STOP and request Slinger verification.
+4. STRUCTURAL MANDATE: You MUST output the file content using the EXACT Markdown block format below. If you skip the blocks, the Engine will NOT save your work.
 
 ${contextContent ? `CONTEXT (Behavioral Slice):\n${contextContent}` : ""}
 
 ${lastPeltastFeedback ? `PREVIOUS FAILURE FEEDBACK:\n${lastPeltastFeedback}\n\nFix the issues and try again.` : ""}
 
-Output the file content using Markdown blocks:
+        Output the file content using Markdown blocks:
 ### [path/to/file.ts]
 \`\`\`typescript
 (code)
-\`\`\``;
+\`\`\`
+If you have NO changes to make, explain why, but the Peltast may FAIL you.`;
 
         const builderPersona = this.pickName(runId, `Builder-${task.id}-${tryCount}`);
         this.currentPhase = `Builder (Task ${task.id})`;
@@ -297,6 +299,10 @@ Output the file content using Markdown blocks:
           }
         }
 
+        if (filesToWrite.length === 0) {
+          onUpdate?.({ text: `⚠️ [Builder] WARNING: No file blocks detected in output. No changes saved.` });
+        }
+
         // Now write all files
         for (const { filePath, fullPath, content } of filesToWrite) {
           mkdirSync(path.dirname(fullPath), { recursive: true });
@@ -309,16 +315,18 @@ Output the file content using Markdown blocks:
 You are the Peltast. Use THOROUGH REASONING to check if the Builder completed: ${task.description}
 Verify logic, signatures, and Spartan Simplicity.
 
+CRITICAL: If the Builder's output does NOT contain a markdown block (### [path] \`\`\`), the work is INCOMPLETE and you MUST issue a FAIL with reason "Empty Implementation".
+
 Output VERDICT: PASS or FAIL with reason.`;
 
-        const peltastPersona = this.pickName(runId, `Peltast-${task.id}-${tryCount}`);
-        this.currentPhase = `Peltast Verification (Task ${task.id})`;
+        const peltastPersona = this.pickName(runId, `Peltast - ${task.id} -${tryCount} `);
+        this.currentPhase = `Peltast Verification(Task ${task.id})`;
         onUpdate?.({ text: `[Peltast] Verifying Task ${task.id}...` });
         const peltastOut = await this.runSubagent("Peltast", peltastPersona.name, peltastSystem,
-          `Builder output:\n${builderOut}\n\nVerify this completed the task: ${task.description}`,
+          `Builder output: \n${builderOut} \n\nVerify this completed the task: ${task.description} `,
           onUpdate, psiloiMetrics.peltast, "THINKING_REASONING", modelName);
 
-        appendFileSync(reviewFile, `\n## Task: ${task.description} (Try ${tryCount})\n${peltastOut}\n`);
+        appendFileSync(reviewFile, `\n## Task: ${task.description} (Try ${tryCount}) \n${peltastOut} \n`);
 
         if (peltastOut.includes("VERDICT: PASS")) {
           // PASS: keep written files, clean up backups, then commit
@@ -339,7 +347,7 @@ Output VERDICT: PASS or FAIL with reason.`;
               const backupPath = path.join(backupDir, safeKey);
               if (existsSync(backupPath)) {
                 writeFileSync(fullPath, readFileSync(backupPath));
-                onUpdate?.({ text: `⏮️ Restored: ${filePath}` });
+                onUpdate?.({ text: `⏮️ Restored: ${filePath} ` });
               }
             }
             // Delete files that were newly created (didn't exist before)
@@ -353,7 +361,7 @@ Output VERDICT: PASS or FAIL with reason.`;
 
       if (!taskPassed) {
         task.status = 'failed';
-        onUpdate?.({ text: `❌ Task ${task.id} failed after 3 attempts. All file changes reverted.` });
+        onUpdate?.({ text: `❌ Task ${task.id} failed after 3 attempts.All file changes reverted.` });
         await writeTrace({ phase: "execution", task: task.id, status: "failed", description: task.description });
         return `Pipeline halted at Task ${task.id}. Dependents blocked.`;
       }
@@ -361,7 +369,7 @@ Output VERDICT: PASS or FAIL with reason.`;
       // BUG FIX: Persist progress to progress.md so the checklist is updated live
       const updatedChecklist = taskNodes.map(t => {
         const check = t.status === 'completed' ? 'x' : ' ';
-        return `- [${check}] ${t.id}. ${t.description} (Target: ${t.file}${t.targetSymbol ? `, Symbol: ${t.targetSymbol}` : ""}, Action: ${t.targetSymbol ? "EDIT" : "CREATE"})`;
+        return `- [${check}] ${t.id}. ${t.description} (Target: ${t.file}${t.targetSymbol ? `, Symbol: ${t.targetSymbol} ` : ""}, Action: ${t.targetSymbol ? "EDIT" : "CREATE"})`;
       }).join("\n");
       writeFileSync(progressFile, updatedChecklist);
       await writeTrace({ phase: "execution", task: task.id, status: "complete", description: task.description });
