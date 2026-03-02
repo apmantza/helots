@@ -34,15 +34,13 @@ export class Scout {
     }
 
     /**
-     * PORTABLE BEHAVIORAL SLICER
-     * Analyzes file structure without external AST dependencies.
+     * Get the line range of a symbol in a file.
      */
-    public getSymbolSlice(filePath: string, symbolName: string): string {
-        if (!existsSync(filePath)) return "";
+    public getSymbolRange(filePath: string, symbolName: string): { startLine: number, endLine: number } | null {
+        if (!existsSync(filePath)) return null;
         const content = readFileSync(filePath, "utf-8");
         const lines = content.split("\n");
 
-        // 1. Find the symbol definition
         let startLine = -1;
         let endLine = -1;
         let braceCount = 0;
@@ -50,6 +48,7 @@ export class Scout {
 
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
+            // Simple match for function/class or method-like signature
             if (!foundStart && (line.includes(`function ${symbolName}`) || line.includes(`${symbolName}(`) || line.includes(`class ${symbolName}`))) {
                 startLine = i;
                 foundStart = true;
@@ -65,10 +64,28 @@ export class Scout {
             }
         }
 
-        if (startLine === -1) return lines.slice(0, 100).join("\n"); // Fallback to head
+        if (startLine !== -1 && endLine !== -1) {
+            return { startLine, endLine };
+        }
+        return null;
+    }
 
-        // 2. Simple Dependency Extraction (Regex-based)
-        const sliceLines = lines.slice(startLine, endLine + 1);
+    /**
+     * PORTABLE BEHAVIORAL SLICER
+     * Analyzes file structure without external AST dependencies.
+     */
+    public getSymbolSlice(filePath: string, symbolName: string): string {
+        const range = this.getSymbolRange(filePath, symbolName);
+        if (!range) {
+            // Fallback to head if not found
+            if (!existsSync(filePath)) return "";
+            const content = readFileSync(filePath, "utf-8");
+            return content.split("\n").slice(0, 100).join("\n");
+        }
+
+        const content = readFileSync(filePath, "utf-8");
+        const lines = content.split("\n");
+        const sliceLines = lines.slice(range.startLine, range.endLine + 1);
         const sliceContent = sliceLines.join("\n");
 
         // Find calls to other potential symbols in the same file
