@@ -417,7 +417,16 @@ Verify imports, logic, and formatting. Output: VERDICT: PASS if correct, else FA
         const { execSync } = require("node:child_process");
         const cleanTask = checklistTask.replace("- [ ]", "").trim();
         execSync("git add .", { cwd: process.cwd() });
-        execSync(`git commit -m "[Aristomenis] ${cleanTask}"`, { cwd: process.cwd() });
+
+        let gitIdentity = "";
+        try {
+          execSync("git config user.name", { stdio: 'ignore', cwd: process.cwd() });
+          execSync("git config user.email", { stdio: 'ignore', cwd: process.cwd() });
+        } catch {
+          gitIdentity = "-c user.name=\"Aristomenis\" -c user.email=\"aristomenis@helots.com\" ";
+        }
+
+        execSync(`git ${gitIdentity}commit -m "[Aristomenis] ${cleanTask}"`, { cwd: process.cwd() });
         onUpdate?.({ text: `📦 GIT: [Aristomenis] ${cleanTask} Commited` });
       } catch { }
     }
