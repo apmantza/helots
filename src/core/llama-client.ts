@@ -72,7 +72,7 @@ export class LlamaClient {
         messages: { role: string; content: string }[],
         role: TaskRole,
         profileKey: string,
-        onChunk: (chunk: string) => void,
+        onChunk: (chunk: string, metrics: { genTps: number; promptEvalTps: number; isFirstToken: boolean }) => void,
         onEnd: () => void
     ): Promise<void> {
         await this.initializeModels();
@@ -99,7 +99,7 @@ export class LlamaClient {
         messages: { role: string; content: string }[],
         role: TaskRole,
         profileKey: string,
-        onChunk: (chunk: string) => void,
+        onChunk: (chunk: string, metrics: { genTps: number; promptEvalTps: number; isFirstToken: boolean }) => void,
         onEnd: () => void
     ): Promise<void> {
         const targetModel = this.getTargetModel(role);
@@ -146,6 +146,11 @@ export class LlamaClient {
         const reader = response.body?.getReader();
         if (!reader) throw new Error('No reader available');
 
+        const startTime = performance.now();
+        let firstTokenTime = 0;
+        let tokenCount = 0;
+        const promptEstimate = messages.reduce((acc, m) => acc + (m.content.length / 4), 0);
+
         try {
             const decoder = new TextDecoder();
             let buffer = '';
@@ -170,7 +175,20 @@ export class LlamaClient {
                             const delta = parsed.choices?.[0]?.delta;
                             if (delta) {
                                 const content = delta.content || delta.reasoning_content || '';
-                                if (content) onChunk(content);
+                                if (content) {
+                                    if (firstTokenTime === 0) firstTokenTime = performance.now();
+                                    tokenCount++;
+
+                                    const now = performance.now();
+                                    const genTps = tokenCount / ((now - firstTokenTime) / 1000);
+                                    const promptEvalTps = promptEstimate / ((firstTokenTime - startTime) / 1000);
+
+                                    onChunk(content, {
+                                        genTps: isFinite(genTps) ? genTps : 0,
+                                        promptEvalTps: isFinite(promptEvalTps) ? promptEvalTps : 0,
+                                        isFirstToken: tokenCount === 1
+                                    });
+                                }
                             }
                         } catch {
                             // Ignore parse errors

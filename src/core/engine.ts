@@ -461,22 +461,25 @@ ${fileContext ? `FILE CONTENT TO ANALYZE:\n${fileContext}` : ""}`;
     ];
 
     let updateBuffer = "";
-    const header = `### 🛡️ [${role}] ${name}\n---\n`;
+    const headerPrefix = `### 🛡️ [${role}] ${name}`;
 
-    await this.client.streamCompletion(messages, role as TaskRole, profile, (chunk) => {
+    await this.client.streamCompletion(messages, role as TaskRole, profile, (chunk, m) => {
       fullResponse += chunk;
       updateBuffer += chunk;
 
-      // Buffer updates to avoid UI overwhelming, but ensure "Thinking" is visible
+      const tpsInfo = `[Prompt: ${m.promptEvalTps.toFixed(1)} t/s | Gen: ${m.genTps.toFixed(1)} t/s]`;
+      const currentHeader = `${headerPrefix} ${tpsInfo}\n---\n`;
+
+      // Buffer updates to avoid UI overwhelming, but ensure progress is visible
       if (updateBuffer.length > 20 || chunk.includes('\n')) {
-        onUpdate?.({ text: `${header}${fullResponse}` });
+        onUpdate?.({ text: `${currentHeader}${fullResponse}` });
         updateBuffer = "";
       }
 
       if (metrics) metrics.out += chunk.length;
     }, () => {
       // Final update for completeness
-      onUpdate?.({ text: `${header}${fullResponse}` });
+      onUpdate?.({ text: `${headerPrefix}\n---\n${fullResponse}` });
     });
     return fullResponse;
   }
