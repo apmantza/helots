@@ -27,12 +27,61 @@ const loadUserConfig = async () => {
   }
 };
 
-const SAMPLING_PROFILES = {
+// --- MODEL REGISTRY & SAMPLING PROFILES ---
+
+export interface SamplingProfile {
+  temperature: number;
+  top_p: number;
+  top_k: number;
+  min_p: number;
+  presence_penalty: number;
+  repetition_penalty: number;
+  enableThinking: boolean;
+  max_tokens?: number;
+}
+
+interface ModelFeatureConfig {
+  idPattern: string;
+  profiles: Record<string, SamplingProfile>;
+}
+
+const QWEN_PROFILES: Record<string, SamplingProfile> = {
   THINKING_GENERAL: { temperature: 1.0, top_p: 0.95, top_k: 20, min_p: 0.0, presence_penalty: 1.5, repetition_penalty: 1.0, enableThinking: true, max_tokens: 32768 },
   THINKING_CODE: { temperature: 0.6, top_p: 0.95, top_k: 20, min_p: 0.0, presence_penalty: 0.0, repetition_penalty: 1.0, enableThinking: true, max_tokens: 81920 },
   INSTRUCT_GENERAL: { temperature: 0.7, top_p: 0.8, top_k: 20, min_p: 0.0, presence_penalty: 1.5, repetition_penalty: 1.0, enableThinking: false, max_tokens: 32768 },
   INSTRUCT_REASONING: { temperature: 1.0, top_p: 1.0, top_k: 40, min_p: 0.0, presence_penalty: 2.0, repetition_penalty: 1.0, enableThinking: false, max_tokens: 81920 }
 };
+
+const LLAMA3_PROFILES: Record<string, SamplingProfile> = {
+  THINKING_GENERAL: { temperature: 0.8, top_p: 0.9, top_k: 40, min_p: 0.05, presence_penalty: 0.0, repetition_penalty: 1.0, enableThinking: false, max_tokens: 8192 },
+  THINKING_CODE: { temperature: 0.2, top_p: 0.9, top_k: 40, min_p: 0.05, presence_penalty: 0.0, repetition_penalty: 1.0, enableThinking: false, max_tokens: 8192 },
+  INSTRUCT_GENERAL: { temperature: 0.6, top_p: 0.9, top_k: 40, min_p: 0.05, presence_penalty: 0.0, repetition_penalty: 1.0, enableThinking: false, max_tokens: 8192 },
+  INSTRUCT_REASONING: { temperature: 0.8, top_p: 0.9, top_k: 40, min_p: 0.05, presence_penalty: 0.0, repetition_penalty: 1.0, enableThinking: false, max_tokens: 8192 }
+};
+
+const DEEPSEEK_PROFILES: Record<string, SamplingProfile> = {
+  THINKING_GENERAL: { temperature: 0.6, top_p: 0.95, top_k: 50, min_p: 0.0, presence_penalty: 0.0, repetition_penalty: 1.0, enableThinking: true, max_tokens: 8192 },
+  THINKING_CODE: { temperature: 0.0, top_p: 0.95, top_k: 50, min_p: 0.0, presence_penalty: 0.0, repetition_penalty: 1.0, enableThinking: true, max_tokens: 8192 },
+  INSTRUCT_GENERAL: { temperature: 0.6, top_p: 0.95, top_k: 50, min_p: 0.0, presence_penalty: 0.0, repetition_penalty: 1.0, enableThinking: false, max_tokens: 8192 },
+  INSTRUCT_REASONING: { temperature: 0.6, top_p: 0.95, top_k: 50, min_p: 0.0, presence_penalty: 0.0, repetition_penalty: 1.0, enableThinking: false, max_tokens: 8192 }
+};
+
+const MODEL_REGISTRY: ModelFeatureConfig[] = [
+  { idPattern: 'qwen', profiles: QWEN_PROFILES },
+  { idPattern: 'llama', profiles: LLAMA3_PROFILES },
+  { idPattern: 'deepseek', profiles: DEEPSEEK_PROFILES },
+  { idPattern: 'codestral', profiles: LLAMA3_PROFILES } // Fallback to Llama params
+];
+
+function getProfilesForModel(modelId: string): Record<string, SamplingProfile> {
+  const lowerId = modelId.toLowerCase();
+  for (const config of MODEL_REGISTRY) {
+    if (lowerId.includes(config.idPattern)) {
+      return config.profiles;
+    }
+  }
+  return QWEN_PROFILES;
+}
 
 // Authentic ancient Greek names for Helot persona assignment
 const GREEK_NAMES = [
@@ -213,20 +262,29 @@ export default function (pi: ExtensionAPI) {
     task: string,
     onUpdate: (data: any) => void,
     metrics: SubagentMetrics,
-    profileKey: keyof typeof SAMPLING_PROFILES = "THINKING_GENERAL"
+    profileKey: string = "THINKING_GENERAL",
+    detectedModelName?: string
   ): Promise<string> => {
-    // Router Logic: Aristomenis (Governor/Strategist) gets Dense, others get MoE
+    // Router Logic: Aristomenis gets Dense, others get MoE
     const targetModel = (role === "Aristomenis" || role === "Governor") ? CONFIG.denseModel : CONFIG.moeModel;
-    const profile = SAMPLING_PROFILES[profileKey];
 
-    onUpdate?.({ content: [{ type: "text", text: `⚔️ Helot ${helotName} (${role}) running on ${targetModel} [${profileKey}]...` }] });
+    // Check available models from client if not passed directly (mostly for fallback, executeHelots passes it)
+    const activeModelName = detectedModelName || (await client.getProps()).modelName;
+
+    // Fall back to the active model if the desired model isn't running
+    const actualModelToUse = activeModelName; // Simplification: we use what the server actually has loaded
+
+    const profiles = getProfilesForModel(actualModelToUse);
+    const profile = profiles[profileKey] || profiles["THINKING_GENERAL"];
+
+    onUpdate?.({ content: [{ type: "text", text: `⚔️ Helot ${helotName} (${role}) running on ${actualModelToUse} [${profileKey}]...` }] });
 
     const response = await client.chatComplete({
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: task }
       ],
-      model: targetModel,
+      model: actualModelToUse,
       profile,
       onToken: (t) => {
         if (!t) return;
@@ -301,7 +359,7 @@ export default function (pi: ExtensionAPI) {
 
     // Auto-detect server model and context size
     const { modelName, maxTokens } = await client.getProps();
-    onUpdate?.({ content: [{ type: "text", text: `🤖 Model: ${modelName} | Max output: ${maxTokens} tokens` }] });
+    onUpdate?.({ content: [{ type: "text", text: `🤖 Detected Loaded Model: ${modelName} | Max output: ${maxTokens} tokens` }] });
 
     // Portability: Auto-patch .gitignore if it exists
     try {
@@ -335,7 +393,7 @@ RESPOND ONLY WITH XML. NO explanations, NO prose, NO thinking.`;
 
     const scout = pickName(runId, "Scout");
     onUpdate?.({ content: [{ type: "text", text: `[Scout] ${scout.name} of ${scout.city} summoned...` }] });
-    await runSubagent("Scout", scout.name, scoutSystem, `Plan: ${implementationPlan}`, onUpdate, psiloiMetrics.scout, "INSTRUCT_GENERAL");
+    await runSubagent("Scout", scout.name, scoutSystem, `Plan: ${implementationPlan}`, onUpdate, psiloiMetrics.scout, "INSTRUCT_GENERAL", modelName);
 
     await writeTrace({ phase: "scout", status: "complete" });
 
@@ -387,7 +445,7 @@ ${lastPeltastFeedback ? `\nPREVIOUS ATTEMPT FAILED. Peltast Feedback:\n${lastPel
 
         const builder = pickName(runId, `Builder-${index}-${tryCount}`);
         onUpdate?.({ content: [{ type: "text", text: `[Builder] ${builder.name} of ${builder.city} assigned Task ${index + 1}/${tasks.length} (Try ${tryCount}/${maxTries})...` }] });
-        const builderOut = await runSubagent("Builder", builder.name, builderSystem, builderPrompt, onUpdate, psiloiMetrics.builder, "THINKING_CODE");
+        const builderOut = await runSubagent("Builder", builder.name, builderSystem, builderPrompt, onUpdate, psiloiMetrics.builder, "THINKING_CODE", modelName);
         await writeTrace({ phase: "builder", taskIndex: index, try: tryCount, outputLength: builderOut.length });
 
         // --- 3. PELTAST PHASE ---
@@ -399,7 +457,7 @@ If correct, output VERDICT: PASS. If incorrect, output VERDICT: FAIL and explain
         onUpdate?.({ content: [{ type: "text", text: `[Peltast] ${peltast.name} of ${peltast.city} verifying Task ${index + 1} (Try ${tryCount}/${maxTries})...` }] });
         const peltastOut = await runSubagent("Peltast", peltast.name, peltastSystem,
           `Builder output:\n${builderOut}\n\nVerify this completed the task: ${checklistTask}`,
-          onUpdate, psiloiMetrics.peltast, "INSTRUCT_REASONING");
+          onUpdate, psiloiMetrics.peltast, "INSTRUCT_REASONING", modelName);
 
         await fs.appendFile(reviewFile, `\n## Task: ${checklistTask} (Try ${tryCount})\n${peltastOut}\n`);
         await writeTrace({ phase: "peltast", taskIndex: index, try: tryCount, result: peltastOut.includes("PASS") ? "pass" : "fail" });
@@ -472,9 +530,9 @@ Avoid fluff. Focus on architectural patterns, logic flow, and specific implement
 ${fileContext ? `FILE CONTENT TO ANALYZE:\n${fileContext}` : ""}`;
 
     onUpdate?.({ content: [{ type: "text", text: `🏹 Slinger ${slingerPersona.name} of ${slingerPersona.city} deployed (Run ID: ${runId})` }] });
-    onUpdate?.({ content: [{ type: "text", text: `🤖 Model: ${modelName} | Max output: ${maxTokens} tokens` }] });
+    onUpdate?.({ content: [{ type: "text", text: `🤖 Detected Loaded Model: ${modelName} | Max output: ${maxTokens} tokens` }] });
 
-    const result = await runSubagent("Slinger", slingerPersona.name, slingerSystem, researchTask, onUpdate, slingerMetrics, "THINKING_GENERAL");
+    const result = await runSubagent("Slinger", slingerPersona.name, slingerSystem, researchTask, onUpdate, slingerMetrics, "THINKING_GENERAL", modelName);
 
     return `🏹 **Slinger Research Report** (by ${slingerPersona.name} of ${slingerPersona.city})
 

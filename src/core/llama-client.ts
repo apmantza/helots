@@ -1,4 +1,5 @@
-import { HelotConfig, TaskRole, SAMPLING_PROFILES, SamplingProfile } from '../config.js';
+import { HelotConfig, TaskRole, SamplingProfile } from '../config.js';
+import { getProfilesForModel } from './model-registry.js';
 
 /**
  * LlamaClient - Hardened SSE streaming client
@@ -11,6 +12,8 @@ export class LlamaClient {
     private baseUrl: string;
     private apiKey: string;
     private currentModel: string;
+    private serverAvailableModels: string[] = [];
+    private modelsInitialized = false;
 
     constructor(config: HelotConfig) {
         this.config = config;
@@ -19,12 +22,38 @@ export class LlamaClient {
         this.currentModel = config.moeModel; // assume MoE loaded initially
     }
 
-    private getTargetModel(role: TaskRole): string {
-        // Dense for strategic planning, MoE for execution/rapid tasks
-        if (role === 'Aristomenis' || role === 'Governor') {
-            return this.config.denseModel;
+    private async initializeModels(): Promise<void> {
+        if (this.modelsInitialized) return;
+        try {
+            const response = await fetch(`${this.baseUrl}/v1/models`, {
+                headers: { 'Authorization': `Bearer ${this.apiKey}` }
+            });
+            if (response.ok) {
+                const json = await response.json();
+                this.serverAvailableModels = (json.data || []).map((m: any) => m.id);
+                console.log(`[LlamaClient] Detected active server models: \n  - ${this.serverAvailableModels.join('\n  - ')}`);
+            }
+        } catch (error) {
+            console.warn(`[LlamaClient] Failed to auto-detect models from server. Falling back to config.json models.`);
         }
-        return this.config.moeModel;
+
+        if (this.serverAvailableModels.length === 0) {
+            this.serverAvailableModels = [this.config.moeModel];
+        }
+        this.modelsInitialized = true;
+    }
+
+    private getTargetModel(role: TaskRole): string {
+        const desired = (role === 'Aristomenis' || role === 'Governor') ? this.config.denseModel : this.config.moeModel;
+
+        if (this.serverAvailableModels.includes(desired)) {
+            return desired;
+        }
+
+        const fuzzy = this.serverAvailableModels.find(m => m.toLowerCase().includes(desired.toLowerCase()));
+        if (fuzzy) return fuzzy;
+
+        return this.serverAvailableModels[0] || desired;
     }
 
     /**
@@ -33,10 +62,11 @@ export class LlamaClient {
     async streamCompletion(
         prompt: string,
         role: TaskRole,
-        profileKey: keyof typeof SAMPLING_PROFILES,
+        profileKey: string,
         onChunk: (chunk: string) => void,
         onEnd: () => void
     ): Promise<void> {
+        await this.initializeModels();
         let attempts = 0;
         const maxAttempts = 3;
 
@@ -59,7 +89,7 @@ export class LlamaClient {
     private async attemptStream(
         prompt: string,
         role: TaskRole,
-        profileKey: keyof typeof SAMPLING_PROFILES,
+        profileKey: string,
         onChunk: (chunk: string) => void,
         onEnd: () => void
     ): Promise<void> {
@@ -71,7 +101,8 @@ export class LlamaClient {
             this.currentModel = targetModel;
         }
 
-        const profile = SAMPLING_PROFILES[profileKey];
+        const profiles = getProfilesForModel(targetModel);
+        const profile = profiles[profileKey] || profiles['THINKING_GENERAL'];
 
         const requestBody = {
             model: targetModel,
