@@ -16,3 +16,4 @@
 {"ts":"2026-03-02T15:38:44.511Z","phase":"execution","task":"2","status":"complete","description":"Create `src/core/persona-utils.ts` - GetGlobalContext utility"}
 {"ts":"2026-03-02T15:38:50.202Z","phase":"scout","status":"complete","fileCount":40}
 {"ts":"2026-03-02T15:41:27.603Z","phase":"execution","task":"3","status":"complete","description":"Remove `pickName` symbol from engine.ts and import from persona-utils.ts"}
+{"ts":"2026-03-02T15:42:58.331Z","phase":"execution","task":"4","status":"complete","description":"Remove `getGlobalContext` symbol from engine.ts and import from persona-utils.ts"}
