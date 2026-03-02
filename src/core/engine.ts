@@ -7,6 +7,11 @@ import { getAllFiles } from './file-utils.js';
 import { execSync } from 'child_process';
 import { stripThinking } from './text-utils.js';
 import { HelotTask, HelotState, HelotContext } from './types.js';
+import { Governor } from './governor.js';
+import { SlingerOrchestrator } from './slinger-orchestrator.js';
+import { Scout } from './scout.js';
+import { Builder } from './builder-orchestrator.js';
+import { Peltast } from './peltast-orchestrator.js';
 
 
 /**
@@ -20,251 +25,21 @@ import { HelotTask, HelotState, HelotContext } from './types.js';
  * GOVERNOR (formerly Ephor)
  * Performs final SWEEP REPORT to ensure strategic alignment
  */
-class Governor {
-  public state: HelotState;
-  public config: HelotConfig;
-
-  constructor(config: HelotConfig) {
-    this.config = config;
-    this.state = this.loadState();
-  }
-
-  private loadState(): HelotState {
-    const statePath = join(this.config.stateDir, 'helot-state.json');
-    if (existsSync(statePath)) {
-      return JSON.parse(readFileSync(statePath, 'utf-8'));
-    }
-    return {
-      runId: this.generateRunId(),
-      tasks: [],
-      currentTaskIndex: 0,
-      lastCheckpoint: '',
-    };
-  }
-
-  private generateRunId(): string {
-    return `run-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
-  }
-
-  saveState(): void {
-    const statePath = join(this.config.stateDir, 'helot-state.json');
-    mkdirSync(this.config.stateDir, { recursive: true });
-    writeFileSync(statePath, JSON.stringify(this.state, null, 2));
-  }
-
-  /**
-   * SWEEP REPORT - Final strategic alignment verification
-   */
-  generateSweepReport(): string {
-    const completed = this.state.tasks.filter(t => t.status === 'completed').length;
-    const total = this.state.tasks.length;
-    const failed = this.state.tasks.filter(t => t.status === 'failed').length;
-
-    return `
-=== GOVERNOR'S SWEEP REPORT ===
-Run ID: ${this.state.runId}
-Total Tasks: ${total}
-Completed: ${completed}
-Failed: ${failed}
-Current Task Index: ${this.state.currentTaskIndex}
-Last Checkpoint: ${this.state.lastCheckpoint}
-Status: ${failed > 0 ? 'RECOVERY REQUIRED' : completed === total ? 'MISSION ACCOMPLISHED' : 'IN PROGRESS'}
-================================
-`;
-  }
-
-  getRunId(): string {
-    return this.state.runId;
-  }
-}
 
 /**
  * SCOUT - Technical Reconnaissance & File Mapping
  * Maps Gorgo's plan to file structure, generates context for Builder
  */
-class Scout {
-  private config: HelotConfig;
-
-  constructor(config: HelotConfig) {
-    this.config = config;
-  }
-
-  /**
-   * Perform Technical Reconnaissance & File Mapping
-   * Returns file structure and context for Builder
-   */
-  async performReconnaissance(implementationPlan: string): Promise<Record<string, string>> {
-    const fileMapping: Record<string, string> = {};
-
-    // Parse implementation plan for file references
-    const fileRegex = /(?:file|target|path)\s*[:=]\s*["']?([^\s"'`]+)["']?/gi;
-    let match;
-    while ((match = fileRegex.exec(implementationPlan)) !== null) {
-      const filePath = match[1];
-      if (existsSync(filePath)) {
-        fileMapping[filePath] = readFileSync(filePath, "utf-8");
-      }
-    }
-
-    return fileMapping;
-  }
-
-  /**
-   * PORTABLE BEHAVIORAL SLICER
-   * Analyzes file structure without external AST dependencies.
-   */
-  public getSymbolSlice(filePath: string, symbolName: string): string {
-    if (!existsSync(filePath)) return "";
-    const content = readFileSync(filePath, "utf-8");
-    const lines = content.split("\n");
-
-    // 1. Find the symbol definition
-    let startLine = -1;
-    let endLine = -1;
-    let braceCount = 0;
-    let foundStart = false;
-
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-      if (!foundStart && (line.includes(`function ${symbolName}`) || line.includes(`${symbolName}(`) || line.includes(`class ${symbolName}`))) {
-        startLine = i;
-        foundStart = true;
-      }
-
-      if (foundStart) {
-        braceCount += (line.match(/{/g) || []).length;
-        braceCount -= (line.match(/}/g) || []).length;
-        if (braceCount === 0 && line.includes("}")) {
-          endLine = i;
-          break;
-        }
-      }
-    }
-
-    if (startLine === -1) return lines.slice(0, 100).join("\n"); // Fallback to head
-
-    // 2. Simple Dependency Extraction (Regex-based)
-    const sliceLines = lines.slice(startLine, endLine + 1);
-    const sliceContent = sliceLines.join("\n");
-
-    // Find calls to other potential symbols in the same file
-    const potentialCalls = Array.from(new Set(content.match(/[a-zA-Z0-9_]+(?=\()/g) || []));
-    let extraContext = "";
-
-    for (const call of potentialCalls) {
-      if (call === symbolName) continue;
-      if (sliceContent.includes(`${call}(`)) {
-        // Greedy recursive slice (1 level deep)
-        const depSlice = this.getRawSymbol(lines, call);
-        if (depSlice) extraContext += `\n--- DEPENDENCY: ${call} ---\n${depSlice}\n`;
-      }
-    }
-
-    return `--- TARGET SYMBOL: ${symbolName} ---\n${sliceContent}\n${extraContext}`;
-  }
-
-  private getRawSymbol(lines: string[], name: string): string | null {
-    let start = -1;
-    let found = false;
-    let braces = 0;
-    for (let i = 0; i < lines.length; i++) {
-      if (!found && (lines[i].includes(`function ${name}`) || lines[i].includes(`${name}(`) || lines[i].includes(`class ${name}`))) {
-        start = i;
-        found = true;
-      }
-      if (found) {
-        braces += (lines[i].match(/{/g) || []).length;
-        braces -= (lines[i].match(/}/g) || []).length;
-        if (braces === 0 && lines[i].includes("}")) return lines.slice(start, i + 1).join("\n");
-      }
-    }
-    return null;
-  }
-
-  /**
-   * Generate context.md for Builder based on reconnaissance
-   */
-  generateContext(fileMapping: Record<string, string>): string {
-    let context = "## FILE MAPPING CONTEXT\n\n";
-    for (const [filePath, content] of Object.entries(fileMapping)) {
-      context += `### ${filePath}\n\n\`\`\`\n${content.substring(0, 500)}${content.length > 500 ? "..." : ""}\n\`\`\`\n\n`;
-    }
-    return context;
-  }
-}
 
 /**
  * BUILDER - Implementation Agent
  * Performs actual file writes/edits based on Scout's context
  */
-class Builder {
-  private config: HelotConfig;
-
-  constructor(config: HelotConfig) {
-    this.config = config;
-  }
-
-  /**
-   * Execute file modifications based on implementation plan
-   */
-  async executeImplementation(
-    implementationPlan: string,
-    fileMapping: Record<string, string>
-  ): Promise<string[]> {
-    const modifications: string[] = [];
-
-    // Parse implementation plan for modification directives
-    const modifyRegex = /(?:modify|edit|update|create)\s*["']?([^\s"'`]+)["']?\s*[:=]\s*["']?([\s\S]*?)["']?/gi;
-    let match;
-    while ((match = modifyRegex.exec(implementationPlan)) !== null) {
-      const filePath = match[1];
-      const content = match[2];
-
-      if (filePath && content) {
-        const fullPath = join(this.config.projectRoot, filePath);
-        mkdirSync(join(fullPath, '..'), { recursive: true });
-        writeFileSync(fullPath, content);
-        modifications.push(`Modified: ${filePath}`);
-      }
-    }
-
-    return modifications;
-  }
-}
 
 /**
  * PELTAST - Verification Agent
  * Validates Builder's work and triggers retries on failure
  */
-class Peltast {
-  private config: HelotConfig;
-
-  constructor(config: HelotConfig) {
-    this.config = config;
-  }
-
-  /**
-   * Verify Builder's modifications
-   */
-  async verifyModifications(modifications: string[]): Promise<boolean> {
-    for (const mod of modifications) {
-      const [_, filePath] = mod.split(': ');
-      if (!existsSync(filePath)) {
-        console.error(`Verification failed: ${filePath} does not exist`);
-        return false;
-      }
-    }
-    return true;
-  }
-
-  /**
-   * Trigger retry on verification failure
-   */
-  async triggerRetry(taskId: string): Promise<void> {
-    console.log(`Peltast: Retrying task ${taskId}`);
-    // Retry logic would be implemented here
-  }
-}
 
 /**
  * HELLOT ENGINE - Orchestration Layer
@@ -276,6 +51,7 @@ export class HelotEngine {
   private builder: Builder;
   private peltast: Peltast;
   private client: LlamaClient;
+  private slinger: SlingerOrchestrator;
   private sessionTotalTokens: number = 0;
   private currentPhase: string = "Setup";
   private currentTaskTitle: string = "";
@@ -286,6 +62,7 @@ export class HelotEngine {
     this.builder = new Builder(config);
     this.peltast = new Peltast(config);
     this.client = new LlamaClient(config);
+    this.slinger = new SlingerOrchestrator(config, this.client, this.governor, this);
   }
 
   /**
@@ -375,7 +152,7 @@ RESPOND ONLY WITH THE CHECKLIST OR DATA REQUEST.`;
     if (checklist.includes("NEED MORE DATA:")) {
       const query = checklist.split("NEED MORE DATA:")[1].trim();
       onUpdate?.({ text: `🏹 Aristomenis requested data. Deploying Slinger...` });
-      const slingerReport = await this.executeSlinger(query, undefined, onUpdate);
+      const slingerReport = await this.slinger.executeSlinger(query, undefined, onUpdate);
       checklist = await this.runSubagent('Aristomenis', 'Aristomenis', aristomenisSystem, `RE-PLANNING with Slinger Report:\n${slingerReport}\n\nProject Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'THINKING_GENERAL', modelName);
     }
 
@@ -489,10 +266,11 @@ Output the file content using Markdown blocks:
 (code)
 \`\`\``;
 
-        const builder = this.pickName(runId, `Builder-${task.id}-${tryCount}`);
+        const builderPersona = this.pickName(runId, `Builder-${task.id}-${tryCount}`);
         this.currentPhase = `Builder (Task ${task.id})`;
         onUpdate?.({ text: `[Builder] Designing changes for Task ${task.id} (Try ${tryCount})...` });
-        const builderOut = await this.runSubagent("Builder", builder.name, builderSystem, `Mission ID: ${runId}\nTask: ${task.description}`, onUpdate, psiloiMetrics.builder, "THINKING_CODE", modelName);
+        // NOTE: Builder.executeImplementation is currently manual/file-based, but we call the LLM for the plan
+        const builderOut = await this.runSubagent("Builder", builderPersona.name, builderSystem, `Mission ID: ${runId}\nTask: ${task.description}`, onUpdate, psiloiMetrics.builder, "THINKING_CODE", modelName);
 
         // ── GUARDRAIL: pre-parse Builder output, backup existing files before any write ──
         // git stash is unreliable on clean working trees (exits code 1 = nothing to stash).
@@ -533,10 +311,10 @@ Verify logic, signatures, and Spartan Simplicity.
 
 Output VERDICT: PASS or FAIL with reason.`;
 
-        const peltast = this.pickName(runId, `Peltast-${task.id}-${tryCount}`);
+        const peltastPersona = this.pickName(runId, `Peltast-${task.id}-${tryCount}`);
         this.currentPhase = `Peltast Verification (Task ${task.id})`;
         onUpdate?.({ text: `[Peltast] Verifying Task ${task.id}...` });
-        const peltastOut = await this.runSubagent("Peltast", peltast.name, peltastSystem,
+        const peltastOut = await this.runSubagent("Peltast", peltastPersona.name, peltastSystem,
           `Builder output:\n${builderOut}\n\nVerify this completed the task: ${task.description}`,
           onUpdate, psiloiMetrics.peltast, "THINKING_REASONING", modelName);
 
@@ -596,123 +374,6 @@ Output VERDICT: PASS or FAIL with reason.`;
     // BUG FIX 2 (cont): normalize onUpdate shape
     onUpdate?.({ text: `✅ Execution complete! All tasks processed.` });
     return this.governor.generateSweepReport();
-  }
-
-  /**
-   * SLINGER RECONNAISSANCE
-   * Upgraded based on pi-finder-subagent: 
-   * Strict turn budgets, read-only sandboxing, and Evidence/Locations reporting.
-   */
-  async executeSlinger(researchTask: string, targetFiles: string[] | undefined, onUpdate?: (data: any) => void): Promise<string> {
-    const runId = this.governor.getRunId();
-    const { modelName } = await this.client.getProps();
-    const slingerMetrics = { in: 0, out: 0, tps: 0 };
-    const slingerPersona = this.pickName(runId, "Slinger");
-
-    let slingerHistory = "";
-    if (targetFiles && targetFiles.length > 0) {
-      onUpdate?.({ text: `📖 Slinger reading ${targetFiles.length} files...` });
-      for (const f of targetFiles) {
-        try {
-          const content = readFileSync(path.resolve(f), "utf-8");
-          slingerHistory += `\n--- FILE: ${f} ---\n${content}\n`;
-        } catch (e: any) {
-          slingerHistory += `\n--- FILE: ${f} ---\n(Error reading file: ${e.message})\n`;
-        }
-      }
-    }
-
-    const isWindows = process.platform === 'win32';
-    const osSkillBoard = isWindows
-      ? `\n[WINDOWS POWERSHELL SKILL ACTIVE]
-- Use 'Select-String -Path "src/core/*.ts" -Pattern "SymbolName"' for deep searching.
-- Use 'Get-ChildItem -Recurse -Filter "*.ts" src/core/' to find files.
-- Use 'cat' or 'Get-Content' to read files.
-- Use 'ls' as a native alias for directory listing.`
-      : `\n[UNIX BASH SKILL ACTIVE]
-- Use 'rg "Pattern" src/' for fast searching.
-- Use 'find src/ -name "*.ts"' to locate files.
-- Use 'cat' or 'ls' for file operations.`;
-
-    const slingerSystem = `${await this.getGlobalContext()}
-You are the Slinger, a specialized Reconnaissance Subagent (inspired by pi-finder).
-Your absolute goal is to search the codebase and find structural evidence to answer the Architect's query.
-
-${osSkillBoard}
-
-You operate in a strict read-only tool sandbox. You have a budget of up to 5 turns.
-To execute a read command, reply EXCLUSIVELY with the following block:
-### COMMAND
-[your command here]
-### END_COMMAND
-
-Supported tools: rg, cat, ls, find, Select-String, Get-ChildItem, Get-Content. 
-DO NOT write code or mutate files. Do not use markdown tags like \`\`\`bash around the command inside the block.
-The environment will reply with the output of your command.
-
-When you have found the answer, or if you run out of turns, you MUST output your final report EXACTLY in this format:
-### SUMMARY
-[Concise answer to the Architect's query]
-
-### LOCATIONS
-[Exact file paths and line numbers where the relevant code lives]
-
-### EVIDENCE
-[Raw code snippets proving your architecture summary]`;
-
-    onUpdate?.({ content: [{ type: "text", text: `🏹 Slinger ${slingerPersona.name} of ${slingerPersona.city} deployed (Run ID: ${runId})` }] });
-
-    let finalReport = "";
-    const MAX_TURNS = 5;
-
-    for (let turn = 1; turn <= MAX_TURNS; turn++) {
-      onUpdate?.({ text: `⏳ Slinger Turn ${turn}/${MAX_TURNS}...` });
-
-      const userPrompt = `Research Query: ${researchTask}\n\nSearch History / File Content:\n${slingerHistory || "(No history yet. Execute a COMMAND to begin searching.)"}`;
-      // HALT SIGNAL: Break stream if Slinger outputs ### END_COMMAND to prevent hallucination
-      const result = await this.runSubagent("Slinger", slingerPersona.name, slingerSystem, userPrompt, onUpdate, slingerMetrics, "INSTRUCT_GENERAL", modelName, ["### END_COMMAND"]);
-
-      // Check if Slinger executed a command
-      const cmdMatch = result.match(/### COMMAND\n([\s\S]*)\n### END_COMMAND/);
-      if (cmdMatch) {
-        const command = cmdMatch[1].trim();
-        onUpdate?.({ text: `💲 [Slinger Executing]: ${command.slice(0, 60)}...` });
-
-        let cmdOutput = "";
-        try {
-          // STRICT SANDBOXING: Enforce read-only commands
-          const allowedPattern = /^(rg|cat|ls|find|Select-String|Get-ChildItem|Get-Content|type)\b/i;
-          if (!allowedPattern.test(command)) {
-            cmdOutput = "ERROR: Command rejected by Sandbox. Only read-only reconnaissance tools are permitted.";
-          } else {
-            // Execute safely
-            const shell = process.platform === 'win32' ? 'powershell.exe' : undefined;
-            cmdOutput = execSync(command, { cwd: process.cwd(), stdio: 'pipe', shell }).toString();
-            if (cmdOutput.length > 3000) {
-              cmdOutput = cmdOutput.slice(0, 3000) + "\n...[TRUNCATED BY SANDBOX: output too large (run tighter rg filters)]...";
-            }
-          }
-        } catch (e: any) {
-          cmdOutput = `Command Failed: ${e.message}\n${e.stdout?.toString() || ""}`;
-        }
-
-        slingerHistory += `\n[Turn ${turn}] Executed: ${command}\nOutput:\n${cmdOutput}\n`;
-      } else if (result.includes("### SUMMARY")) {
-        // Slinger reached a conclusion
-        finalReport = result;
-        break;
-      } else {
-        // Did not comply with strict formatting, but stopped issuing commands
-        finalReport = result;
-        break;
-      }
-
-      if (turn === MAX_TURNS) {
-        finalReport = result + "\n\n[WARNING: Slinger exhausted all 5 turns and was forced to halt.]";
-      }
-    }
-
-    return `🏹 **Slinger Pi-Finder Report** (by ${slingerPersona.name} of ${slingerPersona.city})\n\n${finalReport}`;
   }
 
   private async runSubagent(role: string, name: string, systemPrompt: string, userPrompt: string, onUpdate: any, metrics: any, profile: string, model: string, haltOn?: string[]): Promise<string> {
