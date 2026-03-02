@@ -293,14 +293,14 @@ RESPOND ONLY WITH THE CHECKLIST OR DATA REQUEST.`;
     this.currentPhase = "Architect";
     this.currentTaskTitle = "Designing Implementation Checklist";
     onUpdate?.({ text: `[Aristomenis] Designing implementation strategy...` });
-    let checklist = await this.runSubagent('Aristomenis', 'Architect', aristomenisSystem, `Project Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'THINKING_GENERAL', modelName);
+    let checklist = await this.runSubagent('Aristomenis', 'Aristomenis', aristomenisSystem, `Project Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'THINKING_GENERAL', modelName);
 
     // AUTO-SLINGER TRIGGER
     if (checklist.includes("NEED MORE DATA:")) {
       const query = checklist.split("NEED MORE DATA:")[1].trim();
       onUpdate?.({ text: `🏹 Aristomenis requested data. Deploying Slinger...` });
       const slingerReport = await this.executeSlinger(query, undefined, onUpdate);
-      checklist = await this.runSubagent('Aristomenis', 'Architect', aristomenisSystem, `RE-PLANNING with Slinger Report:\n${slingerReport}\n\nProject Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'THINKING_GENERAL', modelName);
+      checklist = await this.runSubagent('Aristomenis', 'Aristomenis', aristomenisSystem, `RE-PLANNING with Slinger Report:\n${slingerReport}\n\nProject Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'THINKING_GENERAL', modelName);
     }
 
     onUpdate?.({ text: `📋 **Spartan Checklist Generated:**\n${checklist}` });
