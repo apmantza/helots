@@ -460,11 +460,24 @@ ${fileContext ? `FILE CONTENT TO ANALYZE:\n${fileContext}` : ""}`;
       { role: 'user', content: userPrompt }
     ];
 
-    await this.client.streamCompletion(messages, role as TaskRole, profile as string, (chunk) => {
+    let updateBuffer = "";
+    const header = `### 🛡️ [${role}] ${name}\n---\n`;
+
+    await this.client.streamCompletion(messages, role as TaskRole, profile, (chunk) => {
       fullResponse += chunk;
-      onUpdate?.({ text: chunk });
+      updateBuffer += chunk;
+
+      // Buffer updates to avoid UI overwhelming, but ensure "Thinking" is visible
+      if (updateBuffer.length > 20 || chunk.includes('\n')) {
+        onUpdate?.({ text: `${header}${fullResponse}` });
+        updateBuffer = "";
+      }
+
       if (metrics) metrics.out += chunk.length;
-    }, () => { });
+    }, () => {
+      // Final update for completeness
+      onUpdate?.({ text: `${header}${fullResponse}` });
+    });
     return fullResponse;
   }
 
