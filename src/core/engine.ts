@@ -260,10 +260,12 @@ export class HelotEngine {
     const globalContext = await this.getGlobalContext();
     mkdirSync(this.governor.config.stateDir, { recursive: true });
     this.sessionTotalTokens = 0;
-    this.currentPhase = "Gatherer";
 
-    // --- 1. GATHERER PHASE (Local Scan) ---
-    onUpdate?.({ text: `[Gatherer] Scanning workspace for Project Map...` });
+    onUpdate?.({ text: `🚀 Delegating to Aristomenis...` });
+    this.currentPhase = "Scout";
+
+    // --- 1. SCOUT PHASE (Local Scan) ---
+    onUpdate?.({ text: `[Scout] Scanning workspace for Project Map...` });
     const fileList = this.getAllFiles(process.cwd());
     const manifest = {
       files: fileList.map(f => ({
@@ -273,7 +275,7 @@ export class HelotEngine {
     };
     const manifestRaw = JSON.stringify(manifest, null, 2).slice(0, 32000); // Guard context window
     writeFileSync(contextFile, manifestRaw);
-    await writeTrace({ phase: "gatherer", status: "complete", fileCount: fileList.length });
+    await writeTrace({ phase: "scout", status: "complete", fileCount: fileList.length });
 
     // --- 2. ARISTOMENIS PHASE (Dense) ---
     const aristomenisSystem = `${globalContext}
