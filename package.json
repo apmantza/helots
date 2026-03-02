@@ -5,12 +5,13 @@
     "@sinclair/typebox": "^0.34.48",
     "zod": "^4.3.6"
   },
-  "name": "helots-pi",
+  "name": "helots",
   "version": "1.0.0",
   "description": "This repository is managed with the help of Antigravity, a local LLM-powered coding assistant. Antigravity can perform various tasks including:",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mcp": "jiti src/adapters/mcp-server.ts"
   },
   "keywords": [],
   "author": "",

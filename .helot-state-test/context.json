@@ -1,0 +1,104 @@
+{
+  "files": [
+    {
+      "path": "...",
+      "size": 751
+    },
+    {
+      "path": ".agents\\workflows\\helots.md",
+      "size": 1837
+    },
+    {
+      "path": ".gitignore",
+      "size": 353
+    },
+    {
+      "path": "agents.md",
+      "size": 1691
+    },
+    {
+      "path": "docs\\gorgo_rename_plan.md",
+      "size": 1638
+    },
+    {
+      "path": "docs\\helot_doctrine.md",
+      "size": 1994
+    },
+    {
+      "path": "docs\\walkthrough.md",
+      "size": 2271
+    },
+    {
+      "path": "index.ts",
+      "size": 3488
+    },
+    {
+      "path": "package-lock.json",
+      "size": 174980
+    },
+    {
+      "path": "package.json",
+      "size": 602
+    },
+    {
+      "path": "README.md",
+      "size": 3638
+    },
+    {
+      "path": "scripts\\gorgo_run.ts",
+      "size": 2092
+    },
+    {
+      "path": "scripts\\hardening_run.ts",
+      "size": 973
+    },
+    {
+      "path": "scripts\\review_swarm.ts",
+      "size": 1057
+    },
+    {
+      "path": "scripts\\test.ts",
+      "size": 1091
+    },
+    {
+      "path": "src\\adapters\\mcp-server.ts",
+      "size": 4912
+    },
+    {
+      "path": "src\\adapters\\mcp.ts",
+      "size": 2197
+    },
+    {
+      "path": "src\\adapters\\pi.ts",
+      "size": 3288
+    },
+    {
+      "path": "src\\config.ts",
+      "size": 633
+    },
+    {
+      "path": "src\\core\\engine.ts",
+      "size": 19160
+    },
+    {
+      "path": "src\\core\\llama-client.ts",
+      "size": 7152
+    },
+    {
+      "path": "src\\core\\model-registry.ts",
+      "size": 4001
+    },
+    {
+      "path": "tmp\\test_orchestration.ts",
+      "size": 1129
+    },
+    {
+      "path": "USAGE.md",
+      "size": 2266
+    },
+    {
+      "path": "~\\.pi\\agent\\extensions\\helots.ts",
+      "size": 1469
+    }
+  ]
+}

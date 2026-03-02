@@ -7,7 +7,7 @@ export interface HelotConfig {
     moeModel: string;
 }
 
-export type TaskRole = 'Aristomenis' | 'Psiloi' | 'Slinger' | 'Governor';
+export type TaskRole = 'Aristomenis' | 'Psiloi' | 'Slinger' | 'Governor' | 'Gatherer';
 
 export interface SamplingProfile {
     temperature: number;

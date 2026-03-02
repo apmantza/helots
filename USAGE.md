@@ -1,61 +1,77 @@
-# Launching Helots with Cloud Agents
+# Helots: Operational Guide 🛡️🏹
 
-This guide explains how to enforce the **"Gorgo of Sparta"** doctrine (Cloud Strategic Brain + Local Execution Swarm) with popular desktop agents.
+Helots is a highly modular Spartan orchestration framework, usable as a **Pi Extension** or a **Standalone MCP Server**.
 
-Helots works by utilizing **Soft Constraints**—prompting the cloud model into an "Architect" persona that intentionally refuses to write code directly and instead delegates all work to the local GPU.
+## 🏗️ Core Architecture: The Triad
 
----
-
-## 🚀 1. Antigravity & Pi Coding Agent Setup
-
-If you are using Antigravity or the locally installed Pi Coding Agent, the setup is fully automated.
-
-### Extension Installation
-
-1. Navigate to your local Pi extensions directory (usually `~/.pi/agent/extensions/`).
-2. Copy `index.ts` from this repository and save it as `helots.ts`.
-3. Copy the entire `src/` directory from this repository into the extensions directory (so that `~/.pi/agent/extensions/src/core/engine.ts` exists).
-4. The Pi Coding Agent will automatically load the extension, granting the UI tools `helot_run` and `helot_slinger` to the LLM context.
-
-### The Agent Prompt (Workflow)
-
-Antigravity locally scans your directories for `.agents/workflows/` and `.pi/system/` to ingest specific operational rules.
-
-1. **Workspace Scope**: To enforce the Helot Doctrine only on your current project, copy the `helots.md` prompt into a `.agents/workflows/` folder in your project root.
-2. **Global Scope**: To enforce the Helot Doctrine universally across all projects, copy the `helots.md` prompt into your global `~/.pi/system/helots_workflow.md` directory.
-
-The agent will instantly adopt the **Gorgo of Sparta** persona.
+1. **Aristomenis (Architect)**: Designs the `progress.md` task checklist based on a project map.
+2. **Builder (Worker)**: Executes granular tasks with **Smart Read** context.
+3. **Peltast (Verifier)**: Uses **Thinking/Reasoning** to validate changes.
+4. **Slinger (Recon)**: Specialized subagent for deep codebase research.
 
 ---
 
-## 🤖 2. Claude Desktop (via MCP) Setup
+## 🚀 Getting Started
 
-Anthropic's Claude Desktop app supports the Model Context Protocol (MCP), meaning it natively supports the Helots architecture.
+### 1. Environment Configuration
 
-### MCP Configuration
-
-Update your `claude_desktop_config.json` to expose the local Helots MCP server.
-
-* **Note**: Ensure you have configured the `mcp.ts` adapter within your local workspace to expose the `/v1/chat/completions` API logic.
+Create or update `.helots/config.json` (or set Environment Variables):
 
 ```json
 {
-  "mcpServers": {
-    "helots": {
-      "command": "npx",
-      "args": ["tsx", "/absolute/path/to/helots-pi/src/adapters/mcp.ts"]
-    }
-  }
+  "llamaUrl": "http://127.0.0.1:8080",
+  "apiKey": "your-key-here",
+  "denseModel": "Qwen/Qwen3.5-27B",
+  "moeModel": "Qwen/Qwen3.5-35B-A3B"
 }
 ```
 
-Restart Claude Desktop. You should now see the `helot_run` and `helot_slinger` tools available in the UI.
+### 2. Usage as an MCP Server (Antigravity / Claude)
 
-### The Agent Prompt (Project Instructions)
+To expose Helot tools to your desktop assistant:
 
-Claude Desktop requires you to manually instruct the LLM on how to behave.
+1. **Install dependencies**:
 
-1. Open **Claude Desktop** and navigate to your specific Claude Project.
-2. Under **Custom Instructions**, paste the contents of `helots.md` (The Gorgo of Sparta Workflow).
+    ```bash
+    npm install
+    ```
 
-Claude will now execute complex refactors by designing the architectural checklist in the cloud, while silently delegating the grunt work to your local `llama.cpp` instance!
+2. **Launch the MCP Server**:
+
+    ```bash
+    npm run mcp
+    ```
+
+3. **Register Tools**: Add the command above to your MCP client settings.
+
+### 3. Usage as a Pi Extension
+
+1. Navigate to your Pi Agent extension directory.
+2. Link or copy this project folder.
+3. The agent will automatically detect `helot_slinger` and `helot_run`.
+
+---
+
+## 🛠️ Available Tools
+
+### `helot_slinger`
+
+**When to use**: Code review, mapping architecture, or answering "where is X?"
+
+- **Input**: `researchTask` (Question), `targetFiles` (Optional list).
+- **Output**: Deep technical report.
+
+### `helot_run`
+
+**When to use**: To execute an implementation plan.
+
+- **Input**: `taskSummary`, `implementationPlan`.
+- **Flow**: Gatherer (Map) -> Aristomenis (Checklist) -> Builder/Peltast Loop -> Git Commit.
+
+---
+
+## 🛡️ Fail-Safe Features
+
+- **Git Rollbacks**: If a task fails verification 3 times, Helots automatically runs `git reset --hard HEAD~1` to prevent a broken workspace.
+- **Automatic Checkpointing**: Verification success triggers an automatic git commit with the task description.
+- **Smart Context**: Builders only read the specific file they are targeting to preserve the 66k context window.

@@ -1,7 +1,9 @@
 import { LlamaClient } from './llama-client.js';
-import { HelotConfig } from '../config.js';
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
-import { join } from 'path';
+import { HelotConfig, TaskRole } from '../config.js';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, appendFileSync, readdirSync, statSync } from 'fs';
+import { join, resolve, dirname } from 'path';
+import * as path from 'path';
+import { execSync } from 'child_process';
 
 /**
  * HELLOT PSILOI ARCHITECTURAL ANCHOR
@@ -228,56 +230,268 @@ export class HelotEngine {
   }
 
   /**
-   * Execute Run - Main orchestration loop
-   * Takes Gorgo's implementationPlan and executes through the Triad
+   * ARISTOMENIS ORCHESTRATION (Execute Run)
+   * Main orchestration loop using Aristomenis (Dense) to design task progress.md
    */
-  async executeRun(
+  async executeHelots(
+    taskSummary: string,
     implementationPlan: string,
-    resumeId?: string
+    onUpdate?: (data: any) => void
   ): Promise<string> {
-    // Handle resume functionality
-    if (resumeId) {
-      this.governor.state = JSON.parse(
-        readFileSync(join(this.governor.config.stateDir, 'helot-state.json'), 'utf-8')
-      );
-      console.log(`Resuming run: ${resumeId}`);
+    const runId = this.governor.getRunId();
+    const { modelName } = await this.client.getProps();
+    const psiloiMetrics = { scout: { in: 0, out: 0, tps: 0 }, builder: { in: 0, out: 0, tps: 0 }, peltast: { in: 0, out: 0, tps: 0 } };
+
+    const contextFile = join(this.governor.config.stateDir, "context.json");
+    const progressFile = join(this.governor.config.stateDir, "progress.md");
+    const reviewFile = join(this.governor.config.stateDir, "review.md");
+    const traceFile = join(this.governor.config.stateDir, "trace.json");
+
+    const writeTrace = async (data: any) => {
+      try {
+        const existing = existsSync(traceFile) ? JSON.parse(readFileSync(traceFile, 'utf-8')) : {};
+        writeFileSync(traceFile, JSON.stringify({ ...existing, ...data }, null, 2));
+      } catch { }
+    };
+
+    const globalContext = await this.getGlobalContext();
+    mkdirSync(this.governor.config.stateDir, { recursive: true });
+
+    // --- 1. GATHERER PHASE (Local Scan) ---
+    onUpdate?.({ text: `[Gatherer] Scanning workspace for Project Map...` });
+    const fileList = this.getAllFiles(process.cwd());
+    const manifest = {
+      files: fileList.map(f => ({
+        path: path.relative(process.cwd(), f),
+        size: existsSync(f) ? readFileSync(f).length : 0
+      }))
+    };
+    const manifestRaw = JSON.stringify(manifest, null, 2).slice(0, 32000); // Guard context window
+    writeFileSync(contextFile, manifestRaw);
+    await writeTrace({ phase: "gatherer", status: "complete", fileCount: fileList.length });
+
+    // --- 2. ARISTOMENIS PHASE (Dense) ---
+    const aristomenisSystem = `${globalContext}
+You are Aristomenis, the Architect. DESIGN the technical implementation checklist.
+Based on the Project Map and the Frontier Plan, create a granular checklist in \`progress.md\`.
+EACH TASK SHOULD TARGET ONE FILE. 
+Use DEPENDS: N or PARALLEL: N to mark task relationships.
+Checklist format:
+- [ ] 1. Task Description (Target: path/to/file.ts) [DEPENDS: none]
+- [ ] 2. Next Task (Target: path/to/other.ts) [DEPENDS: 1]
+
+If you NEED MORE DATA to make a plan, output only:
+NEED MORE DATA: [specific research question or file path]
+
+RESPOND ONLY WITH THE CHECKLIST OR DATA REQUEST.`;
+
+    onUpdate?.({ text: `[Aristomenis] Designing implementation strategy...` });
+    let checklist = await this.runSubagent('Aristomenis', 'Architect', aristomenisSystem, `Project Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'THINKING_GENERAL', modelName);
+
+    // AUTO-SLINGER TRIGGER
+    if (checklist.includes("NEED MORE DATA:")) {
+      const query = checklist.split("NEED MORE DATA:")[1].trim();
+      onUpdate?.({ text: `🏹 Aristomenis requested data. Deploying Slinger...` });
+      const slingerReport = await this.executeSlinger(query, undefined, onUpdate);
+      checklist = await this.runSubagent('Aristomenis', 'Architect', aristomenisSystem, `RE-PLANNING with Slinger Report:\n${slingerReport}\n\nProject Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'THINKING_GENERAL', modelName);
     }
 
-    // Parse DIRECTIVES/TASKS section from implementation plan
-    const taskRegex = /(?:## TASKS|## DIRECTIVES)\s*\n([\s\S]*?)(?:\n##|$)/i;
-    const taskMatch = implementationPlan.match(taskRegex);
-    const tasksSection = taskMatch ? taskMatch[1] : '';
+    onUpdate?.({ text: `📋 **Spartan Checklist Generated:**\n${checklist}` });
 
-    // Generate progress.md checklist from tasks section
-    const progressPath = join(this.governor.config.stateDir, 'progress.md');
-    const progressContent = this.generateProgressChecklist(tasksSection);
-    writeFileSync(progressPath, progressContent);
-
-    // Scout performs Technical Reconnaissance & File Mapping
-    const fileMapping = await this.scout.performReconnaissance(implementationPlan);
-    const context = this.scout.generateContext(fileMapping);
-
-    // Builder executes implementation
-    const modifications = await this.builder.executeImplementation(implementationPlan, fileMapping);
-
-    // Peltast verifies modifications
-    const verified = await this.peltast.verifyModifications(modifications);
-
-    if (!verified) {
-      await this.peltast.triggerRetry('main-orchestration');
+    if (implementationPlan.includes("[PLAN ONLY]")) {
+      return `[PLAN ONLY] Mode: Checklist drafted. Review and call again without [PLAN ONLY] to execute.\n\n${checklist}`;
     }
 
-    // Update state
-    this.governor.state.tasks.push({
-      id: 'main-orchestration',
-      description: 'Execute implementation plan',
-      status: verified ? 'completed' : 'failed',
-    });
-    this.governor.state.lastCheckpoint = new Date().toISOString();
-    this.governor.saveState();
+    writeFileSync(progressFile, checklist);
+    await writeTrace({ phase: "aristomenis", status: "complete" });
 
-    // Return Governor's SWEEP REPORT
+    // --- 3. BUILDER LOOP (MoE) ---
+    let progressContent;
+    try {
+      progressContent = readFileSync(progressFile, "utf-8");
+    } catch {
+      return `❌ Aristomenis failed to create ${progressFile}. Pipeline aborted.`;
+    }
+
+    const tasks = checklist.split("\n").filter(l => l.includes("- [ ]"));
+    writeFileSync(reviewFile, `# Aristomenis Review Report\nImplementation Plan: ${taskSummary}\n\n`);
+
+    for (let index = 0; index < tasks.length; index++) {
+      const checklistTask = tasks[index];
+      onUpdate?.({ text: `🛠️ Starting Task ${index + 1}/${tasks.length}: ${checklistTask}` });
+
+      const fileMatch = checklistTask.match(/\(Target:\s*([^\)]+)\)/);
+      const targetFile = fileMatch ? fileMatch[1].trim() : "unknown";
+
+      // Smart Read
+      let targetFileContent = "";
+      if (targetFile !== "unknown") {
+        try {
+          targetFileContent = readFileSync(path.resolve(targetFile), "utf-8");
+          onUpdate?.({ text: `📖 Smart Read: ${targetFile} loaded.` });
+        } catch {
+          onUpdate?.({ text: `⚠️ Smart Read failed for ${targetFile}. Proceeding with blind edit.` });
+        }
+      }
+
+      let taskPassed = false;
+      let lastPeltastFeedback = "";
+
+      for (let tryCount = 1; tryCount <= 3; tryCount++) {
+        const builderSystem = `${globalContext}
+You are the Builder. IMPLEMENT the following task: ${checklistTask}
+Existing file state: 
+${targetFileContent || "(New File)"}
+
+${lastPeltastFeedback ? `PREVIOUS FAILURE FEEDBACK:\n${lastPeltastFeedback}\n\nFix the issues and try again.` : ""}
+
+Output the file content using Markdown blocks:
+### [path/to/file.ts]
+\`\`\`typescript
+(code)
+\`\`\``;
+
+        const builder = this.pickName(runId, `Builder-${index}-${tryCount}`);
+        onUpdate?.({ text: `[Builder] Designing changes for Task ${index + 1} (Try ${tryCount})...` });
+        const builderOut = await this.runSubagent("Builder", builder.name, builderSystem, `Checklist: ${progressContent}\n\nImplementation Plan: ${implementationPlan}`, onUpdate, psiloiMetrics.builder, "THINKING_CODE", modelName);
+
+        // Manual Parsing for Markdown blocks
+        const fileRegex = /###\s*\[([^\]]+)\]\s*\n\s*```[a-z]*\n([\s\S]*?)\n```/gi;
+        let match;
+        while ((match = fileRegex.exec(builderOut)) !== null) {
+          const filePath = match[1].trim();
+          const content = match[2];
+          const fullPath = path.resolve(filePath);
+          mkdirSync(path.dirname(fullPath), { recursive: true });
+          writeFileSync(fullPath, content);
+          onUpdate?.({ text: `💾 Written: ${filePath}` });
+        }
+
+        // --- 4. PELTAST PHASE (MoE+Thinking) ---
+        const peltastSystem = `${globalContext}
+You are the Peltast. Use THOROUGH REASONING to check if the Builder completed: ${checklistTask}.
+Verify imports, logic, and formatting. Output: VERDICT: PASS if correct, else FAIL with reason.`;
+
+        const peltast = this.pickName(runId, `Peltast-${index}-${tryCount}`);
+        onUpdate?.({ text: `[Peltast] Verifying Task ${index + 1}...` });
+        const peltastOut = await this.runSubagent("Peltast", peltast.name, peltastSystem,
+          `Builder output:\n${builderOut}\n\nVerify this completed the task: ${checklistTask}`,
+          onUpdate, psiloiMetrics.peltast, "THINKING_REASONING", modelName);
+
+        appendFileSync(reviewFile, `\n## Task: ${checklistTask} (Try ${tryCount})\n${peltastOut}\n`);
+
+        if (peltastOut.includes("VERDICT: PASS")) {
+          taskPassed = true;
+          break;
+        } else {
+          lastPeltastFeedback = peltastOut;
+          onUpdate?.({ content: [{ type: "text", text: `⚠️ Peltast rejected task. Retrying...` }] });
+        }
+      }
+
+      if (!taskPassed) {
+        onUpdate?.({ content: [{ type: "text", text: `❌ Task failed after 3 attempts. TRIGGERING FAIL-FAST ROLLBACK...` }] });
+        try {
+          const { execSync } = require("node:child_process");
+          execSync("git reset --hard HEAD~1", { cwd: process.cwd() });
+          onUpdate?.({ content: [{ type: "text", text: `⏮️ Git rolled back to previous checkpoint.` }] });
+        } catch { }
+        return `Pipeline halted at Task ${index + 1}. Check ${reviewFile}.`;
+      }
+
+      progressContent = progressContent.replace(checklistTask, checklistTask.replace("- [ ]", "- [x]"));
+      writeFileSync(progressFile, progressContent);
+
+      // --- GIT COMMIT (Optional) ---
+      try {
+        const { execSync } = require("node:child_process");
+        const cleanTask = checklistTask.replace("- [ ]", "").trim();
+        execSync("git add .", { cwd: process.cwd() });
+        execSync(`git commit -m "[Aristomenis] ${cleanTask}"`, { cwd: process.cwd() });
+        onUpdate?.({ content: [{ type: "text", text: `📦 Git commited: ${cleanTask}` }] });
+      } catch { }
+    }
+
+    onUpdate?.({ content: [{ type: "text", text: `✅ Execution complete! All items checked off.` }] });
     return this.governor.generateSweepReport();
+  }
+
+  /**
+   * SLINGER RECONNAISSANCE
+   * Performs deep reading/research to answer specific questions
+   */
+  async executeSlinger(researchTask: string, targetFiles: string[] | undefined, onUpdate?: (data: any) => void): Promise<string> {
+    const runId = this.governor.getRunId();
+    const { modelName } = await this.client.getProps();
+    const slingerMetrics = { in: 0, out: 0, tps: 0 };
+    const slingerPersona = this.pickName(runId, "Slinger");
+
+    let fileContext = "";
+    if (targetFiles && targetFiles.length > 0) {
+      onUpdate?.({ content: [{ type: "text", text: `📖 Slinger reading ${targetFiles.length} files...` }] });
+      for (const f of targetFiles) {
+        try {
+          const content = readFileSync(path.resolve(f), "utf-8");
+          fileContext += `\n--- FILE: ${f} ---\n${content}\n`;
+        } catch (e: any) {
+          fileContext += `\n--- FILE: ${f} ---\n(Error reading file: ${e.message})\n`;
+        }
+      }
+    }
+
+    const slingerSystem = `${await this.getGlobalContext()}
+You are the Slinger, a specialized reconnaissance subagent.
+Your goal is to perform deep reading and research on the codebase to answer the Architect's specific questions.
+Analyze the provided context and provide a concise, technical, and accurate summary or answer.
+Avoid fluff. Focus on architectural patterns, logic flow, and specific implementation details.
+
+${fileContext ? `FILE CONTENT TO ANALYZE:\n${fileContext}` : ""}`;
+
+    onUpdate?.({ content: [{ type: "text", text: `🏹 Slinger ${slingerPersona.name} of ${slingerPersona.city} deployed (Run ID: ${runId})` }] });
+    const result = await this.runSubagent("Slinger", slingerPersona.name, slingerSystem, researchTask, onUpdate, slingerMetrics, "THINKING_GENERAL", modelName);
+
+    return `🏹 **Slinger Research Report** (by ${slingerPersona.name} of ${slingerPersona.city})\n\n${result}`;
+  }
+
+  private async runSubagent(role: string, name: string, systemPrompt: string, userPrompt: string, onUpdate: any, metrics: any, profile: string, model: string): Promise<string> {
+    let fullResponse = "";
+    const messages = [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
+    ];
+
+    await this.client.streamCompletion(messages, role as TaskRole, profile as string, (chunk) => {
+      fullResponse += chunk;
+      onUpdate?.({ text: chunk });
+      if (metrics) metrics.out += chunk.length;
+    }, () => { });
+    return fullResponse;
+  }
+
+  private getAllFiles(dir: string, fileList: string[] = []): string[] {
+    const files = readdirSync(dir);
+    for (const file of files) {
+      if (file === 'node_modules' || file === '.git' || file === '.helot-state') continue;
+      const name = join(dir, file);
+      if (statSync(name).isDirectory()) {
+        this.getAllFiles(name, fileList);
+      } else {
+        fileList.push(name);
+      }
+    }
+    return fileList;
+  }
+
+  private pickName(runId: string, role: string) {
+    const cities = ["Sparta", "Messene", "Korinth", "Argos", "Thebes"];
+    const names = ["Aristides", "Leonidas", "Brasidas", "Gylippus", "Lysander"];
+    const city = cities[Math.floor(Math.random() * cities.length)];
+    const name = names[Math.floor(Math.random() * names.length)];
+    return { name, city };
+  }
+
+  private async getGlobalContext(): Promise<string> {
+    return "You are a Helot subagent in the service of Sparta.";
   }
 
   /**

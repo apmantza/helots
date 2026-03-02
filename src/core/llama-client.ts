@@ -22,6 +22,15 @@ export class LlamaClient {
         this.currentModel = config.moeModel; // assume MoE loaded initially
     }
 
+    public async getProps(): Promise<{ modelName: string; maxTokens: number }> {
+        await this.initializeModels();
+        // Return default MoE model name if current is not set or placeholder
+        return {
+            modelName: this.currentModel,
+            maxTokens: 4096 // Default fallback
+        };
+    }
+
     private async initializeModels(): Promise<void> {
         if (this.modelsInitialized) return;
         try {
@@ -60,7 +69,7 @@ export class LlamaClient {
      * Stream completion with retry logic, model swapping, and dynamic sampling
      */
     async streamCompletion(
-        prompt: string,
+        messages: { role: string; content: string }[],
         role: TaskRole,
         profileKey: string,
         onChunk: (chunk: string) => void,
@@ -72,7 +81,7 @@ export class LlamaClient {
 
         while (attempts < maxAttempts) {
             try {
-                await this.attemptStream(prompt, role, profileKey, onChunk, onEnd);
+                await this.attemptStream(messages, role, profileKey, onChunk, onEnd);
                 return;
             } catch (error) {
                 attempts++;
@@ -87,7 +96,7 @@ export class LlamaClient {
     }
 
     private async attemptStream(
-        prompt: string,
+        messages: { role: string; content: string }[],
         role: TaskRole,
         profileKey: string,
         onChunk: (chunk: string) => void,
@@ -106,7 +115,7 @@ export class LlamaClient {
 
         const requestBody = {
             model: targetModel,
-            messages: [{ role: 'user', content: prompt }],
+            messages: messages,
             stream: true,
             temperature: profile.temperature,
             top_p: profile.top_p,
