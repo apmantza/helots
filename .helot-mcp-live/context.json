@@ -50,7 +50,7 @@
     },
     {
       "path": "mcp-client.ts",
-      "size": 7936
+      "size": 10093
     },
     {
       "path": "package-lock.json",
@@ -62,7 +62,7 @@
     },
     {
       "path": "path\\to\\file.ts",
-      "size": 851
+      "size": 2734
     },
     {
       "path": "README.md",
@@ -102,7 +102,7 @@
     },
     {
       "path": "src\\core\\engine.ts",
-      "size": 29051
+      "size": 31860
     },
     {
       "path": "src\\core\\file-utils.ts",
