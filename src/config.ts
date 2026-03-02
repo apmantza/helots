@@ -18,6 +18,7 @@ export interface SamplingProfile {
     repetition_penalty: number;
     enableThinking: boolean;
     max_tokens?: number;
+    extra_body?: any;
 }
 
 // Note: SAMPLING_PROFILES has been moved to src/core/model-registry.ts to support dynamic model inference overrides

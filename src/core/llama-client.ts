@@ -141,9 +141,7 @@ export class LlamaClient {
             presence_penalty: profile.presence_penalty,
             repetition_penalty: profile.repetition_penalty,
             max_tokens: profile.max_tokens,
-            // Pass enable_thinking via extra_body or chat_template_kwargs depending on backend
-            chat_template_kwargs: { enable_thinking: profile.enableThinking },
-            extra_body: { enable_thinking: profile.enableThinking }
+            ...(profile.extra_body ? { extra_body: profile.extra_body } : {})
         };
 
         const response = await fetch(`${this.baseUrl}/v1/chat/completions`, {

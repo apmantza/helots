@@ -404,14 +404,14 @@ RESPOND ONLY WITH THE CHECKLIST OR DATA REQUEST.`;
     onUpdate?.({ text: `[Aristomenis] Designing implementation strategy...` });
     // FIX 9: Use INSTRUCT_GENERAL (thinking disabled) — structured checklist output
     // doesn't benefit from extended reasoning chains; thinking mode wastes token budget
-    let checklist = await this.runSubagent('Aristomenis', 'Aristomenis', aristomenisSystem, `Project Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'INSTRUCT_GENERAL', modelName);
+    let checklist = await this.runSubagent('Aristomenis', 'Aristomenis', aristomenisSystem, `Project Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'THINKING_GENERAL', modelName);
 
     // AUTO-SLINGER TRIGGER
     if (checklist.includes("NEED MORE DATA:")) {
       const query = checklist.split("NEED MORE DATA:")[1].trim();
       onUpdate?.({ text: `🏹 Aristomenis requested data. Deploying Slinger...` });
       const slingerReport = await this.executeSlinger(query, undefined, onUpdate);
-      checklist = await this.runSubagent('Aristomenis', 'Aristomenis', aristomenisSystem, `RE-PLANNING with Slinger Report:\n${slingerReport}\n\nProject Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'INSTRUCT_GENERAL', modelName);
+      checklist = await this.runSubagent('Aristomenis', 'Aristomenis', aristomenisSystem, `RE-PLANNING with Slinger Report:\n${slingerReport}\n\nProject Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'THINKING_GENERAL', modelName);
     }
 
     // FIX 7: Strip thinking-chain preamble before using the checklist
@@ -635,7 +635,8 @@ Output VERDICT: PASS or FAIL with reason.`;
 
   /**
    * SLINGER RECONNAISSANCE
-   * Performs deep reading/research to answer specific questions
+   * Upgraded based on pi-finder-subagent: 
+   * Strict turn budgets, read-only sandboxing, and Evidence/Locations reporting.
    */
   async executeSlinger(researchTask: string, targetFiles: string[] | undefined, onUpdate?: (data: any) => void): Promise<string> {
     const runId = this.governor.getRunId();
@@ -643,32 +644,92 @@ Output VERDICT: PASS or FAIL with reason.`;
     const slingerMetrics = { in: 0, out: 0, tps: 0 };
     const slingerPersona = this.pickName(runId, "Slinger");
 
-    let fileContext = "";
+    let slingerHistory = "";
     if (targetFiles && targetFiles.length > 0) {
-      // BUG FIX 2: normalize onUpdate shape to { text } everywhere
       onUpdate?.({ text: `📖 Slinger reading ${targetFiles.length} files...` });
       for (const f of targetFiles) {
         try {
           const content = readFileSync(path.resolve(f), "utf-8");
-          fileContext += `\n--- FILE: ${f} ---\n${content}\n`;
+          slingerHistory += `\n--- FILE: ${f} ---\n${content}\n`;
         } catch (e: any) {
-          fileContext += `\n--- FILE: ${f} ---\n(Error reading file: ${e.message})\n`;
+          slingerHistory += `\n--- FILE: ${f} ---\n(Error reading file: ${e.message})\n`;
         }
       }
     }
 
     const slingerSystem = `${await this.getGlobalContext()}
-You are the Slinger, a specialized reconnaissance subagent.
-Your goal is to perform deep reading and research on the codebase to answer the Architect's specific questions.
-Analyze the provided context and provide a concise, technical, and accurate summary or answer.
-Avoid fluff. Focus on architectural patterns, logic flow, and specific implementation details.
+You are the Slinger, a specialized Reconnaissance Subagent (inspired by pi-finder).
+Your absolute goal is to search the codebase and find structural evidence to answer the Architect's query.
 
-${fileContext ? `FILE CONTENT TO ANALYZE:\n${fileContext}` : ""}`;
+You operate in a strict read-only tool sandbox. You have a budget of up to 5 turns.
+To execute a read command, reply EXCLUSIVELY with the following block:
+### COMMAND
+[your bash command here, e.g., rg "functionName" src/ or cat src/file.ts]
+
+Supported tools: rg (ripgrep), cat, ls. 
+DO NOT write code or mutate files. Do not use markdown tags like \`\`\`bash around the command inside the block.
+The environment will reply with the output of your command.
+
+When you have found the answer, or if you run out of turns, you MUST output your final report EXACTLY in this format:
+### SUMMARY
+[Concise answer to the Architect's query]
+
+### LOCATIONS
+[Exact file paths and line numbers where the relevant code lives]
+
+### EVIDENCE
+[Raw code snippets proving your architecture summary]`;
 
     onUpdate?.({ content: [{ type: "text", text: `🏹 Slinger ${slingerPersona.name} of ${slingerPersona.city} deployed (Run ID: ${runId})` }] });
-    const result = await this.runSubagent("Slinger", slingerPersona.name, slingerSystem, researchTask, onUpdate, slingerMetrics, "THINKING_GENERAL", modelName);
 
-    return `🏹 **Slinger Research Report** (by ${slingerPersona.name} of ${slingerPersona.city})\n\n${result}`;
+    let finalReport = "";
+    const MAX_TURNS = 5;
+
+    for (let turn = 1; turn <= MAX_TURNS; turn++) {
+      onUpdate?.({ text: `⏳ Slinger Turn ${turn}/${MAX_TURNS}...` });
+
+      const userPrompt = `Research Query: ${researchTask}\n\nSearch History / File Content:\n${slingerHistory || "(No history yet. Execute a COMMAND to begin searching.)"}`;
+      const result = await this.runSubagent("Slinger", slingerPersona.name, slingerSystem, userPrompt, onUpdate, slingerMetrics, "INSTRUCT_GENERAL", modelName);
+
+      // Check if Slinger executed a command
+      const cmdMatch = result.match(/### COMMAND\n(.*)/);
+      if (cmdMatch) {
+        const command = cmdMatch[1].trim();
+        onUpdate?.({ text: `💲 [Slinger Executing]: ${command.slice(0, 60)}...` });
+
+        let cmdOutput = "";
+        try {
+          // STRICT SANDBOXING: Enforce read-only commands
+          if (!/^(rg|cat|ls|find)\b/.test(command)) {
+            cmdOutput = "ERROR: Command rejected by Sandbox. Only rg, cat, ls, and find are permitted.";
+          } else {
+            // Execute safely
+            cmdOutput = execSync(command, { cwd: process.cwd(), stdio: 'pipe' }).toString();
+            if (cmdOutput.length > 3000) {
+              cmdOutput = cmdOutput.slice(0, 3000) + "\n...[TRUNCATED BY SANDBOX: output too large (run tighter rg filters)]...";
+            }
+          }
+        } catch (e: any) {
+          cmdOutput = `Command Failed: ${e.message}\n${e.stdout?.toString() || ""}`;
+        }
+
+        slingerHistory += `\n[Turn ${turn}] Executed: ${command}\nOutput:\n${cmdOutput}\n`;
+      } else if (result.includes("### SUMMARY")) {
+        // Slinger reached a conclusion
+        finalReport = result;
+        break;
+      } else {
+        // Did not comply with strict formatting, but stopped issuing commands
+        finalReport = result;
+        break;
+      }
+
+      if (turn === MAX_TURNS) {
+        finalReport = result + "\n\n[WARNING: Slinger exhausted all 5 turns and was forced to halt.]";
+      }
+    }
+
+    return `🏹 **Slinger Pi-Finder Report** (by ${slingerPersona.name} of ${slingerPersona.city})\n\n${finalReport}`;
   }
 
   private async runSubagent(role: string, name: string, systemPrompt: string, userPrompt: string, onUpdate: any, metrics: any, profile: string, model: string): Promise<string> {
