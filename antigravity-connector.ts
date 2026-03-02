@@ -121,6 +121,7 @@ async function main() {
     log(`[PHASE 1] 🏹 Deterministic Context Extraction (Bypassing LLM)`);
 
     const engineSrc = readFileSync('src/core/engine.ts', 'utf-8');
+
     const pickNameCode = extractMethod(engineSrc, /private pickName\([^)]*\)\s*\{/);
     const getGlobalContextCode = extractMethod(engineSrc, /private async getGlobalContext\([^)]*\)[^{]*\{/);
 
@@ -134,70 +135,29 @@ async function main() {
     log(SEP);
 
     const implementationPlan = `
-Laconic refactoring: extract pickName and getGlobalContext from engine.ts into separate modules.
+Surgical extraction of stripThinking helper to enhance modularity.
 
-Each Builder task carries its own exact context. No large files will be read.
+### PHASE 1: UTILITY CREATION
+- [ ] 1. Create src/core/text-utils.ts with the stripThinking function (Target: src/core/text-utils.ts, Action: CREATE) [DEPENDS: none]
 
-TASKS:
+### PHASE 2: ENGINE REFACTORING
+- [ ] 2. Remove stripThinking from engine.ts and import it from text-utils.ts (Target: src/core/engine.ts, Action: EDIT) [DEPENDS: 1]
 
-- [ ] 1. Create src/core/persona.ts with the exported pickName function (Target: src/core/persona.ts, Action: CREATE) [DEPENDS: none]
-
-  Builder context for Task 1 — create this file from scratch:
-  \`\`\`typescript
-  // src/core/persona.ts
-  ${pickNameCode}
-  // MUST MAKE IT A STANDALONE EXPORT: remove 'private' keyword and 'this.' refs. Export it!
-  \`\`\`
-
-- [ ] 2. Update src/core/engine.ts: remove private pickName method, add import from ./persona.js (Target: src/core/engine.ts, Symbol: pickName, Action: EDIT) [DEPENDS: 1]
-
-  Builder context for Task 2 — the existing method to remove from class HelotEngine:
-  \`\`\`typescript
-  ${pickNameCode}
-  \`\`\`
-  Replace it with: import { pickName } from './persona.js';
-  Update calls: this.pickName(...) -> pickName(...)
-
-- [ ] 3. Create src/core/context.ts with the exported getGlobalContext function (Target: src/core/context.ts, Action: CREATE) [DEPENDS: none]
-
-  Builder context for Task 3 — create this file from scratch:
-  \`\`\`typescript
-  // src/core/context.ts
-  import * as path from 'path';
-  import { existsSync, readFileSync } from 'fs';
-  ${getGlobalContextCode}
-  // MUST MAKE IT A STANDALONE EXPORT: remove 'private' keyword and 'this.' refs. Export it!
-  \`\`\`
-
-- [ ] 4. Update src/core/engine.ts: remove private getGlobalContext, add import from ./context.js (Target: src/core/engine.ts, Symbol: getGlobalContext, Action: EDIT) [DEPENDS: 3]
-
-  Builder context for Task 4 — the existing method to remove from class HelotEngine:
-  \`\`\`typescript
-  ${getGlobalContextCode}
-  \`\`\`
-  Replace it with: import { getGlobalContext } from './context.js';
-  Update calls: this.getGlobalContext() -> getGlobalContext()
-
-BUILDER NOTES:
-- Output format must be exclusively:
-### [path/to/file.ts]
-\`\`\`typescript
-[code]
-\`\`\`
-- Do not output any thinking tags.
+### PHASE 3: VERIFICATION
+- [ ] 3. Verify that the engine still compiles and the helper works as expected (Target: src/core/engine.ts, Action: TEST) [DEPENDS: 2]
 `;
 
     const helotRes = await call('tools/call', {
         name: 'helot_run',
         arguments: {
-            taskSummary: 'Extract pickName and getGlobalContext from engine.ts',
+            taskSummary: 'Extract stripThinking to text-utils.ts',
             implementationPlan
         }
     });
 
     const helotText: string = helotRes?.result?.content?.[0]?.text ?? helotRes?.error?.message ?? 'No result';
     log(`\n${SEP}`);
-    log(`[helot_run Result]\n${helotText.slice(0, 800)}`);
+    log(`[helot_run Result]\n${helotText.slice(0, 1500)}`);
     log(SEP);
 
     // ── Verification ───────────────────────────────────────────────

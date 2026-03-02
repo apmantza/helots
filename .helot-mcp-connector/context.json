@@ -18,7 +18,7 @@
     },
     {
       "path": "antigravity-connector.ts",
-      "size": 8765
+      "size": 7256
     },
     {
       "path": "debug-helots-live.ts",
@@ -102,11 +102,11 @@
     },
     {
       "path": "src\\config.ts",
-      "size": 633
+      "size": 656
     },
     {
       "path": "src\\core\\engine.ts",
-      "size": 31860
+      "size": 35451
     },
     {
       "path": "src\\core\\file-utils.ts",
@@ -114,11 +114,15 @@
     },
     {
       "path": "src\\core\\llama-client.ts",
-      "size": 9612
+      "size": 9445
     },
     {
       "path": "src\\core\\model-registry.ts",
-      "size": 4001
+      "size": 6402
+    },
+    {
+      "path": "test-slinger.ts",
+      "size": 2628
     },
     {
       "path": "USAGE.md",
