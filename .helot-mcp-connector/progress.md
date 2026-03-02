@@ -1,0 +1,4 @@
+- [ ] 1. Create description (Target: src/core/persona.ts, Action: CREATE) [DEPENDS: none]
+- [ ] 2. Edit description (Target: src/core/engine.ts, Symbol: pickName, Action: EDIT) [DEPENDS: 1]
+- [ ] 3. Create description (Target: src/core/context.ts, Action: CREATE) [DEPENDS: none]
+- [ ] 4. Edit description (Target: src/core/engine.ts, Symbol: getGlobalContext, Action: EDIT) [DEPENDS: 3]
