@@ -262,10 +262,12 @@ export class HelotEngine {
     this.sessionTotalTokens = 0;
 
     onUpdate?.({ text: `🚀 Delegating to Aristomenis...` });
+    const scoutPersona = this.pickName(runId, "Scout");
     this.currentPhase = "Scout";
+    this.currentTaskTitle = "Mapping Workspace Territory";
 
     // --- 1. SCOUT PHASE (Local Scan) ---
-    onUpdate?.({ text: `[Scout] Scanning workspace for Project Map...` });
+    onUpdate?.({ text: `### 🛡️ Helot ${scoutPersona.name} is scouting\n**${this.currentTaskTitle}**\n[Scout] | [Session: 0 tokens]\n---\nScanning workspace for Project Map...` });
     const fileList = this.getAllFiles(process.cwd());
     const manifest = {
       files: fileList.map(f => ({
@@ -490,6 +492,7 @@ ${fileContext ? `FILE CONTENT TO ANALYZE:\n${fileContext}` : ""}`;
       'Builder': 'building',
       'Slinger': 'exploring',
       'Peltast': 'testing',
+      'Scout': 'scouting',
       'Governor': 'reviewing'
     };
     const verb = verbMap[role] || 'tasking';
