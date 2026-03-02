@@ -354,8 +354,17 @@ Output VERDICT: PASS or FAIL with reason.`;
       if (!taskPassed) {
         task.status = 'failed';
         onUpdate?.({ text: `❌ Task ${task.id} failed after 3 attempts. All file changes reverted.` });
+        await writeTrace({ phase: "execution", task: task.id, status: "failed", description: task.description });
         return `Pipeline halted at Task ${task.id}. Dependents blocked.`;
       }
+
+      // BUG FIX: Persist progress to progress.md so the checklist is updated live
+      const updatedChecklist = taskNodes.map(t => {
+        const check = t.status === 'completed' ? 'x' : ' ';
+        return `- [${check}] ${t.id}. ${t.description} (Target: ${t.file}${t.targetSymbol ? `, Symbol: ${t.targetSymbol}` : ""}, Action: ${t.targetSymbol ? "EDIT" : "CREATE"})`;
+      }).join("\n");
+      writeFileSync(progressFile, updatedChecklist);
+      await writeTrace({ phase: "execution", task: task.id, status: "complete", description: task.description });
 
       // ── GIT COMMIT ───────────────────────────────────────────
       try {
