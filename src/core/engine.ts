@@ -481,7 +481,17 @@ ${fileContext ? `FILE CONTENT TO ANALYZE:\n${fileContext}` : ""}`;
 
     let updateBuffer = "";
     const baseTokensPrior = this.sessionTotalTokens;
-    const headerPrefix = `### 🛡️ [${role}] ${name}`;
+
+    const verbMap: Record<string, string> = {
+      'Aristomenis': 'planning',
+      'Architect': 'planning',
+      'Builder': 'building',
+      'Slinger': 'exploring',
+      'Peltast': 'testing',
+      'Governor': 'reviewing'
+    };
+    const verb = verbMap[role] || 'tasking';
+    const headerPrefix = `### 🛡️ Helot ${name} is ${verb}`;
 
     await this.client.streamCompletion(messages, role as TaskRole, profile, (chunk, m) => {
       fullResponse += chunk;
