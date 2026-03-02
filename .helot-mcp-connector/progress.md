@@ -3,7 +3,7 @@
 - [x] 3. Remove `pickName` symbol from engine.ts and import from persona-utils.ts (Target: src/core/engine.ts, Symbol: pickName, Action: EDIT)
 - [x] 4. Remove `getGlobalContext` symbol from engine.ts and import from persona-utils.ts (Target: src/core/engine.ts, Symbol: getGlobalContext, Action: EDIT)
 - [x] 5. Update all function calls to use imported persona utilities (Target: src/core/engine.ts, Symbol: executeSlinger, Action: EDIT)
-- [ ] 6. Update imports in engine.ts to remove local definitions (Target: src/core/engine.ts, Action: CREATE)
+- [x] 6. Update imports in engine.ts to remove local definitions (Target: src/core/engine.ts, Action: CREATE)
 - [ ] 7. Verify exports in persona-utils.ts match engine.ts requirements (Target: src/core/persona-utils.ts, Action: CREATE)
 - [ ] 8. Compile engine.ts to verify no symbol errors (Target: src/core/engine.ts, Action: CREATE)
 - [ ] 9. Run unit tests on persona-utils.ts (Target: src/core/persona-utils.ts, Action: CREATE)

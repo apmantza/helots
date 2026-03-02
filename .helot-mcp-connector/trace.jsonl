@@ -18,3 +18,5 @@
 {"ts":"2026-03-02T15:41:27.603Z","phase":"execution","task":"3","status":"complete","description":"Remove `pickName` symbol from engine.ts and import from persona-utils.ts"}
 {"ts":"2026-03-02T15:42:58.331Z","phase":"execution","task":"4","status":"complete","description":"Remove `getGlobalContext` symbol from engine.ts and import from persona-utils.ts"}
 {"ts":"2026-03-02T15:44:32.021Z","phase":"execution","task":"5","status":"complete","description":"Update all function calls to use imported persona utilities"}
+{"ts":"2026-03-02T15:46:39.463Z","phase":"aristomenis","status":"complete"}
+{"ts":"2026-03-02T15:46:57.773Z","phase":"execution","task":"6","status":"complete","description":"Update imports in engine.ts to remove local definitions"}
