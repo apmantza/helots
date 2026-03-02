@@ -1,0 +1,6 @@
+- [ ] 1. Create `src/core/persona.ts` — export function `pickName(runId: string, role: string): { name: string; city: string }` (Target: src/core/persona.ts, Symbol: pickName) [DEPENDS: none]
+- [ ] 2. Create `src/core/context.ts` — export function `getGlobalContext(): Promise<string>` (Target: src/core/context.ts, Symbol: getGlobalContext) [DEPENDS: none]
+- [ ] 3. Update `src/core/engine.ts` — remove private method `pickName`, add import for `pickName` from `./persona` (Target: src/core/engine.ts, Symbol: HelotEngine) [DEPENDS: 1]
+- [ ] 4. Update `src/core/engine.ts` — remove private method `getGlobalContext`, add import for `getGlobalContext` from `./context` (Target: src/core/engine.ts, Symbol: HelotEngine) [DEPENDS: 2]
+- [ ] 5. Update `src/core/engine.ts` — refactor internal calls to replace `this.pickName(...)` with imported `pickName(...)` (Target: src/core/engine.ts, Symbol: HelotEngine) [DEPENDS: 3]
+- [ ] 6. Update `src/core/engine.ts` — refactor internal calls to replace `this.getGlobalContext()` with imported `getGlobalContext()` (Target: src/core/engine.ts, Symbol: HelotEngine) [DEPENDS: 4]

@@ -1,9 +1,26 @@
 import { LlamaClient } from './llama-client.js';
 import { HelotConfig, TaskRole } from '../config.js';
-import { readFileSync, writeFileSync, existsSync, mkdirSync, appendFileSync, readdirSync, statSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, appendFileSync } from 'fs';
 import { join, resolve, dirname } from 'path';
 import * as path from 'path';
+import { getAllFiles } from './file-utils.js';
 import { execSync } from 'child_process';
+
+/**
+ * FIX 7: Strip LLM thinking-chain preamble from model responses.
+ * Removes <think>...</think> blocks and any content before the first checklist line.
+ * Essential for reasoning models (Qwen3, DeepSeek-R1) that emit thinking steps.
+ */
+function stripThinking(raw: string): string {
+  // Strip <think>...</think> XML tags (with or without newlines)
+  let cleaned = raw.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
+  // Strip "Thinking Process:" sections that end before the first checklist item
+  const checklistStart = cleaned.indexOf('- [ ]');
+  if (checklistStart > 0) {
+    cleaned = cleaned.slice(checklistStart);
+  }
+  return cleaned.trim();
+}
 
 /**
  * HELLOT PSILOI ARCHITECTURAL ANCHOR
@@ -14,9 +31,11 @@ import { execSync } from 'child_process';
 interface HelotTask {
   id: string;
   description: string;
-  status: 'pending' | 'completed' | 'failed';
+  status: 'pending' | 'completed' | 'failed' | 'blocked';
   file?: string;
+  targetSymbol?: string;
   lineRange?: [number, number];
+  dependsOn?: string[];
 }
 
 interface HelotState {
@@ -118,7 +137,7 @@ class Scout {
     while ((match = fileRegex.exec(implementationPlan)) !== null) {
       const filePath = match[1];
       if (existsSync(filePath)) {
-        fileMapping[filePath] = readFileSync(filePath, 'utf-8');
+        fileMapping[filePath] = readFileSync(filePath, "utf-8");
       }
     }
 
@@ -126,12 +145,84 @@ class Scout {
   }
 
   /**
+   * PORTABLE BEHAVIORAL SLICER
+   * Analyzes file structure without external AST dependencies.
+   */
+  public getSymbolSlice(filePath: string, symbolName: string): string {
+    if (!existsSync(filePath)) return "";
+    const content = readFileSync(filePath, "utf-8");
+    const lines = content.split("\n");
+
+    // 1. Find the symbol definition
+    let startLine = -1;
+    let endLine = -1;
+    let braceCount = 0;
+    let foundStart = false;
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (!foundStart && (line.includes(`function ${symbolName}`) || line.includes(`${symbolName}(`) || line.includes(`class ${symbolName}`))) {
+        startLine = i;
+        foundStart = true;
+      }
+
+      if (foundStart) {
+        braceCount += (line.match(/{/g) || []).length;
+        braceCount -= (line.match(/}/g) || []).length;
+        if (braceCount === 0 && line.includes("}")) {
+          endLine = i;
+          break;
+        }
+      }
+    }
+
+    if (startLine === -1) return lines.slice(0, 100).join("\n"); // Fallback to head
+
+    // 2. Simple Dependency Extraction (Regex-based)
+    const sliceLines = lines.slice(startLine, endLine + 1);
+    const sliceContent = sliceLines.join("\n");
+
+    // Find calls to other potential symbols in the same file
+    const potentialCalls = Array.from(new Set(content.match(/[a-zA-Z0-9_]+(?=\()/g) || []));
+    let extraContext = "";
+
+    for (const call of potentialCalls) {
+      if (call === symbolName) continue;
+      if (sliceContent.includes(`${call}(`)) {
+        // Greedy recursive slice (1 level deep)
+        const depSlice = this.getRawSymbol(lines, call);
+        if (depSlice) extraContext += `\n--- DEPENDENCY: ${call} ---\n${depSlice}\n`;
+      }
+    }
+
+    return `--- TARGET SYMBOL: ${symbolName} ---\n${sliceContent}\n${extraContext}`;
+  }
+
+  private getRawSymbol(lines: string[], name: string): string | null {
+    let start = -1;
+    let found = false;
+    let braces = 0;
+    for (let i = 0; i < lines.length; i++) {
+      if (!found && (lines[i].includes(`function ${name}`) || lines[i].includes(`${name}(`) || lines[i].includes(`class ${name}`))) {
+        start = i;
+        found = true;
+      }
+      if (found) {
+        braces += (lines[i].match(/{/g) || []).length;
+        braces -= (lines[i].match(/}/g) || []).length;
+        if (braces === 0 && lines[i].includes("}")) return lines.slice(start, i + 1).join("\n");
+      }
+    }
+    return null;
+  }
+
+  /**
    * Generate context.md for Builder based on reconnaissance
    */
   generateContext(fileMapping: Record<string, string>): string {
-    let context = '## FILE MAPPING CONTEXT\n\n';
+    let context = "## FILE MAPPING CONTEXT\n\n";
     for (const [filePath, content] of Object.entries(fileMapping)) {
-      context += `### ${filePath}\n\n\`\`\`\n${content.substring(0, 500)}${content.length > 500 ? '...' : ''}\n\`\`\`\n\n`;
+      context += `### ${filePath}\n\n\`\`\`\n${content.substring(0, 500)}${content.length > 500 ? "..." : ""}\n\`\`\`\n\n`;
     }
     return context;
   }
@@ -248,12 +339,12 @@ export class HelotEngine {
     const contextFile = join(this.governor.config.stateDir, "context.json");
     const progressFile = join(this.governor.config.stateDir, "progress.md");
     const reviewFile = join(this.governor.config.stateDir, "review.md");
-    const traceFile = join(this.governor.config.stateDir, "trace.json");
+    const traceFile = join(this.governor.config.stateDir, "trace.jsonl");
 
-    const writeTrace = async (data: any) => {
+    // BUG FIX 3: use appendFileSync so each phase gets its own line, never overwrite
+    const writeTrace = (data: any) => {
       try {
-        const existing = existsSync(traceFile) ? JSON.parse(readFileSync(traceFile, 'utf-8')) : {};
-        writeFileSync(traceFile, JSON.stringify({ ...existing, ...data }, null, 2));
+        appendFileSync(traceFile, JSON.stringify({ ts: new Date().toISOString(), ...data }) + "\n");
       } catch { }
     };
 
@@ -268,7 +359,7 @@ export class HelotEngine {
 
     // --- 1. SCOUT PHASE (Local Scan) ---
     onUpdate?.({ text: `### 🛡️ Helot ${scoutPersona.name} is scouting\n**${this.currentTaskTitle}**\n[Scout] | [Session: 0 tokens]\n---\nScanning workspace for Project Map...` });
-    const fileList = this.getAllFiles(process.cwd());
+    const fileList = getAllFiles(process.cwd(), this.governor.config.stateDir);
     const manifest = {
       files: fileList.map(f => ({
         path: path.relative(process.cwd(), f),
@@ -285,15 +376,14 @@ You are Aristomenis, the Architect. DESIGN the technical implementation checklis
 Based on the Project Map and the Frontier Plan, create a granular checklist in \`progress.md\`.
 
 SPARTAN CODE PRINCIPLES:
-1. MODULARITY: If a Target File exceeds 400 lines, your checklist MUST prioritize splitting logic into sub-modules or services.
-2. SURGICAL PRECISION: Each task should target one specific logic block. Avoid full-file rewrites.
-3. MINIMALISM: Do not introduce unnecessary abstractions. Favor simple functions over complex classes.
+1. MODULARITY: If a Target File exceeds 400 lines, split logic into sub-modules.
+2. SURGICAL PRECISION: Each task should target one specific logic block (e.g., a function or class method).
+3. DEPENDENCY AWARENESS: Mark which tasks depend on others using [DEPENDS: N].
 
-EACH TASK SHOULD TARGET ONE FILE. 
-Use DEPENDS: N or PARALLEL: N to mark task relationships.
+EACH TASK MUST TARGET ONE FILE AND PREFERABLY ONE SYMBOL.
 Checklist format:
-- [ ] 1. Task Description (Target: path/to/file.ts) [DEPENDS: none]
-- [ ] 2. Next Task (Target: path/to/other.ts) [DEPENDS: 1]
+- [ ] 1. Task Description (Target: path/to/file.ts, Symbol: MyFunction) [DEPENDS: none]
+- [ ] 2. Next Task (Target: path/to/other.ts, Symbol: OtherClass) [DEPENDS: 1]
 
 If you NEED MORE DATA to make a plan, output only:
 NEED MORE DATA: [specific research question or file path]
@@ -303,52 +393,95 @@ RESPOND ONLY WITH THE CHECKLIST OR DATA REQUEST.`;
     this.currentPhase = "Architect";
     this.currentTaskTitle = "Designing Implementation Checklist";
     onUpdate?.({ text: `[Aristomenis] Designing implementation strategy...` });
-    let checklist = await this.runSubagent('Aristomenis', 'Aristomenis', aristomenisSystem, `Project Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'THINKING_GENERAL', modelName);
+    // FIX 9: Use INSTRUCT_GENERAL (thinking disabled) — structured checklist output
+    // doesn't benefit from extended reasoning chains; thinking mode wastes token budget
+    let checklist = await this.runSubagent('Aristomenis', 'Aristomenis', aristomenisSystem, `Project Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'INSTRUCT_GENERAL', modelName);
 
     // AUTO-SLINGER TRIGGER
     if (checklist.includes("NEED MORE DATA:")) {
       const query = checklist.split("NEED MORE DATA:")[1].trim();
       onUpdate?.({ text: `🏹 Aristomenis requested data. Deploying Slinger...` });
       const slingerReport = await this.executeSlinger(query, undefined, onUpdate);
-      checklist = await this.runSubagent('Aristomenis', 'Aristomenis', aristomenisSystem, `RE-PLANNING with Slinger Report:\n${slingerReport}\n\nProject Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'THINKING_GENERAL', modelName);
+      checklist = await this.runSubagent('Aristomenis', 'Aristomenis', aristomenisSystem, `RE-PLANNING with Slinger Report:\n${slingerReport}\n\nProject Map: ${manifestRaw}\n\nFrontier Plan: ${implementationPlan}`, onUpdate, {}, 'INSTRUCT_GENERAL', modelName);
     }
+
+    // FIX 7: Strip thinking-chain preamble before using the checklist
+    checklist = stripThinking(checklist);
 
     onUpdate?.({ text: `📋 **Spartan Checklist Generated:**\n${checklist}` });
 
-    if (implementationPlan.includes("[PLAN ONLY]")) {
-      return `[PLAN ONLY] Mode: Checklist drafted. Review and call again without [PLAN ONLY] to execute.\n\n${checklist}`;
-    }
-
+    // BUG FIX 1: always write progress.md before early return so it's available in PLAN ONLY mode too
     writeFileSync(progressFile, checklist);
-    await writeTrace({ phase: "aristomenis", status: "complete" });
 
-    // --- 3. BUILDER LOOP (MoE) ---
-    let progressContent;
-    try {
-      progressContent = readFileSync(progressFile, "utf-8");
-    } catch {
-      return `❌ Aristomenis failed to create ${progressFile}. Pipeline aborted.`;
+    if (implementationPlan.includes("[PLAN ONLY]")) {
+      writeTrace({ phase: "aristomenis", status: "plan_only" });
+      return `[PLAN ONLY] Mode: Checklist drafted at ${progressFile}. Review and call again without [PLAN ONLY] to execute.\n\n${checklist}`;
+    }
+    writeTrace({ phase: "aristomenis", status: "complete" });
+
+    // HIE-1: Interactive Markdown Preview
+    // FIX 8: Only render preview when running inside the Pi terminal (TERM_PROGRAM=pi)
+    // spawnSync blocks the process if no interactive terminal is present (e.g. MCP stdio mode)
+    if (process.env.TERM_PROGRAM === 'pi' || process.env.PI_TERMINAL === '1') {
+      try {
+        onUpdate?.({ text: `[Aristomenis] Rendering terminal preview for progress checklist...` });
+        const { spawnSync } = require('child_process');
+        spawnSync('pi', ['preview', '--terminal', progressFile], { stdio: 'inherit', shell: true });
+      } catch (e: any) {
+        onUpdate?.({ text: `[Aristomenis] ⚠️ Preview skipped: ${String(e.message).split('\n')[0]}` });
+      }
     }
 
-    const tasks = checklist.split("\n").filter(l => l.includes("- [ ]"));
+    // --- 3. SEQUENTIAL DEPENDENCY ORCHESTRATOR ---
+    const taskNodes: HelotTask[] = checklist.split("\n")
+      .filter(l => l.includes("- [ ]"))
+      .map(line => {
+        const idMatch = line.match(/^\- \[ \]\s*(\d+)\./);
+        const fileMatch = line.match(/\(Target:\s*([^,\]\)]+)/);
+        const symbolMatch = line.match(/Symbol:\s*([^,\]\)]+)/);
+        const dependsMatch = line.match(/\[DEPENDS:\s*([^\]]+)\]/);
+
+        return {
+          id: idMatch ? idMatch[1] : Math.random().toString(36).substr(2, 5),
+          description: line.split("(")[0].replace(/^- \[ \]\s*\d+\.\s*/, "").trim(),
+          status: 'pending' as const,
+          file: fileMatch ? fileMatch[1].trim() : undefined,
+          targetSymbol: symbolMatch ? symbolMatch[1].trim() : undefined,
+          dependsOn: dependsMatch ? dependsMatch[1].split(",").map(d => d.trim()).filter(d => d !== "none") : []
+        };
+      });
+
     writeFileSync(reviewFile, `# Aristomenis Review Report\nImplementation Plan: ${taskSummary}\n\n`);
 
-    for (let index = 0; index < tasks.length; index++) {
-      const checklistTask = tasks[index];
-      this.currentTaskTitle = checklistTask.replace(/^- \[ \]\s*/, '').split('(')[0].trim();
-      onUpdate?.({ text: `🛠️ Starting Task ${index + 1}/${tasks.length}: ${checklistTask}` });
+    for (let i = 0; i < taskNodes.length; i++) {
+      const task = taskNodes[i];
 
-      const fileMatch = checklistTask.match(/\(Target:\s*([^\)]+)\)/);
-      const targetFile = fileMatch ? fileMatch[1].trim() : "unknown";
+      // Dependency Check
+      const blockers = task.dependsOn?.filter(depId => {
+        const depTask = taskNodes.find(t => t.id === depId);
+        return depTask && depTask.status !== 'completed';
+      });
 
-      // Smart Read
-      let targetFileContent = "";
-      if (targetFile !== "unknown") {
+      if (blockers && blockers.length > 0) {
+        onUpdate?.({ text: `🚫 Task ${task.id} is BLOCKED by: ${blockers.join(", ")}` });
+        task.status = 'blocked';
+        continue;
+      }
+
+      this.currentTaskTitle = task.description;
+      onUpdate?.({ text: `🛠️ Starting Task ${task.id}/${taskNodes.length}: ${task.description}` });
+
+      // --- 🏹 SCOUT SLICING ---
+      let contextContent = "";
+      if (task.file && task.targetSymbol) {
+        onUpdate?.({ text: `🏹 Scout slicing symbol: ${task.targetSymbol} from ${task.file}...` });
+        contextContent = this.scout.getSymbolSlice(path.resolve(task.file), task.targetSymbol);
+      } else if (task.file) {
         try {
-          targetFileContent = readFileSync(path.resolve(targetFile), "utf-8");
-          onUpdate?.({ text: `📖 Smart Read: ${targetFile} loaded.` });
+          contextContent = readFileSync(path.resolve(task.file), "utf-8");
+          onUpdate?.({ text: `📖 Smart Read: ${task.file} loaded (Full File).` });
         } catch {
-          onUpdate?.({ text: `⚠️ Smart Read failed for ${targetFile}. Proceeding with blind edit.` });
+          onUpdate?.({ text: `⚠️ Smart Read failed for ${task.file}.` });
         }
       }
 
@@ -357,14 +490,15 @@ RESPOND ONLY WITH THE CHECKLIST OR DATA REQUEST.`;
 
       for (let tryCount = 1; tryCount <= 3; tryCount++) {
         const builderSystem = `${globalContext}
-You are the Builder. IMPLEMENT the following task with LACONIC SIMPLICITY: ${checklistTask}
-Existing file state: 
-${targetFileContent || "(New File)"}
+You are the Builder. IMPLEMENT the following task with LACONIC SIMPLICITY: ${task.description}
+${task.file ? `Target File: ${task.file}` : ""}
 
 SPARTAN BUILDER GUIDELINES:
-1. LACONISM: Use the minimum code required. No "just-in-case" bloat.
-2. CONTEXT GUARD: If you are unsure of signatures due to large context (>70% pressure), STOP and request Slinger verification.
-3. MAINTAINABILITY: If logic can be extracted to a utility, flag it for Aristomenis.
+1. LACONISM: Use the minimum code required. 
+2. BEHAVIORAL CONTEXT: You have been provided a surgical "Slice" or full file context below. Use it to ensure your edits are precise.
+3. CONTEXT GUARD: If you detect >70% pressure, STOP and request Slinger verification.
+
+${contextContent ? `CONTEXT (Behavioral Slice):\n${contextContent}` : ""}
 
 ${lastPeltastFeedback ? `PREVIOUS FAILURE FEEDBACK:\n${lastPeltastFeedback}\n\nFix the issues and try again.` : ""}
 
@@ -374,10 +508,10 @@ Output the file content using Markdown blocks:
 (code)
 \`\`\``;
 
-        const builder = this.pickName(runId, `Builder-${index}-${tryCount}`);
-        this.currentPhase = `Builder (Task ${index + 1}/${tasks.length})`;
-        onUpdate?.({ text: `[Builder] Designing changes for Task ${index + 1} (Try ${tryCount})...` });
-        const builderOut = await this.runSubagent("Builder", builder.name, builderSystem, `Checklist: ${progressContent}\n\nImplementation Plan: ${implementationPlan}`, onUpdate, psiloiMetrics.builder, "THINKING_CODE", modelName);
+        const builder = this.pickName(runId, `Builder-${task.id}-${tryCount}`);
+        this.currentPhase = `Builder (Task ${task.id})`;
+        onUpdate?.({ text: `[Builder] Designing changes for Task ${task.id} (Try ${tryCount})...` });
+        const builderOut = await this.runSubagent("Builder", builder.name, builderSystem, `Mission ID: ${runId}\nTask: ${task.description}`, onUpdate, psiloiMetrics.builder, "THINKING_CODE", modelName);
 
         // Manual Parsing for Markdown blocks
         const fileRegex = /###\s*\[([^\]]+)\]\s*\n\s*```[a-z]*\n([\s\S]*?)\n```/gi;
@@ -392,66 +526,60 @@ Output the file content using Markdown blocks:
         }
 
         // --- 4. PELTAST PHASE (MoE+Thinking) ---
+        // --- 4. PELTAST PHASE (Decision thinking) ---
         const peltastSystem = `${globalContext}
-You are the Peltast. Use THOROUGH REASONING to check if the Builder completed: ${checklistTask}.
-Verify imports, logic, and formatting. 
+You are the Peltast. Use THOROUGH REASONING to check if the Builder completed: ${task.description}
+Verify logic, signatures, and Spartan Simplicity.
 
-SPARTAN VALIDATION:
-1. Reject any over-engineered solutions.
-2. VERDICT: FAIL if the Builder introduced unnecessary complexity or if the file length has become unmanageable.
-3. Output VERDICT: PASS if correct and laconic, else FAIL with reason.`;
+Output VERDICT: PASS or FAIL with reason.`;
 
-        const peltast = this.pickName(runId, `Peltast-${index}-${tryCount}`);
-        this.currentPhase = `Peltast Verification (Task ${index + 1}/${tasks.length})`;
-        onUpdate?.({ text: `[Peltast] Verifying Task ${index + 1}...` });
+        const peltast = this.pickName(runId, `Peltast-${task.id}-${tryCount}`);
+        this.currentPhase = `Peltast Verification (Task ${task.id})`;
+        onUpdate?.({ text: `[Peltast] Verifying Task ${task.id}...` });
         const peltastOut = await this.runSubagent("Peltast", peltast.name, peltastSystem,
-          `Builder output:\n${builderOut}\n\nVerify this completed the task: ${checklistTask}`,
+          `Builder output:\n${builderOut}\n\nVerify this completed the task: ${task.description}`,
           onUpdate, psiloiMetrics.peltast, "THINKING_REASONING", modelName);
 
-        appendFileSync(reviewFile, `\n## Task: ${checklistTask} (Try ${tryCount})\n${peltastOut}\n`);
+        appendFileSync(reviewFile, `\n## Task: ${task.description} (Try ${tryCount})\n${peltastOut}\n`);
 
         if (peltastOut.includes("VERDICT: PASS")) {
           taskPassed = true;
+          task.status = 'completed';
           break;
         } else {
           lastPeltastFeedback = peltastOut;
-          onUpdate?.({ content: [{ type: "text", text: `⚠️ Peltast rejected task. Retrying...` }] });
+          onUpdate?.({ text: `⚠️ Peltast rejected task. Feedback: ${peltastOut.slice(0, 50)}...` });
         }
       }
 
       if (!taskPassed) {
-        onUpdate?.({ content: [{ type: "text", text: `❌ Task failed after 3 attempts. TRIGGERING FAIL-FAST ROLLBACK...` }] });
+        task.status = 'failed';
+        onUpdate?.({ text: `❌ Task ${task.id} failed after 3 attempts. TRIGGERING FAIL-FAST ROLLBACK...` });
         try {
           const { execSync } = require("node:child_process");
           execSync("git reset --hard HEAD~1", { cwd: process.cwd() });
-          onUpdate?.({ content: [{ type: "text", text: `⏮️ Git rolled back to previous checkpoint.` }] });
+          onUpdate?.({ text: `⏮️ Git rolled back to previous checkpoint.` });
         } catch { }
-        return `Pipeline halted at Task ${index + 1}. Check ${reviewFile}.`;
+        return `Pipeline halted at Task ${task.id}. Dependents blocked.`;
       }
 
-      progressContent = progressContent.replace(checklistTask, checklistTask.replace("- [ ]", "- [x]"));
-      writeFileSync(progressFile, progressContent);
-
-      // --- GIT COMMIT (Optional) ---
+      // --- GIT COMMIT ---
       try {
         const { execSync } = require("node:child_process");
-        const cleanTask = checklistTask.replace("- [ ]", "").trim();
         execSync("git add .", { cwd: process.cwd() });
-
         let gitIdentity = "";
         try {
           execSync("git config user.name", { stdio: 'ignore', cwd: process.cwd() });
-          execSync("git config user.email", { stdio: 'ignore', cwd: process.cwd() });
         } catch {
           gitIdentity = "-c user.name=\"Aristomenis\" -c user.email=\"aristomenis@helots.com\" ";
         }
-
-        execSync(`git ${gitIdentity}commit -m "[Aristomenis] ${cleanTask}"`, { cwd: process.cwd() });
-        onUpdate?.({ text: `📦 GIT: [Aristomenis] ${cleanTask} Commited` });
+        execSync(`git ${gitIdentity}commit -m "[Aristomenis] Task ${task.id}: ${task.description}"`, { cwd: process.cwd() });
+        onUpdate?.({ text: `📦 GIT: [Aristomenis] Task ${task.id} Committed` });
       } catch { }
     }
 
-    onUpdate?.({ content: [{ type: "text", text: `✅ Execution complete! All items checked off.` }] });
+    // BUG FIX 2 (cont): normalize onUpdate shape
+    onUpdate?.({ text: `✅ Execution complete! All tasks processed.` });
     return this.governor.generateSweepReport();
   }
 
@@ -467,7 +595,8 @@ SPARTAN VALIDATION:
 
     let fileContext = "";
     if (targetFiles && targetFiles.length > 0) {
-      onUpdate?.({ content: [{ type: "text", text: `📖 Slinger reading ${targetFiles.length} files...` }] });
+      // BUG FIX 2: normalize onUpdate shape to { text } everywhere
+      onUpdate?.({ text: `📖 Slinger reading ${targetFiles.length} files...` });
       for (const f of targetFiles) {
         try {
           const content = readFileSync(path.resolve(f), "utf-8");
@@ -502,6 +631,14 @@ ${fileContext ? `FILE CONTENT TO ANALYZE:\n${fileContext}` : ""}`;
     let updateBuffer = "";
     const baseTokensPrior = this.sessionTotalTokens;
 
+    // BUG FIX 6: Repetition loop guard — track complete repeated lines only
+    // We only check lines that arrive complete (chunk contains '\n') to avoid false positives from partials
+    let lastCompleteLine = "";
+    let repeatCount = 0;
+    const MAX_REPEATS = 8;       // abort if same complete line repeats this many times
+    // NOTE: per-call token cap intentionally removed — let profile max_tokens govern this
+    let streamAborted = false;
+
     const verbMap: Record<string, string> = {
       'Aristomenis': 'planning',
       'Architect': 'planning',
@@ -514,49 +651,61 @@ ${fileContext ? `FILE CONTENT TO ANALYZE:\n${fileContext}` : ""}`;
     const verb = verbMap[role] || 'tasking';
     const headerPrefix = `### 🛡️ Helot ${name} is ${verb}`;
 
-    await this.client.streamCompletion(messages, role as TaskRole, profile, (chunk, m) => {
-      fullResponse += chunk;
-      updateBuffer += chunk;
+    try {
+      await this.client.streamCompletion(messages, role as TaskRole, profile, (chunk, m) => {
+        if (streamAborted) return;
 
-      const currentRequestTokens = m.promptTokens + m.genTokens;
-      this.sessionTotalTokens = baseTokensPrior + currentRequestTokens;
+        fullResponse += chunk;
+        updateBuffer += chunk;
 
-      const { maxTokens } = m as any; // Assuming LlamaClient provides maxTokens in chunk metadata or similar
-      // We'll calculate pressure based on prompt tokens since input is the bottleneck
-      const pressure = maxTokens ? Math.round((m.promptTokens / maxTokens) * 100) : 0;
-      const pressureWarning = pressure > 70 ? ` | ⚠️ [CONTEXT PRESSURE: ${pressure}%]` : "";
+        // Repetition detection — only check on chunks that contain a newline (complete lines)
+        if (chunk.includes('\n') && !streamAborted) {
+          const completedLine = chunk.split('\n').slice(-2, -1)[0]?.trim() ?? "";
+          if (completedLine.length > 15 && completedLine === lastCompleteLine) {
+            repeatCount++;
+            if (repeatCount >= MAX_REPEATS) {
+              streamAborted = true;
+              onUpdate?.({ text: `⚠️ [${role}] Repetition loop detected ("${completedLine.slice(0, 40)}...") — truncating.` });
+              return;
+            }
+          } else if (completedLine.length > 15) {
+            repeatCount = 0;
+            lastCompleteLine = completedLine;
+          }
+        }
 
-      const metricsInfo = `[${this.currentPhase}] | [Session: ${this.sessionTotalTokens.toLocaleString()} tokens] | [Gen: ${m.genTps.toFixed(1)} t/s]${pressureWarning}`;
-      const currentHeader = `${headerPrefix}\n**${this.currentTaskTitle}**\n${metricsInfo}\n---\n`;
+        // Hard token cap removed — profile max_tokens governs output length
 
-      // Buffer updates to avoid UI overwhelming, but ensure progress is visible
-      if (updateBuffer.length > 20 || chunk.includes('\n')) {
-        onUpdate?.({ text: `${currentHeader}${fullResponse}` });
-        updateBuffer = "";
-      }
+        const currentRequestTokens = m.promptTokens + m.genTokens;
+        this.sessionTotalTokens = baseTokensPrior + currentRequestTokens;
 
-      if (metrics) metrics.out += chunk.length;
-    }, () => {
-      // Final update for completeness
-      const metricsInfo = `[${this.currentPhase}] | [Session: ${this.sessionTotalTokens.toLocaleString()} tokens]`;
-      onUpdate?.({ text: `${headerPrefix}\n**${this.currentTaskTitle}**\n${metricsInfo}\n---\n${fullResponse}` });
-    });
+        const { maxTokens } = m as any;
+        const pressure = maxTokens ? Math.round((m.promptTokens / maxTokens) * 100) : 0;
+        const pressureWarning = pressure > 70 ? ` | ⚠️ [CONTEXT PRESSURE: ${pressure}%]` : "";
+
+        // FIX 10: Send only the new chunk delta in onUpdate, NOT the entire fullResponse.
+        // Accumulating fullResponse and sending it every chunk causes log spam in MCP mode
+        // (the same growing text is logged hundreds of times as tokens stream).
+        // Pi's live preview uses the final onEnd callback for the full render.
+        if (updateBuffer.length > 20 || chunk.includes('\n')) {
+          const metricsLine = `[${this.currentPhase}] ${m.genTps.toFixed(1)}t/s ${m.genTokens}tok`;
+          onUpdate?.({ text: `${headerPrefix} | ${metricsLine}\n${updateBuffer}` });
+          updateBuffer = "";
+        }
+
+        if (metrics) metrics.out += chunk.length;
+      }, () => {
+        const metricsInfo = `[${this.currentPhase}] | [Session: ${this.sessionTotalTokens.toLocaleString()} tokens]`;
+        onUpdate?.({ text: `${headerPrefix}\n**${this.currentTaskTitle}**\n${metricsInfo}\n---\n${fullResponse}` });
+      });
+    } catch (e: any) {
+      // Stream errors are logged but don't crash — return what we have
+      onUpdate?.({ text: `⚠️ [${role}] Stream error: ${e.message}` });
+    }
+
     return fullResponse;
   }
 
-  private getAllFiles(dir: string, fileList: string[] = []): string[] {
-    const files = readdirSync(dir);
-    for (const file of files) {
-      if (file === 'node_modules' || file === '.git' || file === '.helot-state') continue;
-      const name = join(dir, file);
-      if (statSync(name).isDirectory()) {
-        this.getAllFiles(name, fileList);
-      } else {
-        fileList.push(name);
-      }
-    }
-    return fileList;
-  }
 
   private pickName(runId: string, role: string) {
     const cities = ["Sparta", "Messene", "Korinth", "Argos", "Thebes"];

@@ -1,0 +1,3 @@
+- [x] 1. Extract `getAllFiles` logic from `src/core/engine.ts` into a new module `src/core/file-utils.ts` exporting as default [DEPENDS: none]
+- [x] 2. Remove the original `getAllFiles` function definition from `src/core/engine.ts` [DEPENDS: 1]
+- [x] 3. Add import statement for `getAllFiles` in `src/core/engine.ts` referencing `./file-utils` [DEPENDS: 2]
