@@ -13,6 +13,7 @@ export class LlamaClient {
     private apiKey: string;
     private currentModel: string;
     private serverAvailableModels: string[] = [];
+    private serverContextSize: number = 4096; // Default
     private modelsInitialized = false;
 
     constructor(config: HelotConfig) {
@@ -24,10 +25,9 @@ export class LlamaClient {
 
     public async getProps(): Promise<{ modelName: string; maxTokens: number }> {
         await this.initializeModels();
-        // Return default MoE model name if current is not set or placeholder
         return {
             modelName: this.currentModel,
-            maxTokens: 4096 // Default fallback
+            maxTokens: this.serverContextSize
         };
     }
 
@@ -40,6 +40,23 @@ export class LlamaClient {
             if (response.ok) {
                 const json = await response.json();
                 this.serverAvailableModels = (json.data || []).map((m: any) => m.id);
+
+                // Fetch dynamic context size (cntxt) from llama.cpp props
+                try {
+                    const propsRes = await fetch(`${this.baseUrl}/props`, {
+                        headers: { 'Authorization': `Bearer ${this.apiKey}` }
+                    });
+                    if (propsRes.ok) {
+                        const props = await propsRes.ok ? await propsRes.json() : {};
+                        this.serverContextSize = props.default_generation_settings?.n_ctx || props.cntxt || props.n_ctx || 4096;
+                        console.log(`[LlamaClient] Server reporting context size: ${this.serverContextSize}`);
+                    }
+                } catch {
+                    // Fallback to model metadata if props fails
+                    const modelMeta = json.data?.find((m: any) => m.id === this.currentModel);
+                    this.serverContextSize = modelMeta?.meta?.n_ctx || modelMeta?.cntxt || 4096;
+                }
+
                 console.log(`[LlamaClient] Detected active server models: \n  - ${this.serverAvailableModels.join('\n  - ')}`);
             }
         } catch (error) {
@@ -72,7 +89,7 @@ export class LlamaClient {
         messages: { role: string; content: string }[],
         role: TaskRole,
         profileKey: string,
-        onChunk: (chunk: string, metrics: { genTps: number; promptEvalTps: number; isFirstToken: boolean; promptTokens: number; genTokens: number }) => void,
+        onChunk: (chunk: string, metrics: { genTps: number; promptEvalTps: number; isFirstToken: boolean; promptTokens: number; genTokens: number; maxTokens: number }) => void,
         onEnd: () => void
     ): Promise<void> {
         await this.initializeModels();
@@ -99,7 +116,7 @@ export class LlamaClient {
         messages: { role: string; content: string }[],
         role: TaskRole,
         profileKey: string,
-        onChunk: (chunk: string, metrics: { genTps: number; promptEvalTps: number; isFirstToken: boolean; promptTokens: number; genTokens: number }) => void,
+        onChunk: (chunk: string, metrics: { genTps: number; promptEvalTps: number; isFirstToken: boolean; promptTokens: number; genTokens: number; maxTokens: number }) => void,
         onEnd: () => void
     ): Promise<void> {
         const targetModel = this.getTargetModel(role);
@@ -188,7 +205,8 @@ export class LlamaClient {
                                         promptEvalTps: isFinite(promptEvalTps) ? promptEvalTps : 0,
                                         isFirstToken: tokenCount === 1,
                                         promptTokens: Math.round(promptEstimate),
-                                        genTokens: tokenCount
+                                        genTokens: tokenCount,
+                                        maxTokens: this.serverContextSize
                                     });
                                 }
                             }

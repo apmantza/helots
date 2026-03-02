@@ -281,8 +281,14 @@ export class HelotEngine {
 
     // --- 2. ARISTOMENIS PHASE (Dense) ---
     const aristomenisSystem = `${globalContext}
-You are Aristomenis, the Architect. DESIGN the technical implementation checklist.
+You are Aristomenis, the Architect. DESIGN the technical implementation checklist with SPARTAN SIMPLICITY.
 Based on the Project Map and the Frontier Plan, create a granular checklist in \`progress.md\`.
+
+SPARTAN CODE PRINCIPLES:
+1. MODULARITY: If a Target File exceeds 400 lines, your checklist MUST prioritize splitting logic into sub-modules or services.
+2. SURGICAL PRECISION: Each task should target one specific logic block. Avoid full-file rewrites.
+3. MINIMALISM: Do not introduce unnecessary abstractions. Favor simple functions over complex classes.
+
 EACH TASK SHOULD TARGET ONE FILE. 
 Use DEPENDS: N or PARALLEL: N to mark task relationships.
 Checklist format:
@@ -351,9 +357,14 @@ RESPOND ONLY WITH THE CHECKLIST OR DATA REQUEST.`;
 
       for (let tryCount = 1; tryCount <= 3; tryCount++) {
         const builderSystem = `${globalContext}
-You are the Builder. IMPLEMENT the following task: ${checklistTask}
+You are the Builder. IMPLEMENT the following task with LACONIC SIMPLICITY: ${checklistTask}
 Existing file state: 
 ${targetFileContent || "(New File)"}
+
+SPARTAN BUILDER GUIDELINES:
+1. LACONISM: Use the minimum code required. No "just-in-case" bloat.
+2. CONTEXT GUARD: If you are unsure of signatures due to large context (>70% pressure), STOP and request Slinger verification.
+3. MAINTAINABILITY: If logic can be extracted to a utility, flag it for Aristomenis.
 
 ${lastPeltastFeedback ? `PREVIOUS FAILURE FEEDBACK:\n${lastPeltastFeedback}\n\nFix the issues and try again.` : ""}
 
@@ -383,7 +394,12 @@ Output the file content using Markdown blocks:
         // --- 4. PELTAST PHASE (MoE+Thinking) ---
         const peltastSystem = `${globalContext}
 You are the Peltast. Use THOROUGH REASONING to check if the Builder completed: ${checklistTask}.
-Verify imports, logic, and formatting. Output: VERDICT: PASS if correct, else FAIL with reason.`;
+Verify imports, logic, and formatting. 
+
+SPARTAN VALIDATION:
+1. Reject any over-engineered solutions.
+2. VERDICT: FAIL if the Builder introduced unnecessary complexity or if the file length has become unmanageable.
+3. Output VERDICT: PASS if correct and laconic, else FAIL with reason.`;
 
         const peltast = this.pickName(runId, `Peltast-${index}-${tryCount}`);
         this.currentPhase = `Peltast Verification (Task ${index + 1}/${tasks.length})`;
@@ -505,7 +521,12 @@ ${fileContext ? `FILE CONTENT TO ANALYZE:\n${fileContext}` : ""}`;
       const currentRequestTokens = m.promptTokens + m.genTokens;
       this.sessionTotalTokens = baseTokensPrior + currentRequestTokens;
 
-      const metricsInfo = `[${this.currentPhase}] | [Session: ${this.sessionTotalTokens.toLocaleString()} tokens] | [Gen: ${m.genTps.toFixed(1)} t/s]`;
+      const { maxTokens } = m as any; // Assuming LlamaClient provides maxTokens in chunk metadata or similar
+      // We'll calculate pressure based on prompt tokens since input is the bottleneck
+      const pressure = maxTokens ? Math.round((m.promptTokens / maxTokens) * 100) : 0;
+      const pressureWarning = pressure > 70 ? ` | ⚠️ [CONTEXT PRESSURE: ${pressure}%]` : "";
+
+      const metricsInfo = `[${this.currentPhase}] | [Session: ${this.sessionTotalTokens.toLocaleString()} tokens] | [Gen: ${m.genTps.toFixed(1)} t/s]${pressureWarning}`;
       const currentHeader = `${headerPrefix}\n**${this.currentTaskTitle}**\n${metricsInfo}\n---\n`;
 
       // Buffer updates to avoid UI overwhelming, but ensure progress is visible
