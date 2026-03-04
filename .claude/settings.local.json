@@ -7,7 +7,9 @@
       "Bash(mkdir:*)",
       "Bash(node:*)",
       "mcp__helots__helot_run",
-      "mcp__helots__helot_slinger"
+      "mcp__helots__helot_slinger",
+      "Bash(python3:*)",
+      "mcp__helots__helot_hoplite"
     ]
   }
 }

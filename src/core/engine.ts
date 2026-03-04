@@ -218,7 +218,8 @@ export class HelotEngine {
     psiloiMetrics: { builder: any; peltast: any },
     reviewFile: string,
     onUpdate: ((data: any) => void) | undefined,
-    allTasks: HelotTask[] = []
+    allTasks: HelotTask[] = [],
+    writeTrace: (data: any) => void = () => {}
   ): Promise<{ passed: boolean; escalation?: string }> {
 
     // Per-task changes from frontier take priority over the shared implementation plan
@@ -387,6 +388,7 @@ Do NOT echo these instructions. Do NOT write placeholder text like "(complete fi
         }
       }
 
+      writeTrace({ phase: 'builder', status: 'start', taskId: task.id, tryNum: tryCount });
       const builderRaw = await this.runSubagent(
         "Builder", builder.name, builderSystem,
         `Mission ID: ${runId}\nTask: ${task.description}`,
@@ -395,6 +397,7 @@ Do NOT echo these instructions. Do NOT write placeholder text like "(complete fi
       // Strip <think> blocks so chain-of-thought doesn't leak into file parsing
       const builderOut = stripThinking(builderRaw);
       lastBuilderOut = builderOut.slice(0, 3000); // context for potential replan
+      writeTrace({ phase: 'builder', status: 'complete', taskId: task.id, tryNum: tryCount });
 
       // --- Parse output files ---
       const filesToProcess: Array<{ filePath: string; fullPath: string; content: string }> = [];
@@ -677,10 +680,12 @@ VERDICT: FAIL — <reason in 10 words or fewer>`;
         this.governor.recordVerification({ passed: true, message: `Task ${task.id} verified` });
         onUpdate?.({ text: `✅ PASS — Task ${task.id}: ${task.description.slice(0, 70)}` });
         this.writeEvent({ type: 'verdict', taskId: task.id, result: 'PASS', tryNum: tryCount });
+        writeTrace({ phase: 'peltast', status: 'pass', taskId: task.id, tryNum: tryCount });
         break;
       } else {
         onUpdate?.({ text: `❌ FAIL — Task ${task.id} (try ${tryCount}/3): ${verdictReason.slice(0, 120)}` });
         this.writeEvent({ type: 'verdict', taskId: task.id, result: 'FAIL', tryNum: tryCount, reason: verdictReason });
+        writeTrace({ phase: 'peltast', status: 'fail', taskId: task.id, tryNum: tryCount, reason: verdictReason.slice(0, 100) });
         // Restore backup
         for (const { filePath, fullPath } of filesToProcess) {
           const bak = join(backupBaseDir, filePath.replace(/[/\\]/g, '__') + '.bak');
@@ -823,7 +828,8 @@ Rewrite the task spec to fix the failure above.`;
     implementationPlan: string,
     psiloiMetrics: { builder: any; peltast: any },
     reviewFile: string,
-    onUpdate: ((data: any) => void) | undefined
+    onUpdate: ((data: any) => void) | undefined,
+    writeTrace: (data: any) => void = () => {}
   ): Promise<string | null> {
     // Sync initial task list to governor state
     this.governor.state.tasks = taskNodes;
@@ -853,7 +859,7 @@ Rewrite the task spec to fix the failure above.`;
       this.writeEvent({ type: 'task_status', taskId: task.id, status: 'running' });
       onUpdate?.({ text: `🛠️ Task ${task.id}/${taskNodes.length}: ${task.description}` });
 
-      const result = await this.runOneTask(task, runId, modelName, globalContext, implementationPlan, psiloiMetrics, reviewFile, onUpdate, taskNodes);
+      const result = await this.runOneTask(task, runId, modelName, globalContext, implementationPlan, psiloiMetrics, reviewFile, onUpdate, taskNodes, writeTrace);
 
       // Persist task status after each run
       this.governor.state.tasks[i] = task;
@@ -1104,7 +1110,7 @@ RESPOND ONLY WITH THE CHECKLIST. DO NOT USE PLACEHOLDERS.`;
 
     writeFileSync(reviewFile, `# Aristomenis Review Report\nPlan: ${taskSummary}\n\n`);
 
-    const halt = await this.runTaskLoop(taskNodes, runId, modelName, globalContext, cappedPlan, psiloiMetrics, reviewFile, onUpdate);
+    const halt = await this.runTaskLoop(taskNodes, runId, modelName, globalContext, cappedPlan, psiloiMetrics, reviewFile, onUpdate, writeTrace);
     if (halt) return halt;
 
     const passed = taskNodes.filter(t => t.status === 'completed').length;
@@ -1467,7 +1473,7 @@ ${modifications}`;
     writeFileSync(reviewFile, `# Execution Review\nApproval: ${approvalResponse}\n\n`);
 
     const taskNodes = this.parseChecklist(tasks);
-    const halt = await this.runTaskLoop(taskNodes, runId, modelName, globalContext, tasks, psiloiMetrics, reviewFile, onUpdate);
+    const halt = await this.runTaskLoop(taskNodes, runId, modelName, globalContext, tasks, psiloiMetrics, reviewFile, onUpdate, writeTrace);
     if (halt) return halt;
 
     this.governor.setPhase('finished');

@@ -3,106 +3,53 @@
 --- Builder (Task 1) | Teleutias ---
 
 ```
-import
-import
-import
-import
-import
-import
-import
-
-function
-  try
-    const
-    if
-    const
-    return
-  }
-    return
-  }
-}
-
-function
-  res
-  log
-  interval
-):
-  res
-    '
-    '
-    '
-    '
-  });
-
-  let
-
-  const
-    try
-  },
-
-  const
-    if
-    const
-    if
-    const
-    const
-    fs
-    fs
-    offset
-    const
-    for
-      try
-    }
-  },
-
-  return
-    clearInterval
-    clearInterval
-  };
-}
-
 export
-  engine
-  state
-  port
-):
   const
   const
 
   const
     const
     const
-
     res
 
     if
-      fs
-        if
+      if
         res
         res
-      });
+      }
+        res
+        res
+      }
+      return
     }
-      const
-      res
-      res
-    }
-      const
-      res
-      res
-    }
+
+    if
       const
       const
       req
+      return
     }
-      res
-      res
+
+    if
+      const
+      const
+      req
+      return
     }
+
+    //
+    //
+    //
+    //
+
+    res
+    res
   });
 
   server
-    console
+    process
+    if
+    else
   });
 }
 ```
-
---- Peltast (Task 1) | Lysander ---

@@ -1473,3 +1473,152 @@ Scanning workspace...
 [Helot Update] ✅ Builder (Task 1) | Teleutias | 74.9t/s | 749 gen + 1605 prompt tokens
 [Helot Update] ✅ Peltast (Task 1) | Lysander | 112.8t/s | 5 gen + 1079 prompt tokens
 [Helot Update] ✅ PASS — Task 1: REWRITE src/adapters/dashboard-server.ts with the complete correct imp
+[Helot Update] ✅ Task 1 committed.
+[Helot Update] ✅ Execution complete! 1/1 tasks passed.
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 88.8t/s | 74 gen + 581 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 91.4t/s | 84 gen + 631 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 91.8t/s | 136 gen + 691 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 90.4t/s | 84 gen + 787 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 91.5t/s | 84 gen + 847 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 90.9t/s | 84 gen + 907 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 91.0t/s | 88 gen + 986 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 90.1t/s | 186 gen + 1073 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 90.0t/s | 100 gen + 571 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 90.1t/s | 101 gen + 2145 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 89.6t/s | 109 gen + 3719 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 88.6t/s | 64 gen + 3809 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 86.7t/s | 565 gen + 3894 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 89.3t/s | 60 gen + 588 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 91.0t/s | 57 gen + 637 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 90.1t/s | 40 gen + 1848 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 82.9t/s | 603 gen + 2239 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 90.6t/s | 54 gen + 561 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 90.4t/s | 54 gen + 1578 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 89.2t/s | 63 gen + 2594 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 88.9t/s | 60 gen + 3618 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 90.1t/s | 54 gen + 3685 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 79.8t/s | 276 gen + 4702 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 85.4t/s | 31 gen + 563 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 85.3t/s | 34 gen + 689 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 88.6t/s | 57 gen + 788 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 88.3t/s | 37 gen + 835 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 85.5t/s | 42 gen + 2365 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 82.4t/s | 42 gen + 3616 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 85.5t/s | 42 gen + 5168 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 81.7t/s | 923 gen + 6724 prompt tokens
+[Hoplite Update] ✏️ Hoplite editing CLAUDE.md...
+[Hoplite Update] ✅ Peltast (Task 1) | Hoplite | 86.4t/s | 538 gen + 714 prompt tokens
+[Hoplite Update] ✅ Hoplite: CLAUDE.md written (45 → 46 lines)
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 89.9t/s | 41 gen + 576 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 89.6t/s | 31 gen + 612 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 88.7t/s | 36 gen + 707 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 86.9t/s | 42 gen + 805 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 86.4t/s | 43 gen + 2338 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 85.2t/s | 44 gen + 3871 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 83.6t/s | 44 gen + 5423 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 81.1t/s | 661 gen + 6979 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 91.2t/s | 51 gen + 607 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 86.8t/s | 37 gen + 646 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 91.7t/s | 58 gen + 1722 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 90.2t/s | 94 gen + 1764 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 86.9t/s | 34 gen + 1899 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 86.6t/s | 43 gen + 1954 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 84.9t/s | 42 gen + 3506 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 77.8t/s | 1116 gen + 5062 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 88.9t/s | 33 gen + 617 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 85.5t/s | 41 gen + 716 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 86.2t/s | 41 gen + 880 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 85.6t/s | 41 gen + 1043 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 87.3t/s | 41 gen + 1191 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 85.8t/s | 41 gen + 1453 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 83.9t/s | 801 gen + 1583 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 88.1t/s | 56 gen + 731 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 88.4t/s | 53 gen + 777 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 86.6t/s | 41 gen + 847 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 87.6t/s | 63 gen + 1106 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 87.5t/s | 61 gen + 1157 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 86.5t/s | 57 gen + 1207 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 90.0t/s | 32 gen + 1309 prompt tokens
+[Slinger Update] ✅ Peltast (Task 1) | Agesilaus | 86.3t/s | 478 gen + 1791 prompt tokens
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-moe — ctx: 32768
+[Helot Update] ⚠️ ruff not found — ruff checking disabled. Run: pip install ruff
+[Helot Update] 📐 Context budget (32768 tokens): manifest=39k  plan=33k  slinger=22k chars
+[Helot Update] ### 🛡️ Brasidas is scouting
+**Mapping Workspace Territory**
+---
+Scanning workspace...
+[Helot Update] 🏹 Pre-Slinger: scanning source symbols...
+[Helot Update] ✅ Pre-Slinger: 18 files, 35 symbols
+[Helot Update] 📋 **Frontier-Planned Mode** — 4 tasks (Aristomenis bypassed)
+[Helot Update] 📋 **Task List:**
+- [ ] 1. Add /events and /api/stream SSE routes to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
+- [ ] 2. Add /api/stats route to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: 1]
+- [ ] 3. Add /api/runs and /api/file routes to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: 2]
+- [ ] 4. Add POST /api/run, /api/slinger, /api/hoplite action routes to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: 3]
+[Helot Update] 🛠️ Task 1/4: Add /events and /api/stream SSE routes to startDashboard
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen35-moe for role Slinger...
+[Slinger Update] ✅ Architect | Agesilaus | 82.4t/s | 41 gen + 588 prompt tokens
+[Slinger Update] ✅ Architect | Agesilaus | 86.3t/s | 41 gen + 894 prompt tokens
+[Slinger Update] ✅ Architect | Agesilaus | 86.3t/s | 40 gen + 1275 prompt tokens
+[Slinger Update] ✅ Architect | Agesilaus | 89.6t/s | 33 gen + 1380 prompt tokens
+[Slinger Update] ✅ Architect | Agesilaus | 85.5t/s | 567 gen + 1481 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Architect | Agesilaus | 90.3t/s | 33 gen + 543 prompt tokens
+[Slinger Update] ✅ Architect | Agesilaus | 88.6t/s | 167 gen + 684 prompt tokens
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-moe — ctx: 32768
+[Helot Update] ⚠️ ruff not found — ruff checking disabled. Run: pip install ruff
+[Helot Update] 📐 Context budget (32768 tokens): manifest=39k  plan=33k  slinger=22k chars
+[Helot Update] ### 🛡️ Brasidas is scouting
+**Mapping Workspace Territory**
+---
+Scanning workspace...
+[Helot Update] 🏹 Pre-Slinger: scanning source symbols...
+[Helot Update] ✅ Pre-Slinger: 18 files, 35 symbols
+[Helot Update] 📋 **Frontier-Planned Mode** — 4 tasks (Aristomenis bypassed)
+[Helot Update] 📋 **Task List:**
+- [ ] 1. Add /events and /api/stream SSE routes to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
+- [ ] 2. Add /api/stats route to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: 1]
+- [ ] 3. Add /api/runs and /api/file routes to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: 2]
+- [ ] 4. Add POST /api/run, /api/slinger, /api/hoplite action routes to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: 3]
+[Helot Update] 🛠️ Task 1/4: Add /events and /api/stream SSE routes to startDashboard
+[Helot Update] 🔬 Surgical mode: targeting `startDashboard` in typescript (37 lines)
+[MODEL SWAP] Swapping from qwen27b to qwen35-moe for role Builder...
+[Helot Update] ✅ Builder (Task 1) | Teleutias | 76.3t/s | 398 gen + 1145 prompt tokens
+[Helot Update] ⚡ Auto-PASS — Task 1 (deterministic)
+[Helot Update] ✅ PASS — Task 1: Add /events and /api/stream SSE routes to startDashboard

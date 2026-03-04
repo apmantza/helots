@@ -17,24 +17,15 @@ function readFrontierEstimate(): number {
   }
 }
 
-function serveSSE(
-  res: http.ServerResponse,
-  logFile: string,
-  intervalMs = 200
-): () => void {
+function serveSSE(res: http.ServerResponse, logFile: string, intervalMs = 200): () => void {
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
     'Cache-Control': 'no-cache',
     'Connection': 'keep-alive',
     'Access-Control-Allow-Origin': '*',
   });
-
   let offset = fs.existsSync(logFile) ? fs.statSync(logFile).size : 0;
-
-  const ping = setInterval(() => {
-    try { res.write(':ping\n\n'); } catch {}
-  }, 15000);
-
+  const ping = setInterval(() => { try { res.write(':ping\n\n'); } catch {} }, 15000);
   const poll = setInterval(() => {
     if (!fs.existsSync(logFile)) return;
     const size = fs.statSync(logFile).size;
@@ -45,56 +36,57 @@ function serveSSE(
     fs.closeSync(fd);
     offset = size;
     const lines = buf.toString('utf-8').split('\n').filter(l => l.trim());
-    for (const line of lines) {
-      try { res.write(`data: ${line}\n\n`); } catch {}
-    }
+    for (const line of lines) { try { res.write(`data: ${line}\n\n`); } catch {} }
   }, intervalMs);
-
-  return () => {
-    clearInterval(ping);
-    clearInterval(poll);
-  };
+  return () => { clearInterval(ping); clearInterval(poll); };
 }
 
-export function startDashboard(
-  engine: HelotEngine,
-  stateDir: string,
-  port = 7771
-): void {
+export function startDashboard(engine: HelotEngine, stateDir: string, port = 7771): void {
   const spartaRecord = new SpartaRecordManager(stateDir);
   const htmlPath = path.resolve(process.cwd(), 'src', 'dashboard', 'index.html');
 
   const server = http.createServer((req, res) => {
-    const url = new URL(req.url || '/', 'http://localhost');
+    const url = new URL(req.url || '/', `http://localhost:${port}`);
     const pathname = url.pathname;
-
     res.setHeader('Access-Control-Allow-Origin', '*');
 
-    if (pathname === '/') {
-      fs.readFile(htmlPath, 'utf-8', (err, data) => {
-        if (err) { res.writeHead(500); res.end('Error'); return; }
+    if (req.method === 'GET' && pathname === '/') {
+      if (fs.existsSync(htmlPath)) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(data);
-      });
-    } else if (pathname === '/api/stats') {
-      const record = spartaRecord.getRecord();
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(record));
-    } else if (pathname === '/api/frontier') {
-      const estimate = readFrontierEstimate();
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ estimate }));
-    } else if (pathname === '/api/logs') {
-      const logFile = path.join(stateDir, 'helot-engine.log');
-      const cleanup = serveSSE(res, logFile);
-      req.on('close', cleanup);
-    } else {
-      res.writeHead(404);
-      res.end('Not Found');
+        res.end(fs.readFileSync(htmlPath));
+      } else {
+        res.writeHead(404);
+        res.end('Dashboard HTML not found: ' + htmlPath);
+      }
+      return;
     }
+
+    if (req.method === 'GET' && pathname === '/events') {
+      const eventsFile = path.join(stateDir, 'events.jsonl');
+      const cleanup = serveSSE(res, eventsFile);
+      req.on('close', cleanup);
+      return;
+    }
+
+    if (req.method === 'GET' && pathname === '/api/stream') {
+      const streamFile = path.join(stateDir, 'stream.log');
+      const cleanup = serveSSE(res, streamFile);
+      req.on('close', cleanup);
+      return;
+    }
+
+    // TODO: /api/stats
+    // TODO: /api/runs
+    // TODO: /api/file
+    // TODO: POST /api/run, /api/slinger, /api/hoplite
+
+    res.writeHead(404);
+    res.end('Not found');
   });
 
   server.listen(port, () => {
-    console.log(`Dashboard listening on port ${port}`);
+    process.stderr.write(`[dashboard] Running at http://localhost:${port}\n`);
+    if (process.platform === 'win32') exec(`start http://localhost:${port}`);
+    else if (process.platform === 'darwin') exec(`open http://localhost:${port}`);
   });
 }

@@ -1,1 +1,4 @@
-- [ ] 1. REWRITE src/adapters/dashboard-server.ts with the complete correct implementation (Target: src/adapters/dashboard-server.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 1. Add /events and /api/stream SSE routes to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
+- [ ] 2. Add /api/stats route to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: 1]
+- [ ] 3. Add /api/runs and /api/file routes to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: 2]
+- [ ] 4. Add POST /api/run, /api/slinger, /api/hoplite action routes to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: 3]

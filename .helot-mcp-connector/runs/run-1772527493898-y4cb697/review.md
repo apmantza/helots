@@ -1,10 +1,11 @@
 # Aristomenis Review Report
-Plan: Rewrite dashboard-server.ts with correct full implementation matching the Sparta Dashboard spec
+Plan: Add all missing routes to startDashboard in src/adapters/dashboard-server.ts
 
 
-## Task: REWRITE src/adapters/dashboard-server.ts with the complete correct implementation (Try 1)
+## Task: Add /events and /api/stream SSE routes to startDashboard (Try 1)
 **Ground Truth:**
-src/adapters/dashboard-server.ts: -1 lines (101 → 100)
+src/adapters/dashboard-server.ts: +12 lines (81 → 93)
+Symbol check — "startDashboard" in src/adapters/dashboard-server.ts: ✅ FOUND
 
 **Peltast:**
-VERDICT: PASS
+VERDICT: PASS (auto-pass: all checks green)
