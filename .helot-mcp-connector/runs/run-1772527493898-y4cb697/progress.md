@@ -1,4 +1,1 @@
-- [ ] 1. Add /events and /api/stream SSE routes to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
-- [ ] 2. Add /api/stats route to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: 1]
-- [ ] 3. Add /api/runs and /api/file routes to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: 2]
-- [ ] 4. Add POST /api/run, /api/slinger, /api/hoplite action routes to startDashboard (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: 3]
+- [ ] 1. Fix localTokens accumulation in /api/stats to use genTokens/promptTokens/tps fields instead of psiloiMetrics (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]

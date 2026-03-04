@@ -1643,3 +1643,67 @@ Scanning workspace...
 [Helot Update] ✅ Builder (Task 4) | Leonidas | 77.0t/s | 1281 gen + 3630 prompt tokens
 [Helot Update] ⚡ Auto-PASS — Task 4 (deterministic)
 [Helot Update] ✅ PASS — Task 4: Add POST /api/run, /api/slinger, /api/hoplite action routes to startDa
+[Helot Update] ✅ Task 4 committed.
+[Helot Update] ✅ Execution complete! 4/4 tasks passed.
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Builder (Task 4) | Agesilaus | 87.8t/s | 45 gen + 643 prompt tokens
+[Slinger Update] ✅ Builder (Task 4) | Agesilaus | 90.1t/s | 31 gen + 682 prompt tokens
+[Slinger Update] ✅ Builder (Task 4) | Agesilaus | 89.6t/s | 61 gen + 2209 prompt tokens
+[Slinger Update] ✅ Builder (Task 4) | Agesilaus | 88.6t/s | 39 gen + 2260 prompt tokens
+[Slinger Update] ✅ Builder (Task 4) | Agesilaus | 84.3t/s | 874 gen + 2831 prompt tokens
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-moe — ctx: 32768
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen35-moe for role Slinger...
+[Slinger Update] ✅ Setup | Agesilaus | 89.8t/s | 34 gen + 535 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 89.9t/s | 33 gen + 603 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 85.7t/s | 240 gen + 719 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 86.8t/s | 396 gen + 777 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Setup | Agesilaus | 90.8t/s | 69 gen + 588 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 88.9t/s | 47 gen + 1043 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 87.3t/s | 47 gen + 1133 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 80.3t/s | 655 gen + 1250 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Setup | Agesilaus | 90.1t/s | 31 gen + 536 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 90.7t/s | 87 gen + 609 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 91.8t/s | 94 gen + 995 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 91.6t/s | 257 gen + 2554 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 88.5t/s | 79 gen + 4216 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 87.6t/s | 104 gen + 5277 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 86.3t/s | 62 gen + 5383 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 81.3t/s | 626 gen + 5546 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Setup | Agesilaus | 84.3t/s | 21 gen + 582 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 90.1t/s | 36 gen + 772 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 88.3t/s | 39 gen + 866 prompt tokens
+[Slinger Update] ✅ Setup | Agesilaus | 88.7t/s | 602 gen + 961 prompt tokens
+[Helot Update] ⚠️ ruff not found — ruff checking disabled. Run: pip install ruff
+[Helot Update] 📐 Context budget (32768 tokens): manifest=39k  plan=33k  slinger=22k chars
+[Helot Update] ### 🛡️ Brasidas is scouting
+**Mapping Workspace Territory**
+---
+Scanning workspace...
+[Helot Update] 🏹 Pre-Slinger: scanning source symbols...
+[Helot Update] ✅ Pre-Slinger: 18 files, 35 symbols
+[Helot Update] 📋 **Frontier-Planned Mode** — 1 tasks (Aristomenis bypassed)
+[Helot Update] 📋 **Task List:**
+- [ ] 1. Fix localTokens accumulation in /api/stats to use genTokens/promptTokens/tps fields instead of psiloiMetrics (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
+[Helot Update] 🛠️ Task 1/1: Fix localTokens accumulation in /api/stats to use genTokens/promptTokens/tps fields instead of psiloiMetrics
+[Helot Update] 🔬 Surgical mode: targeting `startDashboard` in typescript (126 lines)
+[Helot Update] ✅ Builder (Task 1) | Teleutias | 76.8t/s | 1171 gen + 2315 prompt tokens
+[Helot Update] ⚡ Auto-PASS — Task 1 (deterministic)
+[Helot Update] ✅ PASS — Task 1: Fix localTokens accumulation in /api/stats to use genTokens/promptToke

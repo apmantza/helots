@@ -3,45 +3,12 @@
   "tasks": [
     {
       "id": "1",
-      "description": "Add /events and /api/stream SSE routes to startDashboard",
-      "status": "completed",
-      "file": "src/adapters/dashboard-server.ts",
-      "targetSymbol": "startDashboard",
-      "dependsOn": [],
-      "changes": "Replace the line `// TODO: /events SSE` and `// TODO: /api/stream SSE` with:\n\n    if (req.method === 'GET' && pathname === '/events') {\n      const eventsFile = path.join(stateDir, 'events.jsonl');\n      const cleanup = serveSSE(res, eventsFile);\n      req.on('close', cleanup);\n      return;\n    }\n\n    if (req.method === 'GET' && pathname === '/api/stream') {\n      const streamFile = path.join(stateDir, 'stream.log');\n      const cleanup = serveSSE(res, streamFile);\n      req.on('close', cleanup);\n      return;\n    }"
-    },
-    {
-      "id": "2",
-      "description": "Add /api/stats route to startDashboard",
-      "status": "completed",
-      "file": "src/adapters/dashboard-server.ts",
-      "targetSymbol": "startDashboard",
-      "dependsOn": [
-        "1"
-      ],
-      "changes": "Replace the line `// TODO: /api/stats` with:\n\n    if (req.method === 'GET' && pathname === '/api/stats') {\n      const record = spartaRecord.getRecord();\n      const frontierEstimate = readFrontierEstimate();\n      let localTokens = { in: 0, out: 0, tps: 0 };\n      let currentRun: any = null;\n      try {\n        const eventsFile = path.join(stateDir, 'events.jsonl');\n        if (fs.existsSync(eventsFile)) {\n          const lines = fs.readFileSync(eventsFile, 'utf-8').split('\\n').filter(l => l.trim());\n          for (const line of lines) {\n            try {\n              const ev = JSON.parse(line);\n              if (ev.type === 'run_start') currentRun = ev;\n              if (ev.type === 'subagent_done' && ev.psiloiMetrics) {\n                const m = ev.psiloiMetrics;\n                let totalIn = 0, totalOut = 0, totalTps = 0, count = 0;\n                for (const r of ['scout','builder','peltast','aristomenis','slinger'] as const) {\n                  if ((m as any)[r]) { totalIn += (m as any)[r].in || 0; totalOut += (m as any)[r].out || 0; totalTps += (m as any)[r].tps || 0; count++; }\n                }\n                localTokens = { in: totalIn, out: totalOut, tps: count > 0 ? totalTps / count : 0 };\n              }\n            } catch {}\n          }\n        }\n      } catch {}\n      res.writeHead(200, { 'Content-Type': 'application/json' });\n      res.end(JSON.stringify({ localTokens, frontierEstimate, record, currentRun }));\n      return;\n    }"
-    },
-    {
-      "id": "3",
-      "description": "Add /api/runs and /api/file routes to startDashboard",
-      "status": "completed",
-      "file": "src/adapters/dashboard-server.ts",
-      "targetSymbol": "startDashboard",
-      "dependsOn": [
-        "2"
-      ],
-      "changes": "Replace the lines `// TODO: /api/runs` and `// TODO: /api/file` with:\n\n    if (req.method === 'GET' && pathname === '/api/runs') {\n      try {\n        const runsDir = path.join(stateDir, 'runs');\n        if (!fs.existsSync(runsDir)) { res.writeHead(200, { 'Content-Type': 'application/json' }); res.end('[]'); return; }\n        const runs = fs.readdirSync(runsDir)\n          .filter(name => fs.statSync(path.join(runsDir, name)).isDirectory())\n          .map(name => {\n            const dir = path.join(runsDir, name);\n            const progressPath = path.join(dir, 'progress.md');\n            const reviewPath = path.join(dir, 'review.md');\n            return { id: name, mtime: fs.statSync(dir).mtimeMs, hasProgress: fs.existsSync(progressPath), hasReview: fs.existsSync(reviewPath), progressPath, reviewPath };\n          })\n          .sort((a, b) => b.mtime - a.mtime);\n        res.writeHead(200, { 'Content-Type': 'application/json' });\n        res.end(JSON.stringify(runs));\n      } catch (e: any) { res.writeHead(500); res.end(e.message); }\n      return;\n    }\n\n    if (req.method === 'GET' && pathname === '/api/file') {\n      const filePath = url.searchParams.get('path') || '';\n      if (!filePath.endsWith('.md')) { res.writeHead(403); res.end('Only .md files allowed'); return; }\n      if (!fs.existsSync(filePath)) { res.writeHead(404); res.end('File not found'); return; }\n      res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });\n      res.end(fs.readFileSync(filePath, 'utf-8'));\n      return;\n    }"
-    },
-    {
-      "id": "4",
-      "description": "Add POST /api/run, /api/slinger, /api/hoplite action routes to startDashboard",
+      "description": "Fix localTokens accumulation in /api/stats to use genTokens/promptTokens/tps fields instead of psiloiMetrics",
       "status": "pending",
       "file": "src/adapters/dashboard-server.ts",
       "targetSymbol": "startDashboard",
-      "dependsOn": [
-        "3"
-      ],
-      "changes": "Replace the line `// TODO: POST /api/run, /api/slinger, /api/hoplite` with:\n\n    if (req.method === 'POST' && (pathname === '/api/run' || pathname === '/api/slinger' || pathname === '/api/hoplite')) {\n      let body = '';\n      req.on('data', chunk => { body += chunk; });\n      req.on('end', async () => {\n        try {\n          const payload = JSON.parse(body || '{}');\n          let result: string;\n          if (pathname === '/api/run') {\n            result = await engine.executeHelots(payload.taskSummary || '', payload.implementationPlan || '', () => {}, payload.tasks);\n          } else if (pathname === '/api/slinger') {\n            result = await engine.executeSlinger(payload.researchTask || '', undefined, () => {});\n          } else {\n            result = await engine.executeHoplite(payload.file || '', payload.instruction || '', () => {});\n          }\n          res.writeHead(200, { 'Content-Type': 'application/json' });\n          res.end(JSON.stringify({ result }));\n        } catch (e: any) {\n          res.writeHead(500);\n          res.end(JSON.stringify({ error: e.message }));\n        }\n      });\n      return;\n    }"
+      "dependsOn": [],
+      "changes": "In the /api/stats handler, find this block:\n\n              if (ev.type === 'subagent_done' && ev.psiloiMetrics) {\n                const m = ev.psiloiMetrics;\n                let totalIn = 0, totalOut = 0, totalTps = 0, count = 0;\n                for (const r of ['scout','builder','peltast','aristomenis','slinger'] as const) {\n                  if ((m as any)[r]) { totalIn += (m as any)[r].in || 0; totalOut += (m as any)[r].out || 0; totalTps += (m as any)[r].tps || 0; count++; }\n                }\n                localTokens = { in: totalIn, out: totalOut, tps: count > 0 ? totalTps / count : 0 };\n              }\n\nReplace it with:\n\n              if (ev.type === 'subagent_done') {\n                localTokens.in += ev.promptTokens || 0;\n                localTokens.out += ev.genTokens || 0;\n                if (ev.tps > 0) { localTokens.tps = ev.tps; }\n              }"
     }
   ],
   "currentTaskIndex": 0,

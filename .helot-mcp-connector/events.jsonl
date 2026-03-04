@@ -1,18 +1,6 @@
-{"ts":"2026-03-04T14:29:07.114Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen35-moe","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
-{"ts":"2026-03-04T14:29:07.157Z","type":"task_list","tasks":[{"id":"1","desc":"Add /events and /api/stream SSE routes to startDashboard","file":"src/adapters/dashboard-server.ts","status":"pending"},{"id":"2","desc":"Add /api/stats route to startDashboard","file":"src/adapters/dashboard-server.ts","status":"pending"},{"id":"3","desc":"Add /api/runs and /api/file routes to startDashboard","file":"src/adapters/dashboard-server.ts","status":"pending"},{"id":"4","desc":"Add POST /api/run, /api/slinger, /api/hoplite action routes to startDashboard","file":"src/adapters/dashboard-server.ts","status":"pending"}]}
-{"ts":"2026-03-04T14:29:07.158Z","type":"task_status","taskId":"1","status":"running"}
-{"ts":"2026-03-04T14:29:07.166Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
-{"ts":"2026-03-04T14:29:13.152Z","type":"subagent_done","phase":"Builder (Task 1)","name":"Teleutias","tps":76.33515459805956,"genTokens":398,"promptTokens":1145,"ctxPct":3}
-{"ts":"2026-03-04T14:29:13.167Z","type":"verdict","taskId":"1","result":"PASS","tryNum":1}
-{"ts":"2026-03-04T14:29:13.549Z","type":"task_status","taskId":"2","status":"running"}
-{"ts":"2026-03-04T14:29:13.558Z","type":"phase_change","phase":"Builder (Task 2)","name":"Pausanias"}
-{"ts":"2026-03-04T14:29:24.801Z","type":"subagent_done","phase":"Builder (Task 2)","name":"Pausanias","tps":76.58848799162462,"genTokens":739,"promptTokens":2311,"ctxPct":7}
-{"ts":"2026-03-04T14:29:24.812Z","type":"verdict","taskId":"2","result":"PASS","tryNum":1}
-{"ts":"2026-03-04T14:29:25.073Z","type":"task_status","taskId":"3","status":"running"}
-{"ts":"2026-03-04T14:29:25.083Z","type":"phase_change","phase":"Builder (Task 3)","name":"Lysander"}
-{"ts":"2026-03-04T14:29:40.777Z","type":"subagent_done","phase":"Builder (Task 3)","name":"Lysander","tps":77.34394472797412,"genTokens":1060,"promptTokens":3035,"ctxPct":9}
-{"ts":"2026-03-04T14:29:40.789Z","type":"verdict","taskId":"3","result":"PASS","tryNum":1}
-{"ts":"2026-03-04T14:29:41.037Z","type":"task_status","taskId":"4","status":"running"}
-{"ts":"2026-03-04T14:29:41.047Z","type":"phase_change","phase":"Builder (Task 4)","name":"Leonidas"}
-{"ts":"2026-03-04T14:30:00.091Z","type":"subagent_done","phase":"Builder (Task 4)","name":"Leonidas","tps":77.02982843304463,"genTokens":1281,"promptTokens":3630,"ctxPct":11}
-{"ts":"2026-03-04T14:30:00.103Z","type":"verdict","taskId":"4","result":"PASS","tryNum":1}
+{"ts":"2026-03-04T14:54:24.814Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen35-moe","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
+{"ts":"2026-03-04T14:54:24.867Z","type":"task_list","tasks":[{"id":"1","desc":"Fix localTokens accumulation in /api/stats to use genTokens/promptTokens/tps fields instead of psiloiMetrics","file":"src/adapters/dashboard-server.ts","status":"pending"}]}
+{"ts":"2026-03-04T14:54:24.869Z","type":"task_status","taskId":"1","status":"running"}
+{"ts":"2026-03-04T14:54:24.879Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
+{"ts":"2026-03-04T14:54:41.669Z","type":"subagent_done","phase":"Builder (Task 1)","name":"Teleutias","tps":76.79571801241904,"genTokens":1171,"promptTokens":2315,"ctxPct":7}
+{"ts":"2026-03-04T14:54:41.683Z","type":"verdict","taskId":"1","result":"PASS","tryNum":1}
