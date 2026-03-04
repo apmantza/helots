@@ -63,3 +63,6 @@
 {"ts":"2026-03-04T14:29:25.081Z","phase":"builder","status":"start","taskId":"3","tryNum":1}
 {"ts":"2026-03-04T14:29:40.779Z","phase":"builder","status":"complete","taskId":"3","tryNum":1}
 {"ts":"2026-03-04T14:29:40.790Z","phase":"peltast","status":"pass","taskId":"3","tryNum":1}
+{"ts":"2026-03-04T14:29:41.045Z","phase":"builder","status":"start","taskId":"4","tryNum":1}
+{"ts":"2026-03-04T14:30:00.093Z","phase":"builder","status":"complete","taskId":"4","tryNum":1}
+{"ts":"2026-03-04T14:30:00.104Z","phase":"peltast","status":"pass","taskId":"4","tryNum":1}

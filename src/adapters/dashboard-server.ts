@@ -133,6 +133,30 @@ export function startDashboard(engine: HelotEngine, stateDir: string, port = 777
       return;
     }
 
+    if (req.method === 'POST' && (pathname === '/api/run' || pathname === '/api/slinger' || pathname === '/api/hoplite')) {
+      let body = '';
+      req.on('data', chunk => { body += chunk; });
+      req.on('end', async () => {
+        try {
+          const payload = JSON.parse(body || '{}');
+          let result: string;
+          if (pathname === '/api/run') {
+            result = await engine.executeHelots(payload.taskSummary || '', payload.implementationPlan || '', () => {}, payload.tasks);
+          } else if (pathname === '/api/slinger') {
+            result = await engine.executeSlinger(payload.researchTask || '', undefined, () => {});
+          } else {
+            result = await engine.executeHoplite(payload.file || '', payload.instruction || '', () => {});
+          }
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ result }));
+        } catch (e: any) {
+          res.writeHead(500);
+          res.end(JSON.stringify({ error: e.message }));
+        }
+      });
+      return;
+    }
+
     res.writeHead(404);
     res.end('Not found');
   });

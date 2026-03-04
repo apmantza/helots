@@ -24,7 +24,7 @@
     {
       "id": "3",
       "description": "Add /api/runs and /api/file routes to startDashboard",
-      "status": "pending",
+      "status": "completed",
       "file": "src/adapters/dashboard-server.ts",
       "targetSymbol": "startDashboard",
       "dependsOn": [

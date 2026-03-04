@@ -25,3 +25,11 @@ Symbol check — "startDashboard" in src/adapters/dashboard-server.ts: ✅ FOUND
 
 **Peltast:**
 VERDICT: PASS (auto-pass: all checks green)
+
+## Task: Add POST /api/run, /api/slinger, /api/hoplite action routes to startDashboard (Try 1)
+**Ground Truth:**
+src/adapters/dashboard-server.ts: +24 lines (146 → 170)
+Symbol check — "startDashboard" in src/adapters/dashboard-server.ts: ✅ FOUND
+
+**Peltast:**
+VERDICT: PASS (auto-pass: all checks green)

@@ -1636,3 +1636,10 @@ Scanning workspace...
 [Helot Update] ✅ Builder (Task 3) | Lysander | 77.3t/s | 1060 gen + 3035 prompt tokens
 [Helot Update] ⚡ Auto-PASS — Task 3 (deterministic)
 [Helot Update] ✅ PASS — Task 3: Add /api/runs and /api/file routes to startDashboard
+[Helot Update] ✅ Task 3 committed.
+[Helot Update] 🛠️ Task 4/4: Add POST /api/run, /api/slinger, /api/hoplite action routes to startDashboard
+[Helot Update] 🔬 Surgical mode: targeting `startDashboard` in typescript (102 lines)
+[Helot Update] 🔗 Builder: injecting 1 upstream file(s) as context
+[Helot Update] ✅ Builder (Task 4) | Leonidas | 77.0t/s | 1281 gen + 3630 prompt tokens
+[Helot Update] ⚡ Auto-PASS — Task 4 (deterministic)
+[Helot Update] ✅ PASS — Task 4: Add POST /api/run, /api/slinger, /api/hoplite action routes to startDa
