@@ -4,7 +4,7 @@
     {
       "id": "1",
       "description": "Add /events and /api/stream SSE routes to startDashboard",
-      "status": "pending",
+      "status": "completed",
       "file": "src/adapters/dashboard-server.ts",
       "targetSymbol": "startDashboard",
       "dependsOn": [],

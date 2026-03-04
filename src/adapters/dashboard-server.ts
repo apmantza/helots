@@ -75,7 +75,36 @@ export function startDashboard(engine: HelotEngine, stateDir: string, port = 777
       return;
     }
 
-    // TODO: /api/stats
+    if (req.method === 'GET' && pathname === '/api/stats') {
+      const record = spartaRecord.getRecord();
+      const frontierEstimate = readFrontierEstimate();
+      let localTokens = { in: 0, out: 0, tps: 0 };
+      let currentRun: any = null;
+      try {
+        const eventsFile = path.join(stateDir, 'events.jsonl');
+        if (fs.existsSync(eventsFile)) {
+          const lines = fs.readFileSync(eventsFile, 'utf-8').split('\n').filter(l => l.trim());
+          for (const line of lines) {
+            try {
+              const ev = JSON.parse(line);
+              if (ev.type === 'run_start') currentRun = ev;
+              if (ev.type === 'subagent_done' && ev.psiloiMetrics) {
+                const m = ev.psiloiMetrics;
+                let totalIn = 0, totalOut = 0, totalTps = 0, count = 0;
+                for (const r of ['scout','builder','peltast','aristomenis','slinger'] as const) {
+                  if ((m as any)[r]) { totalIn += (m as any)[r].in || 0; totalOut += (m as any)[r].out || 0; totalTps += (m as any)[r].tps || 0; count++; }
+                }
+                localTokens = { in: totalIn, out: totalOut, tps: count > 0 ? totalTps / count : 0 };
+              }
+            } catch {}
+          }
+        }
+      } catch {}
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ localTokens, frontierEstimate, record, currentRun }));
+      return;
+    }
+
     // TODO: /api/runs
     // TODO: /api/file
     // TODO: POST /api/run, /api/slinger, /api/hoplite

@@ -53,3 +53,86 @@ export
   });
 }
 ```
+
+--- Builder (Task 2) | Pausanias ---
+
+```
+export
+  const
+  const
+
+  const
+    const
+    const
+    res
+
+    if
+      if
+        res
+        res
+      }
+        res
+        res
+      }
+      return
+    }
+
+    if
+      const
+      const
+      req
+      return
+    }
+
+    if
+      const
+      const
+      req
+      return
+    }
+
+    if
+      const
+      const
+      let
+      let
+      try
+        const
+        if
+          const
+          for
+            try
+              const
+              if
+              if
+                const
+                let
+                for
+                  if
+                }
+                local
+              }
+            }
+          }
+        }
+      }
+      res
+      res
+      return
+    }
+
+    //
+    //
+    //
+
+    res
+    res
+  });
+
+  server
+    process
+    if
+    else
+  });
+}
+```

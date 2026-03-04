@@ -9,3 +9,11 @@ Symbol check — "startDashboard" in src/adapters/dashboard-server.ts: ✅ FOUND
 
 **Peltast:**
 VERDICT: PASS (auto-pass: all checks green)
+
+## Task: Add /api/stats route to startDashboard (Try 1)
+**Ground Truth:**
+src/adapters/dashboard-server.ts: +29 lines (93 → 122)
+Symbol check — "startDashboard" in src/adapters/dashboard-server.ts: ✅ FOUND
+
+**Peltast:**
+VERDICT: PASS (auto-pass: all checks green)
