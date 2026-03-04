@@ -105,9 +105,33 @@ export function startDashboard(engine: HelotEngine, stateDir: string, port = 777
       return;
     }
 
-    // TODO: /api/runs
-    // TODO: /api/file
-    // TODO: POST /api/run, /api/slinger, /api/hoplite
+    if (req.method === 'GET' && pathname === '/api/runs') {
+      try {
+        const runsDir = path.join(stateDir, 'runs');
+        if (!fs.existsSync(runsDir)) { res.writeHead(200, { 'Content-Type': 'application/json' }); res.end('[]'); return; }
+        const runs = fs.readdirSync(runsDir)
+          .filter(name => fs.statSync(path.join(runsDir, name)).isDirectory())
+          .map(name => {
+            const dir = path.join(runsDir, name);
+            const progressPath = path.join(dir, 'progress.md');
+            const reviewPath = path.join(dir, 'review.md');
+            return { id: name, mtime: fs.statSync(dir).mtimeMs, hasProgress: fs.existsSync(progressPath), hasReview: fs.existsSync(reviewPath), progressPath, reviewPath };
+          })
+          .sort((a, b) => b.mtime - a.mtime);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(runs));
+      } catch (e: any) { res.writeHead(500); res.end(e.message); }
+      return;
+    }
+
+    if (req.method === 'GET' && pathname === '/api/file') {
+      const filePath = url.searchParams.get('path') || '';
+      if (!filePath.endsWith('.md')) { res.writeHead(403); res.end('Only .md files allowed'); return; }
+      if (!fs.existsSync(filePath)) { res.writeHead(404); res.end('File not found'); return; }
+      res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end(fs.readFileSync(filePath, 'utf-8'));
+      return;
+    }
 
     res.writeHead(404);
     res.end('Not found');

@@ -13,7 +13,7 @@
     {
       "id": "2",
       "description": "Add /api/stats route to startDashboard",
-      "status": "pending",
+      "status": "completed",
       "file": "src/adapters/dashboard-server.ts",
       "targetSymbol": "startDashboard",
       "dependsOn": [

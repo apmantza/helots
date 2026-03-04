@@ -8,3 +8,7 @@
 {"ts":"2026-03-04T14:29:13.558Z","type":"phase_change","phase":"Builder (Task 2)","name":"Pausanias"}
 {"ts":"2026-03-04T14:29:24.801Z","type":"subagent_done","phase":"Builder (Task 2)","name":"Pausanias","tps":76.58848799162462,"genTokens":739,"promptTokens":2311,"ctxPct":7}
 {"ts":"2026-03-04T14:29:24.812Z","type":"verdict","taskId":"2","result":"PASS","tryNum":1}
+{"ts":"2026-03-04T14:29:25.073Z","type":"task_status","taskId":"3","status":"running"}
+{"ts":"2026-03-04T14:29:25.083Z","type":"phase_change","phase":"Builder (Task 3)","name":"Lysander"}
+{"ts":"2026-03-04T14:29:40.777Z","type":"subagent_done","phase":"Builder (Task 3)","name":"Lysander","tps":77.34394472797412,"genTokens":1060,"promptTokens":3035,"ctxPct":9}
+{"ts":"2026-03-04T14:29:40.789Z","type":"verdict","taskId":"3","result":"PASS","tryNum":1}
