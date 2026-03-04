@@ -22,3 +22,10 @@ src/dashboard/index.html: NEW FILE (169 lines)
 
 **Peltast:**
 VERDICT: PASS
+
+## Task: EDIT src/adapters/mcp-server.ts — import and start dashboard server after engine init (Try 1)
+**Ground Truth:**
+src/adapters/mcp-server.ts: +1 lines (273 → 274)
+
+**Peltast:**
+VERDICT: PASS

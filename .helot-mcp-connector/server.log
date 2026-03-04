@@ -1433,3 +1433,9 @@ Scanning workspace...
 [Helot Update] ✅ Builder (Task 3) | Lysander | 81.8t/s | 1996 gen + 1625 prompt tokens
 [Helot Update] ✅ Peltast (Task 3) | Gylippus | 108.2t/s | 5 gen + 2121 prompt tokens
 [Helot Update] ✅ PASS — Task 3: CREATE src/dashboard/index.html — single-page Tailwind CDN dashboard w
+[Helot Update] ✅ Task 3 committed.
+[Helot Update] 🛠️ Task 4/4: EDIT src/adapters/mcp-server.ts — import and start dashboard server after engine init
+[Helot Update] 🔗 Builder: injecting 1 upstream file(s) as context
+[Helot Update] ✅ Builder (Task 4) | Leonidas | 78.6t/s | 2247 gen + 4001 prompt tokens
+[Helot Update] ✅ Peltast (Task 4) | Brasidas | 115.2t/s | 5 gen + 3072 prompt tokens
+[Helot Update] ✅ PASS — Task 4: EDIT src/adapters/mcp-server.ts — import and start dashboard server af

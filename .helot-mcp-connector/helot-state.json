@@ -22,7 +22,7 @@
     {
       "id": "3",
       "description": "CREATE src/dashboard/index.html — single-page Tailwind CDN dashboard with Civ6 toasts",
-      "status": "pending",
+      "status": "completed",
       "file": "src/dashboard/index.html",
       "dependsOn": [
         "2"

@@ -11,6 +11,7 @@ import { HelotConfig } from "../config.js";
 import * as fs from 'fs';
 import * as path from 'path';
 import { spawn } from 'child_process';
+import { startDashboard } from './dashboard-server.js';
 
 /**
  * Helot MCP Server
@@ -38,6 +39,7 @@ try {
 } catch { }
 
 const engine = new HelotEngine(config);
+startDashboard(engine, config.stateDir, 7771);
 
 // Mirror stderr to a log file so it's visible outside Claude Code's internal capture
 const LOG_FILE = path.join(config.stateDir, 'server.log');

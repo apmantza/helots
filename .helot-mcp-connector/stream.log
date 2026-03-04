@@ -385,3 +385,285 @@ export
 ```
 
 --- Peltast (Task 3) | Gylippus ---
+
+
+--- Builder (Task 4) | Leonidas ---
+
+```
+import
+import
+import
+    Call
+    List
+    Call
+}
+import
+import
+import
+import
+import
+import
+import
+
+/**
+ *
+ *
+ */
+
+const
+    llama
+    llama
+    apiKey
+    dense
+    mo
+    state
+    project
+};
+
+//
+try
+    const
+    if
+        const
+        const
+        Object
+    }
+}
+
+const
+start
+
+//
+const
+try
+const
+(process
+    try
+    return
+};
+process
+
+//
+//
+const
+const
+const
+
+function
+    if
+    try
+        const
+        if
+        process
+        return
+    }
+        try
+        return
+    }
+}
+
+function
+    if
+    if
+        process
+        return
+    }
+
+    try
+        const
+        const
+        let
+
+        if
+            //
+            const
+            try
+                fs
+            }
+            child
+                {
+        }
+            const
+            child
+        }
+            //
+            for
+                try
+                    child
+                        {
+                    break
+                }
+            }
+        }
+
+        if
+            child
+            process
+        }
+    }
+        process
+    }
+}
+
+const
+    {
+        name
+        version
+    },
+    {
+        capabilities
+            tools
+        },
+    }
+);
+
+/**
+ *
+ */
+const
+    {
+        name
+        description
+        input
+            type
+            properties
+                research
+                    type
+                    description
+                },
+                target
+                    type
+                    items
+                    description
+                },
+            },
+            required
+        },
+    },
+    {
+        name
+        description
+        input
+            type
+            properties
+                task
+                    type
+                    description
+                },
+                implementation
+                    type
+                    description
+                },
+                tasks
+                    type
+                    description
+                    items
+                        type
+                        properties
+                            id
+                            description
+                            file
+                            symbol
+                            depends
+                            changes
+                        },
+                        required
+                    },
+                },
+            },
+            required
+        },
+    },
+    {
+        name
+        description
+        input
+            type
+            properties
+                file
+                    type
+                    description
+                },
+                instruction
+                    type
+                    description
+                },
+            },
+            required
+        },
+    },
+];
+
+server
+    tools
+}
+
+server
+    const
+
+    try
+        if
+            const
+            const
+
+            const
+                //
+                //
+                console
+            });
+
+            return
+                content
+            };
+        }
+
+        if
+            ensure
+            const
+            const
+            const
+
+            const
+                console
+            },
+
+            return
+                content
+            };
+        }
+
+        if
+            const
+            const
+
+            const
+                console
+            });
+
+            return
+                content
+            };
+        }
+
+        throw
+    }
+        return
+            content
+            isError
+        };
+    }
+});
+
+async
+    const
+    await
+    console
+}
+
+main
+    console
+    process
+});
+```
+
+--- Peltast (Task 4) | Brasidas ---
