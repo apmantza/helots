@@ -8,3 +8,10 @@ src/core/sparta-record.ts: -13 lines (106 → 93)
 
 **Peltast:**
 VERDICT: PASS
+
+## Task: CREATE src/adapters/dashboard-server.ts — HTTP + SSE + REST dashboard server on port 7771 (Try 1)
+**Ground Truth:**
+src/adapters/dashboard-server.ts: NEW FILE (101 lines)
+
+**Peltast:**
+VERDICT: PASS

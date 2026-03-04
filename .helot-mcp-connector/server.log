@@ -1421,3 +1421,9 @@ Scanning workspace...
 [Helot Update] ✅ Builder (Task 1) | Teleutias | 75.0t/s | 579 gen + 1661 prompt tokens
 [Helot Update] ✅ Peltast (Task 1) | Lysander | 120.9t/s | 5 gen + 932 prompt tokens
 [Helot Update] ✅ PASS — Task 1: CREATE src/core/sparta-record.ts — persistent Civ6 war record manager
+[Helot Update] ✅ Task 1 committed.
+[Helot Update] 🛠️ Task 2/4: CREATE src/adapters/dashboard-server.ts — HTTP + SSE + REST dashboard server on port 7771
+[Helot Update] 🔗 Builder: injecting 1 upstream file(s) as context
+[Helot Update] ✅ Builder (Task 2) | Pausanias | 76.8t/s | 747 gen + 1492 prompt tokens
+[Helot Update] ✅ Peltast (Task 2) | Leonidas | 115.2t/s | 5 gen + 1085 prompt tokens
+[Helot Update] ✅ PASS — Task 2: CREATE src/adapters/dashboard-server.ts — HTTP + SSE + REST dashboard 
