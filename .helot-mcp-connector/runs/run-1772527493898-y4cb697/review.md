@@ -15,3 +15,10 @@ src/adapters/dashboard-server.ts: NEW FILE (101 lines)
 
 **Peltast:**
 VERDICT: PASS
+
+## Task: CREATE src/dashboard/index.html — single-page Tailwind CDN dashboard with Civ6 toasts (Try 1)
+**Ground Truth:**
+src/dashboard/index.html: NEW FILE (169 lines)
+
+**Peltast:**
+VERDICT: PASS

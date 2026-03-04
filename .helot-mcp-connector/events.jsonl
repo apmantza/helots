@@ -12,3 +12,9 @@
 {"ts":"2026-03-04T14:00:23.928Z","type":"phase_change","phase":"Peltast (Task 2)","name":"Leonidas"}
 {"ts":"2026-03-04T14:00:24.766Z","type":"subagent_done","phase":"Peltast (Task 2)","name":"Leonidas","tps":115.21347905526079,"genTokens":5,"promptTokens":1085,"ctxPct":3}
 {"ts":"2026-03-04T14:00:24.771Z","type":"verdict","taskId":"2","result":"PASS","tryNum":1}
+{"ts":"2026-03-04T14:00:25.060Z","type":"task_status","taskId":"3","status":"running"}
+{"ts":"2026-03-04T14:00:25.065Z","type":"phase_change","phase":"Builder (Task 3)","name":"Lysander"}
+{"ts":"2026-03-04T14:01:17.416Z","type":"subagent_done","phase":"Builder (Task 3)","name":"Lysander","tps":81.83629628012706,"genTokens":1996,"promptTokens":1625,"ctxPct":5}
+{"ts":"2026-03-04T14:01:17.425Z","type":"phase_change","phase":"Peltast (Task 3)","name":"Gylippus"}
+{"ts":"2026-03-04T14:01:19.046Z","type":"subagent_done","phase":"Peltast (Task 3)","name":"Gylippus","tps":108.22440546930426,"genTokens":5,"promptTokens":2121,"ctxPct":6}
+{"ts":"2026-03-04T14:01:19.050Z","type":"verdict","taskId":"3","result":"PASS","tryNum":1}
