@@ -10,7 +10,7 @@
     },
     {
       "path": ".claude\\settings.local.json",
-      "size": 334
+      "size": 370
     },
     {
       "path": ".gitignore",
@@ -113,8 +113,12 @@
       "size": 9328
     },
     {
+      "path": "src\\adapters\\dashboard-server.ts",
+      "size": 3048
+    },
+    {
       "path": "src\\adapters\\mcp-server.ts",
-      "size": 11302
+      "size": 11132
     },
     {
       "path": "src\\adapters\\mcp.ts",
@@ -170,7 +174,7 @@
     },
     {
       "path": "src\\core\\sparta-record.ts",
-      "size": 3312
+      "size": 2486
     },
     {
       "path": "src\\core\\text-utils.ts",
@@ -179,6 +183,10 @@
     {
       "path": "src\\core\\types.ts",
       "size": 1725
+    },
+    {
+      "path": "src\\dashboard\\index.html",
+      "size": 7212
     },
     {
       "path": "start-mcp.bat",

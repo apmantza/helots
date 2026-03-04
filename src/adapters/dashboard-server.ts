@@ -6,8 +6,6 @@ import { exec } from 'child_process';
 import { SpartaRecordManager } from '../core/sparta-record.js';
 import { HelotEngine } from '../core/engine.js';
 
-const DASHBOARD_HTML = path.resolve(__dirname, '../../src/dashboard/index.html');
-
 function readFrontierEstimate(): number {
   try {
     const p = path.join(os.homedir(), '.claude', 'helots-frontier-calls.json');
@@ -64,6 +62,7 @@ export function startDashboard(
   port = 7771
 ): void {
   const spartaRecord = new SpartaRecordManager(stateDir);
+  const htmlPath = path.resolve(process.cwd(), 'src', 'dashboard', 'index.html');
 
   const server = http.createServer((req, res) => {
     const url = new URL(req.url || '/', 'http://localhost');
@@ -72,7 +71,7 @@ export function startDashboard(
     res.setHeader('Access-Control-Allow-Origin', '*');
 
     if (pathname === '/') {
-      fs.readFile(DASHBOARD_HTML, 'utf-8', (err, data) => {
+      fs.readFile(htmlPath, 'utf-8', (err, data) => {
         if (err) { res.writeHead(500); res.end('Error'); return; }
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(data);

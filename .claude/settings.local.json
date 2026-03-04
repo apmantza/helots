@@ -6,7 +6,8 @@
       "Bash(echo ✅ PORT $port: $result:*)",
       "Bash(mkdir:*)",
       "Bash(node:*)",
-      "mcp__helots__helot_run"
+      "mcp__helots__helot_run",
+      "mcp__helots__helot_slinger"
     ]
   }
 }
