@@ -1211,6 +1211,7 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
     const isSafeCommand = (cmd: string) => SAFE_PATTERNS.some(p => p.test(stripShellWrapper(cmd).trim()));
 
     onUpdate?.({ text: `🏹 Slinger ${slingerPersona.name} deployed.` });
+    this.writeEvent({ type: 'slinger_start', task: researchTask.slice(0, 120), name: slingerPersona.name });
     let history = "";
     let preloadedContent = "";
 
@@ -1241,6 +1242,7 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
 
     // Write per-run slinger log and return the report unchanged
     const writeSlingerLog = (report: string): string => {
+      this.writeEvent({ type: 'slinger_done', task: researchTask.slice(0, 120), name: slingerPersona.name });
       try {
         const logsDir = join(this.governor.config.stateDir, 'slinger-logs');
         mkdirSync(logsDir, { recursive: true });
@@ -1633,6 +1635,7 @@ Rules:
       : `File: ${file} (new file)\n\nInstruction: ${instruction}`;
 
     onUpdate?.({ text: `✏️ Hoplite editing ${file}...` });
+    this.writeEvent({ type: 'hoplite_start', file, instruction: instruction.slice(0, 120) });
 
     // Dynamic max_tokens: scale with file size to avoid truncation
     let maxTokensOverride: number | undefined;
@@ -1677,6 +1680,7 @@ Rules:
     const linesBefore = originalContent ? originalContent.split('\n').length : 0;
     const linesAfter = newContent.split('\n').length;
     onUpdate?.({ text: `✅ Hoplite: ${file} written (${linesBefore} → ${linesAfter} lines)` });
+    this.writeEvent({ type: 'hoplite_done', file, linesBefore, linesAfter });
 
     return `✅ ${file} written (${linesBefore} → ${linesAfter} lines)`;
   }

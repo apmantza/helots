@@ -1,6 +1,6 @@
-{"ts":"2026-03-04T14:54:24.814Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen35-moe","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
-{"ts":"2026-03-04T14:54:24.867Z","type":"task_list","tasks":[{"id":"1","desc":"Fix localTokens accumulation in /api/stats to use genTokens/promptTokens/tps fields instead of psiloiMetrics","file":"src/adapters/dashboard-server.ts","status":"pending"}]}
-{"ts":"2026-03-04T14:54:24.869Z","type":"task_status","taskId":"1","status":"running"}
-{"ts":"2026-03-04T14:54:24.879Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
-{"ts":"2026-03-04T14:54:41.669Z","type":"subagent_done","phase":"Builder (Task 1)","name":"Teleutias","tps":76.79571801241904,"genTokens":1171,"promptTokens":2315,"ctxPct":7}
-{"ts":"2026-03-04T14:54:41.683Z","type":"verdict","taskId":"1","result":"PASS","tryNum":1}
+{"ts":"2026-03-04T15:03:19.538Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen35-moe","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
+{"ts":"2026-03-04T15:03:19.578Z","type":"task_list","tasks":[{"id":"1","desc":"Add GET /api/events-history route to startDashboard that returns all events.jsonl lines as a JSON array","file":"src/adapters/dashboard-server.ts","status":"pending"}]}
+{"ts":"2026-03-04T15:03:19.579Z","type":"task_status","taskId":"1","status":"running"}
+{"ts":"2026-03-04T15:03:19.587Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
+{"ts":"2026-03-04T15:03:38.270Z","type":"subagent_done","phase":"Builder (Task 1)","name":"Teleutias","tps":77.11240020660345,"genTokens":1329,"promptTokens":2202,"ctxPct":7}
+{"ts":"2026-03-04T15:03:38.281Z","type":"verdict","taskId":"1","result":"PASS","tryNum":1}

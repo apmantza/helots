@@ -1,1 +1,1 @@
-- [ ] 1. Fix localTokens accumulation in /api/stats to use genTokens/promptTokens/tps fields instead of psiloiMetrics (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
+- [ ] 1. Add GET /api/events-history route to startDashboard that returns all events.jsonl lines as a JSON array (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]

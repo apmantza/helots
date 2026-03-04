@@ -3,12 +3,12 @@
   "tasks": [
     {
       "id": "1",
-      "description": "Fix localTokens accumulation in /api/stats to use genTokens/promptTokens/tps fields instead of psiloiMetrics",
+      "description": "Add GET /api/events-history route to startDashboard that returns all events.jsonl lines as a JSON array",
       "status": "pending",
       "file": "src/adapters/dashboard-server.ts",
       "targetSymbol": "startDashboard",
       "dependsOn": [],
-      "changes": "In the /api/stats handler, find this block:\n\n              if (ev.type === 'subagent_done' && ev.psiloiMetrics) {\n                const m = ev.psiloiMetrics;\n                let totalIn = 0, totalOut = 0, totalTps = 0, count = 0;\n                for (const r of ['scout','builder','peltast','aristomenis','slinger'] as const) {\n                  if ((m as any)[r]) { totalIn += (m as any)[r].in || 0; totalOut += (m as any)[r].out || 0; totalTps += (m as any)[r].tps || 0; count++; }\n                }\n                localTokens = { in: totalIn, out: totalOut, tps: count > 0 ? totalTps / count : 0 };\n              }\n\nReplace it with:\n\n              if (ev.type === 'subagent_done') {\n                localTokens.in += ev.promptTokens || 0;\n                localTokens.out += ev.genTokens || 0;\n                if (ev.tps > 0) { localTokens.tps = ev.tps; }\n              }"
+      "changes": "After the /api/file route handler (after the block ending with `res.end(fs.readFileSync(filePath, 'utf-8')); return; }`), add:\n\n    if (req.method === 'GET' && pathname === '/api/events-history') {\n      try {\n        const eventsFile = path.join(stateDir, 'events.jsonl');\n        if (!fs.existsSync(eventsFile)) { res.writeHead(200, { 'Content-Type': 'application/json' }); res.end('[]'); return; }\n        const lines = fs.readFileSync(eventsFile, 'utf-8').split('\\n').filter(l => l.trim()).map(l => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean);\n        res.writeHead(200, { 'Content-Type': 'application/json' });\n        res.end(JSON.stringify(lines));\n      } catch (e: any) { res.writeHead(500); res.end(e.message); }\n      return;\n    }"
     }
   ],
   "currentTaskIndex": 0,

@@ -1707,3 +1707,49 @@ Scanning workspace...
 [Helot Update] ✅ Builder (Task 1) | Teleutias | 76.8t/s | 1171 gen + 2315 prompt tokens
 [Helot Update] ⚡ Auto-PASS — Task 1 (deterministic)
 [Helot Update] ✅ PASS — Task 1: Fix localTokens accumulation in /api/stats to use genTokens/promptToke
+[Helot Update] ✅ Task 1 committed.
+[Helot Update] ✅ Execution complete! 1/1 tasks passed.
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 89.5t/s | 35 gen + 553 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 86.8t/s | 43 gen + 746 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 83.7t/s | 174 gen + 1253 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 91.0t/s | 53 gen + 582 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 91.1t/s | 73 gen + 626 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 84.8t/s | 28 gen + 686 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 90.1t/s | 40 gen + 1119 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 90.0t/s | 35 gen + 1196 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 88.2t/s | 40 gen + 1266 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 89.4t/s | 35 gen + 2283 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 88.1t/s | 588 gen + 2509 prompt tokens
+[Hoplite Update] ✏️ Hoplite editing src/dashboard/index.html...
+[Hoplite Update] ✅ Builder (Task 1) | Hoplite | 78.5t/s | 3421 gen + 4068 prompt tokens
+[Hoplite Update] ✅ Hoplite: src/dashboard/index.html written (300 → 275 lines)
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 91.9t/s | 53 gen + 569 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 87.6t/s | 37 gen + 613 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 89.3t/s | 34 gen + 1689 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 90.5t/s | 53 gen + 1744 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 89.5t/s | 40 gen + 1789 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 89.6t/s | 35 gen + 1823 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 90.0t/s | 43 gen + 1872 prompt tokens
+[Slinger Update] ✅ Builder (Task 1) | Agesilaus | 88.4t/s | 439 gen + 1928 prompt tokens
+[Helot Update] ⚠️ ruff not found — ruff checking disabled. Run: pip install ruff
+[Helot Update] 📐 Context budget (32768 tokens): manifest=39k  plan=33k  slinger=22k chars
+[Helot Update] ### 🛡️ Brasidas is scouting
+**Mapping Workspace Territory**
+---
+Scanning workspace...
+[Helot Update] 🏹 Pre-Slinger: scanning source symbols...
+[Helot Update] ✅ Pre-Slinger: 18 files, 35 symbols
+[Helot Update] 📋 **Frontier-Planned Mode** — 1 tasks (Aristomenis bypassed)
+[Helot Update] 📋 **Task List:**
+- [ ] 1. Add GET /api/events-history route to startDashboard that returns all events.jsonl lines as a JSON array (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
+[Helot Update] 🛠️ Task 1/1: Add GET /api/events-history route to startDashboard that returns all events.jsonl lines as a JSON array
+[Helot Update] 🔬 Surgical mode: targeting `startDashboard` in typescript (123 lines)
+[Helot Update] ✅ Builder (Task 1) | Teleutias | 77.1t/s | 1329 gen + 2202 prompt tokens
+[Helot Update] ⚡ Auto-PASS — Task 1 (deterministic)
+[Helot Update] ✅ PASS — Task 1: Add GET /api/events-history route to startDashboard that returns all e

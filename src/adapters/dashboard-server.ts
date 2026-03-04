@@ -130,6 +130,17 @@ export function startDashboard(engine: HelotEngine, stateDir: string, port = 777
       return;
     }
 
+    if (req.method === 'GET' && pathname === '/api/events-history') {
+      try {
+        const eventsFile = path.join(stateDir, 'events.jsonl');
+        if (!fs.existsSync(eventsFile)) { res.writeHead(200, { 'Content-Type': 'application/json' }); res.end('[]'); return; }
+        const lines = fs.readFileSync(eventsFile, 'utf-8').split('\n').filter(l => l.trim()).map(l => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(lines));
+      } catch (e: any) { res.writeHead(500); res.end(e.message); }
+      return;
+    }
+
     if (req.method === 'POST' && (pathname === '/api/run' || pathname === '/api/slinger' || pathname === '/api/hoplite')) {
       let body = '';
       req.on('data', chunk => { body += chunk; });

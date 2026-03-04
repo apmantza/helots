@@ -1,10 +1,10 @@
 # Aristomenis Review Report
-Plan: Fix /api/stats in dashboard-server.ts to read correct token fields from subagent_done events
+Plan: Add /api/events-history route to dashboard-server.ts
 
 
-## Task: Fix localTokens accumulation in /api/stats to use genTokens/promptTokens/tps fields instead of psiloiMetrics (Try 1)
+## Task: Add GET /api/events-history route to startDashboard that returns all events.jsonl lines as a JSON array (Try 1)
 **Ground Truth:**
-src/adapters/dashboard-server.ts: -3 lines (170 → 167)
+src/adapters/dashboard-server.ts: +11 lines (167 → 178)
 Symbol check — "startDashboard" in src/adapters/dashboard-server.ts: ✅ FOUND
 
 **Peltast:**

@@ -118,7 +118,7 @@
     },
     {
       "path": "src\\adapters\\dashboard-server.ts",
-      "size": 7061
+      "size": 6724
     },
     {
       "path": "src\\adapters\\mcp-server.ts",
@@ -142,7 +142,7 @@
     },
     {
       "path": "src\\core\\engine.ts",
-      "size": 83381
+      "size": 83772
     },
     {
       "path": "src\\core\\file-utils.ts",
@@ -190,7 +190,7 @@
     },
     {
       "path": "src\\dashboard\\index.html",
-      "size": 14904
+      "size": 12971
     },
     {
       "path": "start-mcp.bat",
