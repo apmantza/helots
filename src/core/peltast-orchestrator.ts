@@ -32,7 +32,7 @@ export class Peltast {
      * Trigger retry on verification failure
      */
     async triggerRetry(taskId: string): Promise<void> {
-        console.log(`Peltast: Retrying task ${taskId}`);
+        console.error(`Peltast: Retrying task ${taskId}`);
         // Retry logic would be implemented here
     }
 }

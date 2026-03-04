@@ -1,4 +1,0 @@
-- [ ] 1. Extract `pickName` utility logic into new module `src/core/persona.ts` [DEPENDS: none]
-- [ ] 2. Update `src/core/engine.ts` to import and replace local `pickName` with `src/core/persona.ts::pickName` [DEPENDS: 1]
-- [ ] 3. Extract `getGlobalContext` logic into new module `src/core/context.ts` [DEPENDS: none]
-- [ ] 4. Update `src/core/engine.ts` to import and replace local `getGlobalContext` with `src/core/context.ts::getGlobalContext` [DEPENDS: 3]

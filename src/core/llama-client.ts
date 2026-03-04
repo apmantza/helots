@@ -26,44 +26,70 @@ export class LlamaClient {
     public async getProps(): Promise<{ modelName: string; maxTokens: number }> {
         await this.initializeModels();
         return {
-            modelName: this.currentModel,
+            modelName: this.serverAvailableModels[0] || this.currentModel,
             maxTokens: this.serverContextSize
         };
     }
 
+    private async probeUrl(url: string): Promise<{ models: string[]; contextSize: number } | null> {
+        try {
+            const response = await fetch(`${url}/v1/models`, {
+                headers: { 'Authorization': `Bearer ${this.apiKey}` },
+                signal: AbortSignal.timeout(3000),
+            });
+            if (!response.ok) return null;
+            const json = await response.json();
+            const models = (json.data || []).map((m: any) => m.id) as string[];
+
+            let contextSize = 4096;
+            try {
+                const propsRes = await fetch(`${url}/props`, {
+                    headers: { 'Authorization': `Bearer ${this.apiKey}` },
+                    signal: AbortSignal.timeout(2000),
+                });
+                if (propsRes.ok) {
+                    const props = await propsRes.json();
+                    contextSize = props.default_generation_settings?.n_ctx || props.cntxt || props.n_ctx || 4096;
+                } else {
+                    const modelMeta = json.data?.find((m: any) => m.id === this.currentModel);
+                    contextSize = modelMeta?.meta?.n_ctx || modelMeta?.cntxt || 4096;
+                }
+            } catch { /* use default */ }
+
+            return { models, contextSize };
+        } catch {
+            return null;
+        }
+    }
+
     private async initializeModels(): Promise<void> {
         if (this.modelsInitialized) return;
-        try {
-            const response = await fetch(`${this.baseUrl}/v1/models`, {
-                headers: { 'Authorization': `Bearer ${this.apiKey}` }
-            });
-            if (response.ok) {
-                const json = await response.json();
-                this.serverAvailableModels = (json.data || []).map((m: any) => m.id);
 
-                // Fetch dynamic context size (cntxt) from llama.cpp props
-                try {
-                    const propsRes = await fetch(`${this.baseUrl}/props`, {
-                        headers: { 'Authorization': `Bearer ${this.apiKey}` }
-                    });
-                    if (propsRes.ok) {
-                        const props = await propsRes.ok ? await propsRes.json() : {};
-                        this.serverContextSize = props.default_generation_settings?.n_ctx || props.cntxt || props.n_ctx || 4096;
-                        console.log(`[LlamaClient] Server reporting context size: ${this.serverContextSize}`);
-                    }
-                } catch {
-                    // Fallback to model metadata if props fails
-                    const modelMeta = json.data?.find((m: any) => m.id === this.currentModel);
-                    this.serverContextSize = modelMeta?.meta?.n_ctx || modelMeta?.cntxt || 4096;
+        // Build probe list: primary URL + any configured fallbacks + default :8080
+        const candidates = [
+            this.baseUrl,
+            ...(this.config.llamaUrlFallbacks ?? []),
+            'http://127.0.0.1:8080',
+        ].filter((u, i, arr) => arr.indexOf(u) === i); // deduplicate
+
+        for (const url of candidates) {
+            const result = await this.probeUrl(url);
+            if (result) {
+                if (url !== this.baseUrl) {
+                    console.error(`[LlamaClient] Primary URL unreachable — using fallback: ${url}`);
+                    this.baseUrl = url;
                 }
-
-                console.log(`[LlamaClient] Detected active server models: \n  - ${this.serverAvailableModels.join('\n  - ')}`);
+                this.serverAvailableModels = result.models;
+                this.serverContextSize = result.contextSize;
+                console.error(`[LlamaClient] Connected to ${url} — models: ${result.models.join(', ')} — ctx: ${result.contextSize}`);
+                break;
+            } else {
+                console.error(`[LlamaClient] No response from ${url}, trying next...`);
             }
-        } catch (error) {
-            console.warn(`[LlamaClient] Failed to auto-detect models from server. Falling back to config.json models.`);
         }
 
         if (this.serverAvailableModels.length === 0) {
+            console.warn(`[LlamaClient] All URLs unreachable. Falling back to config model names.`);
             this.serverAvailableModels = [this.config.moeModel];
         }
         this.modelsInitialized = true;
@@ -89,6 +115,7 @@ export class LlamaClient {
         messages: { role: string; content: string }[],
         role: TaskRole,
         profileKey: string,
+        maxTokensOverride: number | undefined,
         onChunk: (chunk: string, metrics: { genTps: number; promptEvalTps: number; isFirstToken: boolean; promptTokens: number; genTokens: number; maxTokens: number }) => void,
         onEnd: () => void
     ): Promise<void> {
@@ -98,12 +125,12 @@ export class LlamaClient {
 
         while (attempts < maxAttempts) {
             try {
-                await this.attemptStream(messages, role, profileKey, onChunk, onEnd);
+                await this.attemptStream(messages, role, profileKey, maxTokensOverride, onChunk, onEnd);
                 return;
             } catch (error) {
                 attempts++;
                 if (error instanceof Error && error.message.includes('ECONNRESET') && attempts < maxAttempts) {
-                    console.log(`LlamaClient: ECONNRESET detected, retry ${attempts}/${maxAttempts}`);
+                    console.error(`LlamaClient: ECONNRESET detected, retry ${attempts}/${maxAttempts}`);
                     await new Promise(resolve => setTimeout(resolve, 1000 * attempts));
                     continue;
                 }
@@ -116,19 +143,46 @@ export class LlamaClient {
         messages: { role: string; content: string }[],
         role: TaskRole,
         profileKey: string,
+        maxTokensOverride: number | undefined,
         onChunk: (chunk: string, metrics: { genTps: number; promptEvalTps: number; isFirstToken: boolean; promptTokens: number; genTokens: number; maxTokens: number }) => void,
         onEnd: () => void
     ): Promise<void> {
         const targetModel = this.getTargetModel(role);
         if (this.currentModel !== targetModel) {
-            console.log(`[MODEL SWAP] Swapping from ${this.currentModel} to ${targetModel} for role ${role}...`);
+            console.error(`[MODEL SWAP] Swapping from ${this.currentModel} to ${targetModel} for role ${role}...`);
             // Note: Inference server (like llama.cpp) will attempt to swap if a diff model is requested,
             // or we accept manual reload if not supported.
             this.currentModel = targetModel;
         }
 
         const profiles = getProfilesForModel(targetModel);
-        const profile = profiles[profileKey] || profiles['THINKING_GENERAL'];
+        let profile = profiles[profileKey] || profiles['THINKING_GENERAL'];
+
+        // Dynamic max_tokens override: allow caller to request more output budget than the profile default.
+        // Only applied when the override exceeds the profile default (never reduces it).
+        if (maxTokensOverride !== undefined && maxTokensOverride > profile.max_tokens) {
+            profile = { ...profile, max_tokens: maxTokensOverride };
+        }
+
+        // If thinkingEnabled is explicitly false, strip all thinking-related params.
+        // Preserves all model-specific tuning (temp, top_p, etc.) — only removes thinking directives.
+        const thinkingEnabled = this.config.thinkingEnabled ?? true;
+        if (!thinkingEnabled && profile.enableThinking) {
+            const { extra_body, ...rest } = profile;
+            // Strip budget_tokens / enable_thinking from chat_template_kwargs if present
+            const cleanedExtra = extra_body
+                ? Object.fromEntries(
+                    Object.entries(extra_body).map(([k, v]) => {
+                        if (k === 'chat_template_kwargs' && v && typeof v === 'object') {
+                            const { enable_thinking, budget_tokens, ...restKwargs } = v as any;
+                            return [k, restKwargs];
+                        }
+                        return [k, v];
+                    })
+                )
+                : undefined;
+            profile = { ...rest, enableThinking: false, ...(cleanedExtra ? { extra_body: cleanedExtra } : {}) };
+        }
 
         const requestBody = {
             model: targetModel,
@@ -141,7 +195,8 @@ export class LlamaClient {
             presence_penalty: profile.presence_penalty,
             repetition_penalty: profile.repetition_penalty,
             max_tokens: profile.max_tokens,
-            ...(profile.extra_body ? { extra_body: profile.extra_body } : {})
+            // Spread extra_body directly so llama.cpp sees top-level fields like chat_template_kwargs
+            ...(profile.extra_body ?? {})
         };
 
         const response = await fetch(`${this.baseUrl}/v1/chat/completions`, {
@@ -189,7 +244,7 @@ export class LlamaClient {
                             const parsed = JSON.parse(data);
                             const delta = parsed.choices?.[0]?.delta;
                             if (delta) {
-                                const content = delta.content || delta.reasoning_content || '';
+                                const content = delta.content || '';
                                 if (content) {
                                     if (firstTokenTime === 0) firstTokenTime = performance.now();
                                     tokenCount++;

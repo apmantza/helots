@@ -1,120 +1,128 @@
 /**
- * Helots Debug Runner
- * Directly invokes HelotEngine methods to debug the full flow.
- * Run with: node debug-run.mjs
+ * debug-run.mjs
+ * Spawns the Helots MCP server and fires a single helot_run call.
+ * Run: node debug-run.mjs
  */
+import { spawn } from 'child_process';
+import * as readline from 'readline';
 
-import { createRequire } from 'module';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
+const SEP = '─'.repeat(60);
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const require = createRequire(import.meta.url);
-
-// We need to run the compiled JS. Let's build first, then run.
-// This script calls the engine through its compiled output.
-import { HelotEngine } from './dist/core/engine.js';
-import { existsSync, readFileSync } from 'fs';
-import { join } from 'path';
-
-const config = {
-    llamaUrl: process.env.HELOT_LLM_URL || "http://127.0.0.1:8080",
-    apiKey: process.env.HELOT_API_KEY || "",
-    denseModel: process.env.HELOT_DENSE_MODEL || "Qwen/Qwen3.5-27B",
-    moeModel: process.env.HELOT_MOE_MODEL || "Qwen/Qwen3.5-35B-A3B",
-    stateDir: ".helot-state",
-    projectRoot: process.cwd(),
-};
-
-const engine = new HelotEngine(config);
-
-const LOG_SEP = "─".repeat(60);
-
-function onUpdate(data) {
-    console.log(`  >> ${data.text}`);
+function log(msg) {
+  process.stdout.write(msg + '\n');
 }
 
-async function runDebug() {
-    console.log(`\n${LOG_SEP}`);
-    console.log(`🛡️  HELOTS DEBUG RUN - ${new Date().toISOString()}`);
-    console.log(LOG_SEP);
-
-    // === PHASE 1: SLINGER RESEARCH ===
-    console.log(`\n[PHASE 1] 🏹 Deploying Slinger for research...`);
-    const researchTask = `Analyze the Helots codebase (src/core/engine.ts and related files) for opportunities to improve modularity, simplicity, and maintainability. 
-Focus on:
-1. Files that are too large (>400 lines) and should be split
-2. Functions or classes with single-responsibility violations
-3. Circular dependencies or tight-coupling between modules
-4. Code duplication or consolidation opportunities
-5. Non-laconic patterns (over-engineering, unnecessary complexity)
-Provide a prioritized list of refactoring recommendations.`;
-
-    let slingerResult;
-    try {
-        slingerResult = await engine.executeSlinger(researchTask, undefined, onUpdate);
-        console.log(`\n${LOG_SEP}`);
-        console.log(`[Slinger Report]\n${slingerResult}`);
-        console.log(LOG_SEP);
-    } catch (e) {
-        console.error(`\n❌ Slinger FAILED: ${e.message}`);
-        process.exit(1);
-    }
-
-    // Check if progress.md was created
-    const stateDir = ".helot-state";
-    const progressFile = join(stateDir, "progress.md");
-    console.log(`\n[CHECK] Looking for artifacts in '${stateDir}'...`);
-    if (existsSync(stateDir)) {
-        const { readdirSync } = await import('fs');
-        const files = readdirSync(stateDir);
-        console.log(`  ✅ .helot-state/ exists with: ${files.join(", ")}`);
-    } else {
-        console.log(`  ⚠️  .helot-state/ does NOT exist yet (expected after slinger?)`);
-    }
-
-    // === PHASE 2: HELOT RUN ==
-    console.log(`\n${LOG_SEP}`);
-    console.log(`[PHASE 2] 🏛️  Deploying Aristomenis + Builder swarm (helot_run)...`);
-    console.log(LOG_SEP);
-
-    const taskSummary = "Improve Helots engine modularity and simplicity via laconic refactoring";
-    const implementationPlan = `[PLAN ONLY]
-Based on the Slinger analysis above:
-
-${slingerResult}
-
-Create a detailed implementation checklist for refactoring the Helots codebase for better modularity and simplicity.
-Focus on the most impactful changes first. Do NOT make changes yet - just draft the plan.
-Each task should target one specific file and one specific logic block.`;
-
-    let helotResult;
-    try {
-        helotResult = await engine.executeHelots(taskSummary, implementationPlan, onUpdate);
-        console.log(`\n${LOG_SEP}`);
-        console.log(`[Helot Run Result]\n${helotResult}`);
-        console.log(LOG_SEP);
-    } catch (e) {
-        console.error(`\n❌ Helot Run FAILED: ${e.message}`);
-    }
-
-    // Post-run artifact check
-    console.log(`\n[FINAL CHECK] Checking all generated artifacts...`);
-    const artifacts = [
-        join(stateDir, "progress.md"),
-        join(stateDir, "workspace-manifest.json"),
-        join(stateDir, "helot-state.json"),
-        join(stateDir, "trace.jsonl"),
-        join(stateDir, "review.md"),
-    ];
-    for (const artifact of artifacts) {
-        if (existsSync(artifact)) {
-            const size = readFileSync(artifact).length;
-            console.log(`  ✅ ${artifact} (${size} bytes)`);
-        } else {
-            console.log(`  ❌ MISSING: ${artifact}`);
-        }
-    }
+let msgId = 1;
+function rpc(method, params) {
+  return JSON.stringify({ jsonrpc: '2.0', id: msgId++, method, params }) + '\n';
+}
+function notif(method, params) {
+  return JSON.stringify({ jsonrpc: '2.0', method, params }) + '\n';
 }
 
-runDebug().catch(console.error);
+async function main() {
+  log(`\n${SEP}`);
+  log('🏛️  HELOTS RUN DEBUG');
+  log(`   ${new Date().toISOString()}`);
+  log(SEP);
+
+  const server = spawn('npx', ['jiti', 'src/adapters/mcp-server.ts'], {
+    cwd: process.cwd(),
+    stdio: ['pipe', 'pipe', 'pipe'],
+    shell: true,
+    env: {
+      ...process.env,
+      HELOT_STATE_DIR: '.helot-debug-run',
+      HELOT_LLM_URL: 'http://127.0.0.1:8081',
+      HELOT_DENSE_MODEL: 'qwen27b',
+      HELOT_MOE_MODEL: 'qwen27b',
+    }
+  });
+
+  log(`[MCP] Server spawned (pid ${server.pid})`);
+
+  const errRl = readline.createInterface({ input: server.stderr });
+  errRl.on('line', line => log(`[stderr] ${line}`));
+
+  server.on('error', e => log(`[server error] ${e.message}`));
+  server.on('exit', (code) => log(`\n[server exited] code=${code}`));
+
+  const pending = new Map();
+  const rl = readline.createInterface({ input: server.stdout });
+  rl.on('line', line => {
+    if (!line.trim()) return;
+    try {
+      const msg = JSON.parse(line);
+      if (msg.id !== undefined && pending.has(msg.id)) {
+        pending.get(msg.id)(msg);
+        pending.delete(msg.id);
+      }
+    } catch {
+      log(`[stdout raw] ${line}`);
+    }
+  });
+
+  function call(method, params) {
+    return new Promise(resolve => {
+      const id = msgId;
+      pending.set(id, resolve);
+      server.stdin.write(rpc(method, params));
+    });
+  }
+
+  await new Promise(r => setTimeout(r, 1500));
+
+  log(`\n[MCP] Initializing...`);
+  const init = await call('initialize', {
+    protocolVersion: '2024-11-05',
+    capabilities: { tools: {} },
+    clientInfo: { name: 'debug-run', version: '1.0' }
+  });
+  log(`[MCP] Server info: ${JSON.stringify(init?.result?.serverInfo)}`);
+  server.stdin.write(notif('notifications/initialized', {}));
+
+  log(`\n[MCP] Listing tools...`);
+  const toolsList = await call('tools/list', {});
+  const tools = toolsList?.result?.tools || [];
+  log(`[MCP] Tools registered: ${tools.map(t => t.name).join(', ')}`);
+
+  log(`\n${SEP}`);
+  log(`[RUN] Dispatching refactor task...`);
+  log(SEP);
+
+  const start = Date.now();
+  const runRes = await call('tools/call', {
+    name: 'helot_run',
+    arguments: {
+      taskSummary: 'Create greeting utility to verify triad flow',
+      implementationPlan: `
+Create a tiny standalone file to prove Builder → Peltast works end-to-end.
+
+### PHASE 1: CREATE FILE
+- [ ] 1. Create src/core/greeting.ts with a single exported function saySpartanGreeting that returns the string "Molon Labe" (Target: src/core/greeting.ts, Action: CREATE) [DEPENDS: none]
+`
+    }
+  });
+
+  const elapsed = ((Date.now() - start) / 1000).toFixed(1);
+  log(`\n${SEP}`);
+  log(`[RUN RESULT] (${elapsed}s)`);
+  log(SEP);
+
+  if (runRes?.error) {
+    log(`❌ RPC ERROR: ${JSON.stringify(runRes.error)}`);
+  } else {
+    const text = runRes?.result?.content?.[0]?.text ?? 'no content';
+    log(text);
+  }
+
+  log(`\n${SEP}`);
+  log('Done. Shutting down server.');
+  server.stdin.end();
+  setTimeout(() => { server.kill(); process.exit(0); }, 500);
+}
+
+main().catch(e => {
+  console.error('FATAL:', e);
+  process.exit(1);
+});

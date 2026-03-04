@@ -1,0 +1,4 @@
+- [ ] 1. CREATE src/core/sparta-record.ts — persistent Civ6 war record manager (Target: src/core/sparta-record.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 2. CREATE src/adapters/dashboard-server.ts — HTTP + SSE + REST dashboard server on port 7771 (Target: src/adapters/dashboard-server.ts, Symbol: N/A, Action: EDIT) [DEPENDS: 1]
+- [ ] 3. CREATE src/dashboard/index.html — single-page Tailwind CDN dashboard with Civ6 toasts (Target: src/dashboard/index.html, Symbol: N/A, Action: EDIT) [DEPENDS: 2]
+- [ ] 4. EDIT src/adapters/mcp-server.ts — import and start dashboard server after engine init (Target: src/adapters/mcp-server.ts, Symbol: N/A, Action: EDIT) [DEPENDS: 2]

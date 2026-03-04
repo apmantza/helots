@@ -1,4 +1,0 @@
-- [ ] 1. Create src/core/persona.ts with the exported pickName function (Target: src/core/persona.ts, Action: CREATE) [DEPENDS: none]
-- [ ] 2. Edit src/core/engine.ts to remove private pickName and add import (Target: src/core/engine.ts, Symbol: pickName, Action: EDIT) [DEPENDS: 1]
-- [ ] 3. Create src/core/context.ts with the exported getGlobalContext function (Target: src/core/context.ts, Action: CREATE) [DEPENDS: none]
-- [ ] 4. Edit src/core/engine.ts to remove private getGlobalContext and add import (Target: src/core/engine.ts, Symbol: getGlobalContext, Action: EDIT) [DEPENDS: 3]

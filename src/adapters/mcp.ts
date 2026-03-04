@@ -26,7 +26,7 @@ export class MCPAdapter {
       apiKey: process.env.HELOT_API_KEY || "",
       denseModel: process.env.HELOT_DENSE_MODEL || "Qwen/Qwen3.5-27B",
       moeModel: process.env.HELOT_MOE_MODEL || "Qwen/Qwen3.5-35B-A3B",
-      stateDir: process.env.HELOT_STATE_DIR || ".helot-state",
+      stateDir: process.env.HELOT_STATE_DIR || ".helots",
       projectRoot: process.cwd()
     };
 
@@ -47,7 +47,7 @@ export class MCPAdapter {
    * @returns Connection status
    */
   async initialize(): Promise<boolean> {
-    console.log('[Gorgo of Sparta] MCP Adapter initializing...');
+    console.error('[Gorgo of Sparta] MCP Adapter initializing...');
     return true;
   }
 
@@ -57,7 +57,7 @@ export class MCPAdapter {
    * @returns Processed response
    */
   async processRequest(request: any): Promise<any> {
-    console.log('[Gorgo of Sparta] Processing MCP request through Gorgo of Sparta Psiloi...');
+    console.error('[Gorgo of Sparta] Processing MCP request through Gorgo of Sparta Psiloi...');
 
     const plan = this.extractPlan(request);
     const result = await this.engine.executeRun(plan);

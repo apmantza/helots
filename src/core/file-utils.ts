@@ -17,7 +17,7 @@ export function getAllFiles(dir: string, stateDir: string, fileList: string[] = 
   // Exclude node_modules, .git, AND the configured stateDir (dynamic)
   // Also exclude any dir that looks like a stateDir variant (starts with same basename)
   const stateDirBase = stateDir ? basename(stateDir) : '';
-  const excludePrefixes = ['node_modules', '.git', stateDirBase, '.helot-'];
+  const excludePrefixes = ['node_modules', 'venv', 'env', '__pycache__', '.git', stateDirBase, '.helot-'];
   const files = readdirSync(dir);
 
   for (const file of files) {

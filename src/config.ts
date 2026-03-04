@@ -2,9 +2,11 @@ export interface HelotConfig {
     projectRoot: string;
     stateDir: string;
     llamaUrl: string;
+    llamaUrlFallbacks?: string[];   // Additional URLs to probe if primary is unreachable
     apiKey: string;
     denseModel: string;
     moeModel: string;
+    thinkingEnabled?: boolean;      // Default true. Set false for non-thinking models — strips all thinking params from every profile.
 }
 
 export type TaskRole = 'Aristomenis' | 'Psiloi' | 'Slinger' | 'Governor' | 'Gatherer';

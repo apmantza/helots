@@ -8,13 +8,21 @@
 
 import { spawn } from 'child_process';
 import * as readline from 'readline';
-import { existsSync, readFileSync, readdirSync, statSync } from 'fs';
+import { existsSync, readFileSync, readdirSync, statSync, appendFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
-const SEP = '═'.repeat(70);
+const LOG_FILE = 'helot-verification.txt';
+// Clear previous log
+writeFileSync(LOG_FILE, '');
+
+const SEP = '='.repeat(70);
 const STATE_DIR = '.helot-mcp-connector';
 
-function log(msg: string) { process.stderr.write(msg + '\n'); }
+function log(msg: string) {
+    const clean = msg.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '');
+    process.stderr.write(msg + '\n');
+    appendFileSync(LOG_FILE, clean + '\n');
+}
 
 // ─── JSON-RPC helpers ──────────────────────────────────────────
 let msgId = 1;
@@ -68,6 +76,18 @@ function extractMethod(content: string, methodPattern: RegExp): string {
 }
 
 async function main() {
+    // --- 0. PURGE STALE INSTANCES ---
+    try {
+        const { execSync } = require('child_process');
+        const isWindows = process.platform === 'win32';
+        const purgeCmd = isWindows
+            ? `Get-CimInstance Win32_Process -Filter "Name = 'node.exe'" | Where-Object { $_.CommandLine -match 'antigravity-connector|helots' && $_.ProcessId -ne $PID } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force }`
+            : `pkill -f "antigravity-connector|helots"`;
+
+        log("♻️ Purging stale Helot instances...");
+        execSync(purgeCmd, { shell: isWindows ? 'powershell.exe' : undefined, stdio: 'ignore' });
+    } catch (e) { }
+
     log(`\n${SEP}`);
     log(`🛡️  ANTIGRAVITY → HELOTS MCP CONNECTOR`);
     log(`   ${new Date().toISOString()}`);
@@ -76,12 +96,22 @@ async function main() {
 
     const server = spawn('npx', ['jiti', 'src/adapters/mcp-server.ts'], {
         cwd: process.cwd(),
-        stdio: ['pipe', 'pipe', 'inherit'],
+        stdio: ['pipe', 'pipe', 'pipe'], // Pipe stderr to capture updates
         shell: true,
         env: { ...process.env, HELOT_STATE_DIR: STATE_DIR }
     });
 
     log(`\n[MCP] Server spawned (pid ${server.pid})`);
+
+    // Capture piped stderr for Helot Updates
+    const errRl = readline.createInterface({ input: server.stderr! });
+    errRl.on('line', line => {
+        if (line.includes('[Helot Update]')) {
+            log(line);
+        } else {
+            process.stderr.write(line + '\n');
+        }
+    });
 
     const pending = new Map<number, (r: any) => void>();
     const rl = readline.createInterface({ input: server.stdout! });
@@ -120,10 +150,11 @@ async function main() {
     log(`\n${SEP}`);
     log(`[PHASE 1] 🏹 Deterministic Context Extraction (Bypassing LLM)`);
 
-    const engineSrc = readFileSync('src/core/engine.ts', 'utf-8');
+    // pickName and getGlobalContext live in persona-utils.ts (moved from engine.ts)
+    const personaSrc = readFileSync('src/core/persona-utils.ts', 'utf-8');
 
-    const pickNameCode = extractMethod(engineSrc, /private pickName\([^)]*\)\s*\{/);
-    const getGlobalContextCode = extractMethod(engineSrc, /private async getGlobalContext\([^)]*\)[^{]*\{/);
+    const pickNameCode = extractMethod(personaSrc, /^export function pickName\(/m);
+    const getGlobalContextCode = extractMethod(personaSrc, /^export async function getGlobalContext\(/m);
 
     log(`[Extracted] pickName (${pickNameCode.length} chars)`);
     log(`[Extracted] getGlobalContext (${getGlobalContextCode.length} chars)`);
@@ -137,18 +168,15 @@ async function main() {
     const helotRes = await call('tools/call', {
         name: 'helot_run',
         arguments: {
-            taskSummary: 'Extract pickName and getGlobalContext to persona-utils.ts',
+            taskSummary: 'Implement a new greeting utility to verify triad flow',
             implementationPlan: `
-Surgical extraction of persona-related helpers to enhance modularity.
+Modular creation of a greeting utility to prove the hardening is complete.
 
 ### PHASE 1: UTILITY CREATION
-- [ ] 1. Create src/core/persona-utils.ts with pickName and getGlobalContext (Target: src/core/persona-utils.ts, Action: CREATE) [DEPENDS: none]
+- [ ] 1. Create src/core/greeting.ts with a saySpartanGreeting function (Target: src/core/greeting.ts, Action: CREATE) [DEPENDS: none]
 
-### PHASE 2: ENGINE REFACTORING
-- [ ] 2. Remove pickName and getGlobalContext from engine.ts and import them from persona-utils.ts (Target: src/core/engine.ts, Action: EDIT) [DEPENDS: 1]
-
-### PHASE 3: VERIFICATION
-- [ ] 3. Verify that the engine still compiles and the helpers work as expected (Target: src/core/engine.ts, Action: TEST) [DEPENDS: 2]
+### PHASE 2: VERIFICATION
+- [ ] 2. Verify the new file exists and contains the correct exported symbol (Target: src/core/greeting.ts, Symbol: saySpartanGreeting, Action: EDIT) [DEPENDS: 1]
 `
         }
     });

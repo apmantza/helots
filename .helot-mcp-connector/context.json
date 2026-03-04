@@ -1,164 +1,640 @@
 {
   "files": [
     {
-      "path": "...",
-      "size": 751
+      "path": ".claude\\settings.local.json",
+      "size": 496
     },
     {
-      "path": ".agents\\workflows\\helots.md",
-      "size": 1837
+      "path": ".gitattributes",
+      "size": 42
     },
     {
       "path": ".gitignore",
-      "size": 353
+      "size": 697
     },
     {
-      "path": "agents.md",
-      "size": 1691
+      "path": ".pi\\agents\\aristomenis.md",
+      "size": 1718
     },
     {
-      "path": "antigravity-connector.ts",
-      "size": 7274
+      "path": ".pytest_cache\\.gitignore",
+      "size": 39
     },
     {
-      "path": "debug-helots-live.ts",
-      "size": 4324
+      "path": ".pytest_cache\\CACHEDIR.TAG",
+      "size": 191
     },
     {
-      "path": "debug-helots.cjs",
-      "size": 4967
+      "path": ".pytest_cache\\README.md",
+      "size": 310
     },
     {
-      "path": "debug-helots.ts",
-      "size": 4674
+      "path": ".pytest_cache\\v\\cache\\lastfailed",
+      "size": 2
     },
     {
-      "path": "debug-run.mjs",
-      "size": 4571
+      "path": ".pytest_cache\\v\\cache\\nodeids",
+      "size": 200
     },
     {
-      "path": "docs\\gorgo_rename_plan.md",
-      "size": 1638
+      "path": ".streamlit\\config.toml",
+      "size": 394
     },
     {
-      "path": "docs\\helot_doctrine.md",
-      "size": 1994
+      "path": "CLAUDE.md",
+      "size": 4727
     },
     {
-      "path": "docs\\walkthrough.md",
-      "size": 2550
+      "path": "data\\eba_data.db",
+      "size": 533590016
     },
     {
-      "path": "index.ts",
-      "size": 3488
+      "path": "data\\raw\\2024 OSII List.xlsx",
+      "size": 39578
     },
     {
-      "path": "mcp-client.ts",
-      "size": 10093
+      "path": "data\\raw\\annotated_templates.zip",
+      "size": 3963004
     },
     {
-      "path": "package-lock.json",
-      "size": 174980
+      "path": "data\\raw\\bog\\bog_hpi_latest.xlsx",
+      "size": 90112
     },
     {
-      "path": "package.json",
-      "size": 602
+      "path": "data\\raw\\bog\\bog_mir_latest.xlsx",
+      "size": 51602
     },
     {
-      "path": "path\\to\\file.ts",
-      "size": 2739
+      "path": "data\\raw\\Data Annex InteractiveRiskDashboard Q3 2025.xlsx",
+      "size": 6185811
+    },
+    {
+      "path": "data\\raw\\DPM2 Database_v 4_2_20251125.accdb",
+      "size": 755363840
+    },
+    {
+      "path": "data\\raw\\dpm2_4_0_glossary_20250129.xlsx",
+      "size": 2059301
+    },
+    {
+      "path": "data\\raw\\DUMMYLEI123456789012.CON_FR_COREP040000_COREPOF_2024-12-31_20241213173129739.zip",
+      "size": 161024
+    },
+    {
+      "path": "data\\raw\\ESG Dasboard (Data Annex Q4 2024).xlsx",
+      "size": 301318
+    },
+    {
+      "path": "data\\raw\\eu_gsibs.xlsx",
+      "size": 11517
+    },
+    {
+      "path": "data\\raw\\generated_tickers.csv",
+      "size": 4446
+    },
+    {
+      "path": "data\\raw\\instances xBRL-CSV.zip",
+      "size": 184928
+    },
+    {
+      "path": "data\\raw\\List of EBA Risk Indicators.xlsx",
+      "size": 719815
+    },
+    {
+      "path": "data\\raw\\Overview of P3 templates and related-IT solutions (instructions) after ITS adoption.xlsx",
+      "size": 16860
+    },
+    {
+      "path": "data\\raw\\Pillar3reports\\2025-06-30_Alpha_Bank.pdf",
+      "size": 3857320
+    },
+    {
+      "path": "data\\raw\\Pillar3reports\\2025-06-30_Bank_of_Cyprus.xlsx",
+      "size": 682067
+    },
+    {
+      "path": "data\\raw\\Pillar3reports\\2025-06-30_Eurobank.pdf",
+      "size": 2414598
+    },
+    {
+      "path": "data\\raw\\Pillar3reports\\2025-06-30_NBG.pdf",
+      "size": 7065815
+    },
+    {
+      "path": "data\\raw\\Pillar3reports\\2025-06-30_Piraeus.pdf",
+      "size": 3815494
+    },
+    {
+      "path": "data\\raw\\Pillar3reports\\2025-09-30_Alpha_Bank.pdf",
+      "size": 602720
+    },
+    {
+      "path": "data\\raw\\Pillar3reports\\2025-09-30_Eurobank.pdf",
+      "size": 935912
+    },
+    {
+      "path": "data\\raw\\Pillar3reports\\2025-09-30_NBG.pdf",
+      "size": 1572271
+    },
+    {
+      "path": "data\\raw\\Pillar3reports\\2025-09-30_Piraeus.xlsx",
+      "size": 2863689
+    },
+    {
+      "path": "data\\raw\\Pillar3reports\\table_catalog.json",
+      "size": 300586
+    },
+    {
+      "path": "data\\raw\\Pillar_2_requirement.en.xlsx",
+      "size": 14466
+    },
+    {
+      "path": "data\\raw\\sample_documents.zip",
+      "size": 569059
+    },
+    {
+      "path": "data\\raw\\SDD.xlsx",
+      "size": 58751
+    },
+    {
+      "path": "data\\raw\\tr_cre._2023.csv",
+      "size": 122882620
+    },
+    {
+      "path": "data\\raw\\tr_cre_2024.csv",
+      "size": 119032803
+    },
+    {
+      "path": "data\\raw\\tr_cre_2025.csv",
+      "size": 123180326
+    },
+    {
+      "path": "data\\raw\\TR_Metadata.xlsx",
+      "size": 2782361
+    },
+    {
+      "path": "data\\raw\\tr_mrk_2023.csv",
+      "size": 4205555
+    },
+    {
+      "path": "data\\raw\\tr_mrk_2024.csv",
+      "size": 4234789
+    },
+    {
+      "path": "data\\raw\\tr_mrk_2025.csv",
+      "size": 3806290
+    },
+    {
+      "path": "data\\raw\\tr_oth_2023.csv",
+      "size": 17950303
+    },
+    {
+      "path": "data\\raw\\tr_oth_2024.csv",
+      "size": 17977156
+    },
+    {
+      "path": "data\\raw\\tr_oth_2025.csv",
+      "size": 15110064
+    },
+    {
+      "path": "data\\raw\\tr_sov_2023.csv",
+      "size": 89415134
+    },
+    {
+      "path": "data\\raw\\tr_sov_2024.csv",
+      "size": 95681011
+    },
+    {
+      "path": "data\\raw\\tr_sov_2025.csv",
+      "size": 91038353
+    },
+    {
+      "path": "data\\ticker_mappings.py",
+      "size": 1922
+    },
+    {
+      "path": "docs\\CALCULATIONS.md",
+      "size": 19621
+    },
+    {
+      "path": "docs\\DATABASE_SCHEMA.md",
+      "size": 28370
+    },
+    {
+      "path": "docs\\DICTIONARY.md",
+      "size": 32416
+    },
+    {
+      "path": "docs\\DICTIONARY_PILLAR3.md",
+      "size": 40401
+    },
+    {
+      "path": "docs\\DIMENSIONS.md",
+      "size": 54888
+    },
+    {
+      "path": "europe_bank_tickers.csv",
+      "size": 12440
+    },
+    {
+      "path": "file",
+      "size": 3824
+    },
+    {
+      "path": "logs\\batch_eurobank.log",
+      "size": 20228
+    },
+    {
+      "path": "logs\\batch_eurobank_2.log",
+      "size": 90
+    },
+    {
+      "path": "logs\\batch_piraeus.log",
+      "size": 9710
     },
     {
       "path": "README.md",
-      "size": 3638
+      "size": 3276
     },
     {
-      "path": "scripts\\gorgo_run.ts",
-      "size": 2092
+      "path": "requirements.txt",
+      "size": 114
     },
     {
-      "path": "scripts\\hardening_run.ts",
-      "size": 973
+      "path": "src\\app.py",
+      "size": 4132
     },
     {
-      "path": "scripts\\review_swarm.ts",
-      "size": 1057
+      "path": "src\\eba_benchmarking\\analysis\\insights.py",
+      "size": 4693
     },
     {
-      "path": "scripts\\test.ts",
-      "size": 1091
+      "path": "src\\eba_benchmarking\\config.py",
+      "size": 1397
     },
     {
-      "path": "src\\adapters\\mcp-server.ts",
-      "size": 4912
+      "path": "src\\eba_benchmarking\\data\\assets.py",
+      "size": 4177
     },
     {
-      "path": "src\\adapters\\mcp.ts",
-      "size": 2197
+      "path": "src\\eba_benchmarking\\data\\asset_quality.py",
+      "size": 2010
     },
     {
-      "path": "src\\adapters\\pi.ts",
-      "size": 3288
+      "path": "src\\eba_benchmarking\\data\\base.py",
+      "size": 10234
     },
     {
-      "path": "src\\config.ts",
-      "size": 656
+      "path": "src\\eba_benchmarking\\data\\benchmarking.py",
+      "size": 37830
     },
     {
-      "path": "src\\core\\builder-orchestrator.ts",
-      "size": 1408
+      "path": "src\\eba_benchmarking\\data\\benchmarking_explorer.py",
+      "size": 2578
     },
     {
-      "path": "src\\core\\engine.ts",
-      "size": 24068
+      "path": "src\\eba_benchmarking\\data\\benchmarking_peers.py",
+      "size": 1969
     },
     {
-      "path": "src\\core\\file-utils.ts",
-      "size": 1175
+      "path": "src\\eba_benchmarking\\data\\benchmarks.py",
+      "size": 1635
     },
     {
-      "path": "src\\core\\governor.ts",
-      "size": 2094
+      "path": "src\\eba_benchmarking\\data\\credit_risk.py",
+      "size": 5563
     },
     {
-      "path": "src\\core\\llama-client.ts",
-      "size": 9445
+      "path": "src\\eba_benchmarking\\data\\custom_metric.py",
+      "size": 1270
     },
     {
-      "path": "src\\core\\model-registry.ts",
-      "size": 6402
+      "path": "src\\eba_benchmarking\\data\\data_utils.py",
+      "size": 3403
     },
     {
-      "path": "src\\core\\peltast-orchestrator.ts",
-      "size": 1083
+      "path": "src\\eba_benchmarking\\data\\db_manager.py",
+      "size": 2646
     },
     {
-      "path": "src\\core\\scout.ts",
-      "size": 4451
+      "path": "src\\eba_benchmarking\\data\\db_utils.py",
+      "size": 909
     },
     {
-      "path": "src\\core\\slinger-orchestrator.ts",
-      "size": 6197
+      "path": "src\\eba_benchmarking\\data\\generic.py",
+      "size": 5793
     },
     {
-      "path": "src\\core\\text-utils.ts",
-      "size": 699
+      "path": "src\\eba_benchmarking\\data\\liabilities.py",
+      "size": 9727
     },
     {
-      "path": "src\\core\\types.ts",
-      "size": 575
+      "path": "src\\eba_benchmarking\\data\\liquidity.py",
+      "size": 1942
     },
     {
-      "path": "test-slinger.ts",
-      "size": 2628
+      "path": "src\\eba_benchmarking\\data\\market.py",
+      "size": 4601
     },
     {
-      "path": "USAGE.md",
-      "size": 2266
+      "path": "src\\eba_benchmarking\\data\\market_av.py",
+      "size": 6622
     },
     {
-      "path": "~\\.pi\\agent\\extensions\\helots.ts",
-      "size": 1469
+      "path": "src\\eba_benchmarking\\data\\market_risk.py",
+      "size": 4475
+    },
+    {
+      "path": "src\\eba_benchmarking\\data\\metrics_explorer.py",
+      "size": 546
+    },
+    {
+      "path": "src\\eba_benchmarking\\data\\pillar3_mappings.py",
+      "size": 8333
+    },
+    {
+      "path": "src\\eba_benchmarking\\data\\profitability.py",
+      "size": 14321
+    },
+    {
+      "path": "src\\eba_benchmarking\\data\\solvency.py",
+      "size": 11485
+    },
+    {
+      "path": "src\\eba_benchmarking\\data\\sovereign.py",
+      "size": 5856
+    },
+    {
+      "path": "src\\eba_benchmarking\\data\\__init__.py",
+      "size": 1284
+    },
+    {
+      "path": "src\\eba_benchmarking\\debugger.py",
+      "size": 1760
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\db_init.py",
+      "size": 14914
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\fetchers\\add_region.py",
+      "size": 877
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\fetchers\\base_rates.py",
+      "size": 4590
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\fetchers\\bog.py",
+      "size": 9193
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\fetchers\\bog_connector.py",
+      "size": 4841
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\fetchers\\collect_data.py",
+      "size": 2259
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\fetchers\\ecb_markets.py",
+      "size": 5188
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\fetchers\\ecb_stats.py",
+      "size": 4731
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\fetchers\\lending_spreads.py",
+      "size": 4493
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\fetchers\\macro.py",
+      "size": 7009
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\fetchers\\market_data.py",
+      "size": 1308
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\fetchers\\save_tickers.py",
+      "size": 775
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\fetchers\\tickers.py",
+      "size": 1513
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\fetchers\\ticker_hunt.py",
+      "size": 2000
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\parsers\\base.py",
+      "size": 4874
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\parsers\\common.py",
+      "size": 8738
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\parsers\\excel.py",
+      "size": 11841
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\parsers\\kri.py",
+      "size": 2593
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\parsers\\map_kris.py",
+      "size": 1505
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\parsers\\ocr_utils.py",
+      "size": 1430
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\parsers\\pdf_blueprint.py",
+      "size": 32033
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\parsers\\pdf_enhanced.py",
+      "size": 44728
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\parsers\\tr_cre.py",
+      "size": 1820
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\parsers\\tr_oth.py",
+      "size": 1881
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\parsers\\tr_rest.py",
+      "size": 5451
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\parsers\\unified.py",
+      "size": 26428
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\pipeline.py",
+      "size": 3497
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\processors\\classify_bm.py",
+      "size": 3203
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\processors\\classify_size.py",
+      "size": 2627
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\processors\\cleanup_db.py",
+      "size": 1617
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\processors\\gen_com_names.py",
+      "size": 4342
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\processors\\__init__.py",
+      "size": 0
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\refine_tickers.py",
+      "size": 2911
+    },
+    {
+      "path": "src\\eba_benchmarking\\ingestion\\sync_bank_metadata.py",
+      "size": 2297
+    },
+    {
+      "path": "src\\eba_benchmarking\\plotting\\asset_quality.py",
+      "size": 2747
+    },
+    {
+      "path": "src\\eba_benchmarking\\plotting\\basic.py",
+      "size": 10068
+    },
+    {
+      "path": "src\\eba_benchmarking\\plotting\\market.py",
+      "size": 2175
+    },
+    {
+      "path": "src\\eba_benchmarking\\plotting\\profitability.py",
+      "size": 18477
+    },
+    {
+      "path": "src\\eba_benchmarking\\plotting\\solvency.py",
+      "size": 13211
+    },
+    {
+      "path": "src\\eba_benchmarking\\plotting\\sovereign.py",
+      "size": 19667
+    },
+    {
+      "path": "src\\eba_benchmarking\\plotting\\structure.py",
+      "size": 11276
+    },
+    {
+      "path": "src\\eba_benchmarking\\plotting\\__init__.py",
+      "size": 1319
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\assets.py",
+      "size": 4470
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\asset_quality.py",
+      "size": 7878
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\benchmarking_dashboard.py",
+      "size": 16122
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\country_bench.py",
+      "size": 2876
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\credit_risk.py",
+      "size": 7866
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\generic.py",
+      "size": 2434
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\insights.py",
+      "size": 1832
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\liabilities.py",
+      "size": 4465
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\liquidity.py",
+      "size": 2846
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\market_data.py",
+      "size": 16147
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\market_risk.py",
+      "size": 5842
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\overview.py",
+      "size": 10102
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\profitability.py",
+      "size": 9232
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\rwa.py",
+      "size": 7139
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\solvency.py",
+      "size": 7025
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\sovereign.py",
+      "size": 7114
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\yields.py",
+      "size": 5032
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\tabs\\__init__.py",
+      "size": 0
+    },
+    {
+      "path": "src\\eba_benchmarking\\ui\\__init__.py",
+      "size": 0
+    },
+    {
+      "path": "src\\eba_benchmarking\\utils.py",
+      "size": 3138
+    },
+    {
+      "path": "src\\eba_benchmarking\\__init__.py",
+      "size": 0
+    },
+    {
+      "path": "src\\p3_explorer.py",
+      "size": 19644
+    },
+    {
+      "path": "src\\__init__.py",
+      "size": 0
+    },
+    {
+      "path": "`src\\core\\engine.ts`",
+      "size": 655
     }
   ]
 }

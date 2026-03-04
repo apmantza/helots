@@ -16,7 +16,7 @@ export default function (pi: ExtensionAPI) {
         apiKey: process.env.HELOT_API_KEY || "",
         denseModel: process.env.HELOT_DENSE_MODEL || "Qwen/Qwen3.5-27B",
         moeModel: process.env.HELOT_MOE_MODEL || "Qwen/Qwen3.5-35B-A3B",
-        stateDir: process.env.HELOT_STATE_DIR || ".helot-state",
+        stateDir: process.env.HELOT_STATE_DIR || ".helots",
         projectRoot: process.cwd()
     };
 

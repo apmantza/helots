@@ -1,0 +1,208 @@
+{
+  "files": [
+    {
+      "path": "...",
+      "size": 751
+    },
+    {
+      "path": ".agents\\workflows\\helots.md",
+      "size": 1837
+    },
+    {
+      "path": ".claude\\settings.local.json",
+      "size": 334
+    },
+    {
+      "path": ".gitignore",
+      "size": 353
+    },
+    {
+      "path": "agents.md",
+      "size": 1691
+    },
+    {
+      "path": "antigravity-connector.ts",
+      "size": 8497
+    },
+    {
+      "path": "CLAUDE.md",
+      "size": 1923
+    },
+    {
+      "path": "debug-helots-live.ts",
+      "size": 4324
+    },
+    {
+      "path": "debug-helots.cjs",
+      "size": 4967
+    },
+    {
+      "path": "debug-helots.ts",
+      "size": 4674
+    },
+    {
+      "path": "debug-run.mjs",
+      "size": 3730
+    },
+    {
+      "path": "debug-slinger.mjs",
+      "size": 3687
+    },
+    {
+      "path": "devoptions.md",
+      "size": 15134
+    },
+    {
+      "path": "docs\\gorgo_rename_plan.md",
+      "size": 1638
+    },
+    {
+      "path": "docs\\helot_doctrine.md",
+      "size": 1994
+    },
+    {
+      "path": "docs\\walkthrough.md",
+      "size": 2550
+    },
+    {
+      "path": "helot-verification.txt",
+      "size": 4236
+    },
+    {
+      "path": "index.ts",
+      "size": 3488
+    },
+    {
+      "path": "mcp-client.ts",
+      "size": 10093
+    },
+    {
+      "path": "package-lock.json",
+      "size": 174980
+    },
+    {
+      "path": "package.json",
+      "size": 602
+    },
+    {
+      "path": "README.md",
+      "size": 3638
+    },
+    {
+      "path": "restart-mcp.bat",
+      "size": 431
+    },
+    {
+      "path": "scripts\\gorgo_run.ts",
+      "size": 2092
+    },
+    {
+      "path": "scripts\\hardening_run.ts",
+      "size": 973
+    },
+    {
+      "path": "scripts\\review_swarm.ts",
+      "size": 1057
+    },
+    {
+      "path": "scripts\\test.ts",
+      "size": 1091
+    },
+    {
+      "path": "SPARTA_DASHBOARD_PLAN.md",
+      "size": 9328
+    },
+    {
+      "path": "src\\adapters\\mcp-server.ts",
+      "size": 11302
+    },
+    {
+      "path": "src\\adapters\\mcp.ts",
+      "size": 2196
+    },
+    {
+      "path": "src\\adapters\\pi.ts",
+      "size": 3283
+    },
+    {
+      "path": "src\\config.ts",
+      "size": 886
+    },
+    {
+      "path": "src\\core\\builder-orchestrator.ts",
+      "size": 1408
+    },
+    {
+      "path": "src\\core\\engine.ts",
+      "size": 82839
+    },
+    {
+      "path": "src\\core\\file-utils.ts",
+      "size": 1205
+    },
+    {
+      "path": "src\\core\\governor.ts",
+      "size": 8442
+    },
+    {
+      "path": "src\\core\\grep-utils.ts",
+      "size": 4574
+    },
+    {
+      "path": "src\\core\\llama-client.ts",
+      "size": 11755
+    },
+    {
+      "path": "src\\core\\model-registry.ts",
+      "size": 11141
+    },
+    {
+      "path": "src\\core\\peltast-orchestrator.ts",
+      "size": 1047
+    },
+    {
+      "path": "src\\core\\persona-utils.ts",
+      "size": 1135
+    },
+    {
+      "path": "src\\core\\scout.ts",
+      "size": 5094
+    },
+    {
+      "path": "src\\core\\sparta-record.ts",
+      "size": 3312
+    },
+    {
+      "path": "src\\core\\text-utils.ts",
+      "size": 1307
+    },
+    {
+      "path": "src\\core\\types.ts",
+      "size": 1725
+    },
+    {
+      "path": "start-mcp.bat",
+      "size": 71
+    },
+    {
+      "path": "test-slinger.ts",
+      "size": 2628
+    },
+    {
+      "path": "USAGE.md",
+      "size": 5374
+    },
+    {
+      "path": "watch.bat",
+      "size": 212
+    },
+    {
+      "path": "watch.mjs",
+      "size": 16831
+    },
+    {
+      "path": "~\\.pi\\agent\\extensions\\helots.ts",
+      "size": 1469
+    }
+  ]
+}
