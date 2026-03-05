@@ -8,6 +8,7 @@ import { execSync, spawnSync } from 'child_process';
 import { stripThinking } from './text-utils.js';
 import { nodeGrepCommand } from './grep-utils.js';
 import { Aristomenis } from './governor.js';
+import { LspManager } from './lsp-client.js';
 import { Scout } from './scout.js';
 import { Builder } from './builder-orchestrator.js';
 import { Peltast } from './peltast-orchestrator.js';
@@ -162,6 +163,7 @@ export class HelotEngine {
   private currentPhase: string = "Setup";
   private currentTaskTitle: string = "";
   private tools: ToolSet = { python: 'python', ruff: null, pytest: null };
+  private lspManager: LspManager | null = null;
 
   constructor(config: HelotConfig) {
     this.governor = new Aristomenis(config);
@@ -462,6 +464,30 @@ Do NOT echo these instructions. Do NOT write placeholder text like "(complete fi
           }
           continue;
         }
+      }
+
+      // --- LSP pre-flight (type-check before disk write) ---
+      if (filesToProcess.length > 0 && lang === 'typescript') {
+        if (!this.lspManager) this.lspManager = new LspManager(process.cwd());
+        const lspErrors: string[] = [];
+        for (const { filePath, content } of filesToProcess) {
+          const diags = await this.lspManager.diagnose(filePath, content);
+          if (diags && diags.length > 0) {
+            const errors = diags.filter(d => d.severity === 'error');
+            if (errors.length > 0) {
+              lspErrors.push(`Type errors in ${filePath}:`);
+              errors.slice(0, 8).forEach(e =>
+                lspErrors.push(`  Line ${e.line + 1}:${e.col + 1} — ${e.message}${e.code ? ` [${e.code}]` : ''}`)
+              );
+            }
+          }
+        }
+        if (lspErrors.length > 0) {
+          onUpdate?.({ text: `⚠️ LSP: type errors detected — retrying Builder without disk write` });
+          lastPeltastFeedback = `Fix these type errors before resubmitting:\n${lspErrors.join('\n')}`;
+          continue;
+        }
+        onUpdate?.({ text: `✓ LSP: type-check passed` });
       }
 
       // --- Backup originals ---
@@ -870,13 +896,19 @@ Rewrite the task spec to fix the failure above.`;
       this.governor.saveState();
 
       if (result.escalation) {
+        this.lspManager?.dispose();
+        this.lspManager = null;
         return `[ESCALATION] ${result.escalation}`;
       }
       if (!result.passed) {
+        this.lspManager?.dispose();
+        this.lspManager = null;
         return `Pipeline halted at Task ${task.id}: ${task.description}`;
       }
     }
 
+    this.lspManager?.dispose();
+    this.lspManager = null;
     return null; // null = success, all tasks passed
   }
 

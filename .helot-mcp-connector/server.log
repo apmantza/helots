@@ -2289,3 +2289,72 @@ Helots MCP Server running on stdio
 [Hoplite Update] ✏️ Hoplite editing C:\Users\R3LiC\.claude\skills\helots\SKILL.md...
 [Hoplite Update] ✅ Hoplite | Agis | 82.5t/s | 876 gen + 1336 prompt tokens
 [Hoplite Update] ✅ Hoplite: C:\Users\R3LiC\.claude\skills\helots\SKILL.md written (98 → 95 lines)
+[Slinger Update] 🏹 Slinger Pausanias deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Pausanias | 85.2t/s | 37 gen + 637 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 84.3t/s | 46 gen + 2167 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 83.8t/s | 46 gen + 2766 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 83.9t/s | 46 gen + 3333 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 87.5t/s | 58 gen + 4090 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 86.0t/s | 38 gen + 5634 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 81.4t/s | 46 gen + 6318 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 79.3t/s | 952 gen + 7070 prompt tokens
+[Slinger Update] 🏹 Slinger Gylippus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Gylippus | 84.2t/s | 41 gen + 607 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 82.2t/s | 40 gen + 1626 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 83.4t/s | 41 gen + 2571 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 83.1t/s | 42 gen + 3753 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 82.7t/s | 40 gen + 5286 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 74.1t/s | 4813 gen + 6231 prompt tokens
+[Slinger Update] 🏹 Slinger Teleutias deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Teleutias | 87.4t/s | 41 gen + 643 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 85.9t/s | 41 gen + 1428 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 86.7t/s | 41 gen + 1814 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 85.6t/s | 41 gen + 2742 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 86.7t/s | 41 gen + 3128 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 85.5t/s | 41 gen + 3756 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 88.3t/s | 51 gen + 4896 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 81.3t/s | 1484 gen + 4967 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Agesilaus | 84.6t/s | 36 gen + 623 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 85.1t/s | 44 gen + 798 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 85.9t/s | 45 gen + 891 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 83.9t/s | 46 gen + 949 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 84.6t/s | 52 gen + 1155 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 86.1t/s | 46 gen + 1268 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 85.5t/s | 46 gen + 1868 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 76.3t/s | 581 gen + 2821 prompt tokens
+[Slinger Update] 🏹 Slinger Lysander deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Lysander | 87.3t/s | 33 gen + 569 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 87.4t/s | 35 gen + 827 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 83.5t/s | 183 gen + 879 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Agesilaus | 83.6t/s | 41 gen + 558 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 83.7t/s | 41 gen + 931 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 79.9t/s | 435 gen + 1305 prompt tokens
+[Slinger Update] 🏹 Slinger Aristomenis deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Aristomenis | 84.6t/s | 36 gen + 560 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 86.8t/s | 33 gen + 749 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 83.2t/s | 41 gen + 896 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 81.9t/s | 41 gen + 1053 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 83.3t/s | 50 gen + 1244 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 87.4t/s | 37 gen + 1438 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 83.1t/s | 50 gen + 1606 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 82.0t/s | 695 gen + 1832 prompt tokens
+[Slinger Update] 🏹 Slinger Aristomenis deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Aristomenis | 75.9t/s | 33 gen + 21862 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 68.0t/s | 651 gen + 21980 prompt tokens
+[Slinger Update] 🏹 Slinger Teleutias deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Teleutias | 75.9t/s | 34 gen + 21850 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 72.6t/s | 41 gen + 21911 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 63.5t/s | 260 gen + 22012 prompt tokens
