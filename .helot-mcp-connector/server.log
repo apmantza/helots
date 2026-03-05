@@ -2391,3 +2391,25 @@ Helots MCP Server running on stdio
 [Hoplite Update] ✏️ Hoplite editing C:/Users/R3LiC/.claude/hooks/skill-eval-reference.md...
 [Hoplite Update] ✅ Hoplite | Agis | 67.4t/s | 537 gen + 327 prompt tokens
 [Hoplite Update] ✅ Hoplite: C:/Users/R3LiC/.claude/hooks/skill-eval-reference.md written (0 → 109 lines)
+[Slinger Update] 🏹 Slinger Teleutias deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 45536 chars × 2 file(s)
+[Slinger Update] 📖 Slinger preloading 2 file(s)...
+[Slinger Update] ✅ Slinger | Teleutias | 77.5t/s | 44 gen + 14930 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 77.4t/s | 44 gen + 14963 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 78.0t/s | 44 gen + 14996 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 75.5t/s | 1379 gen + 15029 prompt tokens
+[Slinger Update] 🏹 Slinger Brasidas deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Brasidas | 75.3t/s | 56 gen + 21941 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 75.7t/s | 8190 gen + 21990 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 75.4t/s | 8190 gen + 21998 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 75.4t/s | 8190 gen + 22005 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 73.1t/s | 41 gen + 22013 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 71.0t/s | 41 gen + 22179 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 69.8t/s | 914 gen + 22723 prompt tokens
+[Slinger Update] 🏹 Slinger Archidamus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Archidamus | 74.9t/s | 62 gen + 21939 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 63.2t/s | 102 gen + 22006 prompt tokens

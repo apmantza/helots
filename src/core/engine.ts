@@ -9,6 +9,7 @@ import { stripThinking } from './text-utils.js';
 import { nodeGrepCommand } from './grep-utils.js';
 import { Aristomenis } from './governor.js';
 import { LspManager } from './lsp-client.js';
+import { SkillInjector } from './skill-injector.js';
 import { Scout } from './scout.js';
 import { Builder } from './builder-orchestrator.js';
 import { Peltast } from './peltast-orchestrator.js';
@@ -165,6 +166,7 @@ export class HelotEngine {
   private currentTaskTitle: string = "";
   private tools: ToolSet = { python: 'python', ruff: null, pytest: null };
   private lspManager: LspManager | null = null;
+  private skillInjector: SkillInjector | null = null;
 
   constructor(config: HelotConfig) {
     this.governor = new Aristomenis(config);
@@ -328,6 +330,9 @@ export class HelotEngine {
         }
       }
 
+      if (!this.skillInjector) this.skillInjector = new SkillInjector(process.cwd());
+      const skillContext = this.skillInjector.match(task.file ?? '', task.description, lang);
+
       let builderSystem: string;
       if (isSurgical) {
         // SURGICAL MODE: Builder sees the full file (for complete context across all functions),
@@ -349,7 +354,7 @@ RULES:
 - Output ONLY the functions that change. Do NOT output imports, the full file, or unchanged functions.
 - Never use "..." placeholders — write complete, working code.
 - You MUST output a block for every function the task requires changing (may be more than one).
-${retryContext}
+${skillContext ? `\nDOMAIN PATTERNS (follow these conventions):\n${skillContext}\n` : ''}${retryContext}
 IMPLEMENTATION CONTEXT (signatures and patterns to use):
 ${taskContext.slice(0, 2000)}
 
@@ -372,7 +377,7 @@ SPARTAN BUILDER GUIDELINES:
 3. COMPLETENESS: Output the COMPLETE file — never truncate, never use "..." placeholders.
 4. Your response MUST start immediately with the file header — no preamble, no explanation.
 5. Output budget: ~${builderMaxTokensOverride ?? 8192} tokens — write the COMPLETE file. No stubs, no ellipsis, no "// TODO". Every function must be fully implemented.
-${retryContext}
+${skillContext ? `\nDOMAIN PATTERNS (follow these conventions):\n${skillContext}\n` : ''}${retryContext}
 IMPLEMENTATION CONTEXT (signatures and patterns to use):
 ${taskContext.slice(0, 2000)}
 
