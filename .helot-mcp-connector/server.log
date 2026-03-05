@@ -2358,3 +2358,21 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Teleutias | 75.9t/s | 34 gen + 21850 prompt tokens
 [Slinger Update] ✅ Slinger | Teleutias | 72.6t/s | 41 gen + 21911 prompt tokens
 [Slinger Update] ✅ Slinger | Teleutias | 63.5t/s | 260 gen + 22012 prompt tokens
+[Slinger Update] 🏹 Slinger Brasidas deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Brasidas | 85.6t/s | 449 gen + 2605 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Agesilaus | 87.4t/s | 28 gen + 2622 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 85.5t/s | 28 gen + 4146 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 84.7t/s | 36 gen + 5670 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 79.6t/s | 1895 gen + 6432 prompt tokens
+[Hoplite Update] ✏️ Hoplite editing feature-ideas.md...
+[Hoplite Update] ✅ Hoplite | Brasidas | 83.0t/s | 1110 gen + 1386 prompt tokens
+[Hoplite Update] ✅ Hoplite: feature-ideas.md written (0 → 116 lines)
+[Slinger Update] 🏹 Slinger Aristomenis deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 45536 chars × 2 file(s)
+[Slinger Update] 📖 Slinger preloading 2 file(s)...
+[Slinger Update] ✅ Slinger | Aristomenis | 81.7t/s | 868 gen + 5196 prompt tokens
