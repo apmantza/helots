@@ -19,12 +19,13 @@ import { HelotTask, HelotState, HelotContext } from './types.js';
 export type { HelotTask, HelotState, HelotContext };
 
 /** Language kind for surgical mode dispatch */
-type LangKind = 'python' | 'typescript' | 'unknown';
+type LangKind = 'python' | 'typescript' | 'rust' | 'unknown';
 
 /** Detect language from file extension */
 function detectLang(filePath: string): LangKind {
   if (filePath.endsWith('.py')) return 'python';
   if (/\.(ts|tsx|js|jsx|mjs|cjs)$/.test(filePath)) return 'typescript';
+  if (filePath.endsWith('.rs')) return 'rust';
   return 'unknown';
 }
 
@@ -467,7 +468,7 @@ Do NOT echo these instructions. Do NOT write placeholder text like "(complete fi
       }
 
       // --- LSP pre-flight (type-check before disk write) ---
-      if (filesToProcess.length > 0 && lang === 'typescript') {
+      if (filesToProcess.length > 0 && (lang === 'typescript' || lang === 'python' || lang === 'rust')) {
         if (!this.lspManager) this.lspManager = new LspManager(process.cwd());
         const lspErrors: string[] = [];
         for (const { filePath, content } of filesToProcess) {

@@ -2376,3 +2376,15 @@ Helots MCP Server running on stdio
 [Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 45536 chars × 2 file(s)
 [Slinger Update] 📖 Slinger preloading 2 file(s)...
 [Slinger Update] ✅ Slinger | Aristomenis | 81.7t/s | 868 gen + 5196 prompt tokens
+[Slinger Update] 🏹 Slinger Teleutias deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 45536 chars × 2 file(s)
+[Slinger Update] 📖 Slinger preloading 2 file(s)...
+[Slinger Update] ✅ Slinger | Teleutias | 76.8t/s | 44 gen + 14706 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 74.9t/s | 56 gen + 14799 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 73.4t/s | 405 gen + 14865 prompt tokens
+[Slinger Update] 🏹 Slinger Pausanias deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Pausanias | 75.3t/s | 33 gen + 21898 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 73.3t/s | 40 gen + 21951 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 66.5t/s | 485 gen + 22124 prompt tokens

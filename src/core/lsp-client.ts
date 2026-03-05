@@ -52,6 +52,7 @@ const REGISTRY: Record<string, ServerDef> = {
   '.js':  { command: 'typescript-language-server', args: ['--stdio'], languageId: 'javascript' },
   '.jsx': { command: 'typescript-language-server', args: ['--stdio'], languageId: 'javascriptreact' },
   '.py':  { command: 'pylsp', args: [], languageId: 'python' },
+  '.rs':  { command: 'rust-analyzer', args: [], languageId: 'rust' },
 };
 
 // Extensions that can fall back to CLI tools if LSP server is unavailable
