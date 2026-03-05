@@ -9,7 +9,7 @@ export interface HelotConfig {
     thinkingEnabled?: boolean;      // Default true. Set false for non-thinking models — strips all thinking params from every profile.
 }
 
-export type TaskRole = 'Aristomenis' | 'Psiloi' | 'Slinger' | 'Governor' | 'Gatherer';
+export type TaskRole = 'Aristomenis' | 'Psiloi' | 'Slinger' | 'Gatherer';
 
 export interface SamplingProfile {
     temperature: number;

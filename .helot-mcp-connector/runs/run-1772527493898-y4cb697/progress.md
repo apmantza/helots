@@ -1,1 +1,1 @@
-- [ ] 1. Add GET /api/events-history route to startDashboard that returns all events.jsonl lines as a JSON array (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
+- [ ] 1. CREATE peltast-game.html — complete single-file Asteroids-style game (Target: peltast-game.html, Symbol: N/A, Action: EDIT) [DEPENDS: none]

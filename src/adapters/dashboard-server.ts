@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
 import { exec } from 'child_process';
+import { fileURLToPath } from 'url';
 import { SpartaRecordManager } from '../core/sparta-record.js';
 import { HelotEngine } from '../core/engine.js';
 
@@ -24,7 +25,7 @@ function serveSSE(res: http.ServerResponse, logFile: string, intervalMs = 200): 
     'Connection': 'keep-alive',
     'Access-Control-Allow-Origin': '*',
   });
-  let offset = fs.existsSync(logFile) ? fs.statSync(logFile).size : 0;
+  let offset = 0;
   const ping = setInterval(() => { try { res.write(':ping\n\n'); } catch {} }, 15000);
   const poll = setInterval(() => {
     if (!fs.existsSync(logFile)) return;
@@ -43,7 +44,8 @@ function serveSSE(res: http.ServerResponse, logFile: string, intervalMs = 200): 
 
 export function startDashboard(engine: HelotEngine, stateDir: string, port = 7771): void {
   const spartaRecord = new SpartaRecordManager(stateDir);
-  const htmlPath = path.resolve(process.cwd(), 'src', 'dashboard', 'index.html');
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+  const htmlPath = path.resolve(__dirname, '..', 'dashboard', 'index.html');
 
   const server = http.createServer((req, res) => {
     const url = new URL(req.url || '/', `http://localhost:${port}`);

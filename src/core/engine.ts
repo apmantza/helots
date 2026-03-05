@@ -7,7 +7,7 @@ import { getAllFiles } from './file-utils.js';
 import { execSync, spawnSync } from 'child_process';
 import { stripThinking } from './text-utils.js';
 import { nodeGrepCommand } from './grep-utils.js';
-import { Governor } from './governor.js';
+import { Aristomenis } from './governor.js';
 import { Scout } from './scout.js';
 import { Builder } from './builder-orchestrator.js';
 import { Peltast } from './peltast-orchestrator.js';
@@ -152,7 +152,7 @@ interface ToolSet {
 }
 
 export class HelotEngine {
-  private governor: Governor;
+  private governor: Aristomenis;
   private scout: Scout;
   private builder: Builder;
   private peltast: Peltast;
@@ -164,7 +164,7 @@ export class HelotEngine {
   private tools: ToolSet = { python: 'python', ruff: null, pytest: null };
 
   constructor(config: HelotConfig) {
-    this.governor = new Governor(config);
+    this.governor = new Aristomenis(config);
     this.scout = new Scout(config);
     this.builder = new Builder(config);
     this.peltast = new Peltast(config);
@@ -306,6 +306,25 @@ export class HelotEngine {
       const targetHeader = task.file ? `### [${task.file}]` : `### [output.ts]`;
       const fence = codeFenceFor(lang, task.file || '');
 
+      const isCreateTask = task.file ? !existsSync(resolve(task.file)) : false;
+      const { maxTokens: serverCtx } = await this.client.getProps();
+      let builderMaxTokensOverride: number | undefined;
+      if (!isSurgical && serverCtx > 0) {
+        if (isCreateTask) {
+          builderMaxTokensOverride = Math.min(Math.floor(serverCtx * 0.65), 24576);
+          onUpdate?.({ text: `📐 Builder max_tokens → ${builderMaxTokensOverride} (CREATE, server ctx: ${serverCtx})` });
+        } else if (contextContent) {
+          const fileLines = contextContent.split('\n').length;
+          const estimatedOutputTokens = Math.ceil(fileLines * 15);
+          const safeMax = serverCtx - 4096;
+          const dynamicBudget = Math.min(Math.max(estimatedOutputTokens, 8192), safeMax);
+          if (dynamicBudget > 8192) {
+            builderMaxTokensOverride = dynamicBudget;
+            onUpdate?.({ text: `📐 Builder max_tokens → ${dynamicBudget} (file: ${fileLines} lines, server ctx: ${serverCtx})` });
+          }
+        }
+      }
+
       let builderSystem: string;
       if (isSurgical) {
         // SURGICAL MODE: Builder sees the full file (for complete context across all functions),
@@ -349,6 +368,7 @@ SPARTAN BUILDER GUIDELINES:
 2. ${symbolInstruction}
 3. COMPLETENESS: Output the COMPLETE file — never truncate, never use "..." placeholders.
 4. Your response MUST start immediately with the file header — no preamble, no explanation.
+5. Output budget: ~${builderMaxTokensOverride ?? 8192} tokens — write the COMPLETE file. No stubs, no ellipsis, no "// TODO". Every function must be fully implemented.
 ${retryContext}
 IMPLEMENTATION CONTEXT (signatures and patterns to use):
 ${taskContext.slice(0, 2000)}
@@ -370,23 +390,7 @@ Do NOT echo these instructions. Do NOT write placeholder text like "(complete fi
       // - Full-file EDIT (file exists) → INSTRUCT_CODE (model must reproduce the whole file; thinking
       //   causes the model to burn token budget planning, then EOS without writing code)
       // - Full-file CREATE (file absent) → THINKING_CODE (new file benefits from structural planning)
-      const isCreateTask = task.file ? !existsSync(resolve(task.file)) : false;
       const builderProfile = (isSurgical || !isCreateTask) ? "INSTRUCT_CODE" : "THINKING_CODE";
-
-      // Dynamic max_tokens for full-file mode: scale budget with file size to prevent mid-file truncation.
-      // Default profile max_tokens (8192) only covers ~640 lines; large files need more.
-      // Only applies to full-file mode (surgical outputs only a function body, well within 8192).
-      let builderMaxTokensOverride: number | undefined;
-      if (!isSurgical && contextContent && this.serverMaxTokens > 0) {
-        const fileLines = contextContent.split('\n').length;
-        const estimatedOutputTokens = Math.ceil(fileLines * 15); // ~15 tokens/line is conservative
-        const safeMax = this.serverMaxTokens - 4096; // leave ~4K tokens headroom for prompt
-        const dynamicBudget = Math.min(Math.max(estimatedOutputTokens, 8192), safeMax);
-        if (dynamicBudget > 8192) {
-          builderMaxTokensOverride = dynamicBudget;
-          onUpdate?.({ text: `📐 Builder max_tokens → ${dynamicBudget} (file: ${fileLines} lines, server ctx: ${this.serverMaxTokens})` });
-        }
-      }
 
       writeTrace({ phase: 'builder', status: 'start', taskId: task.id, tryNum: tryCount });
       const builderRaw = await this.runSubagent(
@@ -1053,6 +1057,8 @@ TASK FORMAT — CRITICAL: every task MUST start with "- [ ]" (hyphen space brack
 
 SYMBOL RULE — CRITICAL: Symbol must be an EXISTING function or class name from the VALID SYMBOLS list in your user message. Choose from that list ONLY — do not invent or guess names. If you need to create a new symbol, use Action: CREATE (no Symbol field needed).
 
+CREATE RULE: For new file creation (Action: CREATE), emit ONE task only. Do NOT decompose into skeleton + EDIT steps — the Builder writes the complete file in a single shot with a generous token budget.
+
 FORBIDDEN TASK TYPES — NEVER generate tasks like these (they are not executable by the Builder):
 - "Open <file>" / "Read <file>" / "Save <file>" — the Builder reads/writes automatically
 - "Locate <pattern>" / "Find all instances of..." / "Search for..." — not a code change
@@ -1124,7 +1130,7 @@ RESPOND ONLY WITH THE CHECKLIST. DO NOT USE PLACEHOLDERS.`;
   async executeSlinger(researchTask: string, targetFiles: string[] | undefined, onUpdate?: (data: any) => void): Promise<string> {
     const runId = this.governor.getRunId();
     const { modelName, maxTokens } = await this.client.getProps();
-    const slingerPersona = pickName(runId, "Slinger");
+    const slingerPersona = pickName(Date.now().toString(), "Slinger");
     const isWindows = process.platform === 'win32';
 
     // Derive the target project root from targetFiles (may differ from process.cwd())
@@ -1252,6 +1258,7 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
       return report;
     };
 
+    this.currentPhase = 'Slinger';
     for (let turn = 1; turn <= 8; turn++) {
       const turnsLeft = 8 - turn;
       const isFinalTurn = turnsLeft === 0;
@@ -1599,7 +1606,7 @@ ${modifications}`;
     const pressure = finalMetrics.maxTokens ? Math.round((finalMetrics.promptTokens / finalMetrics.maxTokens) * 100) : 0;
     const pressureTag = pressure > 70 ? ` ⚠️ ctx:${pressure}%` : "";
     onUpdate?.({ text: `✅ ${this.currentPhase} | ${name} | ${finalMetrics.genTps.toFixed(1)}t/s | ${finalMetrics.genTokens} gen + ${finalMetrics.promptTokens} prompt tokens${pressureTag}` });
-    this.writeEvent({ type: 'subagent_done', phase: this.currentPhase, name, tps: finalMetrics.genTps, genTokens: finalMetrics.genTokens, promptTokens: finalMetrics.promptTokens, ctxPct: pressure });
+    this.writeEvent({ type: 'subagent_done', phase: this.currentPhase, role, name, tps: finalMetrics.genTps, genTokens: finalMetrics.genTokens, promptTokens: finalMetrics.promptTokens, ctxPct: pressure });
 
     return fullResponse;
   }
@@ -1647,8 +1654,10 @@ Rules:
       if (budget > 4096) maxTokensOverride = budget;
     }
 
+    this.currentPhase = 'Hoplite';
+    const hoplitePersona = pickName(Date.now().toString(), 'Hoplite');
     const raw = await this.runSubagent(
-      'Builder', 'Hoplite', systemPrompt, userPrompt,
+      'Hoplite', hoplitePersona.name, systemPrompt, userPrompt,
       onUpdate, { in: 0, out: 0, tps: 0 }, 'INSTRUCT_CODE', modelName, undefined, maxTokensOverride
     );
 

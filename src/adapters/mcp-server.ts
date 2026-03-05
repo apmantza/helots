@@ -150,7 +150,7 @@ const TOOLS: Tool[] = [
     },
     {
         name: "helot_run",
-        description: "Delegates implementation to the Psiloi subagent swarm. Pass structured `tasks` (frontier-planned, bypasses Aristomenis) or `implementationPlan` prose (Aristomenis plans). Prefer `tasks` for reliability.",
+        description: "Delegates implementation to the Psiloi subagent swarm. Pass structured `tasks` (frontier-planned). ALWAYS use `tasks` — `implementationPlan` is deprecated and will be removed.",
         inputSchema: {
             type: "object",
             properties: {
@@ -160,11 +160,11 @@ const TOOLS: Tool[] = [
                 },
                 implementationPlan: {
                     type: "string",
-                    description: "Prose plan for Aristomenis to parse into tasks. Used only when `tasks` is not provided.",
+                    description: "DEPRECATED. Has no effect. Use `tasks` instead.",
                 },
                 tasks: {
                     type: "array",
-                    description: "Structured task list from the frontier. When provided, Aristomenis is bypassed entirely.",
+                    description: "Structured task list from the frontier. Required — always use this.",
                     items: {
                         type: "object",
                         properties: {
@@ -184,7 +184,7 @@ const TOOLS: Tool[] = [
     },
     {
         name: "helot_hoplite",
-        description: "Lightweight file editor for non-code files (markdown, config, docs). Reads the file locally, applies the instruction via LLM, writes the result — no peltast review, no lint. Use for MEMORY.md, README, devoptions.md, and any doc/config update where lint review is irrelevant. Faster than helot_run for pure writing tasks.",
+        description: "Lightweight file editor for non-code files (markdown, config, docs, HTML). Reads the file locally, applies the instruction via LLM, writes the result — no peltast review, no lint. Use for MEMORY.md, README, devoptions.md, index.html, and any doc/config/HTML update where lint review is irrelevant. Faster than helot_run for pure writing tasks.",
         inputSchema: {
             type: "object",
             properties: {
@@ -230,6 +230,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
             const taskSummary = String(args?.taskSummary);
             const implementationPlan = String(args?.implementationPlan ?? '');
             const frontierTasks = Array.isArray(args?.tasks) ? args.tasks as any[] : undefined;
+
+            if (implementationPlan && !frontierTasks) {
+                console.error('[DEPRECATED] implementationPlan is deprecated. Use structured `tasks` instead.');
+            }
 
             const result = await engine.executeHelots(taskSummary, implementationPlan, (data) => {
                 console.error(`[Helot Update] ${data.text}`);

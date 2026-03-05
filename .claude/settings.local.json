@@ -9,7 +9,14 @@
       "mcp__helots__helot_run",
       "mcp__helots__helot_slinger",
       "Bash(python3:*)",
-      "mcp__helots__helot_hoplite"
+      "mcp__helots__helot_hoplite",
+      "Bash(npx tsc:*)",
+      "Bash(./node_modules/.bin/tsc:*)",
+      "Bash(node_modules/typescript/bin/tsc:*)",
+      "WebFetch(domain:npmx.dev)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebSearch"
     ]
   }
 }

@@ -3,138 +3,1861 @@
 --- Builder (Task 1) | Teleutias ---
 
 ```
-export
+<!
+<html
+<head
+<meta
+<title
+<style
+body
+canvas
+#
+#
+</
+</
+<body
+<div
+<div
+<
+<script
+const
+const
+let
+let
+window
+
+const
+window
+window
+
+const
+
+const
+
+const
+  {
+  {
+  {
+];
+
+let
+let
+let
+
+function
   const
   const
-
   const
-    const
-    const
-    res
-
-    if
-      if
-        res
-        res
-      }
-        res
-        res
-      }
-      return
-    }
-
-    if
-      const
-      const
-      req
-      return
-    }
-
-    if
-      const
-      const
-      req
-      return
-    }
-
-    if
-      const
-      const
-      let
-      let
-      try
-        const
-        if
-          const
-          for
-            try
-              const
-              if
-              if
-                local
-                local
-                if
-              }
-            }
-          }
-        }
-      }
-      res
-      res
-      return
-    }
-
-    if
-      try
-        const
-        if
-        const
-          .
-          .
-            const
-            const
-            const
-            return
-          })
-          .
-        res
-        res
-      }
-      return
-    }
-
-    if
-      const
-      if
-      if
-      res
-      res
-      return
-    }
-
-    if
-      try
-        const
-        if
-        const
-        res
-        res
-      }
-      return
-    }
-
-    if
-      let
-      req
-      req
-        try
-          const
-          let
-          if
-            result
-          }
-            result
-          }
-            result
-          }
-          res
-          res
-        }
-          res
-          res
-        }
-      });
-      return
-    }
-
-    res
-    res
-  });
-
-  server
-    process
-    if
-    else
+  enemies
+    x
+    y
+    vx
+    vy
+    radius
+    hp
+    score
+    color
+    shape
+    rotation
+    rot
   });
 }
+
+function
+  for
+    const
+    const
+    particles
+      x
+      vx
+      vy
+      life
+      color
+    });
+  }
+}
+
+function
+  player
+  player
+  player
+  player
+  player
+  player
+  player
+  game
+  game
+  game
+  enemies
+  jav
+  particles
+  document
+  update
+}
+
+function
+  game
+  reset
+  for
+}
+
+function
+  document
+  document
+  document
+}
+
+function
+  if
+
+  if
+  if
+
+  if
+  if
+  if
+    const
+    player
+    player
+    particles
+      x
+      y
+      vx
+      vy
+      life
+      color
+    });
+  }
+
+  player
+  player
+  player
+  player
+
+  if
+  if
+  if
+  if
+
+  if
+    jav
+      x
+      y
+      vx
+      vy
+      life
+    });
+    keys
+  }
+
+  jav
+    j
+    j
+    j
+  });
+  jav
+
+  enemies
+    e
+    e
+    e
+    if
+    if
+    if
+    if
+  });
+
+  jav
+    enemies
+      const
+      const
+      const
+      if
+        e
+        j
+        create
+        if
+          game
+          create
+          if
+            spawn
+            spawn
+          }
+            spawn
+            spawn
+          }
+        }
+      }
+    });
+  });
+  jav
+  enemies
+
+  if
+    game
+    for
+      spawn
+    }
+    player
+  }
+
+  if
+    enemies
+      const
+      const
+      const
+      if
+        game
+        create
+        player
+        player
+        player
+        player
+        player
+        if
+          game
+          document
+          document
+        }
+      }
+    });
+  }
+
+  update
+}
+
+function
+  CT
+  CT
+
+  if
+    CT
+    CT
+
+    if
+      CT
+      CT
+      CT
+      if
+        CT
+        CT
+        CT
+        CT
+        CT
+        CT
+        CT
+      }
+      CT
+    }
+
+    jav
+      CT
+      CT
+      CT
+      CT
+      CT
+      CT
+    });
+
+    enemies
+      CT
+      CT
+      CT
+      CT
+      CT
+      CT
+      if
+        for
+          CT
+        }
+        CT
+      }
+        CT
+        CT
+        CT
+        CT
+        CT
+      }
+        CT
+        CT
+        CT
+        CT
+      }
+      CT
+      CT
+    });
+
+    particles
+      CT
+      CT
+    });
+  }
+}
+
+function
+  update
+  draw
+  request
+}
+
+window
+  document
+  loop
+};
+
+window
+  if
+    start
+  }
+});
+</
+</
+</
+```
+
+--- Peltast (Task 1) | Lysander ---
+
+
+--- Slinger | Agesilaus ---
+
+-
+-
+  -
+  -
+  -
+  -
+  -
+-
+  -
+  -
+  -
+  -
+  -
+-
+  -
+-
+  -
+  -
+
+###
+-
+-
+-
+-
+-
+-
+-
+-
+
+###
+```
+const
+const
+let
+let
+window
+
+const
+window
+window
+```
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+The
+
+###
+C
+
+###
+```
+window
+  if
+    start
+  }
+});
+```
+
+--- Slinger | Pausanias ---
+
+grep
+###
+
+--- Slinger | Pausanias ---
+
+grep
+###
+
+--- Slinger | Pausanias ---
+
+grep
+###
+
+--- Slinger | Pausanias ---
+
+**
+The
+-
+-
+-
+
+**
+The
+-
+-
+-
+-
+
+###
+-
+-
+
+###
+**
+```
+//
+const
+//
+const
+//
+const
+```
+
+**
+```
+//
+try
+try
+
+//
+const
+
+//
+const
+```
+
+--- Slinger | Pausanias ---
+
+Get
+###
+
+--- Slinger | Pausanias ---
+
+Get
+###
+
+--- Slinger | Pausanias ---
+
+Get
+###
+
+--- Slinger | Pausanias ---
+
+Get
+###
+
+--- Slinger | Pausanias ---
+
+**
+The
+
+*
+*
+
+**
+The
+*
+*
+
+###
+*
+*
+
+###
+**
+```
+function
+  res
+    '
+    '
+    '
+    '
+  });
+  //
+  let
+  const
+  const
+    if
+    const
+    //
+    if
+    const
+    const
+    fs
+    fs
+    offset
+    const
+    for
+  },
+  return
+}
+```
+
+**
+```
+//
+const
+evt
+
+const
+stream
+  const
+  panel
+  panel
+};
+
+//
+fetch
+load
+load
+```
+
+--- Slinger | Agesilaus ---
+
+grep
+###
+
+--- Slinger | Agesilaus ---
+
+grep
+###
+
+--- Slinger | Agesilaus ---
+
+grep
+
+--- Slinger | Agesilaus ---
+
+grep
+
+--- Slinger | Agesilaus ---
+
+grep
+
+--- Slinger | Agesilaus ---
+
+grep
+
+--- Slinger | Agesilaus ---
+
+grep
+
+--- Slinger | Agesilaus ---
+
+No
+
+###
+-
+-
+
+###
+-
+-
+
+--- Slinger | Aristomenis ---
+
+Get
+###
+
+--- Slinger | Aristomenis ---
+
+Get
+###
+
+--- Slinger | Aristomenis ---
+
+Get
+###
+
+--- Slinger | Aristomenis ---
+
+Get
+###
+
+--- Slinger | Aristomenis ---
+
+Get
+###
+
+--- Slinger | Aristomenis ---
+
+Get
+###
+
+--- Slinger | Aristomenis ---
+
+Get
+###
+
+--- Slinger | Aristomenis ---
+
+The
+
+The
+
+To
+
+###
+-
+-
+
+###
+**
+```
+"
+  "
+  "
+  "
+  "__
+},
+"
+  "
+  "
+  "
+  "__
+}
+```
+*
+
+**
+```
+"
+  "
+  "
+  "
+  "
+  "
+    {
+      "
+      "
+      ...
+    }
+  ]
+}
+```
+*
+
+**
+The
+
+--- Hoplite | Leonidas ---
+
+```
+{
+  "
+    "
+      "
+      "
+      "
+      "
+        "
+        "
+      },
+      "
+        {
+          "
+          "
+          "
+          "
+          "
+          "
+            "
+          ],
+          "
+            "
+            "
+            "
+            "
+          }
+        }
+      ]
+    },
+    "
+      "
+      "
+      "
+      "
+        "
+        "
+      },
+      "
+        {
+          "
+          "
+          "
+          "
+          "
+          "
+            "
+          ],
+          "
+            "
+            "
+            "
+            "
+          }
+        }
+      ]
+    },
+    "
+      "
+      "
+      "
+      "
+        "
+        "
+      },
+      "
+        {
+          "
+          "
+          "
+          "
+          "
+          "
+            "
+          ],
+          "
+            "
+            "
+            "
+            "
+          }
+        }
+      ]
+    }
+  },
+  "
+    "
+      "
+      "
+      "__
+    },
+    "
+      "
+      "
+      "__
+    }
+  }
+}
+```
+
+--- Slinger | Teleutias ---
+
+grep
+###
+
+--- Slinger | Teleutias ---
+
+grep
+###
+
+--- Slinger | Teleutias ---
+
+grep
+###
+
+--- Slinger | Teleutias ---
+
+grep
+###
+
+--- Slinger | Teleutias ---
+
+Get
+###
+
+--- Slinger | Teleutias ---
+
+grep
+###
+
+--- Slinger | Teleutias ---
+
+grep
+###
+
+--- Slinger | Teleutias ---
+
+The
+
+The
+
+###
+-
+
+###
+```
+//
+const
+    supports
+    supports
+    supports
+    supports
+    max
+    requires
+    requires
+    requires
+    requires
+    thinking
+    open
+    ver
+});
+```
+*
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+Based
+
+1
+
+2
+
+3
+
+**
+
+###
+-
+
+###
+**
+```
+input
+```
+**
+```
+input
+```
+**
+-
+-
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+The
+1
+2
+3
+
+Given
+
+However
+
+If
+
+###
+No
+
+###
+-
+-
+-
+
+**
+
+--- Slinger | Pausanias ---
+
+grep
+###
+
+--- Slinger | Pausanias ---
+
+grep
+###
+
+--- Slinger | Pausanias ---
+
+grep
+###
+
+--- Slinger | Pausanias ---
+
+grep
+###
+
+--- Slinger | Pausanias ---
+
+Get
+###
+
+--- Slinger | Pausanias ---
+
+grep
+###
+
+--- Slinger | Pausanias ---
+
+Get
+###
+
+--- Slinger | Pausanias ---
+
+The
+
+This
+
+The
+
+However
+1
+2
+3
+4
+
+The
+
+###
+*
+*
+*
+*
+
+###
+*
+*
+*
+*
+*
+
+**
+
+Since
+
+**
+```
+{
+  description
+  //
+}
+```
+And
+
+--- Slinger | Lysander ---
+
+Get
+###
+
+--- Slinger | Lysander ---
+
+Get
+###
+
+--- Slinger | Lysander ---
+
+Get
+###
+
+--- Slinger | Lysander ---
+
+Get
+###
+
+--- Slinger | Lysander ---
+
+Get
+###
+
+--- Slinger | Lysander ---
+
+Get
+###
+
+--- Slinger | Lysander ---
+
+Get
+###
+
+--- Slinger | Lysander ---
+
+The
+
+The
+
+However
+1
+2
+3
+4
+
+There
+
+###
+-
+-
+-
+
+###
+**
+```
+//
+import
+
+//
+_custom
+_base
+
+//
+//
+const
+  ...
+  ...
+  //
+];
+
+//
+await
+  messages
+  tools
+  //
+});
+```
+
+**
+```
+//
+//
+const
+    id
+    name
+    //
+});
+```
+
+**
+
+--- Slinger | Agesilaus ---
+
+Get
+###
+
+--- Slinger | Agesilaus ---
+
+Get
+###
+
+--- Slinger | Agesilaus ---
+
+Get
+###
+
+--- Slinger | Teleutias ---
+
+Get
+###
+
+--- Slinger | Teleutias ---
+
+Get
+###
+
+--- Slinger | Teleutias ---
+
+Get
+###
+
+--- Slinger | Teleutias ---
+
+Get
+###
+
+--- Slinger | Teleutias ---
+
+No
+
+###
+C
+C
+
+###
+```
+//
+{
+  "
+    "
+      "
+      "
+      "
+      "
+      "
+      "
+      "
+      "
+      "
+      "
+      "
+      "
+      "
+      "
+    ]
+  }
+}
+```
+
+--- Slinger | Lysander ---
+
+Get
+###
+
+--- Slinger | Lysander ---
+
+Get
+###
+
+--- Slinger | Lysander ---
+
+Get
+###
+
+--- Slinger | Lysander ---
+
+Found
+
+###
+-
+-
+
+###
+```
+{
+  "
+  "
+    "
+      {
+        "
+        "
+          {
+            "
+            "
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+--- Slinger | Teleutias ---
+
+Get
+###
+
+--- Slinger | Teleutias ---
+
+The
+
+###
+-
+
+###
+```
+#!/
+"""
+Hel
+
+When
+  -
+  -
+  -
+  -
+  -
+
+F
+Never
+"""
+import
+import
+import
+
+data
+tool
+tool
+
+reminder
+
+if
+    command
+    #
+    VERBOSE
+    if
+        reminder
+            "
+            "
+            "
+        )
+
+elif
+    path
+    #
+    if
+        reminder
+            "
+            "
+            "
+            "
+        )
+
+elif
+    file
+    if
+        reminder
+            "
+            "
+            "
+            "
+        )
+
+elif
+    offset
+    #
+    if
+        reminder
+            "
+            "
+            "
+        )
+
+elif
+    pattern
+    glob
+    #
+    if
+        reminder
+            "
+            "
+            "
+        )
+
+if
+    output
+        "
+            "
+            "
+            "
+        }
+    }
+    print
+
+#
+import
+_counter
+try
+    _
+    _
+    _
+except
+    pass
+
+sys
+```
+
+--- Hoplite | Pausanias ---
+
+```
+#
+
+**
+**
+**
+**
+**
+
+---
+
+##
+
+###
+The
+
+For
+
+###
+We
+
+*
+    *
+    *
+    *
+*
+    *
+    *
+*
+    *
+
+###
+While
+
+---
+
+##
+
+###
+*
+*
+
+###
+We
+
+*
+*
+    *
+    *
+*
+    *
+
+###
+The
+
+---
+
+##
+
+###
+To
+
+###
+The
+1
+2
+3
+4
+
+###
+The
+*
+*
+*
+    *
+    *
+
+###
+*
+*
+*
+
+This
+
+---
+
+##
+
+###
+*
+*
+
+###
+Create
+
+*
+    *
+    *
+    *
+    *
+*
+*
+    *
+    *
+
+---
+
+##
+
+To
+
+*
+    *
+*
+    *
+*
+    *
+
+---
+
+##
+
+|
+|
+|
+|
+|
+|
+```
+
+--- Slinger | Brasidas ---
+
+Get
+###
+
+--- Slinger | Brasidas ---
+
+Get
+###
+
+--- Slinger | Brasidas ---
+
+The
+
+**
+1
+2
+3
+4
+5
+6
+
+###
+C
+
+###
+```
+#
+
+**
+...
+##
+...
+##
+...
+##
+...
+##
+...
+###
+Create
+```
+
+--- Hoplite | Gylippus ---
+
+```
+#
+
+**
+**
+**
+**
+**
+
+---
+
+##
+
+###
+The
+
+###
+We
+
+*
+    *
+    *
+        *
+        *
+        *
+        *
+    *
+    *
+
+###
+This
+
+---
+
+##
+
+###
+While
+
+###
+We
+
+*
+    *
+    *
+    *
+*
+    *
+
+###
+This
+
+---
+
+##
+
+###
+*
+*
+
+###
+We
+
+*
+*
+    *
+    *
+*
+    *
+
+###
+**
+
+###
+The
+
+---
+
+##
+
+###
+To
+
+###
+The
+1
+2
+3
+
+###
+The
+*
+*
+*
+    *
+    *
+
+###
+This
+
+---
+
+##
+
+To
+
+*
+    *
+*
+    *
+*
+    *
+
+---
+
+##
+
+|
+|
+|
+|
+|
+|
+```
+
+--- Slinger | Archidamus ---
+
+Get
+###
+
+--- Slinger | Archidamus ---
+
+Get
+###
+
+--- Slinger | Archidamus ---
+
+Get
+###
+
+--- Slinger | Archidamus ---
+
+Get
+###
+
+--- Slinger | Archidamus ---
+
+Get
+###
+
+--- Slinger | Archidamus ---
+
+Get
+###
+
+--- Slinger | Archidamus ---
+
+Get
+###
+
+--- Slinger | Archidamus ---
+
+The
+
+The
+1
+2
+3
+
+...
+
+###
+N
+
+###
+The
+
+```
+|
+```
+
+No
+
+--- Slinger | Lysander ---
+
+Get
+###
+
+--- Slinger | Lysander ---
+
+The
+
+###
+tool
+
+###
+```
+  |
+```
+
+--- Slinger | Lysander ---
+
+curl
+###
+
+--- Slinger | Lysander ---
+
+The
+
+###
+N
+
+###
+N
+
+--- Hoplite | Gylippus ---
+
+```
+#
+
+##
+Example
+
+##
+This
+```
+
+--- Hoplite | Aristomenis ---
+
+```
+#
+
+##
+Sc
+
+##
+-
+-
+-
+-
+-
+
+##
+-
+-
+-
+-
+-
+
+##
+1
+2
+3
+4
+
+##
+Short
+```
+RESP
+```
+
+##
+The
+
+##
+-
+-
+-
+
+##
+-
+-
+-
+
+##
+
+-
+-
+-
+-
+
+##
+-
+
+```
+
+--- Slinger | Teleutias ---
+
+Get
+###
+
+--- Slinger | Teleutias ---
+
+The
+
+**
+1
+2
+3
+4
+5
+
+**
+1
+2
+3
+
+**
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+###
+-
+
+###
+```
+//
+{"
+{"
+{"
+{"
+{"
+
+//
+{"
+{"
+{"
 ```

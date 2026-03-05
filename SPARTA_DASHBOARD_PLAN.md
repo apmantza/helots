@@ -216,3 +216,38 @@ Task 5: EDIT   ~/.claude/hooks/helots-delegate.py (independent)
 4. `run_end` → Civ6 toast appears, war record updates in `sparta-record.json`
 5. Click past run → MD viewer opens `review.md`
 6. Frontier estimate increments as Claude tool calls happen
+
+---
+
+## Implementation Log
+
+### Changes made beyond original plan
+
+**grep-utils.ts**
+- Normalized `\|` → `|` before `new RegExp()` to fix BRE alternation silent failure
+- `(no matches)` now reports searched path + pattern with normalization hint
+
+**mcp-server.ts**  
+- Added HTML to `helot_hoplite` tool description (was markdown/config only)
+
+**engine.ts**
+- Set `this.currentPhase = 'Slinger'` before slinger loop in `executeSlinger`
+- Set `this.currentPhase = 'Hoplite'` before `runSubagent` in `executeHoplite`
+- Without these, all slinger/hoplite `subagent_done` events had `phase: "Setup"` → broke aggregated stats
+
+**dashboard/index.html**
+- War record is now session-only (removed `loadHistory()`)
+- Added AGGREGATED STATS panel: per-role counts, total tokens, avg TPS, reads from `events.jsonl` via `/api/events-history`
+- Aggregated stats refresh every 15s and on each `subagent_done` event
+
+### Naming fixes (engine.ts)
+- Slingers: `pickName(Date.now().toString(), "Slinger")` — timestamp seed so each slinger gets a unique name instead of always "Agesilaus"
+- Hoplites: Added `pickName(Date.now().toString(), 'Hoplite')` call and pass persona name to `runSubagent` — previously hardcoded the string 'Hoplite' as the name
+- `subagent_done` writeEvent now includes `role` field alongside `phase` and `name`
+
+### War record display (index.html)
+- Updated `addWarRecord()` to show `[HELOT TYPE] [HELOT NAME]` format with colour-coded type labels (⚙️ Builder, 🛡️ Peltast, 🔍 Slinger, ✏️ Hoplite, 👁️ Scout)
+- Uses both `ev.role` and `ev.phase` for robust type detection
+
+### Known limitation
+`events.jsonl` is cleared on every `executeHelots` run, so standalone slinger/hoplite events are lost when a build run starts. Aggregated stats only reflect the current `events.jsonl` content.

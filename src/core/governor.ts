@@ -4,10 +4,10 @@ import { HelotConfig } from '../config.js';
 import { HelotState, HelotPhase, VerificationResult } from './types';
 
 /**
- * GOVERNOR (formerly Ephor)
+ * ARISTOMENIS
  * Phase-aware state management with verification gates
  */
-export class Governor {
+export class Aristomenis {
     public state: HelotState;
     public config: HelotConfig;
 
@@ -238,7 +238,7 @@ export class Governor {
         const failed = this.state.tasks.filter(t => t.status === 'failed').length;
 
         return `
-=== GOVERNOR'S SWEEP REPORT ===
+=== ARISTOMENIS SWEEP REPORT ===
 Run ID: ${this.state.runId}
 Phase: ${this.state.phase}
 Plan Only: ${this.state.planOnly ? 'YES' : 'NO'}

@@ -36,8 +36,10 @@ export function nodeGrepCommand(command: string, cwd: string): string {
   const filesOnly       = flags.includes('l');
   const caseInsensitive = flags.includes('i');
 
+  // Normalize BRE/GNU alternation \| → | so models using grep BRE syntax work correctly
+  const normalizedPattern = pattern.replace(/\\\|/g, '|');
   let regex: RegExp;
-  try { regex = new RegExp(pattern, caseInsensitive ? 'i' : ''); }
+  try { regex = new RegExp(normalizedPattern, caseInsensitive ? 'i' : ''); }
   catch { return `(node-grep: invalid regex — ${pattern})`; }
 
   const results: string[] = [];
@@ -87,7 +89,13 @@ export function nodeGrepCommand(command: string, cwd: string): string {
     } catch { /* path doesn't exist */ }
   }
 
-  if (results.length === 0) return '(no matches)';
+  if (results.length === 0) {
+    const paths = searchPaths.join(', ');
+    const hint = pattern !== normalizedPattern
+      ? ` [NOTE: \\| was normalized to | for JS regex — pattern used: /${normalizedPattern}/]`
+      : '';
+    return `(no matches — searched: ${paths} for /${normalizedPattern}/${caseInsensitive ? 'i' : ''}${hint})`;
+  }
   const MAX_LINES = 300;
   return results.length > MAX_LINES
     ? results.slice(0, MAX_LINES).join('\n') + `\n...[node-grep truncated: ${results.length} total matches, showing ${MAX_LINES}]`
