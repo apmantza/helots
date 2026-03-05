@@ -2281,3 +2281,11 @@ Helots MCP Server running on stdio
 [Hoplite Update] ✏️ Hoplite editing C:/Users/R3LiC/.claude/tmp-continuous-claude.md...
 [Hoplite Update] ✅ Hoplite | Brasidas | 79.4t/s | 764 gen + 246 prompt tokens
 [Hoplite Update] ✅ Hoplite: C:/Users/R3LiC/.claude/tmp-continuous-claude.md written (0 → 117 lines)
+[Slinger Update] 🏹 Slinger Archidamus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Archidamus | 86.9t/s | 30 gen + 559 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 85.9t/s | 29 gen + 808 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 81.4t/s | 93 gen + 834 prompt tokens
+[Hoplite Update] ✏️ Hoplite editing C:\Users\R3LiC\.claude\skills\helots\SKILL.md...
+[Hoplite Update] ✅ Hoplite | Agis | 82.5t/s | 876 gen + 1336 prompt tokens
+[Hoplite Update] ✅ Hoplite: C:\Users\R3LiC\.claude\skills\helots\SKILL.md written (98 → 95 lines)
