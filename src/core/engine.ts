@@ -496,6 +496,15 @@ Do NOT echo these instructions. Do NOT write placeholder text like "(complete fi
         onUpdate?.({ text: `✓ LSP: type-check passed` });
       }
 
+      // --- File size guard (max 500 lines) ---
+      const oversized = filesToProcess.filter(f => f.content.split('\n').length > 500);
+      if (oversized.length > 0) {
+        const details = oversized.map(f => `  ${f.filePath}: ${f.content.split('\n').length} lines`).join('\n');
+        onUpdate?.({ text: `⚠️ File size: output exceeds 500 lines — retrying Builder` });
+        lastPeltastFeedback = `Output is too long. Split into multiple focused files:\n${details}\nExtract helpers, types, or secondary classes into separate modules. Each file must be ≤500 lines.`;
+        continue;
+      }
+
       // --- Backup originals ---
       for (const { filePath, fullPath } of filesToProcess) {
         if (existsSync(fullPath)) {
