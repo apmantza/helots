@@ -2388,3 +2388,6 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Pausanias | 75.3t/s | 33 gen + 21898 prompt tokens
 [Slinger Update] ✅ Slinger | Pausanias | 73.3t/s | 40 gen + 21951 prompt tokens
 [Slinger Update] ✅ Slinger | Pausanias | 66.5t/s | 485 gen + 22124 prompt tokens
+[Hoplite Update] ✏️ Hoplite editing C:/Users/R3LiC/.claude/hooks/skill-eval-reference.md...
+[Hoplite Update] ✅ Hoplite | Agis | 67.4t/s | 537 gen + 327 prompt tokens
+[Hoplite Update] ✅ Hoplite: C:/Users/R3LiC/.claude/hooks/skill-eval-reference.md written (0 → 109 lines)
