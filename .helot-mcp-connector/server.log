@@ -3091,3 +3091,9 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Leonidas | 102.4t/s | 38 gen + 2101 prompt tokens
 [Slinger Update] ✅ Slinger | Leonidas | 101.2t/s | 39 gen + 3634 prompt tokens
 [Slinger Update] ✅ Slinger | Leonidas | 94.8t/s | 949 gen + 4841 prompt tokens
+[Slinger Update] 🏹 Slinger Aristomenis deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Aristomenis | 105.9t/s | 48 gen + 571 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 101.3t/s | 28 gen + 725 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 106.2t/s | 134 gen + 863 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 103.4t/s | 236 gen + 1187 prompt tokens
