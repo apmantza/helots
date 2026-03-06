@@ -3412,3 +3412,82 @@ Helots MCP Server running on stdio
 [Slinger Update] 📖 Slinger preloading 1 file(s)...
 [Slinger Update] ✅ Slinger | Aristomenis | 98.4t/s | 34 gen + 5687 prompt tokens
 [Slinger Update] ✅ Slinger | Aristomenis | 88.8t/s | 161 gen + 5758 prompt tokens
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[Slinger Update] 🔍 Scribe | researching...
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 32768
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Slinger...
+[Slinger Update] ✅ Slinger | Agesilaus | 101.1t/s | 35 gen + 1021 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 104.0t/s | 52 gen + 1162 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 104.4t/s | 53 gen + 1375 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 100.9t/s | 25 gen + 1597 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 101.6t/s | 26 gen + 1774 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 104.7t/s | 35 gen + 1884 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 101.0t/s | 45 gen + 1961 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 97.1t/s | 632 gen + 2186 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/cleanup-plan.sh...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/cleanup-plan.sh...
+[Slinger Update] ✅ Hoplite | Gylippus | 95.3t/s | 1219 gen + 1397 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/cleanup-plan.sh written (69 → 126 lines)
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[Slinger Update] 🔍 Scribe | researching...
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 32768
+[Slinger Update] 🏹 Slinger Gylippus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Slinger...
+[Slinger Update] ✅ Slinger | Gylippus | 103.4t/s | 64 gen + 1061 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 102.6t/s | 51 gen + 2009 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 102.9t/s | 43 gen + 2180 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 102.3t/s | 25 gen + 2472 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 101.2t/s | 26 gen + 2650 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 103.1t/s | 71 gen + 2760 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 98.2t/s | 109 gen + 4334 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 93.7t/s | 597 gen + 4506 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/cleanup-plan.sh...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/cleanup-plan.sh...
+[Slinger Update] ✅ Hoplite | Leonidas | 94.5t/s | 1066 gen + 2098 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/cleanup-plan.sh written (126 → 113 lines)
+[Slinger Update] 🏹 Slinger Agis deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Agis | 99.6t/s | 43 gen + 5696 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 98.5t/s | 122 gen + 5760 prompt tokens
+[Slinger Update] 🏹 Slinger Gylippus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Gylippus | 99.8t/s | 66 gen + 5711 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 89.2t/s | 2854 gen + 7270 prompt tokens
+[Slinger Update] 🏹 Slinger Pausanias deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Pausanias | 97.1t/s | 43 gen + 5700 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 99.1t/s | 35 gen + 5866 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 91.7t/s | 276 gen + 5926 prompt tokens
+[Slinger Update] 🏹 Slinger Aristomenis deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Aristomenis | 96.3t/s | 42 gen + 5763 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 96.5t/s | 42 gen + 7199 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 96.7t/s | 55 gen + 8634 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 96.8t/s | 45 gen + 8865 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 97.4t/s | 45 gen + 8971 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 97.1t/s | 44 gen + 9077 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 97.7t/s | 44 gen + 9133 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 87.7t/s | 2897 gen + 9192 prompt tokens
