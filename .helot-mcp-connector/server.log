@@ -3372,3 +3372,18 @@ Helots MCP Server running on stdio
 [Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/stale-dotdir-plan.sh...
 [Slinger Update] ✅ Hoplite | Archidamus | 98.0t/s | 275 gen + 1665 prompt tokens
 [Slinger Update] ✅ Hoplite: .helot-mcp-connector/stale-dotdir-plan.sh written (22 → 21 lines)
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Brasidas deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Brasidas | 104.6t/s | 86 gen + 697 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 105.2t/s | 81 gen + 1624 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 104.9t/s | 119 gen + 3183 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 102.8t/s | 76 gen + 3299 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 102.7t/s | 55 gen + 3461 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 102.3t/s | 75 gen + 3526 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 104.4t/s | 66 gen + 3700 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 97.1t/s | 783 gen + 3794 prompt tokens
+[Slinger Update] ✍️ Scribe | writing bin/dead-code-candidates.md...
+[Slinger Update] ✏️ Hoplite editing bin/dead-code-candidates.md...
+[Slinger Update] ✅ Hoplite | Pausanias | 98.5t/s | 801 gen + 1640 prompt tokens
+[Slinger Update] ✅ Hoplite: bin/dead-code-candidates.md written (48 → 65 lines)
