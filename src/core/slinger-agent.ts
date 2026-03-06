@@ -121,11 +121,13 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
     let history = '';
     let preloadedContent = '';
 
-    const RESERVED_TOKENS = 10000;
+    // Reserve 55% for system prompt + command loop history + generation budget.
+    // Hard cap per file at 20000 chars (~5000 tokens) to prevent single-file OOM.
+    const RESERVED_TOKENS = Math.floor(maxTokens * 0.55);
     const CHARS_PER_TOKEN = 4;
     const numFiles = targetFiles?.length || 1;
     const availableChars = Math.max(2000 * numFiles, (maxTokens - RESERVED_TOKENS) * CHARS_PER_TOKEN);
-    const FILE_CAP = Math.floor(availableChars / numFiles);
+    const FILE_CAP = Math.min(Math.floor(availableChars / numFiles), 20000);
     onUpdate?.({ text: `📐 Context: ${maxTokens} tokens → FILE_CAP: ${FILE_CAP} chars × ${numFiles} file(s)` });
 
     if (targetFiles && targetFiles.length > 0) {

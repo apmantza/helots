@@ -2921,3 +2921,20 @@ Helots MCP Server running on stdio
 [LlamaClient] POST http://127.0.0.1:8080/v1/chat/completions | model=qwen35-Q4_K_M | profile=SLINGER | max_tokens=8192 | enable_thinking=false | prompt_chars=8484
 [Scribe Update] ⚠️ Slinger | Pausanias | server error: fetch failed
 [Scribe Update] ❌ Slinger | Pausanias | empty response — server may be down
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[Scribe Update] 🔍 Scribe | researching...
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 32768
+[Scribe Update] 🏹 Slinger Lysander deployed.
+[Scribe Update] 📐 Context: 32768 tokens → FILE_CAP: 91072 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Slinger...
+[Scribe Update] ✅ Slinger | Lysander | 106.5t/s | 56 gen + 577 prompt tokens
+[Scribe Update] ⚠️ Slinger | Lysander | server error: fetch failed
+[Scribe Update] ❌ Slinger | Lysander | empty response — server may be down

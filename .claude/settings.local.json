@@ -23,7 +23,12 @@
       "Bash(done)",
       "mcp__helots__helot_scribe",
       "Read(//c/Users/R3LiC/Desktop/helots-pi/$TEMP/**)",
-      "Read(//c/Users/R3LiC/Desktop/helots-pi/$LOCALAPPDATA/**)"
+      "Read(//c/Users/R3LiC/Desktop/helots-pi/$LOCALAPPDATA/**)",
+      "Read(//c/Users/R3LiC/AppData/Roaming/Claude/**)",
+      "Read(//c/Users/R3LiC/AppData/Roaming/claude-code/**)",
+      "Bash(echo \"$TEMP\")",
+      "Bash(grep:*)",
+      "Bash(cat:*)"
     ]
   }
 }
