@@ -216,6 +216,11 @@ const TOOLS: Tool[] = [
                     type: "string",
                     description: "If provided, reads the script from this file path instead of the script param.",
                 },
+                protectedFiles: {
+                    type: "array",
+                    items: { type: "string" },
+                    description: "Files that must not be moved or copied. Pass [\"auto\"] to derive protected files from package.json and tsconfig.json automatically.",
+                },
             },
             required: [],
         },
@@ -288,12 +293,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
         }
 
         if (name === "helot_execute") {
-            const script     = args?.script     ? String(args.script)     : '';
-            const auditLog   = args?.auditLog   ? String(args.auditLog)   : path.join(config.stateDir, 'execute-audit.log');
-            const dryRun     = args?.dryRun     ? Boolean(args.dryRun)    : false;
-            const scriptFile = args?.scriptFile ? String(args.scriptFile) : undefined;
+            const script         = args?.script         ? String(args.script)                       : '';
+            const auditLog       = args?.auditLog       ? String(args.auditLog)                     : path.join(config.stateDir, 'execute-audit.log');
+            const dryRun         = args?.dryRun         ? Boolean(args.dryRun)                      : false;
+            const scriptFile     = args?.scriptFile     ? String(args.scriptFile)                   : undefined;
+            const protectedFiles = Array.isArray(args?.protectedFiles) ? args.protectedFiles as string[] : undefined;
 
-            const result = await engine.executeScript(script, auditLog, dryRun, scriptFile);
+            const result = await engine.executeScript(script, auditLog, dryRun, scriptFile, protectedFiles);
             return { content: [{ type: "text", text: result }] };
         }
 

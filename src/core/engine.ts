@@ -191,18 +191,64 @@ export class HelotEngine {
     };
   }
 
+  private deriveProtectedFiles(): Set<string> {
+    const protect = new Set<string>([
+      'package.json', 'package-lock.json', 'tsconfig.json', '.gitignore', 'README.md', 'CLAUDE.md',
+    ]);
+
+    // Extract file references from package.json
+    try {
+      const pkg = JSON.parse(readFileSync('package.json', 'utf-8'));
+      for (const field of ['main', 'types', 'typings', 'module']) {
+        if (pkg[field]) protect.add(path.basename(String(pkg[field])));
+      }
+      if (pkg.bin) {
+        const vals = typeof pkg.bin === 'string' ? [pkg.bin] : Object.values(pkg.bin) as string[];
+        vals.forEach(v => protect.add(path.basename(v)));
+      }
+      if (Array.isArray(pkg.files)) pkg.files.forEach((f: string) => protect.add(path.basename(f)));
+      if (pkg.scripts) {
+        for (const cmd of Object.values(pkg.scripts) as string[]) {
+          for (const word of cmd.split(/\s+/)) {
+            if (/\.(ts|js|mjs|cjs|json|sh|py)$/.test(word) && !word.startsWith('-'))
+              protect.add(path.basename(word));
+          }
+        }
+      }
+    } catch {}
+
+    // Extract file references from tsconfig.json
+    try {
+      const tsc = JSON.parse(readFileSync('tsconfig.json', 'utf-8'));
+      if (Array.isArray(tsc.files)) tsc.files.forEach((f: string) => protect.add(path.basename(f)));
+      if (Array.isArray(tsc.include)) {
+        tsc.include.forEach((p: string) => {
+          if (!p.includes('/') && !p.includes('*')) protect.add(p);
+        });
+      }
+    } catch {}
+
+    return protect;
+  }
+
   async executeScript(
-    script:     string,
-    auditLog:   string,
-    dryRun:     boolean = false,
-    scriptFile?: string,
+    script:          string,
+    auditLog:        string,
+    dryRun:          boolean = false,
+    scriptFile?:     string,
+    protectedFiles?: string[],
   ): Promise<string> {
     const content = scriptFile ? readFileSync(scriptFile, 'utf-8') : script;
     const lines = content.split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#'));
 
-    const ALLOWED = new Set(['mv', 'mkdir', 'cp']);
+    const ALLOWED  = new Set(['mv', 'mkdir', 'cp']);
     const BLOCKED  = [/\.\./, /[;&|`$]/, /\s-rf\b/, /\brm\b/, /\bdel\b/, /\brmdir\b/];
     const ts = () => new Date().toISOString();
+
+    // Build protected set — "auto" triggers config-derived protection
+    const protectedSet: Set<string> = (protectedFiles?.includes('auto'))
+      ? this.deriveProtectedFiles()
+      : new Set(protectedFiles ?? []);
 
     try { mkdirSync(path.dirname(auditLog), { recursive: true }); } catch {}
 
@@ -222,6 +268,18 @@ export class HelotEngine {
       if (BLOCKED.some(p => p.test(line))) {
         log(`[${ts()}] BLOCKED: "${line}" — unsafe pattern detected`); continue;
       }
+
+      // For mv/cp: check source against protected set and dotfile rule
+      if ((cmd === 'mv' || cmd === 'cp') && parts[1]) {
+        const srcBase = path.basename(parts[1]);
+        if (srcBase.startsWith('.')) {
+          log(`[${ts()}] PROTECTED: "${line}" — dotfile`); continue;
+        }
+        if (protectedSet.has(srcBase) || protectedSet.has(parts[1])) {
+          log(`[${ts()}] PROTECTED: "${line}" — referenced by package.json/tsconfig.json`); continue;
+        }
+      }
+
       if (dryRun) {
         log(`[${ts()}] DRY-RUN: ${line}`); continue;
       }

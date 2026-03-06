@@ -74,8 +74,10 @@ if tool_name == 'Bash':
 
 elif tool_name == 'mcp__helots__helot_slinger':
     task = tool_input.get('researchTask', '')
+    output_file = tool_input.get('outputFile', '')
     WRITE_HINTS = ('write to', 'write it to', 'output to', 'save to', 'generate', 'create a doc', 'update doc', '.md', 'structure.md')
-    if any(h in task.lower() for h in WRITE_HINTS):
+    # Only nudge if outputFile is NOT already set — otherwise the pattern is already correct
+    if not output_file and any(h in task.lower() for h in WRITE_HINTS):
         reminder = (
             "helots MCP is connected. This slinger task looks like it ends in a file write — "
             "use helot_slinger with outputFile instead (one call: slinger research → hoplite write, result never hits frontier)."
