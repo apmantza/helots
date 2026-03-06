@@ -233,6 +233,18 @@ const TOOLS: Tool[] = [
                         required: ["pattern", "dir"],
                     },
                 },
+                pruneRules: {
+                    type: "array",
+                    description: "Glob-based rules to move operational artifacts (logs, backups, temp files) to an archive destination. Each rule: { glob: path pattern, dest: target directory }. Supports dir/*, dir/**, *.ext patterns. Runs independently of the script param.",
+                    items: {
+                        type: "object",
+                        properties: {
+                            glob: { type: "string", description: "Glob pattern: 'dir/*' (direct children), 'dir/**' (recursive), '*.ext' (root-level by extension)." },
+                            dest: { type: "string", description: "Destination directory for matched files." },
+                        },
+                        required: ["glob", "dest"],
+                    },
+                },
             },
             required: [],
         },
@@ -310,9 +322,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
             const dryRun         = args?.dryRun         ? Boolean(args.dryRun)                      : false;
             const scriptFile     = args?.scriptFile     ? String(args.scriptFile)                   : undefined;
             const protectedFiles = Array.isArray(args?.protectedFiles) ? args.protectedFiles as string[] : undefined;
-            const remapRules     = Array.isArray(args?.remapRules)     ? args.remapRules as Array<{ pattern: string; dir: string }> : undefined;
+            const remapRules     = Array.isArray(args?.remapRules)     ? args.remapRules as Array<{ pattern: string; dir: string }>   : undefined;
+            const pruneRules     = Array.isArray(args?.pruneRules)     ? args.pruneRules as Array<{ glob: string; dest: string }>     : undefined;
 
-            const result = await engine.executeScript(script, auditLog, dryRun, scriptFile, protectedFiles, remapRules);
+            const result = await engine.executeScript(script, auditLog, dryRun, scriptFile, protectedFiles, remapRules, pruneRules);
             return { content: [{ type: "text", text: result }] };
         }
 

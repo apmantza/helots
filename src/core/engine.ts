@@ -243,6 +243,37 @@ export class HelotEngine {
     return protect;
   }
 
+  private expandPruneRules(
+    rules: Array<{ glob: string; dest: string }>,
+    protectedSet: Set<string>,
+  ): Array<{ src: string; dst: string }> {
+    const moves: Array<{ src: string; dst: string }> = [];
+    for (const rule of rules) {
+      const g = rule.glob.replace(/\\/g, '/');
+      const recursive = g.endsWith('/**');
+      const dirGlob   = g.endsWith('/*') || recursive;
+      const dir       = dirGlob ? g.replace(/\/\*\*?$/, '') : path.dirname(g);
+      const extMatch  = !dirGlob ? path.basename(g) : null; // e.g. "*.log"
+
+      try {
+        const files = dirGlob
+          ? this.listFilesRecursive(dir)
+          : readdirSync('.').filter(f => {
+              if (!extMatch) return false;
+              const re = new RegExp('^' + extMatch.replace('.', '\\.').replace('*', '.*') + '$');
+              return re.test(f) && statSync(f).isFile();
+            }).map(f => path.join('.', f));
+
+        for (const src of files) {
+          const base = path.basename(src);
+          if (protectedSet.has(base) || base.startsWith('.')) continue;
+          moves.push({ src, dst: join(rule.dest, base) });
+        }
+      } catch {}
+    }
+    return moves;
+  }
+
   async executeScript(
     script:          string,
     auditLog:        string,
@@ -250,6 +281,7 @@ export class HelotEngine {
     scriptFile?:     string,
     protectedFiles?: string[],
     remapRules?:     Array<{ pattern: string; dir: string }>,
+    pruneRules?:     Array<{ glob: string; dest: string }>,
   ): Promise<string> {
     const content = scriptFile ? readFileSync(scriptFile, 'utf-8') : script;
     const lines = content.split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#'));
@@ -270,6 +302,23 @@ export class HelotEngine {
       results.push(entry);
       try { appendFileSync(auditLog, entry + '\n', 'utf-8'); } catch {}
     };
+
+    // Expand pruneRules into synthetic mv lines
+    if (pruneRules?.length) {
+      const pruneOps = this.expandPruneRules(pruneRules, protectedSet);
+      for (const { src, dst } of pruneOps) {
+        if (dryRun) {
+          log(`[${ts()}] DRY-RUN (prune): mv ${src} → ${dst}`); continue;
+        }
+        try {
+          mkdirSync(path.dirname(dst), { recursive: true });
+          renameSync(src, dst);
+          log(`[${ts()}] OK (prune): mv ${src} → ${dst}`);
+        } catch (err: any) {
+          log(`[${ts()}] ERROR (prune): mv ${src} → ${dst} — ${err.message}`);
+        }
+      }
+    }
 
     for (const line of lines) {
       const parts = line.split(/\s+/);
