@@ -3640,3 +3640,6 @@ Helots MCP Server running on stdio
 [Hoplite Update] ✏️ Hoplite editing feature-ideas.md...
 [Hoplite Update] ✅ Hoplite | Brasidas | 97.5t/s | 987 gen + 1194 prompt tokens
 [Hoplite Update] ✅ Hoplite: feature-ideas.md written (60 → 95 lines)
+[Hoplite Update] ✏️ Hoplite editing .helot-mcp-connector/localcowork-summary.md...
+[Hoplite Update] ✅ Hoplite | Aristomenis | 104.5t/s | 727 gen + 2313 prompt tokens
+[Hoplite Update] ✅ Hoplite: .helot-mcp-connector/localcowork-summary.md written (0 → 25 lines)
