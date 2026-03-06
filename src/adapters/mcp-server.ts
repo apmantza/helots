@@ -286,7 +286,7 @@ const TOOLS: Tool[] = [
                         type: "object",
                         properties: {
                             id:           { type: "string",  description: "Unique step identifier, e.g. 'prune', 'cleanup-plan'" },
-                            tool:         { type: "string",  description: "'slinger' | 'execute' | 'hoplite'" },
+                            tool:         { type: "string",  description: "'slinger' | 'execute' | 'hoplite' | 'shell'" },
                             dependsOn:    { type: "array", items: { type: "string" }, description: "Step IDs that must succeed before this step runs" },
                             researchTask: { type: "string",  description: "[slinger] Research question or task description" },
                             outputFile:   { type: "string",  description: "[slinger] If set, writes result to file (chains to execute via scriptFile)" },
@@ -299,6 +299,7 @@ const TOOLS: Tool[] = [
                             pruneRules:   { type: "array",   description: "[execute] Glob→dest archival rules" },
                             file:         { type: "string",  description: "[hoplite] File to edit or create" },
                             instruction:  { type: "string",  description: "[hoplite] Edit instruction for hoplite" },
+                            command:      { type: "string",  description: "[shell] Shell command to run (supports &&, pipes, git, etc.)" },
                         },
                         required: ["id", "tool"],
                     },
