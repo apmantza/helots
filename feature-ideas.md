@@ -209,6 +209,27 @@ The slinger's `### EVIDENCE` section can grow bloated when grep hits return many
 
 ---
 
+## 12. Code Quality Review Skill — Hybrid Slinger+Claude Flow (MEDIUM)
+
+**Source:** Session discussion (2026-03-06)
+**Status:** Not implemented — gap in current skill coverage.
+
+Current `/review` skill covers staged git diff review (off-frontier). The global `/code-review` skill does deep quality analysis but runs entirely on Claude (full frontier cost). No dedicated path for quality review of specific files/directories via helots.
+
+**Proposed hybrid flow:**
+1. `helot_slinger(targetFiles=[...])` — local model reads files, extracts structure, returns SUMMARY/EVIDENCE to Claude
+2. Claude performs quality analysis on curated slinger output — security, anti-patterns, architecture smell, complexity
+
+Slinger handles the "read N files and structure the relevant code" leg (saves frontier read tokens). Claude handles the analysis where quality matters. Same pattern as the `/helots` skill — slinger for ground truth, Claude for judgment.
+
+**Skill trigger:** `/quality` or extend `/code-review` to detect when helots MCP is available and delegate the file-reading leg to slinger automatically.
+
+**Why not fully off-frontier:** Deep code quality analysis (subtle security vulns, architectural smell) is one case where local model quality is meaningfully lower than Claude. Hybrid preserves quality while still saving read tokens.
+
+**Implementation:** Update `~/.claude/skills/code-review/SKILL.md` to add a helots-aware path: if `helot_slinger` is available, run slinger on target files first, then use the output as context for Claude's analysis.
+
+---
+
 ## What NOT to build
 
 From rtk_features_port.md §5 — still applies:
