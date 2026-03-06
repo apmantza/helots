@@ -19,18 +19,49 @@ Instead, it delegates all physical labor to the **"Psiloi Swarm" (The Local LLM)
 
 The framework is packaged as an extremely portable extension (`mcp.ts`/`pi.ts`) containing the orchestrator engine.
 
-### 1. The Slinger (`helot_slinger`)
+### The Psiloi Swarm Pipeline
 
-A research subroutine. When the Architect needs to understand local codebase context (e.g., "How does authentication work here?"), it dispatches the Slinger. The local LLM reads the files and returns a highly dense, summarized report, keeping the Architect's context window lean and cheap.
+The Swarm executes a rigorous **Scout → Builder → Peltast** pipeline to ensure high-quality code generation:
 
-### 2. The Execution Swarm (`helot_run`)
+* **Scout (Strategic Local - Dense Model)**: Powered by a high-precision Dense model (e.g., Qwen 27B), the Scout parses the Architect's plan, identifies relevant files, and creates a local `progress.md` tracked state.
+* **Builder (Tactical Execution - MoE Model)**: Powered by a high-TPS Mixture-of-Experts model (e.g., Qwen 35B-A3B), the Builder picks up tasks from the checklist sequentially and rapidly modifies the codebase.
+* **Peltast (Quality Assurance - MoE Model)**: The Peltast reviews the Builder's work. If flawed, it rejects the code and feeds the error back to the Builder for an automatic retry loop (up to 3 times).
 
-When the Architect finishes planning, it passes the implementation checklist to the Swarm. The Swarm triggers a multi-agent loop:
+### MCP Tools
 
-* **Aristomenis & Scout (Strategic Local - Dense Model)**: Powered by a high-precision Dense model (e.g., Qwen 27B), this agent parses the Architect's plan, finds the relevant files, and creates a local `progress.md` tracked state.
-* **The Builder (Tactical Execution - MoE Model)**: Powered by a high-TPS Mixture-of-Experts model (e.g., Qwen 35B-A3B), the Builder picks up tasks from the checklist sequentially and rapidly modifies the codebase.
-* **The Peltast (Quality Assurance - MoE Model)**: The Peltast reviews the Builder's work. If flawed, it rejects the code and feeds the error back to the Builder for an automatic retry loop (up to 3 times).
-* **Neodamodeis Ratification**: Once the checklist is complete, the Swarm reports success and GPU token usage metrics back to the Architect.
+The framework exposes the following specialized tools to the Orchestrator:
+
+* **`helot_run`**: The primary execution engine that manages the multi-agent loop (Scout, Builder, Peltast).
+* **`helot_slinger`**: A research subroutine. When the Architect needs to understand local codebase context (e.g., "How does authentication work here?"), it dispatches the Slinger. The local LLM reads the files and returns a highly dense, summarized report, keeping the Architect's context window lean and cheap.
+* **`helot_hoplite`**: Handles defensive operations and secure execution contexts.
+* **`helot_execute`**: Direct command execution interface for the Swarm.
+* **`helot_workflow`**: Manages complex, multi-step orchestration flows and state persistence.
+
+---
+
+## 📂 Project Structure
+
+The project is organized to separate orchestration logic from execution agents:
+
+```text
+helots/
+├── src/
+│   ├── orchestrator/       # Core logic for Gorgo interaction and delegation
+│   ├── agents/
+│   │   ├── scout/          # Dense model agent for planning
+│   │   ├── builder/        # MoE model agent for coding
+│   │   └── peltast/        # MoE model agent for QA
+│   ├── tools/
+│   │   ├── helot_run.ts
+│   │   ├── helot_slinger.ts
+│   │   ├── helot_hoplite.ts
+│   │   ├── helot_execute.ts
+│   │   └── helot_workflow.ts
+│   └── utils/
+├── .helots/
+│   └── config.json         # Per-project LLM tuning
+└── USAGE.md
+```
 
 ---
 
