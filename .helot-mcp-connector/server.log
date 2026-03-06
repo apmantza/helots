@@ -2825,3 +2825,57 @@ Helots MCP Server running on stdio
 [Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
 [Slinger Update] ⚠️ Slinger | Archidamus | server error: fetch failed
 [Slinger Update] ❌ Slinger | Archidamus | empty response — server may be down
+[Scribe Update] 🔍 Scribe | researching...
+[Scribe Update] 🏹 Slinger Teleutias deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Scribe Update] ✅ Slinger | Teleutias | 109.2t/s | 56 gen + 576 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 107.3t/s | 56 gen + 2120 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 106.0t/s | 58 gen + 3664 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 103.8t/s | 66 gen + 5210 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 103.3t/s | 66 gen + 5656 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 104.5t/s | 62 gen + 6102 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 99.7t/s | 33 gen + 7674 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 99.1t/s | 1251 gen + 8562 prompt tokens
+[Scribe Update] ✍️ Scribe | writing docs/project-structure.md...
+[Scribe Update] ✏️ Hoplite editing docs/project-structure.md...
+[Scribe Update] ✅ Hoplite | Teleutias | 92.7t/s | 13149 gen + 14831 prompt tokens
+[Scribe Update] ✅ Hoplite: docs/project-structure.md written (1105 → 1181 lines)
+[Scribe Update] 📚 Scribe | ctx=65536 → token budget per batch: ~26214
+[Scribe Update] 📚 Scribe | 31 files → 4 dynamic batches
+[Scribe Update] 📖 Scribe | batch 1/4 (8 files, ~11343 tokens): dashboard-server.ts, mcp-server.ts, mcp.ts, pi.ts, config.ts, builder-orchestrator.ts, builder-prompt.ts, engine.ts
+[Scribe Update] 🏹 Slinger Teleutias deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 27768 chars × 8 file(s)
+[Scribe Update] 📖 Slinger preloading 8 file(s)...
+[Scribe Update] ✅ Slinger | Teleutias | 102.9t/s | 783 gen + 12017 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 103.1t/s | 793 gen + 12025 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 102.7t/s | 658 gen + 12032 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 102.6t/s | 660 gen + 12040 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 103.2t/s | 898 gen + 12047 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 97.4t/s | 1204 gen + 12055 prompt tokens
+[Scribe Update] ✏️ Hoplite editing docs/project-structure.md...
+[Scribe Update] ✅ Hoplite | Archidamus | 92.1t/s | 8032 gen + 16228 prompt tokens
+[Scribe Update] ✅ Hoplite: docs/project-structure.md written (1181 → 602 lines)
+[Scribe Update] 📖 Scribe | batch 2/4 (8 files, ~16818 tokens): file-utils.ts, governor.ts, grep-utils.ts, helots-orchestrator.ts, hoplite-agent.ts, llama-client.ts, lsp-client.ts, model-registry.ts
+[Scribe Update] 🏹 Slinger Agis deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 27768 chars × 8 file(s)
+[Scribe Update] 📖 Slinger preloading 8 file(s)...
+[Scribe Update] ✅ Slinger | Agis | 88.8t/s | 22 gen + 17318 prompt tokens
+[Scribe Update] ✅ Slinger | Agis | 98.4t/s | 1119 gen + 17651 prompt tokens
+[Scribe Update] ✅ Slinger | Agis | 98.3t/s | 973 gen + 17658 prompt tokens
+[Scribe Update] ✅ Slinger | Agis | 97.7t/s | 684 gen + 17666 prompt tokens
+[Scribe Update] ✅ Slinger | Agis | 98.2t/s | 843 gen + 17673 prompt tokens
+[Scribe Update] ✅ Slinger | Agis | 98.3t/s | 860 gen + 17681 prompt tokens
+[Scribe Update] ✅ Slinger | Agis | 98.6t/s | 901 gen + 17707 prompt tokens
+[Scribe Update] ✅ Slinger | Agis | 88.7t/s | 2866 gen + 17737 prompt tokens
+[Scribe Update] ✏️ Hoplite editing docs/project-structure.md...
+[Scribe Update] ✅ Hoplite | Brasidas | 91.7t/s | 8117 gen + 12898 prompt tokens
+[Scribe Update] 📖 Scribe | batch 3/4 (8 files, ~8392 tokens): peltast-orchestrator.ts, persona-utils.ts, scout.ts, skill-injector.ts, slinger-agent.ts, sparta-record.ts, symbol-utils.ts, task-loop.ts
+[Scribe Update] 🏹 Slinger Pausanias deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 27768 chars × 8 file(s)
+[Scribe Update] 📖 Slinger preloading 8 file(s)...
+[Scribe Update] ✅ Slinger | Pausanias | 87.3t/s | 2002 gen + 8930 prompt tokens
+[Scribe Update] ✅ Slinger | Pausanias | 88.7t/s | 1196 gen + 8938 prompt tokens
+[Scribe Update] ✅ Slinger | Pausanias | 93.2t/s | 912 gen + 8952 prompt tokens
+[Scribe Update] ✏️ Hoplite editing docs/project-structure.md...
+[Scribe Update] ⚠️ Hoplite | Agis | server error: fetch failed
+[Scribe Update] ❌ Hoplite | Agis | empty response — server may be down
