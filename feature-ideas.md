@@ -150,10 +150,39 @@
 - **Helots Implementation:** Before Scout runs, add an optional clarification pass that identifies ambiguities in the instruction and surfaces them.
 - **Benefit:** Particularly useful for local models with limited reasoning on underspecified tasks; prevents wasted compute on incorrect assumptions.
 
+## File-Centric Agent State (inspired by planning-with-files)
+
+### 1. Explicit Inter-Agent Handoff Files
+- **Current State:** Scout → Aristomenis → Builder context is passed in-memory as strings within the engine. If a stage fails, prior work is lost.
+- **Pattern:** Each pipeline stage writes its output to a named file before handing off. The next stage reads that file as its primary input.
+- **Helots Implementation:** Scout writes `discovery.md`, Aristomenis writes `plan.md`, Builder writes `diff.md` — all in `.helot-mcp-connector/run-{id}/`. Peltast reads `diff.md` directly.
+- **Benefit:** Crash recovery (resume from last written file), cross-session task continuity, and full traceability of each stage's reasoning.
+
+### 2. Central Task State File
+- **Current State:** Task state (strikes, phase, model) lives only in the in-memory `Aristomenis` governor object.
+- **Pattern:** Maintain a `task-state.json` in the run directory that all agents can read and update.
+- **Helots Implementation:** Governor serializes state to `.helot-mcp-connector/task-state.json` after each phase transition. On restart, engine can resume from last checkpoint.
+- **Benefit:** Enables long-running tasks that survive MCP restarts, and makes the current pipeline phase inspectable externally.
+
+### 3. Atomic Writes for Agent Outputs
+- **Current State:** Builder writes directly to target files. A crash mid-write corrupts the file.
+- **Pattern:** Write to a `.tmp` file first, then rename atomically to the target path.
+- **Helots Implementation:** In `file-executor.ts` and Builder output handling, use `writeFileSync(tmp) → renameSync(tmp, target)` pattern.
+- **Benefit:** Prevents partial writes from corrupting source files during autonomous operation.
+
+### 4. Explicit Path Injection in Agent Prompts
+- **Current State:** Agents receive file content inline in their prompts (full file text).
+- **Pattern:** Pass file paths in prompts and have agents reference them by path rather than embedding full content.
+- **Helots Implementation:** For large files, Scout writes a `context-summary.md` and Aristomenis receives the path reference rather than the full content. Reduces prompt size for large codebases.
+- **Benefit:** Context window preservation for complex tasks; agents can selectively read only what they need.
+
+**Reference:** github.com/OthmanAdi/planning-with-files — file system as primary agent state store, Read-Plan-Write loop, modular file structure for multi-stage pipelines.
+
 ## Inspiration
 
 - **Pattern:** Fractals (TinyAGI) recursive DAG orchestration — plan once as a DAG, execute leaf tasks in isolated git worktrees, synthesize results via merge agents
 - **Pattern:** LocalCowork — curate tool surface per phase, single-turn dispatch, cross-server coordination via workflow chains
 - **Pattern:** Superpowers (obra) — composable skill triggers, two-stage review, bite-sized TDD decomposition, subagent dispatch with guardrails
+- **Pattern:** planning-with-files (OthmanAdi) — file system as shared state, explicit inter-agent handoffs, atomic writes, crash recovery via checkpoints
 - **Principle:** Plan once, execute fully, only return synthesized result
 - **Goal:** Optimize workflow efficiency and token usage
