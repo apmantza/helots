@@ -2648,3 +2648,95 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Agis | 101.9t/s | 41 gen + 2826 prompt tokens
 [Slinger Update] ✅ Slinger | Agis | 101.8t/s | 41 gen + 2860 prompt tokens
 [Slinger Update] ✅ Slinger | Agis | 97.9t/s | 774 gen + 3025 prompt tokens
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[Scribe Update] 🔍 Scribe | researching...
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 65536
+[Scribe Update] 🏹 Slinger Lysander deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Slinger...
+[Scribe Update] ✅ Slinger | Lysander | 106.4t/s | 67 gen + 569 prompt tokens
+[Scribe Update] ✅ Slinger | Lysander | 105.8t/s | 61 gen + 2121 prompt tokens
+[Scribe Update] ✅ Slinger | Lysander | 103.4t/s | 104 gen + 3669 prompt tokens
+[Scribe Update] ✅ Slinger | Lysander | 102.2t/s | 108 gen + 5248 prompt tokens
+[Scribe Update] ✅ Slinger | Lysander | 102.7t/s | 110 gen + 6831 prompt tokens
+[Scribe Update] ✅ Slinger | Lysander | 101.2t/s | 197 gen + 8415 prompt tokens
+[Scribe Update] ✍️ Scribe | writing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ✅ Hoplite | Agis | 103.1t/s | 228 gen + 410 prompt tokens
+[Scribe Update] ✅ Hoplite: C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md written (0 → 9 lines)
+[Scribe Update] 📚 Scribe | 31 files → 8 batches
+[Scribe Update] 📖 Scribe | batch 1/8: dashboard-server.ts, mcp-server.ts, mcp.ts, pi.ts
+[Scribe Update] 🏹 Slinger Teleutias deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 55536 chars × 4 file(s)
+[Scribe Update] 📖 Slinger preloading 4 file(s)...
+[Scribe Update] ✅ Slinger | Teleutias | 103.7t/s | 494 gen + 7328 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 103.5t/s | 431 gen + 7336 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 104.3t/s | 647 gen + 7343 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 106.2t/s | 433 gen + 7351 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 106.3t/s | 556 gen + 7358 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 105.0t/s | 690 gen + 7366 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 103.8t/s | 608 gen + 7392 prompt tokens
+[Scribe Update] ✅ Slinger | Teleutias | 93.0t/s | 1368 gen + 7422 prompt tokens
+[Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ✅ Hoplite | Gylippus | 95.1t/s | 1600 gen + 1978 prompt tokens
+[Scribe Update] ✅ Hoplite: C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md written (9 → 138 lines)
+[Scribe Update] 📖 Scribe | batch 2/8: config.ts, builder-orchestrator.ts, builder-prompt.ts, engine.ts
+[Scribe Update] 🏹 Slinger Agis deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 55536 chars × 4 file(s)
+[Scribe Update] 📖 Slinger preloading 4 file(s)...
+[Scribe Update] ✅ Slinger | Agis | 94.8t/s | 677 gen + 5201 prompt tokens
+[Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ✅ Hoplite | Aristomenis | 94.8t/s | 2310 gen + 2727 prompt tokens
+[Scribe Update] ✅ Hoplite: C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md written (138 → 216 lines)
+[Scribe Update] 📖 Scribe | batch 3/8: file-utils.ts, governor.ts, grep-utils.ts, helots-orchestrator.ts
+[Scribe Update] 🏹 Slinger Agesilaus deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 55536 chars × 4 file(s)
+[Scribe Update] 📖 Slinger preloading 4 file(s)...
+[Scribe Update] ✅ Slinger | Agesilaus | 99.2t/s | 29 gen + 7462 prompt tokens
+[Scribe Update] ✅ Slinger | Agesilaus | 103.4t/s | 593 gen + 7797 prompt tokens
+[Scribe Update] ✅ Slinger | Agesilaus | 102.6t/s | 356 gen + 7805 prompt tokens
+[Scribe Update] ✅ Slinger | Agesilaus | 103.1t/s | 501 gen + 7812 prompt tokens
+[Scribe Update] ✅ Slinger | Agesilaus | 102.9t/s | 360 gen + 7820 prompt tokens
+[Scribe Update] ✅ Slinger | Agesilaus | 102.8t/s | 376 gen + 7827 prompt tokens
+[Scribe Update] ✅ Slinger | Agesilaus | 102.8t/s | 449 gen + 7853 prompt tokens
+[Scribe Update] ✅ Slinger | Agesilaus | 99.2t/s | 1053 gen + 7884 prompt tokens
+[Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ✅ Hoplite | Pausanias | 92.8t/s | 6648 gen + 4335 prompt tokens
+[Scribe Update] ✅ Hoplite: C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md written (216 → 651 lines)
+[Scribe Update] 📖 Scribe | batch 4/8: hoplite-agent.ts, llama-client.ts, lsp-client.ts, model-registry.ts
+[Scribe Update] 🏹 Slinger Aristomenis deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 55536 chars × 4 file(s)
+[Scribe Update] 📖 Slinger preloading 4 file(s)...
+[Scribe Update] ✅ Slinger | Aristomenis | 97.7t/s | 524 gen + 10634 prompt tokens
+[Scribe Update] ✅ Slinger | Aristomenis | 90.2t/s | 1357 gen + 10642 prompt tokens
+[Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ✅ Hoplite | Lysander | 91.3t/s | 8471 gen + 9251 prompt tokens
+[Scribe Update] ✅ Hoplite: C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md written (651 → 855 lines)
+[Scribe Update] 📖 Scribe | batch 5/8: peltast-orchestrator.ts, persona-utils.ts, scout.ts, skill-injector.ts
+[Scribe Update] 🏹 Slinger Archidamus deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 55536 chars × 4 file(s)
+[Scribe Update] 📖 Slinger preloading 4 file(s)...
+[Scribe Update] ✅ Slinger | Archidamus | 103.4t/s | 432 gen + 3891 prompt tokens
+[Scribe Update] ✅ Slinger | Archidamus | 102.8t/s | 329 gen + 3899 prompt tokens
+[Scribe Update] ✅ Slinger | Archidamus | 102.9t/s | 359 gen + 3906 prompt tokens
+[Scribe Update] ✅ Slinger | Archidamus | 100.4t/s | 530 gen + 3914 prompt tokens
+[Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ✅ Hoplite | Lysander | 91.0t/s | 9243 gen + 10425 prompt tokens
+[Scribe Update] ✅ Hoplite: C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md written (855 → 941 lines)
+[Scribe Update] 📖 Scribe | batch 6/8: slinger-agent.ts, sparta-record.ts, symbol-utils.ts, task-loop.ts
+[Scribe Update] 🏹 Slinger Aristomenis deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 55536 chars × 4 file(s)
+[Scribe Update] 📖 Slinger preloading 4 file(s)...
+[Scribe Update] ✅ Slinger | Aristomenis | 97.3t/s | 738 gen + 5817 prompt tokens
+[Scribe Update] ✅ Slinger | Aristomenis | 89.8t/s | 1053 gen + 5825 prompt tokens
+[Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ⚠️ Hoplite | Pausanias | server error: fetch failed
+[Scribe Update] ❌ Hoplite | Pausanias | empty response — server may be down

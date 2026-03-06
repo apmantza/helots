@@ -20,7 +20,8 @@
       "Bash(for f in C:/Users/R3LiC/.claude/hooks/helots-*.py)",
       "Bash(do echo \"=== $f ===\")",
       "Read(//c/Users/R3LiC/Desktop/helots-pi/**)",
-      "Bash(done)"
+      "Bash(done)",
+      "mcp__helots__helot_scribe"
     ]
   }
 }

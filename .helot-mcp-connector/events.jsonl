@@ -766,3 +766,105 @@
 {"ts":"2026-03-06T08:12:39.094Z","type":"phase_change","phase":"Slinger","name":"Agis"}
 {"ts":"2026-03-06T08:12:47.465Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Agis","tps":97.87917329479639,"genTokens":774,"promptTokens":3025,"ctxPct":5}
 {"ts":"2026-03-06T08:12:47.469Z","type":"slinger_done","task":"In src/core/verification.ts, show the full lint check section — what commands are run, how groundTruth entries are built","name":"Agis"}
+{"ts":"2026-03-06T08:17:29.393Z","type":"slinger_start","task":"List the full folder structure of C:/Users/R3LiC/Desktop/helots-pi as an indented markdown tree (exclude node_modules, .","name":"Lysander"}
+{"ts":"2026-03-06T08:17:29.399Z","type":"phase_change","phase":"Slinger","name":"Lysander"}
+{"ts":"2026-03-06T08:17:30.305Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Lysander","tps":106.42769254913641,"genTokens":67,"promptTokens":569,"ctxPct":1}
+{"ts":"2026-03-06T08:17:32.258Z","type":"phase_change","phase":"Slinger","name":"Lysander"}
+{"ts":"2026-03-06T08:17:33.966Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Lysander","tps":105.82087682831295,"genTokens":61,"promptTokens":2121,"ctxPct":3}
+{"ts":"2026-03-06T08:17:35.821Z","type":"phase_change","phase":"Slinger","name":"Lysander"}
+{"ts":"2026-03-06T08:17:38.190Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Lysander","tps":103.41701758845066,"genTokens":104,"promptTokens":3669,"ctxPct":6}
+{"ts":"2026-03-06T08:17:40.092Z","type":"phase_change","phase":"Slinger","name":"Lysander"}
+{"ts":"2026-03-06T08:17:42.463Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Lysander","tps":102.16269920662411,"genTokens":108,"promptTokens":5248,"ctxPct":8}
+{"ts":"2026-03-06T08:17:44.322Z","type":"phase_change","phase":"Slinger","name":"Lysander"}
+{"ts":"2026-03-06T08:17:46.775Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Lysander","tps":102.73939657042649,"genTokens":110,"promptTokens":6831,"ctxPct":10}
+{"ts":"2026-03-06T08:17:48.614Z","type":"phase_change","phase":"Slinger","name":"Lysander"}
+{"ts":"2026-03-06T08:17:52.019Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Lysander","tps":101.19220859032532,"genTokens":197,"promptTokens":8415,"ctxPct":13}
+{"ts":"2026-03-06T08:17:52.023Z","type":"slinger_done","task":"List the full folder structure of C:/Users/R3LiC/Desktop/helots-pi as an indented markdown tree (exclude node_modules, .","name":"Lysander"}
+{"ts":"2026-03-06T08:17:52.033Z","type":"hoplite_start","file":"C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md","instruction":"Based on this research, write a clean well-formatted markdown document:\n\n### SUMMARY\nThe folder structure has been succe"}
+{"ts":"2026-03-06T08:17:52.037Z","type":"phase_change","phase":"Hoplite","name":"Agis"}
+{"ts":"2026-03-06T08:17:54.675Z","type":"subagent_done","phase":"Hoplite","role":"Hoplite","name":"Agis","tps":103.05714034786868,"genTokens":228,"promptTokens":410,"ctxPct":1}
+{"ts":"2026-03-06T08:17:54.683Z","type":"hoplite_done","file":"C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md","linesBefore":0,"linesAfter":9}
+{"ts":"2026-03-06T08:17:54.693Z","type":"slinger_start","task":"Read each file and write a one-paragraph summary of what it does.\nFormat as: ### <filename>\n<summary>\n\nFiles:\nC:\\Users\\R","name":"Teleutias"}
+{"ts":"2026-03-06T08:17:54.701Z","type":"phase_change","phase":"Slinger","name":"Teleutias"}
+{"ts":"2026-03-06T08:18:03.238Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Teleutias","tps":103.66275994460035,"genTokens":494,"promptTokens":7328,"ctxPct":11}
+{"ts":"2026-03-06T08:18:03.243Z","type":"phase_change","phase":"Slinger","name":"Teleutias"}
+{"ts":"2026-03-06T08:18:07.782Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Teleutias","tps":103.46687986765501,"genTokens":431,"promptTokens":7336,"ctxPct":11}
+{"ts":"2026-03-06T08:18:07.787Z","type":"phase_change","phase":"Slinger","name":"Teleutias"}
+{"ts":"2026-03-06T08:18:14.382Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Teleutias","tps":104.28277594753709,"genTokens":647,"promptTokens":7343,"ctxPct":11}
+{"ts":"2026-03-06T08:18:14.386Z","type":"phase_change","phase":"Slinger","name":"Teleutias"}
+{"ts":"2026-03-06T08:18:18.872Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Teleutias","tps":106.18388979985795,"genTokens":433,"promptTokens":7351,"ctxPct":11}
+{"ts":"2026-03-06T08:18:18.876Z","type":"phase_change","phase":"Slinger","name":"Teleutias"}
+{"ts":"2026-03-06T08:18:24.525Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Teleutias","tps":106.31960683468277,"genTokens":556,"promptTokens":7358,"ctxPct":11}
+{"ts":"2026-03-06T08:18:24.529Z","type":"phase_change","phase":"Slinger","name":"Teleutias"}
+{"ts":"2026-03-06T08:18:31.527Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Teleutias","tps":104.95810209466275,"genTokens":690,"promptTokens":7366,"ctxPct":11}
+{"ts":"2026-03-06T08:18:31.531Z","type":"phase_change","phase":"Slinger","name":"Teleutias"}
+{"ts":"2026-03-06T08:18:37.856Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Teleutias","tps":103.8499552616784,"genTokens":608,"promptTokens":7392,"ctxPct":11}
+{"ts":"2026-03-06T08:18:37.860Z","type":"phase_change","phase":"Slinger","name":"Teleutias"}
+{"ts":"2026-03-06T08:18:52.958Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Teleutias","tps":93.03913623934963,"genTokens":1368,"promptTokens":7422,"ctxPct":11}
+{"ts":"2026-03-06T08:18:52.963Z","type":"slinger_done","task":"Read each file and write a one-paragraph summary of what it does.\nFormat as: ### <filename>\n<summary>\n\nFiles:\nC:\\Users\\R","name":"Teleutias"}
+{"ts":"2026-03-06T08:18:52.972Z","type":"hoplite_start","file":"C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md","instruction":"Append a new \"## Source File Summaries\" section to the document with these entries:\n\n### SUMMARY\nThe `dashboard-server.t"}
+{"ts":"2026-03-06T08:18:52.976Z","type":"phase_change","phase":"Hoplite","name":"Gylippus"}
+{"ts":"2026-03-06T08:19:10.889Z","type":"subagent_done","phase":"Hoplite","role":"Hoplite","name":"Gylippus","tps":95.12294212216051,"genTokens":1600,"promptTokens":1978,"ctxPct":3}
+{"ts":"2026-03-06T08:19:10.904Z","type":"hoplite_done","file":"C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md","linesBefore":9,"linesAfter":138}
+{"ts":"2026-03-06T08:19:10.912Z","type":"slinger_start","task":"Read each file and write a one-paragraph summary of what it does.\nFormat as: ### <filename>\n<summary>\n\nFiles:\nC:\\Users\\R","name":"Agis"}
+{"ts":"2026-03-06T08:19:10.920Z","type":"phase_change","phase":"Slinger","name":"Agis"}
+{"ts":"2026-03-06T08:19:20.923Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Agis","tps":94.81986208037878,"genTokens":677,"promptTokens":5201,"ctxPct":8}
+{"ts":"2026-03-06T08:19:20.927Z","type":"slinger_done","task":"Read each file and write a one-paragraph summary of what it does.\nFormat as: ### <filename>\n<summary>\n\nFiles:\nC:\\Users\\R","name":"Agis"}
+{"ts":"2026-03-06T08:19:20.935Z","type":"hoplite_start","file":"C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md","instruction":"Append these entries to the \"## Source File Summaries\" section:\n\n### C:\\Users\\R3LiC\\Desktop\\helots-pi\\src\\config.ts\nThis"}
+{"ts":"2026-03-06T08:19:20.939Z","type":"phase_change","phase":"Hoplite","name":"Aristomenis"}
+{"ts":"2026-03-06T08:19:46.744Z","type":"subagent_done","phase":"Hoplite","role":"Hoplite","name":"Aristomenis","tps":94.77391716932789,"genTokens":2310,"promptTokens":2727,"ctxPct":4}
+{"ts":"2026-03-06T08:19:46.804Z","type":"hoplite_done","file":"C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md","linesBefore":138,"linesAfter":216}
+{"ts":"2026-03-06T08:19:46.812Z","type":"slinger_start","task":"Read each file and write a one-paragraph summary of what it does.\nFormat as: ### <filename>\n<summary>\n\nFiles:\nC:\\Users\\R","name":"Agesilaus"}
+{"ts":"2026-03-06T08:19:46.820Z","type":"phase_change","phase":"Slinger","name":"Agesilaus"}
+{"ts":"2026-03-06T08:19:51.441Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Agesilaus","tps":99.22797216004989,"genTokens":29,"promptTokens":7462,"ctxPct":11}
+{"ts":"2026-03-06T08:19:51.763Z","type":"phase_change","phase":"Slinger","name":"Agesilaus"}
+{"ts":"2026-03-06T08:19:58.085Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Agesilaus","tps":103.40189082127362,"genTokens":593,"promptTokens":7797,"ctxPct":12}
+{"ts":"2026-03-06T08:19:58.089Z","type":"phase_change","phase":"Slinger","name":"Agesilaus"}
+{"ts":"2026-03-06T08:20:01.956Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Agesilaus","tps":102.63686799330395,"genTokens":356,"promptTokens":7805,"ctxPct":12}
+{"ts":"2026-03-06T08:20:01.961Z","type":"phase_change","phase":"Slinger","name":"Agesilaus"}
+{"ts":"2026-03-06T08:20:07.222Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Agesilaus","tps":103.09232953148344,"genTokens":501,"promptTokens":7812,"ctxPct":12}
+{"ts":"2026-03-06T08:20:07.227Z","type":"phase_change","phase":"Slinger","name":"Agesilaus"}
+{"ts":"2026-03-06T08:20:11.151Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Agesilaus","tps":102.85036354889536,"genTokens":360,"promptTokens":7820,"ctxPct":12}
+{"ts":"2026-03-06T08:20:11.156Z","type":"phase_change","phase":"Slinger","name":"Agesilaus"}
+{"ts":"2026-03-06T08:20:15.237Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Agesilaus","tps":102.84379223245362,"genTokens":376,"promptTokens":7827,"ctxPct":12}
+{"ts":"2026-03-06T08:20:15.242Z","type":"phase_change","phase":"Slinger","name":"Agesilaus"}
+{"ts":"2026-03-06T08:20:20.081Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Agesilaus","tps":102.79773067484462,"genTokens":449,"promptTokens":7853,"ctxPct":12}
+{"ts":"2026-03-06T08:20:20.086Z","type":"phase_change","phase":"Slinger","name":"Agesilaus"}
+{"ts":"2026-03-06T08:20:31.111Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Agesilaus","tps":99.22743198802945,"genTokens":1053,"promptTokens":7884,"ctxPct":12}
+{"ts":"2026-03-06T08:20:31.115Z","type":"slinger_done","task":"Read each file and write a one-paragraph summary of what it does.\nFormat as: ### <filename>\n<summary>\n\nFiles:\nC:\\Users\\R","name":"Agesilaus"}
+{"ts":"2026-03-06T08:20:31.124Z","type":"hoplite_start","file":"C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md","instruction":"Append these entries to the \"## Source File Summaries\" section:\n\n### SUMMARY\n### C:\\Users\\R3LiC\\Desktop\\helots-pi\\src\\co"}
+{"ts":"2026-03-06T08:20:31.128Z","type":"phase_change","phase":"Hoplite","name":"Pausanias"}
+{"ts":"2026-03-06T08:21:45.069Z","type":"subagent_done","phase":"Hoplite","role":"Hoplite","name":"Pausanias","tps":92.83200494523128,"genTokens":6648,"promptTokens":4335,"ctxPct":7}
+{"ts":"2026-03-06T08:21:45.157Z","type":"hoplite_done","file":"C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md","linesBefore":216,"linesAfter":651}
+{"ts":"2026-03-06T08:21:45.166Z","type":"slinger_start","task":"Read each file and write a one-paragraph summary of what it does.\nFormat as: ### <filename>\n<summary>\n\nFiles:\nC:\\Users\\R","name":"Aristomenis"}
+{"ts":"2026-03-06T08:21:45.175Z","type":"phase_change","phase":"Slinger","name":"Aristomenis"}
+{"ts":"2026-03-06T08:21:57.068Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Aristomenis","tps":97.7155010947874,"genTokens":524,"promptTokens":10634,"ctxPct":16}
+{"ts":"2026-03-06T08:21:57.073Z","type":"phase_change","phase":"Slinger","name":"Aristomenis"}
+{"ts":"2026-03-06T08:22:12.573Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Aristomenis","tps":90.19258043398578,"genTokens":1357,"promptTokens":10642,"ctxPct":16}
+{"ts":"2026-03-06T08:22:12.578Z","type":"slinger_done","task":"Read each file and write a one-paragraph summary of what it does.\nFormat as: ### <filename>\n<summary>\n\nFiles:\nC:\\Users\\R","name":"Aristomenis"}
+{"ts":"2026-03-06T08:22:12.587Z","type":"hoplite_start","file":"C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md","instruction":"Append these entries to the \"## Source File Summaries\" section:\n\n### <filename>\nC:\\Users\\R3LiC\\Desktop\\helots-pi\\src\\cor"}
+{"ts":"2026-03-06T08:22:12.592Z","type":"phase_change","phase":"Hoplite","name":"Lysander"}
+{"ts":"2026-03-06T08:23:50.356Z","type":"subagent_done","phase":"Hoplite","role":"Hoplite","name":"Lysander","tps":91.30599630438681,"genTokens":8471,"promptTokens":9251,"ctxPct":14}
+{"ts":"2026-03-06T08:23:50.458Z","type":"hoplite_done","file":"C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md","linesBefore":651,"linesAfter":855}
+{"ts":"2026-03-06T08:23:50.466Z","type":"slinger_start","task":"Read each file and write a one-paragraph summary of what it does.\nFormat as: ### <filename>\n<summary>\n\nFiles:\nC:\\Users\\R","name":"Archidamus"}
+{"ts":"2026-03-06T08:23:50.474Z","type":"phase_change","phase":"Slinger","name":"Archidamus"}
+{"ts":"2026-03-06T08:23:56.849Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Archidamus","tps":103.4401462988472,"genTokens":432,"promptTokens":3891,"ctxPct":6}
+{"ts":"2026-03-06T08:23:56.853Z","type":"phase_change","phase":"Slinger","name":"Archidamus"}
+{"ts":"2026-03-06T08:24:00.406Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Archidamus","tps":102.81595076035046,"genTokens":329,"promptTokens":3899,"ctxPct":6}
+{"ts":"2026-03-06T08:24:00.410Z","type":"phase_change","phase":"Slinger","name":"Archidamus"}
+{"ts":"2026-03-06T08:24:04.278Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Archidamus","tps":102.8964372581521,"genTokens":359,"promptTokens":3906,"ctxPct":6}
+{"ts":"2026-03-06T08:24:04.282Z","type":"phase_change","phase":"Slinger","name":"Archidamus"}
+{"ts":"2026-03-06T08:24:09.944Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Archidamus","tps":100.40395922742884,"genTokens":530,"promptTokens":3914,"ctxPct":6}
+{"ts":"2026-03-06T08:24:09.948Z","type":"slinger_done","task":"Read each file and write a one-paragraph summary of what it does.\nFormat as: ### <filename>\n<summary>\n\nFiles:\nC:\\Users\\R","name":"Archidamus"}
+{"ts":"2026-03-06T08:24:09.957Z","type":"hoplite_start","file":"C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md","instruction":"Append these entries to the \"## Source File Summaries\" section:\n\n### C:\\Users\\R3LiC\\Desktop\\helots-pi\\src\\core\\peltast-o"}
+{"ts":"2026-03-06T08:24:09.962Z","type":"phase_change","phase":"Hoplite","name":"Lysander"}
+{"ts":"2026-03-06T08:25:57.209Z","type":"subagent_done","phase":"Hoplite","role":"Hoplite","name":"Lysander","tps":90.98153770902037,"genTokens":9243,"promptTokens":10425,"ctxPct":16}
+{"ts":"2026-03-06T08:25:57.312Z","type":"hoplite_done","file":"C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md","linesBefore":855,"linesAfter":941}
+{"ts":"2026-03-06T08:25:57.320Z","type":"slinger_start","task":"Read each file and write a one-paragraph summary of what it does.\nFormat as: ### <filename>\n<summary>\n\nFiles:\nC:\\Users\\R","name":"Aristomenis"}
+{"ts":"2026-03-06T08:25:57.328Z","type":"phase_change","phase":"Slinger","name":"Aristomenis"}
+{"ts":"2026-03-06T08:26:08.529Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Aristomenis","tps":97.25486160975927,"genTokens":738,"promptTokens":5817,"ctxPct":9}
+{"ts":"2026-03-06T08:26:08.534Z","type":"phase_change","phase":"Slinger","name":"Aristomenis"}
+{"ts":"2026-03-06T08:26:20.643Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Aristomenis","tps":89.76957378028642,"genTokens":1053,"promptTokens":5825,"ctxPct":9}
+{"ts":"2026-03-06T08:26:20.648Z","type":"slinger_done","task":"Read each file and write a one-paragraph summary of what it does.\nFormat as: ### <filename>\n<summary>\n\nFiles:\nC:\\Users\\R","name":"Aristomenis"}
+{"ts":"2026-03-06T08:26:20.657Z","type":"hoplite_start","file":"C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md","instruction":"Append these entries to the \"## Source File Summaries\" section:\n\n### <filename>\nC:\\Users\\R3LiC\\Desktop\\helots-pi\\src\\cor"}
+{"ts":"2026-03-06T08:26:20.662Z","type":"phase_change","phase":"Hoplite","name":"Pausanias"}
