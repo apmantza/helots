@@ -3402,3 +3402,13 @@ Helots MCP Server running on stdio
 [Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/cleanup-plan.sh...
 [Slinger Update] ✅ Hoplite | Teleutias | 94.7t/s | 572 gen + 1206 prompt tokens
 [Slinger Update] ✅ Hoplite: .helot-mcp-connector/cleanup-plan.sh written (70 → 69 lines)
+[Slinger Update] 🏹 Slinger Archidamus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Archidamus | 98.1t/s | 54 gen + 5685 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 93.6t/s | 787 gen + 7233 prompt tokens
+[Slinger Update] 🏹 Slinger Aristomenis deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Aristomenis | 98.4t/s | 34 gen + 5687 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 88.8t/s | 161 gen + 5758 prompt tokens

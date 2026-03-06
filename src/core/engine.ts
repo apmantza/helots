@@ -240,6 +240,25 @@ export class HelotEngine {
       try { readFileSync(f); protect.add(f); } catch {}
     }
 
+    // Source-code scan: protect any root-level file whose basename appears as a
+    // string literal in src/**/*.ts (catches hardcoded path references like
+    // `path.join(root, 'watch.mjs')` that config manifests don't enumerate).
+    try {
+      const rootFiles = readdirSync('.').filter(f => {
+        try { return statSync(f).isFile(); } catch { return false; }
+      });
+      const srcFiles = this.listFilesRecursive('src').filter(f => f.endsWith('.ts') || f.endsWith('.js') || f.endsWith('.mjs'));
+      for (const rootFile of rootFiles) {
+        const base = path.basename(rootFile);
+        if (protect.has(base)) continue; // already protected
+        for (const src of srcFiles) {
+          try {
+            if (readFileSync(src, 'utf-8').includes(base)) { protect.add(base); break; }
+          } catch {}
+        }
+      }
+    } catch {}
+
     return protect;
   }
 

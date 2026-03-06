@@ -1,5 +1,0 @@
-- [ ] 1. CREATE src/eba_benchmarking/data/translation.py — dimension translation layer extracted from p3_explorer.py (Target: src/eba_benchmarking/data/translation.py, Symbol: N/A, Action: EDIT) [DEPENDS: none]
-- [ ] 2. CREATE src/eba_benchmarking/data/pillar3_db.py — DB access layer + shared constants extracted from p3_explorer.py (Target: src/eba_benchmarking/data/pillar3_db.py, Symbol: N/A, Action: EDIT) [DEPENDS: none]
-- [ ] 3. CREATE src/eba_benchmarking/ui/tabs/pillar3_page.py — Pillar3 dashboard UI extracted from p3_explorer.py (Target: src/eba_benchmarking/ui/tabs/pillar3_page.py, Symbol: N/A, Action: EDIT) [DEPENDS: none]
-- [ ] 4. CREATE src/eba_benchmarking/ui/tabs/db_explorer_page.py — Database explorer UI extracted from p3_explorer.py (Target: src/eba_benchmarking/ui/tabs/db_explorer_page.py, Symbol: N/A, Action: EDIT) [DEPENDS: none]
-- [ ] 5. Slim down src/p3_explorer.py to a thin entry point that delegates to the new modules (Target: src/p3_explorer.py, Symbol: N/A, Action: EDIT) [DEPENDS: 1, 2, 3, 4]
