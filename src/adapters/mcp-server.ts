@@ -300,14 +300,16 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
         if (name === "helot_run") {
             ensureWatchOpen();
             const taskSummary = String(args?.taskSummary);
-            const implementationPlan = String(args?.implementationPlan ?? '');
             const frontierTasks = Array.isArray(args?.tasks) ? args.tasks as any[] : undefined;
 
-            if (implementationPlan && !frontierTasks) {
-                console.error('[DEPRECATED] implementationPlan is deprecated. Use structured `tasks` instead.');
+            if (!frontierTasks || frontierTasks.length === 0) {
+                return {
+                    content: [{ type: "text", text: '[ERROR] helot_run requires a `tasks` array. Use helot_slinger to research the codebase first, then call helot_run with structured tasks. See CLAUDE.md for the task format.' }],
+                    isError: true,
+                };
             }
 
-            const result = await engine.executeHelots(taskSummary, implementationPlan, (data) => {
+            const result = await engine.executeHelots(taskSummary, '', (data) => {
                 console.error(`[Helot Update] ${data.text}`);
             }, frontierTasks);
 

@@ -9416,3 +9416,199 @@ let
 //
 check
 ```
+
+--- Slinger | Pausanias ---
+
+grep
+###
+
+--- Slinger | Pausanias ---
+
+Get
+###
+
+--- Slinger | Pausanias ---
+
+Get
+###
+
+--- Slinger | Pausanias ---
+
+Found
+
+1
+2
+3
+
+###
+-
+-
+-
+
+###
+```
+//
+input
+    type
+    properties
+        research
+            type
+            description
+        },
+        target
+            type
+            items
+            description
+        },
+        outputFile
+            type
+            description
+        },
+        batch
+            type
+            description
+        },
+        max
+            type
+            description
+        },
+    },
+    required
+},
+
+//
+input
+    type
+    properties
+        task
+            type
+            description
+        },
+        implementation
+            type
+            description
+        },
+        tasks
+            type
+            description
+            items
+                type
+                properties
+                    id
+                    description
+                    file
+                    symbol
+                    depends
+                    changes
+                },
+                required
+            },
+        },
+    },
+    required
+},
+
+//
+input
+    type
+    properties
+        file
+            type
+            description
+        },
+        instruction
+            type
+            description
+        },
+    },
+    required
+},
+```
+
+--- Hoplite | Lysander ---
+
+```
+#
+
+##
+A
+
+Architecture
+
+##
+
+###
+Pre
+-
+-
+-
+
+Use
+-
+-
+-
+
+###
+**
+
+**
+1
+2
+3
+
+**
+```
+hel
+  task
+  tasks
+    {
+      id
+      description
+      file
+      symbol
+      changes
+      depends
+    },
+    {
+      id
+      description
+      file
+      symbol
+      changes
+      depends
+    }
+  ]
+})
+```
+
+**
+-
+-
+-
+
+###
+The
+
+##
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+##
+-
+-
+-
+-
+-
+
+##
+```
