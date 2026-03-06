@@ -2491,3 +2491,6 @@ Helots MCP Server running on stdio
 [Hoplite Update] ✏️ Hoplite editing feature-ideas.md...
 [Hoplite Update] ✅ Hoplite | Pausanias | 59.3t/s | 2141 gen + 2542 prompt tokens
 [Hoplite Update] ✅ Hoplite: feature-ideas.md written (155 → 196 lines)
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771

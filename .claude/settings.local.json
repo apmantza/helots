@@ -16,7 +16,11 @@
       "WebFetch(domain:npmx.dev)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.anthropic.com)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(for f in C:/Users/R3LiC/.claude/hooks/helots-*.py)",
+      "Bash(do echo \"=== $f ===\")",
+      "Read(//c/Users/R3LiC/Desktop/helots-pi/**)",
+      "Bash(done)"
     ]
   }
 }
