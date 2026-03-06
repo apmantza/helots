@@ -221,6 +221,18 @@ const TOOLS: Tool[] = [
                     items: { type: "string" },
                     description: "Files that must not be moved or copied. Pass [\"auto\"] to derive protected files from package.json and tsconfig.json automatically.",
                 },
+                remapRules: {
+                    type: "array",
+                    description: "Override destination for files matching a pattern. Each rule: { pattern: regex string, dir: target directory }. Applied before execution — LLM plan is overridden deterministically.",
+                    items: {
+                        type: "object",
+                        properties: {
+                            pattern: { type: "string", description: "Regex pattern matched against the source filename (basename only)." },
+                            dir:     { type: "string", description: "Target directory to move matching files into." },
+                        },
+                        required: ["pattern", "dir"],
+                    },
+                },
             },
             required: [],
         },
@@ -298,8 +310,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
             const dryRun         = args?.dryRun         ? Boolean(args.dryRun)                      : false;
             const scriptFile     = args?.scriptFile     ? String(args.scriptFile)                   : undefined;
             const protectedFiles = Array.isArray(args?.protectedFiles) ? args.protectedFiles as string[] : undefined;
+            const remapRules     = Array.isArray(args?.remapRules)     ? args.remapRules as Array<{ pattern: string; dir: string }> : undefined;
 
-            const result = await engine.executeScript(script, auditLog, dryRun, scriptFile, protectedFiles);
+            const result = await engine.executeScript(script, auditLog, dryRun, scriptFile, protectedFiles, remapRules);
             return { content: [{ type: "text", text: result }] };
         }
 

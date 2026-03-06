@@ -249,6 +249,7 @@ export class HelotEngine {
     dryRun:          boolean = false,
     scriptFile?:     string,
     protectedFiles?: string[],
+    remapRules?:     Array<{ pattern: string; dir: string }>,
   ): Promise<string> {
     const content = scriptFile ? readFileSync(scriptFile, 'utf-8') : script;
     const lines = content.split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#'));
@@ -281,6 +282,19 @@ export class HelotEngine {
         log(`[${ts()}] BLOCKED: "${line}" — unsafe pattern detected`); continue;
       }
 
+      // For mv/cp: apply remap rules before protection check
+      if ((cmd === 'mv' || cmd === 'cp') && parts[1] && remapRules?.length) {
+        const srcBase = path.basename(parts[1]);
+        for (const rule of remapRules) {
+          if (new RegExp(rule.pattern, 'i').test(srcBase)) {
+            const newDst = join(rule.dir, srcBase);
+            log(`[${ts()}] REMAP: ${parts[1]} → ${newDst} (matched rule: ${rule.pattern})`);
+            parts[2] = newDst;
+            break;
+          }
+        }
+      }
+
       // For mv/cp: check source against protected set and dotfile rule
       if ((cmd === 'mv' || cmd === 'cp') && parts[1]) {
         const srcBase = path.basename(parts[1]);
@@ -293,8 +307,10 @@ export class HelotEngine {
       }
 
       if (dryRun) {
-        if ((cmd === 'mv' || cmd === 'cp') && parts[2]?.endsWith('/')) {
-          log(`[${ts()}] DRY-RUN: ${cmd} ${parts[1]} → ${join(parts[2], path.basename(parts[1]))}`);
+        if (cmd === 'mv' || cmd === 'cp') {
+          let dst = parts[2] ?? '';
+          if (dst.endsWith('/') || dst.endsWith('\\')) dst = join(dst, path.basename(parts[1]));
+          log(`[${ts()}] DRY-RUN: ${cmd} ${parts[1]} → ${dst}`);
         } else {
           log(`[${ts()}] DRY-RUN: ${line}`);
         }
