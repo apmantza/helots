@@ -7527,3 +7527,111 @@ async
   //
 }
 ```
+
+--- Hoplite | Brasidas ---
+
+```
+---
+name
+description
+---
+
+#
+
+The
+
+All
+
+##
+
+This
+
+###
+```
+hel
+  research
+  outputFile
+  batch
+)
+```
+
+###
+```
+hel
+  file
+  instruction
+)
+```
+
+After
+
+##
+
+```
+hel
+  research
+  outputFile
+  batch
+)
+```
+
+##
+
+```
+hel
+  research
+  outputFile
+  batch
+)
+```
+
+##
+
+If
+
+```
+hel
+  research
+  outputFile
+  batch
+)
+```
+
+After
+```
+
+--- Hoplite | Aristomenis ---
+
+```
+---
+name
+description
+---
+
+#
+
+The
+
+Execute
+
+##
+
+```
+hel
+  research
+  outputFile
+  batch
+)
+```
+
+##
+
+```
+hel
+  file
+  instruction
+)
+```
+
+After
+```
