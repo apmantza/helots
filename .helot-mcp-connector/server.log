@@ -3185,3 +3185,9 @@ Helots MCP Server running on stdio
 [Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/cleanup-plan.sh...
 [Slinger Update] ✅ Hoplite | Agesilaus | 95.3t/s | 588 gen + 1157 prompt tokens
 [Slinger Update] ✅ Hoplite: .helot-mcp-connector/cleanup-plan.sh written (74 → 74 lines)
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
