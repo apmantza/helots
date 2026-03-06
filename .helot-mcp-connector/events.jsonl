@@ -641,3 +641,7 @@
 {"ts":"2026-03-06T14:19:47.057Z","type":"phase_change","phase":"Hoplite","name":"Lysander"}
 {"ts":"2026-03-06T14:19:52.570Z","type":"subagent_done","phase":"Hoplite","role":"Hoplite","name":"Lysander","tps":96.24487870306466,"genTokens":495,"promptTokens":495,"ctxPct":2}
 {"ts":"2026-03-06T14:19:52.578Z","type":"hoplite_done","file":"feature-ideas.md","linesBefore":0,"linesAfter":60}
+{"ts":"2026-03-06T14:20:16.986Z","type":"hoplite_start","file":".helot-mcp-connector/thetokenco-summary.md","instruction":"Fetch https://raw.githubusercontent.com/jasonkneen/open-thetokenco/main/README.md and write a focused summary: what it d"}
+{"ts":"2026-03-06T14:20:16.991Z","type":"phase_change","phase":"Hoplite","name":"Leonidas"}
+{"ts":"2026-03-06T14:20:23.266Z","type":"subagent_done","phase":"Hoplite","role":"Hoplite","name":"Leonidas","tps":101.44617610812683,"genTokens":500,"promptTokens":2286,"ctxPct":7}
+{"ts":"2026-03-06T14:20:23.274Z","type":"hoplite_done","file":".helot-mcp-connector/thetokenco-summary.md","linesBefore":0,"linesAfter":23}

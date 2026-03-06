@@ -3634,3 +3634,6 @@ Helots MCP Server running on stdio
 [Hoplite Update] ✏️ Hoplite editing feature-ideas.md...
 [Hoplite Update] ✅ Hoplite | Lysander | 96.2t/s | 495 gen + 495 prompt tokens
 [Hoplite Update] ✅ Hoplite: feature-ideas.md written (0 → 60 lines)
+[Hoplite Update] ✏️ Hoplite editing .helot-mcp-connector/thetokenco-summary.md...
+[Hoplite Update] ✅ Hoplite | Leonidas | 101.4t/s | 500 gen + 2286 prompt tokens
+[Hoplite Update] ✅ Hoplite: .helot-mcp-connector/thetokenco-summary.md written (0 → 23 lines)
