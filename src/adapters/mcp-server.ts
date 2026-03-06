@@ -7,6 +7,8 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 import { HelotEngine } from "../core/engine.js";
+import { executeWorkflow } from '../core/workflow-engine.js';
+import type { WorkflowStep } from '../core/workflow-engine.js';
 import { HelotConfig } from "../config.js";
 import * as fs from 'fs';
 import * as path from 'path';
@@ -267,6 +269,44 @@ const TOOLS: Tool[] = [
             required: ["file", "instruction"],
         },
     },
+    {
+        name: "helot_workflow",
+        description: "Runs a named sequence of helot tool steps fully off-frontier. Steps chain via the filesystem (outputFile → scriptFile). Returns only a final summary — no intermediate results hit the frontier context. Use for /maintain, /cleanup, /prune, /docs and any multi-step operation.",
+        inputSchema: {
+            type: "object",
+            properties: {
+                workflowName: {
+                    type: "string",
+                    description: "Name for this workflow run, used in log filenames. e.g. 'maintain', 'cleanup', 'docs'.",
+                },
+                steps: {
+                    type: "array",
+                    description: "Ordered list of tool steps. Steps with dependsOn are skipped if a dependency failed.",
+                    items: {
+                        type: "object",
+                        properties: {
+                            id:           { type: "string",  description: "Unique step identifier, e.g. 'prune', 'cleanup-plan'" },
+                            tool:         { type: "string",  description: "'slinger' | 'execute' | 'hoplite'" },
+                            dependsOn:    { type: "array", items: { type: "string" }, description: "Step IDs that must succeed before this step runs" },
+                            researchTask: { type: "string",  description: "[slinger] Research question or task description" },
+                            outputFile:   { type: "string",  description: "[slinger] If set, writes result to file (chains to execute via scriptFile)" },
+                            batchDir:     { type: "string",  description: "[slinger] Directory to batch-summarize" },
+                            scriptFile:   { type: "string",  description: "[execute] Path to shell script file (e.g. outputFile from prior slinger step)" },
+                            script:       { type: "string",  description: "[execute] Inline script (alternative to scriptFile)" },
+                            auditLog:     { type: "string",  description: "[execute] Path for audit log output" },
+                            protectedFiles: { type: "array", items: { type: "string" }, description: "[execute] Files to protect. Use ['auto'] for config-derived protection." },
+                            remapRules:   { type: "array",   description: "[execute] Pattern→dir remapping rules" },
+                            pruneRules:   { type: "array",   description: "[execute] Glob→dest archival rules" },
+                            file:         { type: "string",  description: "[hoplite] File to edit or create" },
+                            instruction:  { type: "string",  description: "[hoplite] Edit instruction for hoplite" },
+                        },
+                        required: ["id", "tool"],
+                    },
+                },
+            },
+            required: ["workflowName", "steps"],
+        },
+    },
 ];
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
@@ -342,6 +382,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
             return {
                 content: [{ type: "text", text: result }],
             };
+        }
+
+        if (name === "helot_workflow") {
+            const workflowName = String(args?.workflowName ?? 'workflow');
+            const steps = Array.isArray(args?.steps) ? args.steps as WorkflowStep[] : [];
+            if (steps.length === 0) {
+                return { content: [{ type: "text", text: '[ERROR] helot_workflow requires a non-empty steps array.' }], isError: true };
+            }
+            const result = await executeWorkflow(workflowName, steps, engine, (data) => {
+                console.error(`[Workflow Update] ${data.text}`);
+            });
+            return { content: [{ type: "text", text: result }] };
         }
 
         throw new Error(`Unknown tool: ${name}`);

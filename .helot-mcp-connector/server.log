@@ -3696,3 +3696,23 @@ Helots MCP Server running on stdio
 [Hoplite Update] ✏️ Hoplite editing CLAUDE.md...
 [Hoplite Update] ✅ Hoplite | Gylippus | 98.2t/s | 1131 gen + 1380 prompt tokens
 [Hoplite Update] ✅ Hoplite: CLAUDE.md written (83 → 93 lines)
+[Slinger Update] 🏹 Slinger Pausanias deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Pausanias | 104.1t/s | 32 gen + 600 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 101.9t/s | 41 gen + 2126 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 99.9t/s | 41 gen + 3658 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 100.9t/s | 41 gen + 5190 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 99.5t/s | 42 gen + 6722 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 100.0t/s | 38 gen + 8255 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 99.4t/s | 41 gen + 8331 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 89.4t/s | 919 gen + 9546 prompt tokens
+[Slinger Update] 🏹 Slinger Brasidas deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Brasidas | 103.9t/s | 51 gen + 603 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 101.4t/s | 57 gen + 946 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 101.2t/s | 48 gen + 992 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 103.5t/s | 51 gen + 1078 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 101.2t/s | 51 gen + 1507 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 87.5t/s | 230 gen + 1997 prompt tokens
+[Hoplite Update] ✏️ Hoplite editing C:\Users\R3LiC\.claude\skills\maintain\SKILL.md...
+[Hoplite Update] ✅ Hoplite | Aristomenis | 83.9t/s | 865 gen + 1273 prompt tokens
