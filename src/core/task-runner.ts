@@ -318,29 +318,48 @@ export class TaskRunner {
 
       let peltastOut: string;
       if (tier === 'LLM') {
-        const peltastSystem = `${globalContext}
-You are the Peltast. The code has already passed compile and lint checks. Confirm the file implements the described task.
+        const fileBlock = filesToProcess.map(f => `${f.filePath}\n\`\`\`\n${f.content}\n\`\`\``).join('\n\n');
+        const peltastBase = `${globalContext}\nTASK: ${task.description}\n\nFILE:\n${fileBlock}\n\nRESPOND WITH EXACTLY:\nVERDICT: PASS\nor\nVERDICT: FAIL — <reason in 10 words or fewer>`;
 
-TASK: ${task.description}
+        // Pass 1: spec compliance
+        const pass1System = `${peltastBase}\n\nYou are the Peltast — Pass 1: Spec Compliance.\nThe code has already passed compile and lint checks. Confirm the file implements the described task.\nVERDICT RULES: PASS if implemented even partially. FAIL only if clearly not implemented (empty body, wrong function, stub/TODO, completely missing logic). Do NOT fail for style.`;
+        const peltast1 = pickName(runId, `Peltast-${task.id}-${tryCount}-P1`);
+        this.setPhase(`Peltast P1 (Task ${task.id})`);
+        const p1Out = await this.runSubagentFn('Peltast', peltast1.name, pass1System, `Spec check: ${task.description}`, onUpdate, psiloiMetrics.peltast, 'PELTAST', modelName);
+        const p1Pass = p1Out.includes('VERDICT: PASS');
 
-FILE:
-${filesToProcess.map(f => `${f.filePath}\n\`\`\`\n${f.content}\n\`\`\``).join('\n\n')}
+        let p2Out = 'VERDICT: PASS (skipped — P1 failed)';
+        if (p1Pass) {
+          // Pass 2: correctness + security
+          const pass2System = `${peltastBase}\n\nYou are the Peltast — Pass 2: Correctness & Security.\nThe implementation passed spec review. Check for logic bugs, off-by-one errors, null dereferences, or security vulnerabilities.\nVERDICT RULES: PASS unless there is a clear bug or security issue. Do NOT fail for style, naming conventions, or missing tests.`;
+          const peltast2 = pickName(runId, `Peltast-${task.id}-${tryCount}-P2`);
+          this.setPhase(`Peltast P2 (Task ${task.id})`);
+          p2Out = await this.runSubagentFn('Peltast', peltast2.name, pass2System, `Correctness check: ${task.description}`, onUpdate, psiloiMetrics.peltast, 'PELTAST', modelName);
+        }
 
-VERDICT RULES: PASS if implemented even partially. FAIL only if clearly not implemented (empty body, wrong function, stub/TODO, completely missing logic). Do NOT fail for style issues.
-
-RESPOND WITH EXACTLY 2 LINES:
-VERDICT: PASS
-or
-VERDICT: FAIL — <reason in 10 words or fewer>`;
-
-        const peltast = pickName(runId, `Peltast-${task.id}-${tryCount}`);
-        this.setPhase(`Peltast (Task ${task.id})`);
-        peltastOut = await this.runSubagentFn('Peltast', peltast.name, peltastSystem, `Verify task completion: ${task.description}`, onUpdate, psiloiMetrics.peltast, 'PELTAST', modelName);
-        tier = peltastOut.includes('VERDICT: PASS') ? 'PASS' : 'FAIL';
-        verdictReason = peltastOut.replace(/VERDICT:\s*(PASS|FAIL)\s*[—\-]?\s*/i, '').trim().slice(0, 120);
+        peltastOut = p1Pass ? p2Out : p1Out;
+        tier = (p1Pass && p2Out.includes('VERDICT: PASS')) ? 'PASS' : 'FAIL';
+        const failedPass = !p1Pass ? 'P1' : 'P2';
+        verdictReason = tier === 'FAIL'
+          ? `[${failedPass}] ` + peltastOut.replace(/VERDICT:\s*(PASS|FAIL)\s*[—\-]?\s*/i, '').trim().slice(0, 110)
+          : '';
       } else {
         peltastOut = tier === 'PASS' ? `VERDICT: PASS (${verdictReason})` : `VERDICT: FAIL — ${verdictReason}`;
         onUpdate?.({ text: `⚡ Auto-${tier} — Task ${task.id} (deterministic)` });
+      }
+
+      // --- validateCmd gate ---
+      if (tier === 'PASS' && this.governor.config.validateCmd) {
+        try {
+          execSync(this.governor.config.validateCmd, { cwd: process.cwd(), stdio: 'pipe' });
+        } catch (err: any) {
+          const out = ((err.stdout ?? '') + (err.stderr ?? '')).toString().slice(0, 600);
+          onUpdate?.({ text: `⚠️ validateCmd failed — reopening task ${task.id}` });
+          tier = 'FAIL';
+          verdictReason = 'validateCmd failed';
+          peltastOut = `VERDICT: FAIL — validateCmd failed`;
+          lastPeltastFeedback = `Build validation failed:\n${out}\nFix these errors before resubmitting.`;
+        }
       }
 
       appendFileSync(reviewFile, `\n## Task: ${task.description} (Try ${tryCount})\n**Ground Truth:**\n${groundTruth.join('\n')}\n\n**Peltast:**\n${peltastOut}\n`);

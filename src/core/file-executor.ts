@@ -229,6 +229,10 @@ export async function executeScript(
     }
   }
 
+  const okCount        = results.filter(l => /\] OK[\s:(]/.test(l)).length;
+  const protectedCount = results.filter(l => l.includes('] PROTECTED')).length;
+  const blockedCount   = results.filter(l => l.includes('] BLOCKED')).length;
+  const errorCount     = results.filter(l => l.includes('] ERROR')).length;
   const tag = dryRun ? ' (dry-run)' : '';
-  return `✅ helot_execute: ${results.length} operations${tag} → audit: ${auditLog}\n\n${results.join('\n')}`;
+  return `✅ helot_execute${tag}: ${okCount} OK, ${protectedCount} PROTECTED, ${blockedCount} BLOCKED, ${errorCount} ERROR → audit: ${auditLog}`;
 }

@@ -7,6 +7,7 @@ export interface HelotConfig {
     denseModel: string;
     moeModel: string;
     thinkingEnabled?: boolean;      // Default true. Set false for non-thinking models — strips all thinking params from every profile.
+    validateCmd?: string;           // Optional shell command run after Peltast PASS. Failure reopens task as a strike. e.g. "npm run lint && tsc --noEmit"
 }
 
 export type TaskRole = 'Aristomenis' | 'Governor' | 'Psiloi' | 'Slinger' | 'Gatherer';
