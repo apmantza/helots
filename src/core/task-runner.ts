@@ -47,7 +47,7 @@ export class TaskRunner {
       .filter(l => l.includes('- [ ]'))
       .map(line => {
         const idMatch      = line.match(/^\- \[ \]\s*(\d+)\./);
-        const fileMatch    = line.match(/\(Target:\s*([^,\]\)]+)/);
+        const fileMatch    = line.match(/\(?Target:\s*([^,\]\)]+)/);
         const symbolMatch  = line.match(/Symbol:\s*([^,\]\)]+)/);
         const actionMatch  = line.match(/Action:\s*(CREATE|EDIT)/i);
         const dependsMatch = line.match(/\[DEPENDS:\s*([^\]]+)\]/);
@@ -57,6 +57,10 @@ export class TaskRunner {
         if (!filePath) {
           const descFallback = line.match(/\bsrc\/[\w/.-]+\.(?:py|ts|tsx|js|jsx|mjs|cjs)\b/);
           if (descFallback) filePath = descFallback[0];
+        }
+        if (!filePath) {
+          const idStr = idMatch ? idMatch[1] : '?';
+          process.stderr.write(`[parseChecklist] Task ${idStr}: no file path found — line: ${line.slice(0, 120)}\n`);
         }
 
         return {

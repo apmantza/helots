@@ -217,6 +217,13 @@ RESPOND ONLY WITH THE CHECKLIST. DO NOT USE PLACEHOLDERS.`;
 
     taskNodes = taskRunner.parseChecklist(checklist);
 
+    if (taskNodes.length === 0) {
+      const rawPlanFile = join(governor.config.stateDir, 'raw-plan-failure.md');
+      writeFileSync(rawPlanFile, checklist);
+      await writeTrace({ phase: 'aristomenis', status: 'failed_empty_parse' });
+      return `[ERROR] Aristomenis checklist parsed to zero tasks.\n\nOptions:\n- [RETRY] Try again\n- [ABORT] Stop here\n\nRaw output saved to ${rawPlanFile}`;
+    }
+
     if (Object.keys(symbolMap).length > 0) {
       const allValidSymbols = new Set(Object.values(symbolMap).flat());
       for (const task of taskNodes) {
