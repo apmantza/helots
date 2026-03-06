@@ -5,6 +5,7 @@ Helots PreToolUse Hook
 When helots MCP is connected, reminds Claude to delegate:
   - Grep/Glob broad searches → helot_slinger
   - Read with offset (section browsing) → helot_slinger
+  - Read on large files (>6KB) for analysis → helot_slinger
   - Read on .md files → helot_hoplite (it reads+writes locally, zero frontier cost for file content)
   - Bash verbose git commands (diff/log/show) → helot_slinger
   - Edit/Write on .md files → helot_hoplite
@@ -109,6 +110,21 @@ elif tool_name == 'Read':
             "a research pattern that helot_slinger handles in one round-trip. "
             "Use helot_slinger with specific line range questions instead of paginating with Read."
         )
+    else:
+        # Large file read: if the intent is analysis/understanding rather than editing,
+        # slinger summarizes locally — full file content never hits frontier context
+        try:
+            size = os.path.getsize(file_path) if file_path else 0
+        except OSError:
+            size = 0
+        if size > 6000:  # ~100-150 lines
+            reminder = (
+                "helots MCP is connected. This file is large — if you're reading it to "
+                "understand or analyse it (not to make an immediate targeted edit), use "
+                "helot_slinger instead. Slinger summarizes locally; the full file content "
+                "never hits the frontier context. Use Read directly only when you need "
+                "the raw content in your own context."
+            )
 
 elif tool_name == 'WebFetch':
     url = tool_input.get('url', '')
