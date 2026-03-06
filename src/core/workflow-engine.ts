@@ -5,11 +5,12 @@
  * chaining outputs via the filesystem. Returns only a final summary.
  */
 
+import { execSync } from 'child_process';
 import type { HelotEngine } from './engine.js';
 
 export interface WorkflowStep {
   id:               string;
-  tool:             'slinger' | 'execute' | 'hoplite';
+  tool:             'slinger' | 'execute' | 'hoplite' | 'shell';
   dependsOn?:       string[];
   // slinger
   researchTask?:    string;
@@ -26,6 +27,8 @@ export interface WorkflowStep {
   // hoplite
   file?:            string;
   instruction?:     string;
+  // shell
+  command?:         string;
 }
 
 export async function executeWorkflow(
@@ -77,6 +80,11 @@ export async function executeWorkflow(
       } else if (step.tool === 'hoplite') {
         if (!step.file || !step.instruction) throw new Error('hoplite step requires file + instruction');
         result = await engine.executeHoplite(step.file, step.instruction, onUpdate);
+
+      } else if (step.tool === 'shell') {
+        if (!step.command) throw new Error('shell step requires command');
+        const stdout = String(execSync(step.command, { shell: true } as any));
+        result = stdout.trim() || '(no output)';
 
       } else {
         throw new Error(`Unknown tool: ${(step as any).tool}`);

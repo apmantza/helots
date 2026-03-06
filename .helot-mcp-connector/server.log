@@ -3852,3 +3852,14 @@ Helots MCP Server running on stdio
 [Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/allowlist-research.md...
 [Slinger Update] ✅ Hoplite | Agis | 100.8t/s | 455 gen + 630 prompt tokens
 [Slinger Update] ✅ Hoplite: .helot-mcp-connector/allowlist-research.md written (0 → 34 lines)
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Gylippus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Gylippus | 104.7t/s | 31 gen + 657 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 103.2t/s | 33 gen + 857 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 100.8t/s | 38 gen + 990 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 89.6t/s | 856 gen + 2054 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/workflow-engine-research.md...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/workflow-engine-research.md...
+[Slinger Update] ✅ Hoplite | Leonidas | 89.4t/s | 1129 gen + 1069 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/workflow-engine-research.md written (0 → 128 lines)
