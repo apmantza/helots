@@ -50,8 +50,9 @@ export class TaskRunner {
         const fileMatch    = line.match(/\(?Target:\s*([^,\]\)]+)/);
         const symbolMatch  = line.match(/Symbol:\s*([^,\]\)]+)/);
         const actionMatch  = line.match(/Action:\s*(CREATE|EDIT)/i);
-        const dependsMatch = line.match(/\[DEPENDS:\s*([^\]]+)\]/);
-        const isCreate     = actionMatch?.[1]?.toUpperCase() === 'CREATE';
+        const dependsMatch  = line.match(/\[DEPENDS:\s*([^\]]+)\]/);
+        const changesMatch  = line.match(/\[CHANGES:\s*([^\]]+)\]/i);
+        const isCreate      = actionMatch?.[1]?.toUpperCase() === 'CREATE';
 
         let filePath = fileMatch ? fileMatch[1].trim().replace(/`/g, '') : undefined;
         if (!filePath) {
@@ -70,6 +71,7 @@ export class TaskRunner {
           file:          filePath,
           targetSymbol:  (!isCreate && symbolMatch) ? symbolMatch[1].trim().replace(/`/g, '') : undefined,
           dependsOn:     dependsMatch ? dependsMatch[1].split(',').map(d => d.trim()).filter(d => d !== 'none') : [],
+          changes:       changesMatch ? changesMatch[1].trim() : undefined,
           skipLintCodes: (() => { const m = line.match(/SkipLintCodes:\s*([^\]\n]+)/); return m ? m[1].trim().split(/\s*,\s*/).filter(Boolean) : []; })(),
         };
       });
