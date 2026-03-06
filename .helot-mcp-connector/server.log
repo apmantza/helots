@@ -3346,3 +3346,29 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Agis | 99.7t/s | 35 gen + 5434 prompt tokens
 [Slinger Update] ✅ Slinger | Agis | 99.4t/s | 38 gen + 5545 prompt tokens
 [Slinger Update] ✅ Slinger | Agis | 94.1t/s | 705 gen + 6690 prompt tokens
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[Slinger Update] 🔍 Scribe | researching...
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 32768
+[Slinger Update] 🏹 Slinger Archidamus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Slinger...
+[Slinger Update] ✅ Slinger | Archidamus | 104.5t/s | 59 gen + 734 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 104.1t/s | 51 gen + 919 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 103.3t/s | 53 gen + 975 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 99.2t/s | 257 gen + 1084 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 102.2t/s | 54 gen + 1268 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 105.3t/s | 52 gen + 1329 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 105.2t/s | 68 gen + 1730 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 99.9t/s | 425 gen + 1936 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/stale-dotdir-plan.sh...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/stale-dotdir-plan.sh...
+[Slinger Update] ✅ Hoplite | Archidamus | 98.0t/s | 275 gen + 1665 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/stale-dotdir-plan.sh written (22 → 21 lines)
