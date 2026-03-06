@@ -582,3 +582,7 @@
 {"ts":"2026-03-06T00:08:49.568Z","type":"phase_change","phase":"Slinger","name":"Brasidas"}
 {"ts":"2026-03-06T00:10:02.447Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Brasidas","tps":37.57666594168861,"genTokens":2648,"promptTokens":25530,"ctxPct":39}
 {"ts":"2026-03-06T00:10:02.451Z","type":"slinger_done","task":"From src/core/engine.ts return the COMPLETE verbatim text of the executeSlinger method — every single line from the open","name":"Brasidas"}
+{"ts":"2026-03-06T00:35:29.204Z","type":"hoplite_start","file":"feature-ideas.md","instruction":"Add two new entries after item 7 (before the \"What NOT to build\" section):\n\n## 8. Slinger MCP Proxy — Web Search + GitHu"}
+{"ts":"2026-03-06T00:35:29.208Z","type":"phase_change","phase":"Hoplite","name":"Pausanias"}
+{"ts":"2026-03-06T00:35:59.773Z","type":"subagent_done","phase":"Hoplite","role":"Hoplite","name":"Pausanias","tps":54.51009592306928,"genTokens":1602,"promptTokens":1924,"ctxPct":3}
+{"ts":"2026-03-06T00:35:59.782Z","type":"hoplite_done","file":"feature-ideas.md","linesBefore":116,"linesAfter":155}

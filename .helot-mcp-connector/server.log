@@ -2485,3 +2485,6 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Brasidas | 40.7t/s | 44 gen + 23905 prompt tokens
 [Slinger Update] ✅ Slinger | Brasidas | 39.1t/s | 724 gen + 25457 prompt tokens
 [Slinger Update] ✅ Slinger | Brasidas | 37.6t/s | 2648 gen + 25530 prompt tokens
+[Hoplite Update] ✏️ Hoplite editing feature-ideas.md...
+[Hoplite Update] ✅ Hoplite | Pausanias | 54.5t/s | 1602 gen + 1924 prompt tokens
+[Hoplite Update] ✅ Hoplite: feature-ideas.md written (116 → 155 lines)
