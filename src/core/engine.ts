@@ -5,7 +5,7 @@
  * public methods to the appropriate agent or orchestrator.
  */
 
-import { appendFileSync, readdirSync, statSync, mkdirSync } from 'fs';
+import { appendFileSync, readdirSync, statSync, mkdirSync, renameSync, copyFileSync, readFileSync } from 'fs';
 import * as path from 'path';
 import { join } from 'path';
 import { LlamaClient }       from './llama-client.js';
@@ -189,6 +189,61 @@ export class HelotEngine {
       taskTitle:     this.currentTaskTitle,
       sessionTokens: this.sessionTotalTokens,
     };
+  }
+
+  async executeScript(
+    script:     string,
+    auditLog:   string,
+    dryRun:     boolean = false,
+    scriptFile?: string,
+  ): Promise<string> {
+    const content = scriptFile ? readFileSync(scriptFile, 'utf-8') : script;
+    const lines = content.split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#'));
+
+    const ALLOWED = new Set(['mv', 'mkdir', 'cp']);
+    const BLOCKED  = [/\.\./, /[;&|`$]/, /\s-rf\b/, /\brm\b/, /\bdel\b/, /\brmdir\b/];
+    const ts = () => new Date().toISOString();
+
+    try { mkdirSync(path.dirname(auditLog), { recursive: true }); } catch {}
+
+    const results: string[] = [];
+    const log = (entry: string) => {
+      results.push(entry);
+      try { appendFileSync(auditLog, entry + '\n', 'utf-8'); } catch {}
+    };
+
+    for (const line of lines) {
+      const parts = line.split(/\s+/);
+      const cmd   = parts[0];
+
+      if (!ALLOWED.has(cmd)) {
+        log(`[${ts()}] BLOCKED: "${line}" — command not in allowlist`); continue;
+      }
+      if (BLOCKED.some(p => p.test(line))) {
+        log(`[${ts()}] BLOCKED: "${line}" — unsafe pattern detected`); continue;
+      }
+      if (dryRun) {
+        log(`[${ts()}] DRY-RUN: ${line}`); continue;
+      }
+
+      try {
+        if (cmd === 'mkdir') {
+          mkdirSync(parts[parts.length - 1], { recursive: true });
+          log(`[${ts()}] OK: mkdir ${parts[parts.length - 1]}`);
+        } else if (cmd === 'mv') {
+          renameSync(parts[1], parts[2]);
+          log(`[${ts()}] OK: mv ${parts[1]} → ${parts[2]}`);
+        } else if (cmd === 'cp') {
+          copyFileSync(parts[1], parts[2]);
+          log(`[${ts()}] OK: cp ${parts[1]} → ${parts[2]}`);
+        }
+      } catch (err: any) {
+        log(`[${ts()}] ERROR: ${line} — ${err.message}`);
+      }
+    }
+
+    const tag = dryRun ? ' (dry-run)' : '';
+    return `✅ helot_execute: ${results.length} operations${tag} → audit: ${auditLog}\n\n${results.join('\n')}`;
   }
 
   // ── Internal: shared LLM call + event writer ───────────────────────────────

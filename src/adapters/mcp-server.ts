@@ -195,6 +195,32 @@ const TOOLS: Tool[] = [
         },
     },
     {
+        name: "helot_execute",
+        description: "Executes pre-planned file operations (mv, mkdir, cp) fully off-frontier. Validates every line against an allowlist and blocks path traversal and shell injection. Appends each operation to an audit log. Use after helot_slinger plans a folder cleanup or reorganization.",
+        inputSchema: {
+            type: "object",
+            properties: {
+                script: {
+                    type: "string",
+                    description: "Newline-separated operations. Supported commands: mv <src> <dst>, mkdir <dir>, cp <src> <dst>. Lines starting with # are ignored.",
+                },
+                auditLog: {
+                    type: "string",
+                    description: "File path to append audit entries. Defaults to .helot-mcp-connector/execute-audit.log.",
+                },
+                dryRun: {
+                    type: "boolean",
+                    description: "If true, logs what would happen without executing anything. Defaults to false.",
+                },
+                scriptFile: {
+                    type: "string",
+                    description: "If provided, reads the script from this file path instead of the script param.",
+                },
+            },
+            required: [],
+        },
+    },
+    {
         name: "helot_hoplite",
         description: "Lightweight file editor for non-code files (markdown, config, docs, HTML). Reads the file locally, applies the instruction via LLM, writes the result — no peltast review, no lint. Use for MEMORY.md, README, devoptions.md, index.html, and any doc/config/HTML update where lint review is irrelevant. Faster than helot_run for pure writing tasks.",
         inputSchema: {
@@ -259,6 +285,16 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
             return {
                 content: [{ type: "text", text: result }],
             };
+        }
+
+        if (name === "helot_execute") {
+            const script     = args?.script     ? String(args.script)     : '';
+            const auditLog   = args?.auditLog   ? String(args.auditLog)   : path.join(config.stateDir, 'execute-audit.log');
+            const dryRun     = args?.dryRun     ? Boolean(args.dryRun)    : false;
+            const scriptFile = args?.scriptFile ? String(args.scriptFile) : undefined;
+
+            const result = await engine.executeScript(script, auditLog, dryRun, scriptFile);
+            return { content: [{ type: "text", text: result }] };
         }
 
         if (name === "helot_hoplite") {
