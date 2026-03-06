@@ -9612,3 +9612,101 @@ The
 
 ##
 ```
+
+--- Hoplite | Gylippus ---
+
+```
+#
+
+##
+A
+
+Architecture
+
+##
+
+###
+Pre
+-
+-
+-
+
+Use
+-
+-
+-
+
+###
+**
+
+**
+
+Before
+
+1
+2
+3
+
+If
+
+**
+1
+2
+3
+
+**
+```
+hel
+  task
+  tasks
+    {
+      id
+      description
+      file
+      symbol
+      changes
+      depends
+    },
+    {
+      id
+      description
+      file
+      symbol
+      changes
+      depends
+    }
+  ]
+})
+```
+
+**
+-
+-
+-
+
+###
+The
+
+##
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+##
+-
+-
+-
+-
+-
+
+##
+```

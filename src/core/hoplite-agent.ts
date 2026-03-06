@@ -5,7 +5,7 @@
  * where lint checks are irrelevant.
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, renameSync } from 'fs';
 import { join, resolve, dirname, basename } from 'path';
 import { pickName }    from './persona-utils.js';
 import { stripThinking } from './text-utils.js';
@@ -117,7 +117,9 @@ Rules:
     }
 
     mkdirSync(dirname(abs), { recursive: true });
-    writeFileSync(abs, newContent, 'utf-8');
+    const tmp = abs + '.helot.tmp';
+    writeFileSync(tmp, newContent, 'utf-8');
+    renameSync(tmp, abs);
 
     const linesBefore = originalContent ? originalContent.split('\n').length : 0;
     const linesAfter = newContent.split('\n').length;

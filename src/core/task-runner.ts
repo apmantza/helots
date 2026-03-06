@@ -5,7 +5,7 @@
  * Task loop orchestration is in task-loop.ts.
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, appendFileSync, copyFileSync, statSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, appendFileSync, copyFileSync, statSync, renameSync } from 'fs';
 import { join, resolve, dirname } from 'path';
 import { execSync }  from 'child_process';
 import { stripThinking }      from './text-utils.js';
@@ -283,7 +283,9 @@ export class TaskRunner {
       }
       for (const { fullPath, content } of filesToProcess) {
         mkdirSync(dirname(fullPath), { recursive: true });
-        writeFileSync(fullPath, content);
+        const tmp = fullPath + '.helot.tmp';
+        writeFileSync(tmp, content);
+        renameSync(tmp, fullPath);
       }
       this.governor.recordSourceEdit();
 

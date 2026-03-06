@@ -21,6 +21,16 @@ Use direct Grep/Read when:
 ### Use `helot_run` for non-trivial code changes
 **helot_run now REQUIRES a `tasks[]` array.** Aristomenis is NOT a planner anymore.
 
+**Pre-run research protocol**
+
+Before constructing `tasks[]` for `helot_run`, always research the target files first:
+
+1. **Slinger the target area** — use `helot_slinger` to extract current function signatures, imports, and patterns from the files you plan to modify. This gives you the exact symbol names and structure needed to write precise `changes` fields.
+2. **Verify symbols exist** — Builder validates symbols against the codebase. If you reference a symbol that doesn't exist, the task falls back to full-file mode. Confirm names with slinger first.
+3. **One slinger call per task group** — if all tasks touch the same module, one targeted slinger call covers them all. Don't over-research.
+
+If the task is ambiguous (unclear which files to change, or what the current implementation looks like), ask one clarifying question before constructing tasks[]. Wasted helot_run calls are expensive — each is 4-6 LLM calls locally.
+
 **Workflow:**
 1. Use `helot_slinger` to research the codebase
 2. Construct `tasks[]` array (Claude must plan this before calling helot_run)
