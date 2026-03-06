@@ -3387,3 +3387,18 @@ Helots MCP Server running on stdio
 [Slinger Update] ✏️ Hoplite editing bin/dead-code-candidates.md...
 [Slinger Update] ✅ Hoplite | Pausanias | 98.5t/s | 801 gen + 1640 prompt tokens
 [Slinger Update] ✅ Hoplite: bin/dead-code-candidates.md written (48 → 65 lines)
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Pausanias deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Pausanias | 104.4t/s | 50 gen + 944 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 101.8t/s | 31 gen + 1091 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 101.5t/s | 25 gen + 1129 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 103.4t/s | 26 gen + 1307 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 97.2t/s | 559 gen + 1417 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 101.7t/s | 29 gen + 1450 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 103.3t/s | 71 gen + 1519 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 99.1t/s | 436 gen + 3097 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/cleanup-plan.sh...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/cleanup-plan.sh...
+[Slinger Update] ✅ Hoplite | Teleutias | 94.7t/s | 572 gen + 1206 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/cleanup-plan.sh written (70 → 69 lines)
