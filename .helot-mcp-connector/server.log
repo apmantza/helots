@@ -3830,3 +3830,25 @@ Helots MCP Server running on stdio
 [Workflow Update] ✅ Hoplite | Gylippus | 98.1t/s | 1059 gen + 1145 prompt tokens
 [Workflow Update] ✅ Hoplite: README.md written (56 → 86 lines)
 [Workflow Update] ✅ [readme-update] done
+[Workflow Update] ⚙️ Workflow "commit-push" — 3 steps
+[Workflow Update] ▶️ [capture-diff] execute...
+[Workflow Update] ✅ [capture-diff] done
+[Workflow Update] ▶️ [gen-commit-msg] hoplite...
+[Workflow Update] ✏️ Hoplite editing .helot-mcp-connector/commit-msg.txt...
+[Workflow Update] ✅ Hoplite | Agis | 96.9t/s | 49 gen + 271 prompt tokens
+[Workflow Update] ✅ Hoplite: .helot-mcp-connector/commit-msg.txt written (0 → 5 lines)
+[Workflow Update] ✅ [gen-commit-msg] done
+[Workflow Update] ▶️ [commit-and-push] execute...
+[Workflow Update] ✅ [commit-and-push] done
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Agesilaus | 104.6t/s | 31 gen + 648 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 103.2t/s | 37 gen + 846 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 99.5t/s | 37 gen + 1078 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 103.6t/s | 47 gen + 1276 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 100.3t/s | 436 gen + 1357 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/allowlist-research.md...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/allowlist-research.md...
+[Slinger Update] ✅ Hoplite | Agis | 100.8t/s | 455 gen + 630 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/allowlist-research.md written (0 → 34 lines)
