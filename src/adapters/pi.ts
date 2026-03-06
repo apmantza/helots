@@ -1,6 +1,6 @@
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import { Type } from "@sinclair/typebox";
-import { HelotEngine, LlamaClient } from "../core/engine.js";
+import { HelotEngine } from "../core/engine.js";
 
 export default function (pi: ExtensionAPI) {
     if (process.env.HELOT_SUBAGENT === "true") return;
@@ -32,16 +32,16 @@ export default function (pi: ExtensionAPI) {
             researchTask: Type.String({ description: "The specific research objective or question about the codebase." }),
             targetFiles: Type.Optional(Type.Array(Type.String(), { description: "Optional list of absolute file paths to analyze." }))
         }),
-        async execute(_id: string, p: any, _s: any, onUpdate: (data: any) => void, _ctx: any) {
+        execute: (async (_id: string, p: any, _s: any, onUpdate: (data: any) => void, _ctx: any) => {
             try {
-                const result = await engine.executeSlinger(p.researchTask, p.targetFiles, (data) => {
+                const result = await engine.executeSlinger(p.researchTask, p.targetFiles, (data: any) => {
                     onUpdate({ content: [{ type: "text", text: data.text }] });
                 });
-                return { content: [{ type: "text", text: result }] };
+                return { content: [{ type: "text", text: result }], details: undefined };
             } catch (err: any) {
-                return { content: [{ type: "text", text: `❌ Slinger failed: ${err.message}` }] };
+                return { content: [{ type: "text", text: `❌ Slinger failed: ${err.message}` }], details: undefined };
             }
-        }
+        }) as any,
     });
 
     // Tool: Run
@@ -53,15 +53,15 @@ export default function (pi: ExtensionAPI) {
             taskSummary: Type.String({ description: "High-level summary of the architectural changes." }),
             implementationPlan: Type.String({ description: "Extremely detailed, step-by-step technical plan for the subagents." })
         }),
-        async execute(_id: string, p: any, _s: any, onUpdate: (data: any) => void, _ctx: any) {
+        execute: (async (_id: string, p: any, _s: any, onUpdate: (data: any) => void, _ctx: any) => {
             try {
-                const result = await engine.executeRun(p.taskSummary, p.implementationPlan, (data) => {
+                const result = await engine.executeHelots(p.taskSummary, p.implementationPlan, (data: any) => {
                     onUpdate({ content: [{ type: "text", text: data.text }] });
                 });
-                return { content: [{ type: "text", text: result }] };
+                return { content: [{ type: "text", text: result }], details: undefined };
             } catch (err: any) {
-                return { content: [{ type: "text", text: `❌ Helots crashed: ${err.message}` }] };
+                return { content: [{ type: "text", text: `❌ Helots crashed: ${err.message}` }], details: undefined };
             }
-        }
+        }) as any,
     });
 }

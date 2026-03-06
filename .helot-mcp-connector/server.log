@@ -2603,3 +2603,23 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Aristomenis | 104.8t/s | 40 gen + 582 prompt tokens
 [Slinger Update] ✅ Slinger | Aristomenis | 104.0t/s | 32 gen + 967 prompt tokens
 [Slinger Update] ✅ Slinger | Aristomenis | 92.4t/s | 487 gen + 1346 prompt tokens
+[Slinger Update] 🏹 Slinger Aristomenis deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Aristomenis | 104.4t/s | 38 gen + 633 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 101.3t/s | 38 gen + 700 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 101.4t/s | 38 gen + 767 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 102.5t/s | 38 gen + 835 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 100.7t/s | 38 gen + 902 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 101.7t/s | 38 gen + 969 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 101.7t/s | 38 gen + 1055 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 101.3t/s | 222 gen + 1145 prompt tokens
+[Slinger Update] 🏹 Slinger Gylippus deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Gylippus | 105.1t/s | 30 gen + 571 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 100.5t/s | 38 gen + 1415 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 100.8t/s | 38 gen + 1529 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 100.4t/s | 46 gen + 1643 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 100.7t/s | 38 gen + 1804 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 100.4t/s | 43 gen + 1918 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 100.9t/s | 43 gen + 2109 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 93.2t/s | 1304 gen + 2316 prompt tokens

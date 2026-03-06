@@ -171,7 +171,7 @@ export class LlamaClient {
 
         // Dynamic max_tokens override: allow caller to request more output budget than the profile default.
         // Only applied when the override exceeds the profile default (never reduces it).
-        if (maxTokensOverride !== undefined && maxTokensOverride > profile.max_tokens) {
+        if (maxTokensOverride !== undefined && maxTokensOverride > (profile.max_tokens ?? 0)) {
             profile = { ...profile, max_tokens: maxTokensOverride };
         }
 

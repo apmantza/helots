@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { HelotConfig } from '../config.js';
-import { HelotState, HelotPhase, VerificationResult } from './types';
+import { HelotState, HelotPhase, VerificationResult } from './types.js';
 
 /**
  * ARISTOMENIS

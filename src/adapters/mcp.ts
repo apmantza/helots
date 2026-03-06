@@ -1,5 +1,5 @@
-import { HelotEngine } from '../core/engine';
-import { HelotConfig } from '../config';
+import { HelotEngine } from '../core/engine.js';
+import { HelotConfig } from '../config.js';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -60,7 +60,7 @@ export class MCPAdapter {
     console.error('[Gorgo of Sparta] Processing MCP request through Gorgo of Sparta Psiloi...');
 
     const plan = this.extractPlan(request);
-    const result = await this.engine.executeRun(plan);
+    const result = await this.engine.executeHelots(plan, '', undefined);
 
     return this.formatResponse(result);
   }
