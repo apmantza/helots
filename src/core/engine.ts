@@ -293,7 +293,12 @@ export class HelotEngine {
       }
 
       if (dryRun) {
-        log(`[${ts()}] DRY-RUN: ${line}`); continue;
+        if ((cmd === 'mv' || cmd === 'cp') && parts[2]?.endsWith('/')) {
+          log(`[${ts()}] DRY-RUN: ${cmd} ${parts[1]} → ${join(parts[2], path.basename(parts[1]))}`);
+        } else {
+          log(`[${ts()}] DRY-RUN: ${line}`);
+        }
+        continue;
       }
 
       try {
@@ -301,11 +306,17 @@ export class HelotEngine {
           mkdirSync(parts[parts.length - 1], { recursive: true });
           log(`[${ts()}] OK: mkdir ${parts[parts.length - 1]}`);
         } else if (cmd === 'mv') {
-          renameSync(parts[1], parts[2]);
-          log(`[${ts()}] OK: mv ${parts[1]} → ${parts[2]}`);
+          let dst = parts[2];
+          try { if (statSync(dst).isDirectory()) dst = join(dst, path.basename(parts[1])); } catch {}
+          if (dst.endsWith('/') || dst.endsWith('\\')) dst = join(dst, path.basename(parts[1]));
+          renameSync(parts[1], dst);
+          log(`[${ts()}] OK: mv ${parts[1]} → ${dst}`);
         } else if (cmd === 'cp') {
-          copyFileSync(parts[1], parts[2]);
-          log(`[${ts()}] OK: cp ${parts[1]} → ${parts[2]}`);
+          let dst = parts[2];
+          try { if (statSync(dst).isDirectory()) dst = join(dst, path.basename(parts[1])); } catch {}
+          if (dst.endsWith('/') || dst.endsWith('\\')) dst = join(dst, path.basename(parts[1]));
+          copyFileSync(parts[1], dst);
+          log(`[${ts()}] OK: cp ${parts[1]} → ${dst}`);
         }
       } catch (err: any) {
         log(`[${ts()}] ERROR: ${line} — ${err.message}`);
