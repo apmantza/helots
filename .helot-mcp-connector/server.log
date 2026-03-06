@@ -2740,3 +2740,52 @@ Helots MCP Server running on stdio
 [Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
 [Scribe Update] ⚠️ Hoplite | Pausanias | server error: fetch failed
 [Scribe Update] ❌ Hoplite | Pausanias | empty response — server may be down
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[Scribe Update] 🔍 Scribe | researching...
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 65536
+[Scribe Update] 🏹 Slinger Agesilaus deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Slinger...
+[Scribe Update] ✅ Slinger | Agesilaus | 107.9t/s | 69 gen + 569 prompt tokens
+[Scribe Update] ✅ Slinger | Agesilaus | 104.7t/s | 61 gen + 2123 prompt tokens
+[Scribe Update] ✅ Slinger | Agesilaus | 105.0t/s | 61 gen + 3672 prompt tokens
+[Scribe Update] ✅ Slinger | Agesilaus | 102.8t/s | 93 gen + 5220 prompt tokens
+[Scribe Update] ✅ Slinger | Agesilaus | 103.5t/s | 252 gen + 6792 prompt tokens
+[Scribe Update] ✅ Slinger | Agesilaus | 102.9t/s | 112 gen + 8368 prompt tokens
+[Scribe Update] ✅ Slinger | Agesilaus | 101.1t/s | 118 gen + 9976 prompt tokens
+[Scribe Update] ✅ Slinger | Agesilaus | 91.5t/s | 503 gen + 11593 prompt tokens
+[Scribe Update] ✍️ Scribe | writing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ✅ Hoplite | Brasidas | 92.0t/s | 9748 gen + 11093 prompt tokens
+[Scribe Update] ✅ Hoplite: C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md written (941 → 989 lines)
+[Scribe Update] 📚 Scribe | ctx=65536 → token budget per batch: ~26214
+[Scribe Update] 📚 Scribe | 31 files → 4 dynamic batches
+[Scribe Update] 📖 Scribe | batch 1/4 (8 files, ~11358 tokens): dashboard-server.ts, mcp-server.ts, mcp.ts, pi.ts, config.ts, builder-orchestrator.ts, builder-prompt.ts, engine.ts
+[Scribe Update] 🏹 Slinger Lysander deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 27768 chars × 8 file(s)
+[Scribe Update] 📖 Slinger preloading 8 file(s)...
+[Scribe Update] ✅ Slinger | Lysander | 102.6t/s | 669 gen + 12165 prompt tokens
+[Scribe Update] ✅ Slinger | Lysander | 103.1t/s | 909 gen + 12172 prompt tokens
+[Scribe Update] ✅ Slinger | Lysander | 103.0t/s | 773 gen + 12180 prompt tokens
+[Scribe Update] ✅ Slinger | Lysander | 103.3t/s | 1030 gen + 12187 prompt tokens
+[Scribe Update] ✅ Slinger | Lysander | 102.0t/s | 1098 gen + 12195 prompt tokens
+[Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ✅ Hoplite | Teleutias | 92.4t/s | 10853 gen + 12326 prompt tokens
+[Scribe Update] ✅ Hoplite: C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md written (989 → 1032 lines)
+[Scribe Update] 📖 Scribe | batch 2/4 (8 files, ~16818 tokens): file-utils.ts, governor.ts, grep-utils.ts, helots-orchestrator.ts, hoplite-agent.ts, llama-client.ts, lsp-client.ts, model-registry.ts
+[Scribe Update] 🏹 Slinger Pausanias deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 27768 chars × 8 file(s)
+[Scribe Update] 📖 Slinger preloading 8 file(s)...
+[Scribe Update] ✅ Slinger | Pausanias | 96.5t/s | 37 gen + 17450 prompt tokens
+[Scribe Update] ✅ Slinger | Pausanias | 101.4t/s | 1326 gen + 17791 prompt tokens
+[Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ⚠️ Hoplite | Archidamus | server error: fetch failed
+[Scribe Update] ❌ Hoplite | Archidamus | empty response — server may be down
