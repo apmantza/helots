@@ -3674,3 +3674,13 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Lysander | 101.2t/s | 38 gen + 5384 prompt tokens
 [Slinger Update] ✅ Slinger | Lysander | 100.1t/s | 46 gen + 6575 prompt tokens
 [Slinger Update] ✅ Slinger | Lysander | 94.2t/s | 2121 gen + 7343 prompt tokens
+[Slinger Update] 🏹 Slinger Gylippus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Gylippus | 105.6t/s | 37 gen + 910 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 105.2t/s | 37 gen + 1033 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 102.2t/s | 49 gen + 1102 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 101.5t/s | 49 gen + 1369 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 105.3t/s | 34 gen + 1592 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 100.8t/s | 46 gen + 1680 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 102.4t/s | 44 gen + 2438 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 102.2t/s | 1157 gen + 2641 prompt tokens
