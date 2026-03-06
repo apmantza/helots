@@ -78,8 +78,7 @@ elif tool_name == 'mcp__helots__helot_slinger':
     if any(h in task.lower() for h in WRITE_HINTS):
         reminder = (
             "helots MCP is connected. This slinger task looks like it ends in a file write — "
-            "use helot_scribe instead (one call: slinger research → hoplite write). "
-            "The research result stays server-side and never hits the frontier context."
+            "use helot_slinger with outputFile instead (one call: slinger research → hoplite write, result never hits frontier)."
         )
 
 elif tool_name == 'Grep':
