@@ -3076,3 +3076,9 @@ Helots MCP Server running on stdio
 [Hoplite Update] ✏️ Hoplite editing feature-ideas.md...
 [MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Hoplite...
 [Hoplite Update] ✅ Hoplite | Pausanias | 99.4t/s | 2416 gen + 2830 prompt tokens
+[Slinger Update] 🏹 Slinger Aristomenis deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Aristomenis | 106.9t/s | 37 gen + 601 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 104.8t/s | 34 gen + 2133 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 103.6t/s | 61 gen + 2199 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 98.5t/s | 436 gen + 2381 prompt tokens

@@ -72,9 +72,10 @@ Rules:
     );
 
     const stripped = stripThinking(raw);
-    const headerIdx = stripped.indexOf('### [');
+    // Accept both ### [filename] and ### filename (LLM sometimes omits brackets)
+    const headerIdx = Math.max(stripped.indexOf('### ['), stripped.indexOf('### '));
     const parseFrom = headerIdx >= 0 ? stripped.slice(headerIdx) : stripped;
-    const match = parseFrom.match(/###\s*\[[^\]]*\]\s*\n```[a-z]*\n([\s\S]*)\n```\s*$/i);
+    const match = parseFrom.match(/###\s*(?:\[[^\]]*\]|[^\n]+)\s*\n```[a-z]*\n([\s\S]*)\n```\s*$/i);
     if (!match) {
       return `❌ Hoplite: could not parse output for ${file}. Raw:\n${stripped.slice(0, 500)}`;
     }
