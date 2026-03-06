@@ -2525,3 +2525,9 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Archidamus | 107.7t/s | 92 gen + 556 prompt tokens
 [Slinger Update] ✅ Slinger | Archidamus | 106.8t/s | 231 gen + 2132 prompt tokens
 [Slinger Update] ✅ Slinger | Archidamus | 80.7t/s | 2689 gen + 3757 prompt tokens
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771

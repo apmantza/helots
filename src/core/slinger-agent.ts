@@ -68,9 +68,10 @@ SEARCH TOOLKIT (grep is the primary tool — use it first):
 
 FILE LISTING (when you need to discover files):
 ${isWindows
-  ? `  Get-ChildItem -Recurse -Name                    list all files
-  Get-ChildItem -Recurse -Filter *.ts -Name        list by extension (no quotes)`
-  : `  find src/ -name "*.ts" -not -path "*/node_modules/*"
+  ? `  Get-ChildItem -Recurse -Name | Where-Object { $_ -notmatch '\\\\node_modules\\\\|\\\\\.git\\\\|\\\\__pycache__\\\\' }
+  Get-ChildItem -Recurse -Filter *.ts -Name | Where-Object { $_ -notmatch '\\\\node_modules\\\\|\\\\\.git\\\\' }`
+  : `  find src/ -name "*.ts" -not -path "*/node_modules/*" -not -path "*/.git/*"
+  find . -not -path "*/node_modules/*" -not -path "*/.git/*" -not -path "*/__pycache__/*"
   ls -la src/core/`}
 
 READ FILES (when you need to see full context):
