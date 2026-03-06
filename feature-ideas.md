@@ -118,9 +118,42 @@
 
 **Reference:** Liquid4All LocalCowork cookbook — local multi-agent coordination, 75 tools/14 servers, LFM2-24B-A2B.
 
+## Agentic Workflow Patterns (inspired by superpowers)
+
+### 1. Two-Stage Peltast Review
+- **Current State:** Peltast performs a single PASS/FAIL check on the output.
+- **Superpowers Pattern:** Runs a spec-compliance check first, then a separate code-quality check.
+- **Helots Implementation:** Split Peltast into two sequential passes: (1) does the output match the task spec? (2) is the code quality acceptable?
+- **Benefit:** Reduces error propagation in autonomous loops by isolating structural failures from quality issues.
+
+### 2. Bite-Sized Task Decomposition in Aristomenis
+- **Current State:** Aristomenis outputs a checklist, but tasks can be large and vague.
+- **Superpowers Pattern:** Enforces 2-5 minute tasks with exact file paths and verification steps.
+- **Helots Implementation:** Update Aristomenis prompt to enforce "each step must name the target file and a testable success condition".
+- **Benefit:** Increases reliability of execution and makes debugging individual steps easier.
+
+### 3. Skill Trigger System
+- **Current State:** Helots skills are manually invoked by the user.
+- **Superpowers Pattern:** Skills auto-activate based on context (e.g., brainstorming before coding).
+- **Helots Implementation:** Add a "task classifier" step that maps the incoming `helot_run` instruction to a pre-defined workflow pattern (CREATE, EDIT, REFACTOR, DEBUG) and auto-selects the appropriate Aristomenis prompt variant.
+- **Benefit:** Reduces manual setup and ensures the right context is loaded for the specific task type.
+
+### 4. RED-GREEN-REFACTOR Enforcement in Builder
+- **Current State:** Builder writes code without enforcing Test-Driven Development (TDD).
+- **Superpowers Pattern:** Explicitly enforces writing failing tests first, then implementation.
+- **Helots Implementation:** For tasks that include test files, instruct Builder to write the failing test first, then the implementation.
+- **Benefit:** Ensures local model output is always verifiable and reduces hallucinated logic.
+
+### 5. Socratic Pre-Planning Gate
+- **Current State:** Ambiguities in instructions propagate silently through the pipeline, often causing Builder failures.
+- **Superpowers Pattern:** Adds a clarification pass before execution.
+- **Helots Implementation:** Before Scout runs, add an optional clarification pass that identifies ambiguities in the instruction and surfaces them.
+- **Benefit:** Particularly useful for local models with limited reasoning on underspecified tasks; prevents wasted compute on incorrect assumptions.
+
 ## Inspiration
 
 - **Pattern:** Fractals (TinyAGI) recursive DAG orchestration — plan once as a DAG, execute leaf tasks in isolated git worktrees, synthesize results via merge agents
 - **Pattern:** LocalCowork — curate tool surface per phase, single-turn dispatch, cross-server coordination via workflow chains
+- **Pattern:** Superpowers (obra) — composable skill triggers, two-stage review, bite-sized TDD decomposition, subagent dispatch with guardrails
 - **Principle:** Plan once, execute fully, only return synthesized result
 - **Goal:** Optimize workflow efficiency and token usage
