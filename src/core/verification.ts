@@ -133,6 +133,30 @@ export function runVerification(input: VerificationInput): VerificationResult {
             { encoding: 'utf-8', timeout: 30000, cwd });
           groundTruth.push(`Syntax (tsc): ${r.status === 0 ? '✅ OK' : `❌ ERRORS — ${(r.stdout || '').split('\n').slice(0, 5).join(' | ')}`}`);
         }
+
+        // TS lint: biome check (preferred) or eslint
+        const localBiome   = join(cwd, 'node_modules', '.bin', 'biome');
+        const localEslint  = join(cwd, 'node_modules', '.bin', 'eslint');
+        const hasBiomeJson = existsSync(join(cwd, 'biome.json'));
+        const linter       = hasBiomeJson && existsSync(localBiome) ? [localBiome, 'check', fullPath]
+                           : existsSync(localEslint)                 ? [localEslint, '--max-warnings=0', fullPath]
+                           : null;
+        if (linter) {
+          const lintNew = spawnSync(linter[0], linter.slice(1), { encoding: 'utf-8', timeout: 20000, cwd });
+          const newErrors = (lintNew.stdout + lintNew.stderr).trim().split('\n').filter(l => l.trim() && lintNew.status !== 0);
+          if (newErrors.length > 0 && existsSync(bak)) {
+            const lintBak = spawnSync(linter[0], [linter[1], bak], { encoding: 'utf-8', timeout: 20000, cwd });
+            const bakLines = new Set((lintBak.stdout + lintBak.stderr).trim().split('\n').map(l => l.replace(/:\d+:\d+/, ':?:?').trim()));
+            const introduced = newErrors.filter(l => !bakLines.has(l.replace(/:\d+:\d+/, ':?:?').trim()));
+            if (introduced.length > 0) {
+              groundTruth.push(`Lint (ts): ❌ ${introduced.length} NEW error(s) — ${introduced.slice(0, 3).join(' | ')}`);
+            } else {
+              groundTruth.push(`Lint (ts): ✅ no new errors`);
+            }
+          } else if (lintNew.status === 0) {
+            groundTruth.push(`Lint (ts): ✅ clean`);
+          }
+        }
       }
     } catch { /* checks are best-effort */ }
   }
@@ -141,7 +165,7 @@ export function runVerification(input: VerificationInput): VerificationResult {
     groundTruth,
     hasSyntaxError:   groundTruth.some(g => /Syntax.*(❌|ERROR)/.test(g)),
     hasContentLoss:   groundTruth.some(g => g.includes('⚠️ CONTENT LOSS')),
-    hasNewLintErrors: groundTruth.some(g => g.includes('Lint (ruff): ❌')),
+    hasNewLintErrors: groundTruth.some(g => g.includes('Lint (ruff): ❌') || g.includes('Lint (ts): ❌')),
     hasSymbolMissing: groundTruth.some(g => g.includes('Symbol check') && g.includes('❌ MISSING')),
     hasTestFailure:   groundTruth.some(g => g.includes('Tests (pytest): ❌')),
   };

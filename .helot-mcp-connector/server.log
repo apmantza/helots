@@ -2623,3 +2623,28 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Gylippus | 100.4t/s | 43 gen + 1918 prompt tokens
 [Slinger Update] ✅ Slinger | Gylippus | 100.9t/s | 43 gen + 2109 prompt tokens
 [Slinger Update] ✅ Slinger | Gylippus | 93.2t/s | 1304 gen + 2316 prompt tokens
+[Slinger Update] 🏹 Slinger Pausanias deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Pausanias | 102.3t/s | 37 gen + 606 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 103.6t/s | 41 gen + 2136 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 103.5t/s | 37 gen + 2453 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 102.2t/s | 29 gen + 3980 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 99.8t/s | 38 gen + 5505 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 98.5t/s | 47 gen + 7037 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 98.1t/s | 47 gen + 8593 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 94.4t/s | 1545 gen + 9675 prompt tokens
+[Slinger Update] 🏹 Slinger Gylippus deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Gylippus | 106.1t/s | 62 gen + 598 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 103.4t/s | 37 gen + 1265 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 101.6t/s | 44 gen + 2520 prompt tokens
+[Slinger Update] ✅ Slinger | Gylippus | 97.5t/s | 805 gen + 3119 prompt tokens
+[Slinger Update] 🏹 Slinger Agis deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Agis | 107.9t/s | 36 gen + 597 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 107.7t/s | 36 gen + 680 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 102.6t/s | 37 gen + 1260 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 101.7t/s | 41 gen + 2792 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 101.9t/s | 41 gen + 2826 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 101.8t/s | 41 gen + 2860 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 97.9t/s | 774 gen + 3025 prompt tokens

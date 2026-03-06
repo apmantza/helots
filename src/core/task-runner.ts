@@ -354,7 +354,8 @@ VERDICT: FAIL — <reason in 10 words or fewer>`;
           const bak = join(backupBaseDir, filePath.replace(/[/\\]/g, '__') + '.bak');
           if (existsSync(bak)) copyFileSync(bak, fullPath);
         }
-        lastPeltastFeedback = peltastOut;
+        const groundTruthContext = groundTruth.length > 0 ? `\nVerification details:\n${groundTruth.join('\n')}` : '';
+        lastPeltastFeedback = (peltastOut || `Auto-FAIL: ${verdictReason}`) + groundTruthContext;
         this.governor.addStrike(`task-${task.id}`);
         if (this.governor.checkStrikes(`task-${task.id}`).blocked) {
           if (!replannedByAristomenis) {
