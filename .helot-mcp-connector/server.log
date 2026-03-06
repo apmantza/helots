@@ -2577,3 +2577,9 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Pausanias | 107.2t/s | 39 gen + 573 prompt tokens
 [Slinger Update] ✅ Slinger | Pausanias | 105.3t/s | 59 gen + 643 prompt tokens
 [Slinger Update] ✅ Slinger | Pausanias | 92.5t/s | 339 gen + 835 prompt tokens
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
