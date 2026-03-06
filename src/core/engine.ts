@@ -192,50 +192,53 @@ export class HelotEngine {
   }
 
   private deriveProtectedFiles(): Set<string> {
-    const protect = new Set<string>([
-      'package.json', 'package-lock.json', 'tsconfig.json', '.gitignore', 'README.md', 'CLAUDE.md',
-    ]);
+    const protect = new Set<string>(['.gitignore', 'README.md', 'CLAUDE.md']);
 
-    // Extract file references from package.json
+    const addBase = (v: string) => {
+      const base = path.basename(v);
+      protect.add(base);
+      // Protect TypeScript source counterpart of compiled JS entry points
+      protect.add(base.replace(/\.js$/, '.ts').replace(/\.mjs$/, '.mts').replace(/\.cjs$/, '.cts'));
+    };
+
+    // Node / TypeScript
     try {
       const pkg = JSON.parse(readFileSync('package.json', 'utf-8'));
-      for (const field of ['main', 'types', 'typings', 'module']) {
-        if (pkg[field]) {
-          const base = path.basename(String(pkg[field]));
-          protect.add(base);
-          // Also protect the TypeScript source counterpart (.js → .ts, .mjs → .mts)
-          protect.add(base.replace(/\.js$/, '.ts').replace(/\.mjs$/, '.mts').replace(/\.cjs$/, '.cts'));
-        }
-      }
-      if (pkg.bin) {
-        const vals = typeof pkg.bin === 'string' ? [pkg.bin] : Object.values(pkg.bin) as string[];
-        vals.forEach(v => {
-          const base = path.basename(String(v));
-          protect.add(base);
-          protect.add(base.replace(/\.js$/, '.ts').replace(/\.mjs$/, '.mts').replace(/\.cjs$/, '.cts'));
-        });
-      }
-      if (Array.isArray(pkg.files)) pkg.files.forEach((f: string) => protect.add(path.basename(f)));
-      if (pkg.scripts) {
-        for (const cmd of Object.values(pkg.scripts) as string[]) {
-          for (const word of cmd.split(/\s+/)) {
-            if (/\.(ts|js|mjs|cjs|json|sh|py)$/.test(word) && !word.startsWith('-'))
-              protect.add(path.basename(word));
-          }
-        }
-      }
+      protect.add('package.json'); protect.add('package-lock.json'); protect.add('yarn.lock'); protect.add('pnpm-lock.yaml');
+      for (const f of ['main', 'types', 'typings', 'module']) if (pkg[f]) addBase(pkg[f]);
+      if (pkg.bin) (typeof pkg.bin === 'string' ? [pkg.bin] : Object.values(pkg.bin) as string[]).forEach(addBase);
+      if (Array.isArray(pkg.files)) pkg.files.forEach((f: string) => addBase(f));
+      if (pkg.scripts) for (const cmd of Object.values(pkg.scripts) as string[])
+        for (const word of cmd.split(/\s+/))
+          if (/\.(ts|js|mjs|cjs|json|sh|py)$/.test(word) && !word.startsWith('-')) addBase(word);
     } catch {}
-
-    // Extract file references from tsconfig.json
     try {
       const tsc = JSON.parse(readFileSync('tsconfig.json', 'utf-8'));
-      if (Array.isArray(tsc.files)) tsc.files.forEach((f: string) => protect.add(path.basename(f)));
-      if (Array.isArray(tsc.include)) {
-        tsc.include.forEach((p: string) => {
-          if (!p.includes('/') && !p.includes('*')) protect.add(p);
-        });
-      }
+      protect.add('tsconfig.json');
+      if (Array.isArray(tsc.files)) tsc.files.forEach((f: string) => addBase(f));
+      if (Array.isArray(tsc.include)) tsc.include.forEach((p: string) => { if (!p.includes('/') && !p.includes('*')) protect.add(p); });
     } catch {}
+
+    // Python
+    for (const f of ['pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', 'Pipfile.lock', 'poetry.lock']) {
+      try { readFileSync(f); protect.add(f); } catch {}
+    }
+
+    // Rust
+    try { readFileSync('Cargo.toml'); protect.add('Cargo.toml'); protect.add('Cargo.lock'); } catch {}
+
+    // Go
+    try { readFileSync('go.mod'); protect.add('go.mod'); protect.add('go.sum'); } catch {}
+
+    // Java / Kotlin / Gradle / Maven
+    for (const f of ['pom.xml', 'build.gradle', 'build.gradle.kts', 'settings.gradle', 'settings.gradle.kts', 'gradlew', 'mvnw']) {
+      try { readFileSync(f); protect.add(f); } catch {}
+    }
+
+    // Generic build/make
+    for (const f of ['Makefile', 'CMakeLists.txt', 'Dockerfile', 'docker-compose.yml', 'docker-compose.yaml']) {
+      try { readFileSync(f); protect.add(f); } catch {}
+    }
 
     return protect;
   }
