@@ -213,9 +213,10 @@ export class HelotEngine {
     let finalMetrics = { genTps: 0, promptTokens: 0, genTokens: 0, maxTokens: 0 };
 
     const streamLogPath = join(this.governor.config.stateDir, 'stream.log');
-    process.stderr.write(`[runSubagent] ${name} | stateDir=${this.governor.config.stateDir} | cwd=${process.cwd()}\n`);
+    const debugLogPath = join(this.governor.config.stateDir, 'debug.log');
+    try { appendFileSync(debugLogPath, `[runSubagent] ${new Date().toISOString()} | ${name} | stateDir=${this.governor.config.stateDir} | cwd=${process.cwd()}\n`); } catch (e: any) { process.stderr.write(`[runSubagent] debug.log write failed: ${e?.message}\n`); }
     this.writeEvent({ type: 'phase_change', phase: this.currentPhase, name });
-    try { appendFileSync(streamLogPath, `\n\n--- ${this.currentPhase} | ${name} ---\n`); } catch (e: any) { process.stderr.write(`[runSubagent] stream.log write failed: ${e?.message}\n`); }
+    try { appendFileSync(streamLogPath, `\n\n--- ${this.currentPhase} | ${name} ---\n`); } catch (e: any) { appendFileSync(debugLogPath, `[runSubagent] stream.log write failed: ${e?.message}\n`); }
 
     try {
       await this.client.streamCompletion(

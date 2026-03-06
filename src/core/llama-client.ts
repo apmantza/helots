@@ -210,7 +210,7 @@ export class LlamaClient {
             ...(profile.extra_body ?? {})
         };
 
-        process.stderr.write(`[LlamaClient] POST ${this.baseUrl}/v1/chat/completions | model=${targetModel} | profile=${profileKey} | max_tokens=${requestBody.max_tokens} | enable_thinking=${(requestBody as any).chat_template_kwargs?.enable_thinking ?? 'unset'} | prompt_chars=${messages.reduce((a, m) => a + m.content.length, 0)}\n`);
+        try { appendFileSync(join(LOGS_DIR, 'llama-calls.log'), `[${new Date().toISOString()}] POST ${this.baseUrl} | model=${targetModel} | profile=${profileKey} | max_tokens=${requestBody.max_tokens} | enable_thinking=${(requestBody as any).chat_template_kwargs?.enable_thinking ?? 'unset'} | prompt_chars=${messages.reduce((a, m) => a + m.content.length, 0)}\n`); } catch {}
         const response = await fetch(`${this.baseUrl}/v1/chat/completions`, {
             method: 'POST',
             headers: {

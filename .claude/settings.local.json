@@ -21,7 +21,9 @@
       "Bash(do echo \"=== $f ===\")",
       "Read(//c/Users/R3LiC/Desktop/helots-pi/**)",
       "Bash(done)",
-      "mcp__helots__helot_scribe"
+      "mcp__helots__helot_scribe",
+      "Read(//c/Users/R3LiC/Desktop/helots-pi/$TEMP/**)",
+      "Read(//c/Users/R3LiC/Desktop/helots-pi/$LOCALAPPDATA/**)"
     ]
   }
 }
