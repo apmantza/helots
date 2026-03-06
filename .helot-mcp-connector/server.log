@@ -3264,3 +3264,38 @@ Helots MCP Server running on stdio
 [startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
 Helots MCP Server running on stdio
 [dashboard] Running at http://localhost:7771
+[Slinger Update] 🔍 Scribe | researching...
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 32768
+[Slinger Update] 🏹 Slinger Lysander deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Slinger...
+[Slinger Update] ✅ Slinger | Lysander | 105.2t/s | 44 gen + 697 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 102.8t/s | 65 gen + 2234 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 104.0t/s | 78 gen + 2545 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 103.8t/s | 58 gen + 2655 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 104.8t/s | 323 gen + 4022 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 104.7t/s | 87 gen + 5763 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 106.1t/s | 211 gen + 5900 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 99.5t/s | 421 gen + 7582 prompt tokens
+[Slinger Update] ✍️ Scribe | writing bin/dead-code-candidates.md...
+[Slinger Update] ✏️ Hoplite editing bin/dead-code-candidates.md...
+[Slinger Update] ✅ Hoplite | Leonidas | 101.7t/s | 437 gen + 648 prompt tokens
+[Slinger Update] ✅ Hoplite: bin/dead-code-candidates.md written (0 → 36 lines)
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Brasidas deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Brasidas | 107.1t/s | 246 gen + 697 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 105.2t/s | 60 gen + 730 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 103.7t/s | 67 gen + 2281 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 101.7t/s | 46 gen + 2314 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 105.5t/s | 54 gen + 2376 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 104.1t/s | 42 gen + 2450 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 104.7t/s | 44 gen + 2544 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 101.1t/s | 791 gen + 2645 prompt tokens
+[Slinger Update] ✍️ Scribe | writing bin/dead-code-candidates.md...
+[Slinger Update] ✏️ Hoplite editing bin/dead-code-candidates.md...
+[Slinger Update] ✅ Hoplite | Teleutias | 100.9t/s | 808 gen + 1297 prompt tokens
+[Slinger Update] ✅ Hoplite: bin/dead-code-candidates.md written (36 → 48 lines)
