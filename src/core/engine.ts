@@ -5,7 +5,8 @@
  * public methods to the appropriate agent or orchestrator.
  */
 
-import { appendFileSync } from 'fs';
+import { appendFileSync, readdirSync } from 'fs';
+import * as path from 'path';
 import { join } from 'path';
 import { LlamaClient }       from './llama-client.js';
 import { HelotConfig, TaskRole } from '../config.js';
@@ -88,12 +89,57 @@ export class HelotEngine {
     researchTask: string,
     outputFile:   string,
     onUpdate?:    (data: any) => void,
+    batchDir?:    string,
+    batchSize:    number = 4,
   ): Promise<string> {
+    // Phase 1: initial research → write base doc
     onUpdate?.({ text: `🔍 Scribe | researching...` });
     const research = await this.slingerAgent.execute(researchTask, undefined, onUpdate);
     onUpdate?.({ text: `✍️ Scribe | writing ${outputFile}...` });
-    const instruction = `Based on this research, write a clean well-formatted markdown document:\n\n${research}`;
-    return this.hopliteAgent.execute(outputFile, instruction, onUpdate);
+    await this.hopliteAgent.execute(outputFile,
+      `Based on this research, write a clean well-formatted markdown document:\n\n${research}`,
+      onUpdate);
+
+    if (!batchDir) return `✅ Scribe done → ${outputFile}`;
+
+    // Phase 2: batch-summarize files in batchDir
+    const files = this.listFilesRecursive(batchDir);
+    const batches: string[][] = [];
+    for (let i = 0; i < files.length; i += batchSize) batches.push(files.slice(i, i + batchSize));
+
+    onUpdate?.({ text: `📚 Scribe | ${files.length} files → ${batches.length} batches` });
+
+    for (let i = 0; i < batches.length; i++) {
+      const batch = batches[i];
+      onUpdate?.({ text: `📖 Scribe | batch ${i + 1}/${batches.length}: ${batch.map(f => path.basename(f)).join(', ')}` });
+
+      const summaries = await this.slingerAgent.execute(
+        `Read each file and write a one-paragraph summary of what it does.\nFormat as: ### <filename>\n<summary>\n\nFiles:\n${batch.join('\n')}`,
+        batch,
+        onUpdate,
+      );
+
+      const appendInstruction = i === 0
+        ? `Append a new "## Source File Summaries" section to the document with these entries:\n\n${summaries}`
+        : `Append these entries to the "## Source File Summaries" section:\n\n${summaries}`;
+
+      await this.hopliteAgent.execute(outputFile, appendInstruction, onUpdate);
+    }
+
+    return `✅ Scribe done → ${outputFile} (${files.length} files in ${batches.length} batches)`;
+  }
+
+  private listFilesRecursive(dir: string, exclude = ['node_modules', '.git', '__pycache__']): string[] {
+    const results: string[] = [];
+    try {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        if (exclude.includes(entry.name)) continue;
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) results.push(...this.listFilesRecursive(full, exclude));
+        else results.push(full);
+      }
+    } catch {}
+    return results;
   }
 
   async executeVision(

@@ -196,6 +196,14 @@ const TOOLS: Tool[] = [
                     type: "string",
                     description: "Path to the file Hoplite will write the result to.",
                 },
+                batchDir: {
+                    type: "string",
+                    description: "Optional directory to batch-summarize. Scribe lists all files here, summarizes them in groups via Slinger, and appends a '## Source File Summaries' section to the output file.",
+                },
+                batchSize: {
+                    type: "number",
+                    description: "Files per Slinger batch when batchDir is set. Default 4.",
+                },
             },
             required: ["researchTask", "outputFile"],
         },
@@ -265,10 +273,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
         if (name === "helot_scribe") {
             const researchTask = String(args?.researchTask);
             const outputFile = String(args?.outputFile);
+            const batchDir = args?.batchDir ? String(args.batchDir) : undefined;
+            const batchSize = args?.batchSize ? Number(args.batchSize) : 4;
 
             const result = await engine.executeScribe(researchTask, outputFile, (data: { text: string }) => {
                 console.error(`[Scribe Update] ${data.text}`);
-            });
+            }, batchDir, batchSize);
 
             return {
                 content: [{ type: "text", text: result }],
