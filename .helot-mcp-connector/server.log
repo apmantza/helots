@@ -2504,3 +2504,19 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Pausanias | 108.4t/s | 68 gen + 556 prompt tokens
 [Slinger Update] ⚠️ Slinger | Pausanias | server error: fetch failed
 [Slinger Update] ❌ Slinger | Pausanias | empty response — server may be down
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 65536
+[Slinger Update] 🏹 Slinger Pausanias deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Slinger...
+[Slinger Update] ✅ Slinger | Pausanias | 104.9t/s | 88 gen + 556 prompt tokens
+[Slinger Update] ⚠️ Slinger | Pausanias | server error: fetch failed
+[Slinger Update] ❌ Slinger | Pausanias | empty response — server may be down
