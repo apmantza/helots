@@ -2566,3 +2566,14 @@ Helots MCP Server running on stdio
 [Hoplite Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/structure.md...
 [Hoplite Update] ✅ Hoplite | Lysander | 79.3t/s | 565 gen + 789 prompt tokens
 [Hoplite Update] ✅ Hoplite: C:/Users/R3LiC/Desktop/helots-pi/docs/structure.md written (96 → 96 lines)
+[Slinger Update] 🏹 Slinger Teleutias deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Teleutias | 107.4t/s | 32 gen + 595 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 102.6t/s | 41 gen + 2120 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 101.7t/s | 50 gen + 3653 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 92.7t/s | 900 gen + 4633 prompt tokens
+[Slinger Update] 🏹 Slinger Pausanias deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Pausanias | 107.2t/s | 39 gen + 573 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 105.3t/s | 59 gen + 643 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 92.5t/s | 339 gen + 835 prompt tokens

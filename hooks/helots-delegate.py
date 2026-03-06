@@ -72,6 +72,16 @@ if tool_name == 'Bash':
             "Direct Bash file-reading loops should only be used when you need raw output for a shell pipeline."
         )
 
+elif tool_name == 'mcp__helots__helot_slinger':
+    task = tool_input.get('researchTask', '')
+    WRITE_HINTS = ('write to', 'write it to', 'output to', 'save to', 'generate', 'create a doc', 'update doc', '.md', 'structure.md')
+    if any(h in task.lower() for h in WRITE_HINTS):
+        reminder = (
+            "helots MCP is connected. This slinger task looks like it ends in a file write — "
+            "use helot_scribe instead (one call: slinger research → hoplite write). "
+            "The research result stays server-side and never hits the frontier context."
+        )
+
 elif tool_name == 'Grep':
     path = tool_input.get('path', '')
     # Broad search: no path (searches CWD = directory) or path is explicitly a directory

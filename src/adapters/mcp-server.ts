@@ -183,6 +183,24 @@ const TOOLS: Tool[] = [
         },
     },
     {
+        name: "helot_scribe",
+        description: "Research a topic via Slinger and write the result to a file via Hoplite in one call. Use when the user asks to generate or update a doc from codebase data — folder structure, API surface, feature list, dependency summary, etc. The research result never hits the frontier context. Prefer this over separate slinger+hoplite calls whenever the goal is research → write to file.",
+        inputSchema: {
+            type: "object",
+            properties: {
+                researchTask: {
+                    type: "string",
+                    description: "What to research — passed directly to Slinger.",
+                },
+                outputFile: {
+                    type: "string",
+                    description: "Path to the file Hoplite will write the result to.",
+                },
+            },
+            required: ["researchTask", "outputFile"],
+        },
+    },
+    {
         name: "helot_hoplite",
         description: "Lightweight file editor for non-code files (markdown, config, docs, HTML). Reads the file locally, applies the instruction via LLM, writes the result — no peltast review, no lint. Use for MEMORY.md, README, devoptions.md, index.html, and any doc/config/HTML update where lint review is irrelevant. Faster than helot_run for pure writing tasks.",
         inputSchema: {
@@ -238,6 +256,19 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
             const result = await engine.executeHelots(taskSummary, implementationPlan, (data) => {
                 console.error(`[Helot Update] ${data.text}`);
             }, frontierTasks);
+
+            return {
+                content: [{ type: "text", text: result }],
+            };
+        }
+
+        if (name === "helot_scribe") {
+            const researchTask = String(args?.researchTask);
+            const outputFile = String(args?.outputFile);
+
+            const result = await engine.executeScribe(researchTask, outputFile, (data: { text: string }) => {
+                console.error(`[Scribe Update] ${data.text}`);
+            });
 
             return {
                 content: [{ type: "text", text: result }],

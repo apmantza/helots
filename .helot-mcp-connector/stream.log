@@ -8093,3 +8093,174 @@ hel
 └
 ```
 ```
+
+--- Slinger | Teleutias ---
+
+Get
+###
+
+--- Slinger | Teleutias ---
+
+Get
+###
+
+--- Slinger | Teleutias ---
+
+Get
+###
+
+--- Slinger | Teleutias ---
+
+Based
+
+**
+Tools
+-
+-
+-
+  -
+  -
+  -
+
+**
+-
+-
+
+**
+Each
+
+**
+1
+2
+3
+4
+
+###
+C
+C
+C
+
+###
+```
+//
+const
+    {
+        name
+        description
+        input
+            type
+            properties
+                research
+                    type
+                    description
+                },
+                target
+                    type
+                    items
+                    description
+                },
+            },
+            required
+        },
+    },
+    //
+];
+
+//
+server
+    tools
+}
+
+//
+server
+    const
+
+    try
+        if
+            const
+            const
+
+            const
+                console
+            });
+
+            return
+                content
+            };
+        }
+
+        if
+            //
+        }
+
+        if
+            const
+            const
+
+            const
+                console
+            });
+
+            return
+                content
+            };
+        }
+
+        throw
+    }
+        return
+            content
+            isError
+        };
+    }
+});
+```
+
+--- Slinger | Pausanias ---
+
+grep
+###
+
+--- Slinger | Pausanias ---
+
+Get
+###
+
+--- Slinger | Pausanias ---
+
+In
+
+1
+    *
+    *
+    *
+
+2
+    *
+    *
+    *
+
+Both
+
+###
+C
+C
+
+###
+```
+  async
+    research
+    target
+    onUpdate
+  ):
+    return
+  }
+
+  async
+    file
+    instruction
+    onUpdate
+  ):
+    return
+  }
+```

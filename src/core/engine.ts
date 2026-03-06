@@ -84,6 +84,18 @@ export class HelotEngine {
     return this.hopliteAgent.execute(file, instruction, onUpdate);
   }
 
+  async executeScribe(
+    researchTask: string,
+    outputFile:   string,
+    onUpdate?:    (data: any) => void,
+  ): Promise<string> {
+    onUpdate?.({ text: `🔍 Scribe | researching...` });
+    const research = await this.slingerAgent.execute(researchTask, undefined, onUpdate);
+    onUpdate?.({ text: `✍️ Scribe | writing ${outputFile}...` });
+    const instruction = `Based on this research, write a clean well-formatted markdown document:\n\n${research}`;
+    return this.hopliteAgent.execute(outputFile, instruction, onUpdate);
+  }
+
   async executeVision(
     userIntent:         string,
     additionalContext?: string,
