@@ -289,6 +289,13 @@ export class TaskRunner {
       }
       this.governor.recordSourceEdit();
 
+      // --- Handoff artifact ---
+      try {
+        const artifactPath = join(this.governor.config.stateDir, 'runs', runId, `task-${task.id}.md`);
+        const summary = filesToProcess.map(f => `**${f.filePath}** (${f.content.split('\n').length} lines)`).join(', ');
+        writeFileSync(artifactPath, `# Task ${task.id}: ${task.description}\n\n${summary} — written (try ${tryCount})\n`);
+      } catch { /* non-fatal */ }
+
       // --- Verification ---
       const { groundTruth, hasSyntaxError, hasContentLoss, hasNewLintErrors, hasSymbolMissing, hasTestFailure } =
         runVerification({ filesToProcess, task, isSurgical, backupBaseDir, tools: this.tools, cwd: process.cwd() });

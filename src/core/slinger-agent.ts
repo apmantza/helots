@@ -81,6 +81,11 @@ ${isWindows
   : `  head -80 src/core/engine.ts
   wc -l src/core/engine.ts`}
 
+FETCH (external URLs — GitHub READMEs, docs, API references):
+  WEBFETCH https://raw.githubusercontent.com/owner/repo/main/README.md
+  WEBFETCH https://docs.example.com/api-reference
+  Note: GitHub blob URLs are auto-converted to raw. Output truncated to 8000 chars.
+
 STRATEGY:
 ${targetFiles && targetFiles.length > 0
   ? `⚠️  PRE-LOADED FILES ARE IN YOUR PROMPT — follow this order strictly:
@@ -143,15 +148,31 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
       }
     }
 
+    const dedupeReport = (report: string): string => {
+      const seen = new Set<string>();
+      const lines = report.split('\n');
+      const out: string[] = [];
+      for (const line of lines) {
+        const t = line.trim();
+        // Always keep: empty lines, section headers, code fence markers, file separators
+        if (!t || t.startsWith('###') || t.startsWith('```') || t.startsWith('===') || t.startsWith('---')) {
+          out.push(line); continue;
+        }
+        if (!seen.has(t)) { seen.add(t); out.push(line); }
+      }
+      return out.join('\n');
+    };
+
     const writeSlingerLog = (report: string): string => {
       this.writeEventFn({ type: 'slinger_done', task: researchTask.slice(0, 120), name: slingerPersona.name });
       try {
         const logsDir = join(this.governor.config.stateDir, 'slinger-logs');
         mkdirSync(logsDir, { recursive: true });
         const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+        // Write full report to log, return deduped version to frontier
         writeFileSync(join(logsDir, `slinger-${ts}.md`), `# Slinger Report\n**Task:** ${researchTask}\n\n${report}`);
       } catch { /* non-fatal */ }
-      return report;
+      return dedupeReport(report);
     };
 
     this.setPhase('Slinger');
@@ -187,6 +208,23 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
 
       if (cmdMatch) {
         const command = stripShellWrapper(cmdMatch[1] as string);
+
+        // WEBFETCH handler — bypasses shell entirely
+        if (/^WEBFETCH\s+/i.test(command)) {
+          const rawUrl = command.replace(/^WEBFETCH\s+/i, '').trim();
+          const url = rawUrl
+            .replace('github.com', 'raw.githubusercontent.com')
+            .replace('/blob/', '/');
+          try {
+            const res = await fetch(url, { headers: { 'User-Agent': 'helots-slinger/1.0' } });
+            const text = (await res.text()).slice(0, 8000);
+            history += `\n[Turn ${turn}] WEBFETCH: ${rawUrl}\nStatus: ${res.status}\nContent:\n${text}\n`;
+          } catch (e: any) {
+            history += `\n[Turn ${turn}] WEBFETCH failed: ${rawUrl} — ${e.message}\n`;
+          }
+          continue;
+        }
+
         if (!isSafeCommand(command)) {
           history += `\n[Turn ${turn}] BLOCKED: "${command.slice(0, 80)}" is not in the safe allowlist.\n`;
           continue;
