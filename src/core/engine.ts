@@ -195,7 +195,7 @@ export class HelotEngine {
     try {
       const eventsFile = join(this.governor.config.stateDir, 'events.jsonl');
       appendFileSync(eventsFile, JSON.stringify({ ts: new Date().toISOString(), ...event }) + '\n');
-    } catch { }
+    } catch (e: any) { process.stderr.write(`[writeEvent] failed: ${e?.message}\n`); }
   }
 
   private async runSubagent(
@@ -211,8 +211,9 @@ export class HelotEngine {
     let finalMetrics = { genTps: 0, promptTokens: 0, genTokens: 0, maxTokens: 0 };
 
     const streamLogPath = join(this.governor.config.stateDir, 'stream.log');
+    process.stderr.write(`[runSubagent] ${name} | stateDir=${this.governor.config.stateDir} | cwd=${process.cwd()}\n`);
     this.writeEvent({ type: 'phase_change', phase: this.currentPhase, name });
-    try { appendFileSync(streamLogPath, `\n\n--- ${this.currentPhase} | ${name} ---\n`); } catch { }
+    try { appendFileSync(streamLogPath, `\n\n--- ${this.currentPhase} | ${name} ---\n`); } catch (e: any) { process.stderr.write(`[runSubagent] stream.log write failed: ${e?.message}\n`); }
 
     try {
       await this.client.streamCompletion(
