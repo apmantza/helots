@@ -3716,3 +3716,18 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Brasidas | 87.5t/s | 230 gen + 1997 prompt tokens
 [Hoplite Update] ✏️ Hoplite editing C:\Users\R3LiC\.claude\skills\maintain\SKILL.md...
 [Hoplite Update] ✅ Hoplite | Aristomenis | 83.9t/s | 865 gen + 1273 prompt tokens
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Teleutias deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Teleutias | 101.5t/s | 45 gen + 838 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 102.6t/s | 35 gen + 908 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 101.3t/s | 41 gen + 959 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 103.8t/s | 46 gen + 2157 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 99.8t/s | 41 gen + 2260 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 102.4t/s | 61 gen + 3493 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 99.5t/s | 37 gen + 3843 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 95.4t/s | 1103 gen + 5397 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/flow-architecture.md...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/flow-architecture.md...
+[Slinger Update] ✅ Hoplite | Teleutias | 93.7t/s | 1193 gen + 1423 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/flow-architecture.md written (0 → 120 lines)
