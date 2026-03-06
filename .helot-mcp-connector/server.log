@@ -2520,3 +2520,8 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Pausanias | 104.9t/s | 88 gen + 556 prompt tokens
 [Slinger Update] ⚠️ Slinger | Pausanias | server error: fetch failed
 [Slinger Update] ❌ Slinger | Pausanias | empty response — server may be down
+[Slinger Update] 🏹 Slinger Archidamus deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Archidamus | 107.7t/s | 92 gen + 556 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 106.8t/s | 231 gen + 2132 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 80.7t/s | 2689 gen + 3757 prompt tokens
