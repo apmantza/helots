@@ -3938,3 +3938,21 @@ warning: in the working copy of '.helot-mcp-connector/stream.log', LF will be re
 To https://github.com/apmantza/helots.git
    64ab220..cc856be  master -> master
 [Workflow Update] ✅ [commit-push] done
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[Workflow Update] ⚙️ Workflow "commit-push" — 2 steps
+[Workflow Update] ▶️ [gen-msg] hoplite...
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 32768
+[Workflow Update] ✏️ Hoplite editing .helot-mcp-connector/commit-msg.txt...
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Hoplite...
+[Workflow Update] ✅ Hoplite | Lysander | 98.2t/s | 55 gen + 1353 prompt tokens
+[Workflow Update] ✅ Hoplite: .helot-mcp-connector/commit-msg.txt written (5 → 5 lines)
+[Workflow Update] ✅ [gen-msg] done
+[Workflow Update] ▶️ [commit-push] shell...
