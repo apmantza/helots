@@ -3962,3 +3962,10 @@ warning: in the working copy of '.helot-mcp-connector/stream.log', LF will be re
 To https://github.com/apmantza/helots.git
    cc856be..8f7dc36  master -> master
 [Workflow Update] ✅ [commit-push] done
+[Workflow Update] ⚙️ Workflow "commit-push" — 2 steps
+[Workflow Update] ▶️ [gen-msg] hoplite...
+[Workflow Update] ✏️ Hoplite editing .helot-mcp-connector/commit-msg.txt...
+[Workflow Update] ✅ Hoplite | Aristomenis | 98.2t/s | 54 gen + 1353 prompt tokens
+[Workflow Update] ✅ Hoplite: .helot-mcp-connector/commit-msg.txt written (5 → 5 lines)
+[Workflow Update] ✅ [gen-msg] done
+[Workflow Update] ▶️ [commit-push] shell...
