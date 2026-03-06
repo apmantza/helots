@@ -28,7 +28,8 @@
       "Read(//c/Users/R3LiC/AppData/Roaming/claude-code/**)",
       "Bash(echo \"$TEMP\")",
       "Bash(grep:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "mcp__helots__helot_execute"
     ]
   }
 }

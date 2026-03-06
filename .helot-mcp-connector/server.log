@@ -3107,3 +3107,29 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Gylippus | 102.5t/s | 49 gen + 3035 prompt tokens
 [Slinger Update] ✅ Slinger | Gylippus | 102.2t/s | 49 gen + 3559 prompt tokens
 [Slinger Update] ✅ Slinger | Gylippus | 105.7t/s | 8113 gen + 4168 prompt tokens
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[Slinger Update] 🔍 Scribe | researching...
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 32768
+[Slinger Update] 🏹 Slinger Archidamus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Slinger...
+[Slinger Update] ✅ Slinger | Archidamus | 105.0t/s | 42 gen + 644 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 105.7t/s | 505 gen + 1014 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 103.4t/s | 42 gen + 1047 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 106.0t/s | 617 gen + 1417 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 103.7t/s | 42 gen + 1450 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 106.6t/s | 233 gen + 1820 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 103.1t/s | 40 gen + 1872 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 93.0t/s | 619 gen + 2029 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/cleanup-plan.sh...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/cleanup-plan.sh...
+[Slinger Update] ✅ Hoplite | Agesilaus | 91.8t/s | 368 gen + 779 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/cleanup-plan.sh written (0 → 63 lines)
