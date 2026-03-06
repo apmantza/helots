@@ -3664,3 +3664,13 @@ Helots MCP Server running on stdio
 [Hoplite Update] ✏️ Hoplite editing feature-ideas.md...
 [Hoplite Update] ✅ Hoplite | Leonidas | 99.7t/s | 3934 gen + 4696 prompt tokens
 [Hoplite Update] ✅ Hoplite: feature-ideas.md written (218 → 243 lines)
+[Slinger Update] 🏹 Slinger Lysander deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Lysander | 104.4t/s | 33 gen + 740 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 105.3t/s | 45 gen + 2265 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 102.8t/s | 42 gen + 2407 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 101.2t/s | 51 gen + 3941 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 103.2t/s | 39 gen + 5293 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 101.2t/s | 38 gen + 5384 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 100.1t/s | 46 gen + 6575 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 94.2t/s | 2121 gen + 7343 prompt tokens
