@@ -21,6 +21,28 @@ export class HopliteAgent {
     private getModelProps: () => Promise<{ modelName: string; maxTokens: number }>,
   ) {}
 
+  private async fetchUrls(instruction: string): Promise<string> {
+    const urlRegex = /https?:\/\/[^\s"')>]+/g;
+    const urls = instruction.match(urlRegex);
+    if (!urls?.length) return '';
+
+    const fetched: string[] = [];
+    for (const url of urls) {
+      // Convert GitHub blob URLs to raw content
+      const raw = url
+        .replace('github.com', 'raw.githubusercontent.com')
+        .replace('/blob/', '/');
+      try {
+        const res = await fetch(raw, { headers: { 'User-Agent': 'helots-hoplite/1.0' } });
+        if (res.ok) {
+          const text = await res.text();
+          fetched.push(`--- Fetched: ${url} ---\n${text.slice(0, 8000)}`);
+        }
+      } catch { /* skip unfetchable URLs */ }
+    }
+    return fetched.join('\n\n');
+  }
+
   async execute(
     file:       string,
     instruction: string,
@@ -47,9 +69,12 @@ Rules:
 - If the instruction names a specific section (e.g. "Option 7"), only modify content under that heading
 - When multiple similar patterns exist (e.g. several **Status:** lines), use the section heading to disambiguate`;
 
+    const fetchedContent = await this.fetchUrls(instruction);
+    const fetchedSection = fetchedContent ? `\n\nFetched content:\n${fetchedContent}` : '';
+
     const userPrompt = exists
-      ? `File: ${file}\n\nCurrent content:\n\`\`\`\n${originalContent}\n\`\`\`\n\nInstruction: ${instruction}`
-      : `File: ${file} (new file)\n\nInstruction: ${instruction}`;
+      ? `File: ${file}\n\nCurrent content:\n\`\`\`\n${originalContent}\n\`\`\`\n\nInstruction: ${instruction}${fetchedSection}`
+      : `File: ${file} (new file)\n\nInstruction: ${instruction}${fetchedSection}`;
 
     onUpdate?.({ text: `✏️ Hoplite editing ${file}...` });
     this.writeEventFn({ type: 'hoplite_start', file, instruction: instruction.slice(0, 120) });

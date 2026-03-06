@@ -3596,3 +3596,24 @@ Helots MCP Server running on stdio
 [Hoplite Update] ✏️ Hoplite editing C:\Users\R3LiC\Desktop\helots-pi\.helot-mcp-connector\fractals-readme.md...
 [Hoplite Update] ✅ Hoplite | Aristomenis | 92.8t/s | 279 gen + 275 prompt tokens
 [Hoplite Update] ✅ Hoplite: C:\Users\R3LiC\Desktop\helots-pi\.helot-mcp-connector\fractals-readme.md written (0 → 63 lines)
+[Slinger Update] 🏹 Slinger Lysander deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Lysander | 104.5t/s | 31 gen + 600 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 105.1t/s | 39 gen + 643 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 101.6t/s | 41 gen + 718 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 102.2t/s | 45 gen + 847 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 101.5t/s | 43 gen + 1723 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 103.7t/s | 33 gen + 3256 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 99.7t/s | 37 gen + 3322 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 90.4t/s | 505 gen + 4875 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Agesilaus | 103.7t/s | 57 gen + 1748 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 97.5t/s | 204 gen + 2944 prompt tokens
+[Hoplite Update] ✏️ Hoplite editing C:\Users\R3LiC\.claude\projects\C--Users-R3LiC-Desktop-helots-pi\memory\MEMORY.md...
+[Hoplite Update] ✅ Hoplite | Lysander | 102.1t/s | 1089 gen + 1293 prompt tokens
+[Hoplite Update] ✅ Hoplite: C:\Users\R3LiC\.claude\projects\C--Users-R3LiC-Desktop-helots-pi\memory\MEMORY.md written (61 → 61 lines)
+[Hoplite Update] ✏️ Hoplite editing .helot-mcp-connector/fractals-summary.md...
+[Hoplite Update] ✅ Hoplite | Archidamus | 103.8t/s | 503 gen + 253 prompt tokens
+[Hoplite Update] ✅ Hoplite: .helot-mcp-connector/fractals-summary.md written (0 → 31 lines)
