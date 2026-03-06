@@ -1,5 +1,16 @@
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import { mkdirSync, appendFileSync } from 'fs';
 import { HelotConfig, TaskRole, SamplingProfile } from '../config.js';
 import { getProfilesForModel } from './model-registry.js';
+
+const _dir = dirname(fileURLToPath(import.meta.url));
+const LOGS_DIR = join(_dir, '../../logs');
+try { mkdirSync(LOGS_DIR, { recursive: true }); } catch {}
+
+function appendReasoningLog(entry: string): void {
+    try { appendFileSync(join(LOGS_DIR, 'reasoning.log'), entry, 'utf8'); } catch {}
+}
 
 /**
  * LlamaClient - Hardened SSE streaming client
@@ -219,6 +230,7 @@ export class LlamaClient {
         const startTime = performance.now();
         let firstTokenTime = 0;
         let tokenCount = 0;
+        let reasoningContent = '';
         const promptEstimate = messages.reduce((acc, m) => acc + (m.content.length / 4), 0);
 
         try {
@@ -244,6 +256,8 @@ export class LlamaClient {
                             const parsed = JSON.parse(data);
                             const delta = parsed.choices?.[0]?.delta;
                             if (delta) {
+                                const reasoning = delta.reasoning_content || '';
+                                if (reasoning) reasoningContent += reasoning;
                                 const content = delta.content || '';
                                 if (content) {
                                     if (firstTokenTime === 0) firstTokenTime = performance.now();
@@ -271,6 +285,29 @@ export class LlamaClient {
             }
         } finally {
             reader.releaseLock();
+            if (reasoningContent) {
+                const ts = new Date().toISOString();
+                const params = [
+                    `temperature=${requestBody.temperature}`,
+                    `top_p=${requestBody.top_p}`,
+                    `top_k=${requestBody.top_k}`,
+                    `min_p=${requestBody.min_p}`,
+                    `max_tokens=${requestBody.max_tokens}`,
+                    `presence_penalty=${requestBody.presence_penalty}`,
+                    `repetition_penalty=${requestBody.repetition_penalty}`,
+                ].join(' ');
+                const promptDump = messages.map(m => `[${m.role}]: ${m.content}`).join('\n---\n');
+                const entry = [
+                    `\n=== ${ts} | ${role} | ${targetModel} | ${profileKey} ===`,
+                    `PARAMS: ${params}`,
+                    `MESSAGES:\n${promptDump}`,
+                    `REASONING (${reasoningContent.length} chars):\n${reasoningContent}`,
+                    `RESPONSE: ${tokenCount === 0 ? '(empty)' : `${tokenCount} tokens`}`,
+                    `===\n`,
+                ].join('\n');
+                appendReasoningLog(entry);
+                console.error(`[reasoning] logged ${reasoningContent.length} chars to logs/reasoning.log`);
+            }
         }
     }
 }
