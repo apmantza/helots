@@ -2938,3 +2938,76 @@ Helots MCP Server running on stdio
 [Scribe Update] ✅ Slinger | Lysander | 106.5t/s | 56 gen + 577 prompt tokens
 [Scribe Update] ⚠️ Slinger | Lysander | server error: fetch failed
 [Scribe Update] ❌ Slinger | Lysander | empty response — server may be down
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[Scribe Update] 🔍 Scribe | researching...
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 32768
+[Scribe Update] 🏹 Slinger Leonidas deployed.
+[Scribe Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Slinger...
+[Scribe Update] ✅ Slinger | Leonidas | 105.6t/s | 56 gen + 577 prompt tokens
+[Scribe Update] ⚠️ Slinger | Leonidas | server error: fetch failed
+[Scribe Update] ❌ Slinger | Leonidas | empty response — server may be down
+[Scribe Update] 🔍 Scribe | researching...
+[Scribe Update] 🏹 Slinger Gylippus deployed.
+[Scribe Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Scribe Update] ✅ Slinger | Gylippus | 109.9t/s | 56 gen + 577 prompt tokens
+[Scribe Update] ✅ Slinger | Gylippus | 108.0t/s | 56 gen + 2121 prompt tokens
+[Scribe Update] ✅ Slinger | Gylippus | 105.1t/s | 56 gen + 3665 prompt tokens
+[Scribe Update] ✅ Slinger | Gylippus | 86.8t/s | 688 gen + 5209 prompt tokens
+[Scribe Update] ✍️ Scribe | writing docs/project-structure.md...
+[Scribe Update] ✏️ Hoplite editing docs/project-structure.md...
+[Scribe Update] ✅ Hoplite | Archidamus | 88.4t/s | 949 gen + 9896 prompt tokens
+[Scribe Update] ✅ Hoplite: docs/project-structure.md written (602 → 97 lines)
+[Scribe Update] 📚 Scribe | ctx=32768 → token budget per batch: ~13107
+[Scribe Update] 📚 Scribe | 31 files → 5 dynamic batches
+[Scribe Update] 📖 Scribe | batch 1/5 (8 files, ~11524 tokens): dashboard-server.ts, mcp-server.ts, mcp.ts, pi.ts, config.ts, builder-orchestrator.ts, builder-prompt.ts, engine.ts
+[Scribe Update] 🏹 Slinger Agesilaus deployed.
+[Scribe Update] 📐 Context: 32768 tokens → FILE_CAP: 7373 chars × 8 file(s)
+[Scribe Update] 📖 Slinger preloading 8 file(s)...
+[Scribe Update] ✅ Slinger | Agesilaus | 96.5t/s | 801 gen + 9690 prompt tokens
+[Scribe Update] ✅ Scribe | batch 1/5 appended
+[Scribe Update] 📖 Scribe | batch 2/5 (6 files, ~11259 tokens): file-utils.ts, governor.ts, grep-utils.ts, helots-orchestrator.ts, hoplite-agent.ts, llama-client.ts
+[Scribe Update] 🏹 Slinger Aristomenis deployed.
+[Scribe Update] 📐 Context: 32768 tokens → FILE_CAP: 9830 chars × 6 file(s)
+[Scribe Update] 📖 Slinger preloading 6 file(s)...
+[Scribe Update] ✅ Slinger | Aristomenis | 100.7t/s | 29 gen + 10388 prompt tokens
+[Scribe Update] ✅ Slinger | Aristomenis | 103.2t/s | 581 gen + 10723 prompt tokens
+[Scribe Update] ✅ Slinger | Aristomenis | 102.7t/s | 370 gen + 10730 prompt tokens
+[Scribe Update] ✅ Slinger | Aristomenis | 103.4t/s | 550 gen + 10738 prompt tokens
+[Scribe Update] ✅ Slinger | Aristomenis | 103.4t/s | 529 gen + 10745 prompt tokens
+[Scribe Update] ✅ Slinger | Aristomenis | 102.8t/s | 430 gen + 10753 prompt tokens
+[Scribe Update] ✅ Slinger | Aristomenis | 100.9t/s | 811 gen + 10779 prompt tokens
+[Scribe Update] ✅ Scribe | batch 2/5 appended
+[Scribe Update] 📖 Scribe | batch 3/5 (8 files, ~12140 tokens): lsp-client.ts, model-registry.ts, peltast-orchestrator.ts, persona-utils.ts, scout.ts, skill-injector.ts, slinger-agent.ts, sparta-record.ts
+[Scribe Update] 🏹 Slinger Lysander deployed.
+[Scribe Update] 📐 Context: 32768 tokens → FILE_CAP: 7373 chars × 8 file(s)
+[Scribe Update] 📖 Slinger preloading 8 file(s)...
+[Scribe Update] ✅ Slinger | Lysander | 102.7t/s | 767 gen + 10084 prompt tokens
+[Scribe Update] ✅ Scribe | batch 3/5 appended
+[Scribe Update] 📖 Scribe | batch 4/5 (7 files, ~11165 tokens): symbol-utils.ts, task-loop.ts, task-runner.ts, text-utils.ts, tool-resolver.ts, types.ts, verification.ts
+[Scribe Update] 🏹 Slinger Leonidas deployed.
+[Scribe Update] 📐 Context: 32768 tokens → FILE_CAP: 8426 chars × 7 file(s)
+[Scribe Update] 📖 Slinger preloading 7 file(s)...
+[Scribe Update] ✅ Slinger | Leonidas | 102.6t/s | 1092 gen + 8378 prompt tokens
+[Scribe Update] ✅ Scribe | batch 4/5 appended
+[Scribe Update] 📖 Scribe | batch 5/5 (2 files, ~7179 tokens): vision-agent.ts, index.html
+[Scribe Update] 🏹 Slinger Leonidas deployed.
+[Scribe Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 2 file(s)
+[Scribe Update] 📖 Slinger preloading 2 file(s)...
+[Scribe Update] ✅ Slinger | Leonidas | 96.4t/s | 596 gen + 7467 prompt tokens
+[Scribe Update] ✅ Slinger | Leonidas | 94.4t/s | 831 gen + 7475 prompt tokens
+[Scribe Update] ✅ Slinger | Leonidas | 105.0t/s | 306 gen + 7482 prompt tokens
+[Scribe Update] ✅ Slinger | Leonidas | 99.2t/s | 454 gen + 7490 prompt tokens
+[Scribe Update] ✅ Slinger | Leonidas | 105.0t/s | 244 gen + 7497 prompt tokens
+[Scribe Update] ✅ Slinger | Leonidas | 94.6t/s | 418 gen + 7505 prompt tokens
+[Scribe Update] ✅ Slinger | Leonidas | 95.1t/s | 574 gen + 7531 prompt tokens
+[Scribe Update] ✅ Slinger | Leonidas | 93.6t/s | 957 gen + 7562 prompt tokens
+[Scribe Update] ✅ Scribe | batch 5/5 appended
