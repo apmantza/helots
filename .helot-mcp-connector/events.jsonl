@@ -637,3 +637,7 @@
 {"ts":"2026-03-06T14:14:38.841Z","type":"phase_change","phase":"Hoplite","name":"Agesilaus"}
 {"ts":"2026-03-06T14:14:46.600Z","type":"subagent_done","phase":"Hoplite","role":"Hoplite","name":"Agesilaus","tps":102.6516296255586,"genTokens":647,"promptTokens":2961,"ctxPct":9}
 {"ts":"2026-03-06T14:14:46.610Z","type":"hoplite_done","file":".helot-mcp-connector/fractals-summary.md","linesBefore":31,"linesAfter":32}
+{"ts":"2026-03-06T14:19:47.051Z","type":"hoplite_start","file":"feature-ideas.md","instruction":"Add a new section \"## Workflow Optimization & Token Efficiency\" with these four feature ideas:\n\n1. **`helot_workflow` to"}
+{"ts":"2026-03-06T14:19:47.057Z","type":"phase_change","phase":"Hoplite","name":"Lysander"}
+{"ts":"2026-03-06T14:19:52.570Z","type":"subagent_done","phase":"Hoplite","role":"Hoplite","name":"Lysander","tps":96.24487870306466,"genTokens":495,"promptTokens":495,"ctxPct":2}
+{"ts":"2026-03-06T14:19:52.578Z","type":"hoplite_done","file":"feature-ideas.md","linesBefore":0,"linesAfter":60}

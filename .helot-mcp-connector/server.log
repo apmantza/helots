@@ -3631,3 +3631,6 @@ Helots MCP Server running on stdio
 [MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Hoplite...
 [Hoplite Update] ✅ Hoplite | Agesilaus | 102.7t/s | 647 gen + 2961 prompt tokens
 [Hoplite Update] ✅ Hoplite: .helot-mcp-connector/fractals-summary.md written (31 → 32 lines)
+[Hoplite Update] ✏️ Hoplite editing feature-ideas.md...
+[Hoplite Update] ✅ Hoplite | Lysander | 96.2t/s | 495 gen + 495 prompt tokens
+[Hoplite Update] ✅ Hoplite: feature-ideas.md written (0 → 60 lines)
