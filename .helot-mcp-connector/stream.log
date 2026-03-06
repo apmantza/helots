@@ -1180,3 +1180,60 @@ hel
 
 After
 ```
+
+--- Hoplite | Archidamus ---
+
+```
+---
+name
+description
+---
+
+#
+
+The
+
+This
+
+##
+
+```
+hel
+  research
+  outputFile
+)
+```
+
+##
+
+```
+hel
+  script
+  audit
+  dry
+)
+```
+
+Show
+
+##
+
+```
+hel
+  script
+  audit
+  dry
+)
+```
+
+##
+
+```
+hel
+  file
+  instruction
+)
+```
+
+After
+```
