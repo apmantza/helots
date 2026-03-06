@@ -5,7 +5,7 @@
  * public methods to the appropriate agent or orchestrator.
  */
 
-import { appendFileSync, readdirSync } from 'fs';
+import { appendFileSync, readdirSync, statSync } from 'fs';
 import * as path from 'path';
 import { join } from 'path';
 import { LlamaClient }       from './llama-client.js';
@@ -86,11 +86,11 @@ export class HelotEngine {
   }
 
   async executeScribe(
-    researchTask: string,
-    outputFile:   string,
-    onUpdate?:    (data: any) => void,
-    batchDir?:    string,
-    batchSize:    number = 4,
+    researchTask:    string,
+    outputFile:      string,
+    onUpdate?:       (data: any) => void,
+    batchDir?:       string,
+    maxFilesPerBatch: number = 8,
   ): Promise<string> {
     // Phase 1: initial research → write base doc
     onUpdate?.({ text: `🔍 Scribe | researching...` });
@@ -102,16 +102,35 @@ export class HelotEngine {
 
     if (!batchDir) return `✅ Scribe done → ${outputFile}`;
 
-    // Phase 2: batch-summarize files in batchDir
+    // Phase 2: dynamic batching based on actual server context size
+    const { maxTokens } = await this.client.getProps();
+    // Reserve 60% for system prompt + task description + slinger response
+    const tokenBudget = Math.floor(maxTokens * 0.4);
+    onUpdate?.({ text: `📚 Scribe | ctx=${maxTokens} → token budget per batch: ~${tokenBudget}` });
+
     const files = this.listFilesRecursive(batchDir);
     const batches: string[][] = [];
-    for (let i = 0; i < files.length; i += batchSize) batches.push(files.slice(i, i + batchSize));
+    let current: string[] = [];
+    let currentTokens = 0;
 
-    onUpdate?.({ text: `📚 Scribe | ${files.length} files → ${batches.length} batches` });
+    for (const file of files) {
+      const estimatedTokens = Math.ceil(this.estimateFileTokens(file));
+      if (current.length > 0 && (currentTokens + estimatedTokens > tokenBudget || current.length >= maxFilesPerBatch)) {
+        batches.push(current);
+        current = [];
+        currentTokens = 0;
+      }
+      current.push(file);
+      currentTokens += estimatedTokens;
+    }
+    if (current.length > 0) batches.push(current);
+
+    onUpdate?.({ text: `📚 Scribe | ${files.length} files → ${batches.length} dynamic batches` });
 
     for (let i = 0; i < batches.length; i++) {
       const batch = batches[i];
-      onUpdate?.({ text: `📖 Scribe | batch ${i + 1}/${batches.length}: ${batch.map(f => path.basename(f)).join(', ')}` });
+      const batchTokens = batch.reduce((sum, f) => sum + this.estimateFileTokens(f), 0);
+      onUpdate?.({ text: `📖 Scribe | batch ${i + 1}/${batches.length} (${batch.length} files, ~${batchTokens} tokens): ${batch.map(f => path.basename(f)).join(', ')}` });
 
       const summaries = await this.slingerAgent.execute(
         `Read each file and write a one-paragraph summary of what it does.\nFormat as: ### <filename>\n<summary>\n\nFiles:\n${batch.join('\n')}`,
@@ -127,6 +146,10 @@ export class HelotEngine {
     }
 
     return `✅ Scribe done → ${outputFile} (${files.length} files in ${batches.length} batches)`;
+  }
+
+  private estimateFileTokens(filePath: string): number {
+    try { return Math.ceil(statSync(filePath).size / 4); } catch { return 1000; }
   }
 
   private listFilesRecursive(dir: string, exclude = ['node_modules', '.git', '__pycache__']): string[] {

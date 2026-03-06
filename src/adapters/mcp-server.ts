@@ -200,9 +200,9 @@ const TOOLS: Tool[] = [
                     type: "string",
                     description: "Optional directory to batch-summarize. Scribe lists all files here, summarizes them in groups via Slinger, and appends a '## Source File Summaries' section to the output file.",
                 },
-                batchSize: {
+                maxFilesPerBatch: {
                     type: "number",
-                    description: "Files per Slinger batch when batchDir is set. Default 4.",
+                    description: "Hard cap on files per batch regardless of token estimate. Default 8. Batch size is otherwise determined dynamically from the server's context window.",
                 },
             },
             required: ["researchTask", "outputFile"],
@@ -274,7 +274,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
             const researchTask = String(args?.researchTask);
             const outputFile = String(args?.outputFile);
             const batchDir = args?.batchDir ? String(args.batchDir) : undefined;
-            const batchSize = args?.batchSize ? Number(args.batchSize) : 4;
+            const batchSize = args?.maxFilesPerBatch ? Number(args.maxFilesPerBatch) : 8;
 
             const result = await engine.executeScribe(researchTask, outputFile, (data: { text: string }) => {
                 console.error(`[Scribe Update] ${data.text}`);
