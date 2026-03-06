@@ -178,11 +178,41 @@
 
 **Reference:** github.com/OthmanAdi/planning-with-files — file system as primary agent state store, Read-Plan-Write loop, modular file structure for multi-stage pipelines.
 
+## Parallel Swarm Patterns (inspired by claude-agentic-framework)
+
+### 1. Read/Write Model Split
+- **Current State:** All helots agents (Scout, Aristomenis, Builder, Peltast) use the same Qwen3-27B model regardless of task cost.
+- **Pattern:** Use a cheaper/faster model for read-heavy exploration; reserve the full model for write operations and reasoning.
+- **Helots Implementation:** Scout uses a smaller/faster profile (e.g., a quantized variant or reduced max_tokens) since it only reads and summarizes. Builder and Peltast keep the full model. Aristomenis can use a medium profile.
+- **Benefit:** Reduces latency and compute for the most frequent operation (codebase scanning) without sacrificing output quality.
+
+### 2. Adversarial Multi-Pass Peltast
+- **Current State:** Peltast runs a single PASS/FAIL check.
+- **Pattern:** 5 parallel reviewers per pass, each specialized (security, performance, architecture, correctness, style).
+- **Helots Implementation:** Run Peltast 2-3 times with different review lenses in the system prompt (e.g., pass 1: "does this match the spec?", pass 2: "are there security or correctness issues?"). Fail on any FAIL verdict.
+- **Benefit:** Catches different error classes that a single-pass reviewer misses; mimics adversarial review without requiring true parallelism.
+
+### 3. Beads — Git-Based Task Coordination
+- **Pattern:** Lightweight issue tracking via git (each "Bead" is a claimed task file in a coordination directory). Workers claim tasks by writing their ID to a bead file; prevents duplicate work in parallel execution.
+- **Helots Implementation:** For `helot_workflow` (multi-step chains), a `beads/` directory in `.helot-mcp-connector/` could track which steps are claimed/completed/failed. Enables resumable workflows and future parallelism.
+- **Benefit:** Foundation for parallel Builder workers and crash-safe workflow resumption.
+
+### 4. Artifact Chaining with Typed Outputs
+- **Pattern:** Research phase outputs named artifacts (PRD, ADR, PR-FAQ) that serve as direct, typed inputs to the Planning phase.
+- **Helots Implementation:** Formalize inter-agent handoff files (from planning-with-files idea) with typed names: `scout-discovery.md`, `aristomenis-plan.md`, `builder-diff.md`. Each agent knows exactly which file to read and write.
+- **Benefit:** Composable pipeline — any stage can be re-run independently by pointing it at the right artifact file.
+
+### 5. Quality Gate Enforcement Before Commit
+- **Pattern:** Execute phase enforces passing tests, lint, and types before any merge/push.
+- **Helots Implementation:** Peltast's PASS verdict could trigger an optional validation script (configurable per project in `.helots/config.json`: `"validateCmd": "npm run lint && tsc --noEmit"`). Only on script success does the commit gate open.
+- **Benefit:** Prevents Peltast from passing syntactically correct but broken code; particularly important for local models that hallucinate valid-looking TypeScript.
+
 ## Inspiration
 
 - **Pattern:** Fractals (TinyAGI) recursive DAG orchestration — plan once as a DAG, execute leaf tasks in isolated git worktrees, synthesize results via merge agents
 - **Pattern:** LocalCowork — curate tool surface per phase, single-turn dispatch, cross-server coordination via workflow chains
 - **Pattern:** Superpowers (obra) — composable skill triggers, two-stage review, bite-sized TDD decomposition, subagent dispatch with guardrails
 - **Pattern:** planning-with-files (OthmanAdi) — file system as shared state, explicit inter-agent handoffs, atomic writes, crash recovery via checkpoints
+- **Pattern:** claude-agentic-framework (dralgorhythm) — read/write model split, adversarial multi-pass review, Beads git coordination, artifact chaining, quality gate before commit
 - **Principle:** Plan once, execute fully, only return synthesized result
 - **Goal:** Optimize workflow efficiency and token usage
