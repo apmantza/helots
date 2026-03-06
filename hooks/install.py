@@ -63,6 +63,7 @@ HOOKS_CONFIG = {
             "matcher": "Edit|Write|NotebookEdit",
             "hooks": [
                 {"type": "command", "command": cmd("helots-format.py")},
+                {"type": "command", "command": cmd("helots-typecheck.py")},
                 {"type": "command", "command": cmd("helots-gitstage.py"), "async": True},
             ],
         },
