@@ -2440,3 +2440,48 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Brasidas | 79.7t/s | 74 gen + 22246 prompt tokens
 [Slinger Update] ✅ Slinger | Brasidas | 80.4t/s | 89 gen + 22361 prompt tokens
 [Slinger Update] ✅ Slinger | Brasidas | 72.6t/s | 1454 gen + 23921 prompt tokens
+[Slinger Update] 🏹 Slinger Aristomenis deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Aristomenis | 37.1t/s | 7035 gen + 22157 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Agesilaus | 37.5t/s | 7065 gen + 22151 prompt tokens
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Agesilaus | 42.6t/s | 28 gen + 22148 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 42.2t/s | 37 gen + 22282 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 41.3t/s | 37 gen + 23812 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 41.7t/s | 37 gen + 25342 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 39.4t/s | 37 gen + 26872 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 41.5t/s | 37 gen + 28402 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 40.4t/s | 48 gen + 29951 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 36.2t/s | 1709 gen + 31511 prompt tokens
+[Slinger Update] 🏹 Slinger Pausanias deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Pausanias | 42.5t/s | 52 gen + 22184 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 37.3t/s | 5651 gen + 23726 prompt tokens
+[Slinger Update] 🏹 Slinger Archidamus deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Archidamus | 40.1t/s | 17 gen + 22179 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 38.1t/s | 35 gen + 22226 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 42.1t/s | 28 gen + 22396 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 41.0t/s | 28 gen + 23920 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 41.8t/s | 28 gen + 25444 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 39.6t/s | 28 gen + 26721 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 37.2t/s | 619 gen + 28264 prompt tokens
+[Slinger Update] 🏹 Slinger Brasidas deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Brasidas | 43.2t/s | 49 gen + 22162 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 40.7t/s | 412 gen + 23702 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 39.4t/s | 462 gen + 23752 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 39.4t/s | 355 gen + 23803 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 39.9t/s | 384 gen + 23854 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 40.7t/s | 44 gen + 23905 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 39.1t/s | 724 gen + 25457 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 37.6t/s | 2648 gen + 25530 prompt tokens

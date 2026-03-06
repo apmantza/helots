@@ -56,3 +56,12 @@ export interface VerificationResult {
     message: string;
     details?: any;
 }
+
+export type RunSubagentFn = (
+  role: string, name: string, sys: string, user: string,
+  onUpdate: ((data: any) => void) | undefined,
+  metrics: any, profile: string, model: string,
+  haltOn?: string[], maxTokensOverride?: number
+) => Promise<string>;
+
+export type WriteEventFn = (event: Record<string, any>) => void;
