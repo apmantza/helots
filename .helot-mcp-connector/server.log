@@ -3217,3 +3217,29 @@ Helots MCP Server running on stdio
 [Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/cleanup-plan.sh...
 [Slinger Update] ✅ Hoplite | Aristomenis | 95.5t/s | 588 gen + 2375 prompt tokens
 [Slinger Update] ✅ Hoplite: .helot-mcp-connector/cleanup-plan.sh written (74 → 74 lines)
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[Slinger Update] 🔍 Scribe | researching...
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 32768
+[Slinger Update] 🏹 Slinger Leonidas deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Slinger...
+[Slinger Update] ✅ Slinger | Leonidas | 104.8t/s | 53 gen + 894 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 106.1t/s | 131 gen + 1081 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 100.2t/s | 25 gen + 1186 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 99.7t/s | 26 gen + 1364 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 102.6t/s | 29 gen + 1474 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 103.0t/s | 71 gen + 1535 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 105.4t/s | 57 gen + 3109 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 95.5t/s | 492 gen + 3271 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/cleanup-plan.sh...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/cleanup-plan.sh...
+[Slinger Update] ✅ Hoplite | Pausanias | 95.1t/s | 562 gen + 1340 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/cleanup-plan.sh written (74 → 70 lines)
