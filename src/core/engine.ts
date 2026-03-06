@@ -5,7 +5,7 @@
  * public methods to the appropriate agent or orchestrator.
  */
 
-import { appendFileSync, readdirSync, statSync } from 'fs';
+import { appendFileSync, readdirSync, statSync, mkdirSync } from 'fs';
 import * as path from 'path';
 import { join } from 'path';
 import { LlamaClient }       from './llama-client.js';
@@ -138,11 +138,11 @@ export class HelotEngine {
         onUpdate,
       );
 
-      const appendInstruction = i === 0
-        ? `Append a new "## Source File Summaries" section to the document with these entries:\n\n${summaries}`
-        : `Append these entries to the "## Source File Summaries" section:\n\n${summaries}`;
-
-      await this.hopliteAgent.execute(outputFile, appendInstruction, onUpdate);
+      const section = i === 0
+        ? '\n\n## Source File Summaries\n\n' + summaries
+        : '\n\n' + summaries;
+      appendFileSync(outputFile, section, 'utf-8');
+      onUpdate?.({ text: `✅ Scribe | batch ${i + 1}/${batches.length} appended` });
     }
 
     return `✅ Scribe done → ${outputFile} (${files.length} files in ${batches.length} batches)`;

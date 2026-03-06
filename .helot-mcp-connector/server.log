@@ -2789,3 +2789,39 @@ Helots MCP Server running on stdio
 [Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
 [Scribe Update] ⚠️ Hoplite | Archidamus | server error: fetch failed
 [Scribe Update] ❌ Hoplite | Archidamus | empty response — server may be down
+[Scribe Update] 🔍 Scribe | researching...
+[Scribe Update] 🏹 Slinger Gylippus deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Scribe Update] ✅ Slinger | Gylippus | 107.7t/s | 110 gen + 569 prompt tokens
+[Scribe Update] ✅ Slinger | Gylippus | 105.1t/s | 137 gen + 775 prompt tokens
+[Scribe Update] ✅ Slinger | Gylippus | 105.6t/s | 119 gen + 968 prompt tokens
+[Scribe Update] ✅ Slinger | Gylippus | 105.2t/s | 123 gen + 1171 prompt tokens
+[Scribe Update] ✅ Slinger | Gylippus | 88.2t/s | 262 gen + 1377 prompt tokens
+[Scribe Update] ✍️ Scribe | writing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ✅ Hoplite | Pausanias | 91.9t/s | 11026 gen + 12593 prompt tokens
+[Scribe Update] ✅ Hoplite: C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md written (1032 → 1070 lines)
+[Scribe Update] 📚 Scribe | ctx=65536 → token budget per batch: ~26214
+[Scribe Update] 📚 Scribe | 31 files → 4 dynamic batches
+[Scribe Update] 📖 Scribe | batch 1/4 (8 files, ~11358 tokens): dashboard-server.ts, mcp-server.ts, mcp.ts, pi.ts, config.ts, builder-orchestrator.ts, builder-prompt.ts, engine.ts
+[Scribe Update] 🏹 Slinger Pausanias deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 27768 chars × 8 file(s)
+[Scribe Update] 📖 Slinger preloading 8 file(s)...
+[Scribe Update] ✅ Slinger | Pausanias | 102.1t/s | 879 gen + 12165 prompt tokens
+[Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ✅ Hoplite | Gylippus | 92.0t/s | 11909 gen + 13520 prompt tokens
+[Scribe Update] ✅ Hoplite: C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md written (1070 → 1105 lines)
+[Scribe Update] 📖 Scribe | batch 2/4 (8 files, ~16818 tokens): file-utils.ts, governor.ts, grep-utils.ts, helots-orchestrator.ts, hoplite-agent.ts, llama-client.ts, lsp-client.ts, model-registry.ts
+[Scribe Update] 🏹 Slinger Pausanias deployed.
+[Scribe Update] 📐 Context: 65536 tokens → FILE_CAP: 27768 chars × 8 file(s)
+[Scribe Update] 📖 Slinger preloading 8 file(s)...
+[Scribe Update] ✅ Slinger | Pausanias | 100.9t/s | 1145 gen + 17450 prompt tokens
+[Scribe Update] ✅ Slinger | Pausanias | 101.1t/s | 1184 gen + 17457 prompt tokens
+[Scribe Update] ✅ Slinger | Pausanias | 99.6t/s | 1003 gen + 17465 prompt tokens
+[Scribe Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/project-structure.md...
+[Scribe Update] ⚠️ Hoplite | Agesilaus | server error: fetch failed
+[Scribe Update] ❌ Hoplite | Agesilaus | empty response — server may be down
+[Slinger Update] 🏹 Slinger Archidamus deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] ⚠️ Slinger | Archidamus | server error: fetch failed
+[Slinger Update] ❌ Slinger | Archidamus | empty response — server may be down

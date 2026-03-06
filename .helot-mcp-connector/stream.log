@@ -14981,3 +14981,2381 @@ This
 This
 
 --- Hoplite | Archidamus ---
+
+
+--- Slinger | Gylippus ---
+
+Get
+###
+
+--- Slinger | Gylippus ---
+
+Get
+###
+
+--- Slinger | Gylippus ---
+
+Get
+###
+
+--- Slinger | Gylippus ---
+
+Get
+###
+
+--- Slinger | Gylippus ---
+
+The
+
+###
+-
+
+###
+```
+##
+
+1
+2
+3
+4
+  .
+  .
+  .
+  .
+  .
+  .
+  ~
+  extensions
+    agent
+    run
+    run
+  .
+  adapters
+  backups
+  core
+  dashboard
+  hop
+  runs
+  sl
+  workflows
+  docs
+  hooks
+  logs
+  scripts
+  src
+```
+
+--- Hoplite | Pausanias ---
+
+```
+#
+
+##
+The
+
+##
+```
+Get
+```
+
+##
+
+###
+The
+
+###
+C
+
+###
+```
+export
+  const
+  const
+  const
+
+  const
+    //
+    //
+    //
+    //
+  });
+
+  server
+    process
+    if
+    else
+  });
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+const
+    {
+        name
+        description
+        //
+    },
+    {
+        name
+        description
+        //
+    },
+    {
+        name
+        description
+        //
+    },
+    {
+        name
+        description
+        //
+    },
+];
+
+server
+    //
+});
+```
+
+###
+The
+
+###
+C
+
+###
+```
+export
+  private
+  private
+
+  constructor
+    this
+    this
+  }
+
+  async
+    console
+    const
+    const
+    return
+  }
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+export
+    if
+
+    //
+    if
+        try
+    }
+
+    const
+        llama
+        //
+    };
+
+    const
+
+    //
+    pi
+        name
+        //
+    });
+
+    //
+    pi
+        name
+        //
+    });
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    project
+    state
+    llama
+    //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    //
+    async
+        implementation
+        file
+    ):
+        //
+    }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  private
+  //
+  async
+    research
+    outputFile
+    //
+  ):
+    //
+  }
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+export
+  constructor
+    private
+    private
+    private
+    private
+    private
+  )
+
+  async
+    file
+    instruction
+    onUpdate
+  ):
+    //
+  }
+}
+```
+
+---
+
+###
+The
+
+###
+C
+
+###
+```
+/**
+ *
+ *
+ *
+ *
+ */
+export
+    private
+    private
+    private
+    private
+    private
+    private
+
+    public
+        await
+        return
+            modelName
+            max
+        };
+    }
+
+    async
+        messages
+        role
+        profile
+        max
+        on
+        on
+    ):
+        //
+    }
+}
+```
+
+---
+
+###
+The
+
+###
+C
+
+###
+```
+/**
+ *
+ *
+ *
+ *
+ */
+
+export
+  async
+    //
+  }
+}
+
+function
+  //
+  //
+}
+```
+
+---
+
+###
+The
+
+###
+C
+
+###
+```
+export
+    id
+    profiles
+}
+
+export
+    {
+    {
+    {
+    {
+];
+
+export
+    const
+    for
+        if
+            return
+        }
+    }
+    return
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    project
+    state
+    llama
+    //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    //
+    async
+        implementation
+        file
+    ):
+        //
+    }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  private
+  //
+  async
+    research
+    outputFile
+    //
+  ):
+    //
+  }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    project
+    state
+    llama
+    //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    //
+    async
+        implementation
+        file
+    ):
+        //
+    }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  private
+  //
+  async
+    research
+    outputFile
+    //
+  ):
+    //
+  }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    project
+    state
+    llama
+    //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    //
+    async
+        implementation
+        file
+    ):
+        //
+    }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  private
+  //
+  async
+    research
+    outputFile
+    //
+  ):
+    //
+  }
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+export
+  const
+  const
+  const
+
+  const
+    //
+    //
+    //
+    //
+  });
+
+  server
+    process
+    if
+    else
+  });
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+const
+    {
+        name
+        description
+        //
+    },
+    {
+        name
+        description
+        //
+    },
+    {
+        name
+        description
+        //
+    },
+    {
+        name
+        description
+        //
+    },
+];
+
+server
+    //
+});
+```
+
+###
+The
+
+###
+C
+
+###
+```
+export
+  private
+  private
+
+  constructor
+    this
+    this
+  }
+
+  async
+    console
+    const
+    const
+    return
+  }
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+export
+    if
+
+    //
+    if
+        try
+    }
+
+    const
+        llama
+        //
+    };
+
+    const
+
+    //
+    pi
+        name
+        //
+    });
+
+    //
+    pi
+        name
+        //
+    });
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    project
+    state
+    llama
+    //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    //
+    async
+        implementation
+        file
+    ):
+        //
+    }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  private
+  //
+  async
+    research
+    outputFile
+    //
+  ):
+    //
+  }
+}
+```
+
+###
+The
+
+###
+-
+-
+-
+-
+```
+
+###
+This
+
+###
+C
+
+###
+```
+import
+import
+
+/**
+ *
+ *
+ */
+
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+export
+  //
+  //
+  const
+  const
+  const
+
+  for
+    if
+    const
+    if
+      getAll
+    }
+      fileList
+    }
+  }
+
+  return
+}
+
+export
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    public
+    public
+    //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  //
+  //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  task
+  implementation
+  frontier
+  deps
+  onUpdate
+):
+  //
+}
+```
+
+###
+-
+-
+-
+-
+```
+
+###
+The
+
+###
+C
+
+###
+```
+//
+export
+  async
+    //
+  }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+//
+export
+  //
+}
+
+export
+  //
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+//
+export
+  async
+    //
+  }
+  
+  extract
+    //
+  }
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+//
+export
+  async
+    //
+  }
+}
+```
+
+###
+All
+-
+-
+-
+-
+
+###
+-
+-
+-
+-
+
+###
+All
+```
+
+###
+The
+
+###
+N
+
+###
+```
+.ag
+  .
+.c
+.h
+.h
+  .
+  .
+    .
+  .
+.h
+  .
+    .
+      .
+    .
+      .
+      .
+      .
+      .
+.h
+~
+  ~
+    ~
+      ~
+docs
+hooks
+  hooks
+logs
+node
+  node
+  node
+    node
+  node
+    node
+      ...
+  node
+  node
+  node
+```
+```
+
+##
+
+###
+This
+
+###
+This
+
+###
+This
+
+###
+This
+
+###
+This
+
+###
+This
+
+###
+This
+
+###
+This
+
+###
+All
+
+###
+-
+-
+-
+-
+-
+-
+-
+-
+
+###
+No
+```
+
+##
+
+```
+1
+2
+3
+4
+  .
+  .
+  .
+  .
+  .
+  .
+  .
+  .
+  .
+  .
+  .
+  ~
+  ~
+  ~
+  ~
+  adapters
+  backups
+  core
+  dashboard
+  hop
+  runs
+  sl
+  workflows
+  docs
+  hooks
+  logs
+  scripts
+  src
+```
+```
+
+--- Slinger | Pausanias ---
+
+The
+
+**
+This
+
+**
+This
+
+**
+This
+
+**
+This
+
+**
+This
+
+**
+This
+
+**
+This
+
+**
+This
+
+###
+No
+
+###
+All
+
+--- Hoplite | Gylippus ---
+
+```
+#
+
+##
+The
+
+##
+```
+Get
+```
+
+##
+
+###
+The
+
+###
+C
+
+###
+```
+export
+  const
+  const
+  const
+
+  const
+    //
+    //
+    //
+    //
+  });
+
+  server
+    process
+    if
+    else
+  });
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+const
+    {
+        name
+        description
+        //
+    },
+    {
+        name
+        description
+        //
+    },
+    {
+        name
+        description
+        //
+    },
+    {
+        name
+        description
+        //
+    },
+];
+
+server
+    //
+});
+```
+
+###
+The
+
+###
+C
+
+###
+```
+export
+  private
+  private
+
+  constructor
+    this
+    this
+  }
+
+  async
+    console
+    const
+    const
+    return
+  }
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+export
+    if
+
+    //
+    if
+        try
+    }
+
+    const
+        llama
+        //
+    };
+
+    const
+
+    //
+    pi
+        name
+        //
+    });
+
+    //
+    pi
+        name
+        //
+    });
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    project
+    state
+    llama
+    //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    //
+    async
+        implementation
+        file
+    ):
+        //
+    }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  private
+  //
+  async
+    research
+    outputFile
+    //
+  ):
+    //
+  }
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+export
+  constructor
+    private
+    private
+    private
+    private
+    private
+  )
+
+  async
+    file
+    instruction
+    onUpdate
+  ):
+    //
+  }
+}
+```
+
+---
+
+###
+The
+
+###
+C
+
+###
+```
+/**
+ *
+ *
+ *
+ *
+ */
+export
+    private
+    private
+    private
+    private
+    private
+    private
+
+    public
+        await
+        return
+            modelName
+            max
+        };
+    }
+
+    async
+        messages
+        role
+        profile
+        max
+        on
+        on
+    ):
+        //
+    }
+}
+```
+
+---
+
+###
+The
+
+###
+C
+
+###
+```
+/**
+ *
+ *
+ *
+ *
+ */
+
+export
+  async
+    //
+  }
+}
+
+function
+  //
+  //
+}
+```
+
+---
+
+###
+The
+
+###
+C
+
+###
+```
+export
+    id
+    profiles
+}
+
+export
+    {
+    {
+    {
+    {
+];
+
+export
+    const
+    for
+        if
+            return
+        }
+    }
+    return
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    project
+    state
+    llama
+    //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    //
+    async
+        implementation
+        file
+    ):
+        //
+    }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  private
+  //
+  async
+    research
+    outputFile
+    //
+  ):
+    //
+  }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    project
+    state
+    llama
+    //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    //
+    async
+        implementation
+        file
+    ):
+        //
+    }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  private
+  //
+  async
+    research
+    outputFile
+    //
+  ):
+    //
+  }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    project
+    state
+    llama
+    //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    //
+    async
+        implementation
+        file
+    ):
+        //
+    }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  private
+  //
+  async
+    research
+    outputFile
+    //
+  ):
+    //
+  }
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+export
+  const
+  const
+  const
+
+  const
+    //
+    //
+    //
+    //
+  });
+
+  server
+    process
+    if
+    else
+  });
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+const
+    {
+        name
+        description
+        //
+    },
+    {
+        name
+        description
+        //
+    },
+    {
+        name
+        description
+        //
+    },
+    {
+        name
+        description
+        //
+    },
+];
+
+server
+    //
+});
+```
+
+###
+The
+
+###
+C
+
+###
+```
+export
+  private
+  private
+
+  constructor
+    this
+    this
+  }
+
+  async
+    console
+    const
+    const
+    return
+  }
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+export
+    if
+
+    //
+    if
+        try
+    }
+
+    const
+        llama
+        //
+    };
+
+    const
+
+    //
+    pi
+        name
+        //
+    });
+
+    //
+    pi
+        name
+        //
+    });
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    project
+    state
+    llama
+    //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    //
+    async
+        implementation
+        file
+    ):
+        //
+    }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  private
+  //
+  async
+    research
+    outputFile
+    //
+  ):
+    //
+  }
+}
+```
+
+###
+The
+
+###
+-
+-
+-
+-
+```
+
+###
+This
+
+###
+C
+
+###
+```
+import
+import
+
+/**
+ *
+ *
+ */
+
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+export
+  //
+  //
+  const
+  const
+  const
+
+  for
+    if
+    const
+    if
+      getAll
+    }
+      fileList
+    }
+  }
+
+  return
+}
+
+export
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+    public
+    public
+    //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  //
+  //
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+export
+  task
+  implementation
+  frontier
+  deps
+  onUpdate
+):
+  //
+}
+```
+
+###
+-
+-
+-
+-
+```
+
+###
+The
+
+###
+C
+
+###
+```
+//
+export
+  async
+    //
+  }
+}
+```
+
+###
+This
+
+###
+C
+
+###
+```
+//
+export
+  //
+}
+
+export
+  //
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+//
+export
+  async
+    //
+  }
+  
+  extract
+    //
+  }
+}
+```
+
+###
+The
+
+###
+C
+
+###
+```
+//
+export
+  async
+    //
+  }
+}
+```
+
+###
+All
+-
+-
+-
+-
+
+###
+-
+-
+-
+-
+
+###
+All
+```
+
+###
+The
+
+###
+N
+
+###
+```
+.ag
+  .
+.c
+.h
+.h
+  .
+  .
+    .
+  .
+.h
+  .
+    .
+      .
+    .
+      .
+      .
+      .
+      .
+.h
+~
+  ~
+    ~
+      ~
+docs
+hooks
+  hooks
+logs
+node
+  node
+  node
+    node
+  node
+    node
+      ...
+  node
+  node
+  node
+```
+```
+
+##
+
+###
+This
+
+###
+This
+
+###
+This
+
+###
+This
+
+###
+This
+
+###
+This
+
+###
+This
+
+###
+This
+
+###
+All
+
+###
+-
+-
+-
+-
+-
+-
+-
+-
+
+###
+No
+```
+
+##
+
+```
+1
+2
+3
+4
+  .
+  .
+  .
+  .
+  .
+  .
+  .
+  .
+  .
+  .
+  .
+  ~
+  ~
+  ~
+  ~
+  adapters
+  backups
+  core
+  dashboard
+  hop
+  runs
+  sl
+  workflows
+  docs
+  hooks
+  logs
+  scripts
+  src
+```
+
+##
+
+###
+The
+
+**
+This
+
+**
+This
+
+**
+This
+
+**
+This
+
+**
+This
+
+**
+This
+
+**
+This
+
+**
+This
+
+###
+No
+
+###
+All
+```
+
+--- Slinger | Pausanias ---
+
+This
+
+###
+The
+
+###
+This
+
+###
+The
+
+###
+The
+
+###
+The
+
+###
+The
+
+###
+This
+
+--- Slinger | Pausanias ---
+
+This
+
+###
+The
+
+###
+This
+
+###
+The
+
+###
+The
+
+###
+The
+
+###
+The
+
+###
+The
+
+--- Slinger | Pausanias ---
+
+C
+###
+This
+
+###
+C
+###
+The
+
+###
+C
+###
+This
+
+###
+C
+###
+The
+
+###
+C
+###
+The
+
+###
+C
+###
+The
+
+###
+C
+###
+The
+
+###
+C
+###
+This
+
+--- Hoplite | Agesilaus ---
+
+
+--- Slinger | Archidamus ---
