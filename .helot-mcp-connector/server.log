@@ -3932,3 +3932,9 @@ Helots MCP Server running on stdio
 [Workflow Update] ✅ Hoplite: .helot-mcp-connector/commit-msg.txt written (5 → 5 lines)
 [Workflow Update] ✅ [gen-msg] done
 [Workflow Update] ▶️ [commit-push] shell...
+warning: in the working copy of '.helot-mcp-connector/events.jsonl', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '.helot-mcp-connector/server.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '.helot-mcp-connector/stream.log', LF will be replaced by CRLF the next time Git touches it
+To https://github.com/apmantza/helots.git
+   64ab220..cc856be  master -> master
+[Workflow Update] ✅ [commit-push] done
