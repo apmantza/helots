@@ -95,12 +95,26 @@ elif tool_name == 'Grep':
 elif tool_name in ('Edit', 'Write'):
     file_path = tool_input.get('file_path', '')
     if file_path.endswith('.md'):
-        reminder = (
-            "helots MCP is connected. This edits a markdown file — "
-            "use helot_hoplite instead to preserve context window. "
-            "helot_hoplite reads + writes the file locally with no peltast overhead. "
-            "NOTE: helot_hoplite is for docs/config only — never use it on code files."
-        )
+        if tool_name == 'Write':
+            # Full file write — hoplite is almost always better
+            reminder = (
+                "helots MCP is connected. This writes a full markdown file — "
+                "use helot_hoplite instead to preserve context window. "
+                "helot_hoplite reads + writes the file locally with no peltast overhead. "
+                "NOTE: helot_hoplite is for docs/config only — never use it on code files."
+            )
+        else:
+            # Targeted Edit — only nudge if the file is large (hoplite saves tokens on large reads)
+            try:
+                size = os.path.getsize(file_path) if file_path else 0
+            except OSError:
+                size = 0
+            if size > 6000:
+                reminder = (
+                    "helots MCP is connected. This edits a large markdown file — "
+                    "consider helot_hoplite if the instruction is high-level (it reads + writes locally). "
+                    "For a targeted single-string fix where you already know the exact change, Edit is fine."
+                )
 
 elif tool_name == 'Read':
     file_path = tool_input.get('file_path', '')

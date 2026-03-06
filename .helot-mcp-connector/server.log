@@ -3149,3 +3149,15 @@ Helots MCP Server running on stdio
 [Hoplite Update] ✏️ Hoplite editing C:\Users\R3LiC\.claude\skills\cleanup\SKILL.md...
 [Hoplite Update] ✅ Hoplite | Archidamus | 100.0t/s | 787 gen + 1320 prompt tokens
 [Hoplite Update] ✅ Hoplite: C:\Users\R3LiC\.claude\skills\cleanup\SKILL.md written (52 → 52 lines)
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Lysander deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Lysander | 103.8t/s | 25 gen + 832 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 101.7t/s | 26 gen + 1010 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 103.7t/s | 40 gen + 1120 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 106.1t/s | 47 gen + 1268 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 100.8t/s | 308 gen + 1489 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/cleanup-plan.sh...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/cleanup-plan.sh...
+[Slinger Update] ✅ Hoplite | Agesilaus | 95.9t/s | 588 gen + 929 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/cleanup-plan.sh written (63 → 74 lines)
