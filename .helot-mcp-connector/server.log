@@ -3299,3 +3299,50 @@ Helots MCP Server running on stdio
 [Slinger Update] ✏️ Hoplite editing bin/dead-code-candidates.md...
 [Slinger Update] ✅ Hoplite | Teleutias | 100.9t/s | 808 gen + 1297 prompt tokens
 [Slinger Update] ✅ Hoplite: bin/dead-code-candidates.md written (36 → 48 lines)
+[Slinger Update] 🏹 Slinger Aristomenis deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Aristomenis | 104.7t/s | 31 gen + 590 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 101.0t/s | 46 gen + 684 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 99.8t/s | 45 gen + 1733 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 90.3t/s | 1617 gen + 2439 prompt tokens
+[Slinger Update] 🏹 Slinger Lysander deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Lysander | 100.3t/s | 48 gen + 5654 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 95.1t/s | 117 gen + 5731 prompt tokens
+[Slinger Update] 🏹 Slinger Brasidas deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Brasidas | 96.0t/s | 41 gen + 5657 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 98.1t/s | 41 gen + 5850 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 95.0t/s | 199 gen + 6042 prompt tokens
+[Slinger Update] 🏹 Slinger Archidamus deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] 📖 Slinger preloading 1 file(s)...
+[Slinger Update] ✅ Slinger | Archidamus | 100.4t/s | 46 gen + 5699 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 93.3t/s | 205 gen + 5871 prompt tokens
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Aristomenis deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Aristomenis | 105.3t/s | 54 gen + 720 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 105.5t/s | 66 gen + 778 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 104.4t/s | 67 gen + 870 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 104.9t/s | 68 gen + 962 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 104.5t/s | 69 gen + 1057 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 104.7t/s | 67 gen + 1154 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 83.4t/s | 6478 gen + 1265 prompt tokens
+[Slinger Update] ✅ Slinger | Aristomenis | 96.7t/s | 346 gen + 1295 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/stale-dotdir-plan.sh...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/stale-dotdir-plan.sh...
+[Slinger Update] ✅ Hoplite | Aristomenis | 99.9t/s | 885 gen + 791 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/stale-dotdir-plan.sh written (0 → 64 lines)
+[Slinger Update] 🏹 Slinger Agis deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Agis | 103.3t/s | 39 gen + 612 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 103.7t/s | 39 gen + 773 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 103.2t/s | 40 gen + 2307 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 101.0t/s | 56 gen + 3841 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 99.4t/s | 38 gen + 3902 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 99.7t/s | 35 gen + 5434 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 99.4t/s | 38 gen + 5545 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 94.1t/s | 705 gen + 6690 prompt tokens

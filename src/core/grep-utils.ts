@@ -24,10 +24,13 @@ export function nodeGrepCommand(command: string, cwd: string): string {
   else if (dq) { pattern = dq[1]; rest = dq[2]; }
   else { const parts = rest.split(/\s+/); pattern = parts[0]; rest = parts.slice(1).join(' '); }
 
-  // Extract --include=*.ext
-  const includeMatch = rest.match(/--include[=\s](\S+)/);
-  const includeExt   = includeMatch ? includeMatch[1].replace(/^\*/, '') : null; // e.g. '.ts'
-  rest = rest.replace(/--include[=\s]\S+/, '').trim();
+  // Extract all --include patterns (handles '*.ts', "*.ts", *.ts, CLAUDE.md)
+  const includeExts: string[] = [];
+  for (const m of rest.matchAll(/--include[=\s]['"]?(\*?[^\s'"]+)['"]?/g)) {
+    const raw = m[1].replace(/^\*/, ''); // strip leading glob → '.ts', 'CLAUDE.md'
+    if (raw) includeExts.push(raw);
+  }
+  rest = rest.replace(/--include[=\s]['"]?\*?[^\s'"]+['"]?/g, '').trim();
 
   // Strip surrounding quotes from each path token (single or double)
   const searchPaths = (rest ? rest.split(/\s+/).filter(Boolean) : ['.']).map(p => p.replace(/^['"]|['"]$/g, ''));
@@ -66,7 +69,7 @@ export function nodeGrepCommand(command: string, cwd: string): string {
         try {
           const st = statSync(full);
           if (st.isDirectory() && recursive) walkDir(full);
-          else if (st.isFile() && (!includeExt || full.endsWith(includeExt))) processFile(full);
+          else if (st.isFile() && (!includeExts.length || includeExts.some(ext => full.endsWith(ext)))) processFile(full);
         } catch { /* skip inaccessible */ }
       }
     } catch { /* skip unreadable dir */ }
@@ -82,7 +85,7 @@ export function nodeGrepCommand(command: string, cwd: string): string {
         if (recursive) walkDir(abs);
         else {
           for (const e of readdirSync(abs)) {
-            try { const f = join(abs, e); if (statSync(f).isFile() && (!includeExt || f.endsWith(includeExt))) processFile(f); } catch { }
+            try { const f = join(abs, e); if (statSync(f).isFile() && (!includeExts.length || includeExts.some(ext => f.endsWith(ext)))) processFile(f); } catch { }
           }
         }
       } else if (st.isFile()) processFile(abs);

@@ -5,7 +5,7 @@
  * public methods to the appropriate agent or orchestrator.
  */
 
-import { appendFileSync, readdirSync, statSync, mkdirSync, renameSync, copyFileSync, readFileSync } from 'fs';
+import { appendFileSync, readdirSync, statSync, mkdirSync, rmdirSync, renameSync, copyFileSync, readFileSync } from 'fs';
 import * as path from 'path';
 import { join } from 'path';
 import { LlamaClient }       from './llama-client.js';
@@ -286,8 +286,8 @@ export class HelotEngine {
     const content = scriptFile ? readFileSync(scriptFile, 'utf-8') : script;
     const lines = content.split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#'));
 
-    const ALLOWED  = new Set(['mv', 'mkdir', 'cp']);
-    const BLOCKED  = [/\.\./, /[;&|`$]/, /\s-rf\b/, /\brm\b/, /\bdel\b/, /\brmdir\b/];
+    const ALLOWED  = new Set(['mv', 'mkdir', 'cp', 'rmdir']);
+    const BLOCKED  = [/\.\./, /[;&|`$]/, /\s-rf\b/, /\brm\b/, /\bdel\b/];
     const ts = () => new Date().toISOString();
 
     // Build protected set — "auto" triggers config-derived protection
@@ -382,6 +382,15 @@ export class HelotEngine {
           if (dst.endsWith('/') || dst.endsWith('\\')) dst = join(dst, path.basename(parts[1]));
           copyFileSync(parts[1], dst);
           log(`[${ts()}] OK: cp ${parts[1]} → ${dst}`);
+        } else if (cmd === 'rmdir') {
+          const dir = parts[1];
+          const entries = readdirSync(dir);
+          if (entries.length > 0) {
+            log(`[${ts()}] BLOCKED: rmdir ${dir} — directory not empty (${entries.length} items)`);
+          } else {
+            rmdirSync(dir);
+            log(`[${ts()}] OK: rmdir ${dir}`);
+          }
         }
       } catch (err: any) {
         log(`[${ts()}] ERROR: ${line} — ${err.message}`);
