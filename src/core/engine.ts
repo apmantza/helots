@@ -96,8 +96,10 @@ export class HelotEngine {
     onUpdate?.({ text: `🔍 Scribe | researching...` });
     const research = await this.slingerAgent.execute(researchTask, undefined, onUpdate);
     onUpdate?.({ text: `✍️ Scribe | writing ${outputFile}...` });
+    // Cap research passed to hoplite to avoid OOM — ~6k chars ≈ 1500 tokens
+    const researchCapped = research.length > 6000 ? research.slice(0, 6000) + '\n\n[...truncated for context budget]' : research;
     await this.hopliteAgent.execute(outputFile,
-      `Based on this research, write a clean well-formatted markdown document:\n\n${research}`,
+      `Based on this research, write a clean well-formatted markdown document:\n\n${researchCapped}`,
       onUpdate);
 
     if (!batchDir) return `✅ Scribe done → ${outputFile}`;
