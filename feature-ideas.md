@@ -232,6 +232,16 @@ Instead of injecting all available tools into context upfront, expose a `search_
 - **Con:** Adds one round-trip (search → execute); risk of model searching for wrong thing and missing the right tool.
 - **When to adopt:** When helots MCP tool count exceeds ~20, or when helot_workflow chains exceed 5 steps.
 
+## Query-Aware Slinger Line Scoring
+
+Source: https://github.com/jasonkneen/open-thetokenco
+
+Pattern: score each line of the slinger report by term overlap with the research query, then return only the highest-scoring lines within a token budget. Instead of naive truncation or pure dedup, the most *relevant* lines survive.
+
+Key idea from open-thetokenco: sentence-level scoring combining term overlap + length normalization + boilerplate penalties. Zero external dependencies, sub-15ms for 100K token contexts.
+
+Status: Low priority. Already mitigated by outputFile enforcement + dedupeReport(). Would be a refinement on top — useful if context pressure resurfaces after outputFile is consistently used. Term-overlap only (no embeddings), so noisy for code — consider only for natural-language-heavy slinger outputs (docs, comments, README analysis).
+
 ## Inspiration
 
 - **Pattern:** Fractals (TinyAGI) recursive DAG orchestration — plan once as a DAG, execute leaf tasks in isolated git worktrees, synthesize results via merge agents
