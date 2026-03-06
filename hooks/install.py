@@ -66,6 +66,7 @@ HOOKS_CONFIG = {
                 {"type": "command", "command": cmd("helots-typecheck.py")},
                 {"type": "command", "command": cmd("helots-lint.py")},
                 {"type": "command", "command": cmd("helots-gitstage.py"), "async": True},
+                {"type": "command", "command": cmd("helots-editlog.py"), "async": True},
             ],
         },
     ],

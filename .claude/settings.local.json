@@ -30,7 +30,8 @@
       "Bash(grep:*)",
       "Bash(cat:*)",
       "mcp__helots__helot_execute",
-      "mcp__helots__helot_workflow"
+      "mcp__helots__helot_workflow",
+      "Bash(python:*)"
     ]
   }
 }
