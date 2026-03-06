@@ -43,8 +43,5 @@ __pycache__/
 .DS_Store
 *.pyc
 
-# Helots MCP connector temp files
-.helot-mcp-connector/cleanup-plan.sh
-.helot-mcp-connector/execute-audit.log
-.helot-mcp-connector/stale-dotdir-plan.sh
-.helot-mcp-connector/prune-audit.log
+# Helots MCP connector runtime state (logs, research cache, backups)
+.helot-mcp-connector/
