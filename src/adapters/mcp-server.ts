@@ -131,7 +131,7 @@ const server = new Server(
 const TOOLS: Tool[] = [
     {
         name: "helot_slinger",
-        description: "Delegates deep codebase research or analysis to the local Slinger subagent.",
+        description: "Delegates deep codebase research or analysis to the local Slinger subagent. With `outputFile`, chains to Hoplite to write the result to a file — the research never hits the frontier context. Use this mode for project surveys, dependency maps, code reviews, and any research-then-write workflow (replaces helot_scribe). Without `outputFile`, returns the research result directly.",
         inputSchema: {
             type: "object",
             properties: {
@@ -143,6 +143,18 @@ const TOOLS: Tool[] = [
                     type: "array",
                     items: { type: "string" },
                     description: "Optional list of absolute file paths to analyze.",
+                },
+                outputFile: {
+                    type: "string",
+                    description: "If provided, Hoplite writes the research result to this file. The result never returns to the frontier. Use for any research-then-write workflow.",
+                },
+                batchDir: {
+                    type: "string",
+                    description: "Optional directory to batch-summarize. Slinger lists all files, summarizes them in groups, and appends a Source File Summaries section to outputFile.",
+                },
+                maxFilesPerBatch: {
+                    type: "number",
+                    description: "Hard cap on files per batch. Default 8. Batch size is otherwise determined dynamically from the server context window.",
                 },
             },
             required: ["researchTask"],
@@ -183,32 +195,6 @@ const TOOLS: Tool[] = [
         },
     },
     {
-        name: "helot_scribe",
-        description: "Research a topic via Slinger and write the result to a file via Hoplite in one call. Use when the user asks to generate or update a doc from codebase data — folder structure, API surface, feature list, dependency summary, etc. The research result never hits the frontier context. Prefer this over separate slinger+hoplite calls whenever the goal is research → write to file.",
-        inputSchema: {
-            type: "object",
-            properties: {
-                researchTask: {
-                    type: "string",
-                    description: "What to research — passed directly to Slinger.",
-                },
-                outputFile: {
-                    type: "string",
-                    description: "Path to the file Hoplite will write the result to.",
-                },
-                batchDir: {
-                    type: "string",
-                    description: "Optional directory to batch-summarize. Scribe lists all files here, summarizes them in groups via Slinger, and appends a '## Source File Summaries' section to the output file.",
-                },
-                maxFilesPerBatch: {
-                    type: "number",
-                    description: "Hard cap on files per batch regardless of token estimate. Default 8. Batch size is otherwise determined dynamically from the server's context window.",
-                },
-            },
-            required: ["researchTask", "outputFile"],
-        },
-    },
-    {
         name: "helot_hoplite",
         description: "Lightweight file editor for non-code files (markdown, config, docs, HTML). Reads the file locally, applies the instruction via LLM, writes the result — no peltast review, no lint. Use for MEMORY.md, README, devoptions.md, index.html, and any doc/config/HTML update where lint review is irrelevant. Faster than helot_run for pure writing tasks.",
         inputSchema: {
@@ -239,16 +225,21 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
         if (name === "helot_slinger") {
             const researchTask = String(args?.researchTask);
             const targetFiles = Array.isArray(args?.targetFiles) ? (args.targetFiles as string[]) : undefined;
+            const outputFile = args?.outputFile ? String(args.outputFile) : undefined;
+
+            if (outputFile) {
+                const batchDir = args?.batchDir ? String(args.batchDir) : undefined;
+                const batchSize = args?.maxFilesPerBatch ? Number(args.maxFilesPerBatch) : 8;
+                const result = await engine.executeScribe(researchTask, outputFile, (data: { text: string }) => {
+                    console.error(`[Slinger Update] ${data.text}`);
+                }, batchDir, batchSize);
+                return { content: [{ type: "text", text: result }] };
+            }
 
             const result = await engine.executeSlinger(researchTask, targetFiles, (data: { text: string }) => {
-                // MCP usually handles progress via specific notifications,
-                // for now we'll just log or return the final result.
                 console.error(`[Slinger Update] ${data.text}`);
             });
-
-            return {
-                content: [{ type: "text", text: result }],
-            };
+            return { content: [{ type: "text", text: result }] };
         }
 
         if (name === "helot_run") {
@@ -264,21 +255,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
             const result = await engine.executeHelots(taskSummary, implementationPlan, (data) => {
                 console.error(`[Helot Update] ${data.text}`);
             }, frontierTasks);
-
-            return {
-                content: [{ type: "text", text: result }],
-            };
-        }
-
-        if (name === "helot_scribe") {
-            const researchTask = String(args?.researchTask);
-            const outputFile = String(args?.outputFile);
-            const batchDir = args?.batchDir ? String(args.batchDir) : undefined;
-            const batchSize = args?.maxFilesPerBatch ? Number(args.maxFilesPerBatch) : 8;
-
-            const result = await engine.executeScribe(researchTask, outputFile, (data: { text: string }) => {
-                console.error(`[Scribe Update] ${data.text}`);
-            }, batchDir, batchSize);
 
             return {
                 content: [{ type: "text", text: result }],

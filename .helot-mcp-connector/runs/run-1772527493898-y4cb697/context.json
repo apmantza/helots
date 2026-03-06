@@ -1,12 +1,344 @@
 {
   "files": [
     {
-      "path": ".claude\\settings.local.json",
-      "size": 115
+      "path": "...",
+      "size": 751
     },
     {
-      "path": "peltast-game.html",
-      "size": 5437
+      "path": ".agents\\workflows\\helots.md",
+      "size": 1837
+    },
+    {
+      "path": ".claude\\hooks.json",
+      "size": 21
+    },
+    {
+      "path": ".claude\\settings.local.json",
+      "size": 1208
+    },
+    {
+      "path": ".gitignore",
+      "size": 353
+    },
+    {
+      "path": "agents.md",
+      "size": 1691
+    },
+    {
+      "path": "antigravity-connector.ts",
+      "size": 8497
+    },
+    {
+      "path": "assistant_output.txt",
+      "size": 0
+    },
+    {
+      "path": "CLAUDE.md",
+      "size": 2111
+    },
+    {
+      "path": "debug-helots-live.ts",
+      "size": 4324
+    },
+    {
+      "path": "debug-helots.cjs",
+      "size": 4967
+    },
+    {
+      "path": "debug-helots.ts",
+      "size": 4674
+    },
+    {
+      "path": "debug-run.mjs",
+      "size": 3730
+    },
+    {
+      "path": "debug-slinger.mjs",
+      "size": 3687
+    },
+    {
+      "path": "devoptions.md",
+      "size": 15134
+    },
+    {
+      "path": "docs\\project-structure.md",
+      "size": 25367
+    },
+    {
+      "path": "docs\\structure-raw.txt",
+      "size": 1209536
+    },
+    {
+      "path": "feature-ideas.md",
+      "size": 9494
+    },
+    {
+      "path": "helot-verification.txt",
+      "size": 4236
+    },
+    {
+      "path": "hooks\\helots-autocommit.py",
+      "size": 3686
+    },
+    {
+      "path": "hooks\\helots-compress.py",
+      "size": 12217
+    },
+    {
+      "path": "hooks\\helots-delegate.py",
+      "size": 9156
+    },
+    {
+      "path": "hooks\\helots-error-handler.py",
+      "size": 4182
+    },
+    {
+      "path": "hooks\\helots-filesize.py",
+      "size": 2399
+    },
+    {
+      "path": "hooks\\helots-format.py",
+      "size": 6020
+    },
+    {
+      "path": "hooks\\helots-gitstage.py",
+      "size": 1283
+    },
+    {
+      "path": "hooks\\helots-lint.py",
+      "size": 3753
+    },
+    {
+      "path": "hooks\\helots-run-validate.py",
+      "size": 2988
+    },
+    {
+      "path": "hooks\\helots-session-start.py",
+      "size": 3175
+    },
+    {
+      "path": "hooks\\helots-session-summary.py",
+      "size": 10744
+    },
+    {
+      "path": "hooks\\helots-test-runner.py",
+      "size": 8153
+    },
+    {
+      "path": "hooks\\helots-typecheck.py",
+      "size": 2002
+    },
+    {
+      "path": "hooks\\helots_common.py",
+      "size": 1027
+    },
+    {
+      "path": "hooks\\install.py",
+      "size": 3392
+    },
+    {
+      "path": "hooks\\README.md",
+      "size": 3487
+    },
+    {
+      "path": "index.ts",
+      "size": 3488
+    },
+    {
+      "path": "logs\\llama-calls.log",
+      "size": 5493
+    },
+    {
+      "path": "mcp-client.ts",
+      "size": 10093
+    },
+    {
+      "path": "package-lock.json",
+      "size": 174980
+    },
+    {
+      "path": "package.json",
+      "size": 602
+    },
+    {
+      "path": "README.md",
+      "size": 3638
+    },
+    {
+      "path": "restart-mcp.bat",
+      "size": 431
+    },
+    {
+      "path": "scripts\\gorgo_run.ts",
+      "size": 2092
+    },
+    {
+      "path": "scripts\\hardening_run.ts",
+      "size": 973
+    },
+    {
+      "path": "scripts\\review_swarm.ts",
+      "size": 1057
+    },
+    {
+      "path": "scripts\\test.ts",
+      "size": 1091
+    },
+    {
+      "path": "SPARTA_DASHBOARD_PLAN.md",
+      "size": 11148
+    },
+    {
+      "path": "src\\adapters\\dashboard-server.ts",
+      "size": 7415
+    },
+    {
+      "path": "src\\adapters\\mcp-server.ts",
+      "size": 13420
+    },
+    {
+      "path": "src\\adapters\\mcp.ts",
+      "size": 2220
+    },
+    {
+      "path": "src\\adapters\\pi.ts",
+      "size": 3393
+    },
+    {
+      "path": "src\\config.ts",
+      "size": 886
+    },
+    {
+      "path": "src\\core\\builder-orchestrator.ts",
+      "size": 3280
+    },
+    {
+      "path": "src\\core\\builder-prompt.ts",
+      "size": 3625
+    },
+    {
+      "path": "src\\core\\engine.ts",
+      "size": 11845
+    },
+    {
+      "path": "src\\core\\file-utils.ts",
+      "size": 1205
+    },
+    {
+      "path": "src\\core\\governor.ts",
+      "size": 8435
+    },
+    {
+      "path": "src\\core\\grep-utils.ts",
+      "size": 5028
+    },
+    {
+      "path": "src\\core\\helots-orchestrator.ts",
+      "size": 12153
+    },
+    {
+      "path": "src\\core\\hoplite-agent.ts",
+      "size": 4175
+    },
+    {
+      "path": "src\\core\\llama-client.ts",
+      "size": 14030
+    },
+    {
+      "path": "src\\core\\lsp-client.ts",
+      "size": 11472
+    },
+    {
+      "path": "src\\core\\model-registry.ts",
+      "size": 11141
+    },
+    {
+      "path": "src\\core\\peltast-orchestrator.ts",
+      "size": 1047
+    },
+    {
+      "path": "src\\core\\persona-utils.ts",
+      "size": 1135
+    },
+    {
+      "path": "src\\core\\scout.ts",
+      "size": 5094
+    },
+    {
+      "path": "src\\core\\skill-injector.ts",
+      "size": 5731
+    },
+    {
+      "path": "src\\core\\slinger-agent.ts",
+      "size": 10442
+    },
+    {
+      "path": "src\\core\\sparta-record.ts",
+      "size": 2486
+    },
+    {
+      "path": "src\\core\\symbol-utils.ts",
+      "size": 5480
+    },
+    {
+      "path": "src\\core\\task-loop.ts",
+      "size": 2348
+    },
+    {
+      "path": "src\\core\\task-runner.ts",
+      "size": 22154
+    },
+    {
+      "path": "src\\core\\text-utils.ts",
+      "size": 1307
+    },
+    {
+      "path": "src\\core\\tool-resolver.ts",
+      "size": 2741
+    },
+    {
+      "path": "src\\core\\types.ts",
+      "size": 2044
+    },
+    {
+      "path": "src\\core\\verification.ts",
+      "size": 8579
+    },
+    {
+      "path": "src\\core\\vision-agent.ts",
+      "size": 7957
+    },
+    {
+      "path": "src\\dashboard\\index.html",
+      "size": 20756
+    },
+    {
+      "path": "start-mcp.bat",
+      "size": 71
+    },
+    {
+      "path": "test-slinger.ts",
+      "size": 2628
+    },
+    {
+      "path": "tsconfig.json",
+      "size": 335
+    },
+    {
+      "path": "USAGE.md",
+      "size": 5374
+    },
+    {
+      "path": "watch.bat",
+      "size": 212
+    },
+    {
+      "path": "watch.mjs",
+      "size": 16831
+    },
+    {
+      "path": "~\\.pi\\agent\\extensions\\helots.ts",
+      "size": 1469
     }
   ]
 }

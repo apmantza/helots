@@ -1,1 +1,2 @@
-- [ ] 1. CREATE peltast-game.html — complete single-file Asteroids-style game (Target: peltast-game.html, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 1. Create greeting utility (Target: src/core/greeting.ts, Action: CREATE) [DEPENDS: none]
+- [ ] 2. Update scout to use greeting (Target: src/core/scout.ts, Symbol: Scout, Action: EDIT) [DEPENDS: 1]
