@@ -200,11 +200,20 @@ export class HelotEngine {
     try {
       const pkg = JSON.parse(readFileSync('package.json', 'utf-8'));
       for (const field of ['main', 'types', 'typings', 'module']) {
-        if (pkg[field]) protect.add(path.basename(String(pkg[field])));
+        if (pkg[field]) {
+          const base = path.basename(String(pkg[field]));
+          protect.add(base);
+          // Also protect the TypeScript source counterpart (.js → .ts, .mjs → .mts)
+          protect.add(base.replace(/\.js$/, '.ts').replace(/\.mjs$/, '.mts').replace(/\.cjs$/, '.cts'));
+        }
       }
       if (pkg.bin) {
         const vals = typeof pkg.bin === 'string' ? [pkg.bin] : Object.values(pkg.bin) as string[];
-        vals.forEach(v => protect.add(path.basename(v)));
+        vals.forEach(v => {
+          const base = path.basename(String(v));
+          protect.add(base);
+          protect.add(base.replace(/\.js$/, '.ts').replace(/\.mjs$/, '.mts').replace(/\.cjs$/, '.cts'));
+        });
       }
       if (Array.isArray(pkg.files)) pkg.files.forEach((f: string) => protect.add(path.basename(f)));
       if (pkg.scripts) {
