@@ -10297,3 +10297,253 @@ await
   onUpdate
 ```
 ```
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+The
+
+The
+
+###
+-
+-
+-
+
+###
+**
+```
+generate
+    const
+    const
+    const
+
+    return
+===
+Run
+Phase
+Plan
+---
+Total
+Completed
+Failed
+Current
+Last
+---
+Status
+================================
+`;
+}
+```
+
+**
+```
+export
+    task
+    implementation
+    frontier
+    options
+):
+    //
+    //
+    return
+        status
+        report
+        tasks
+    };
+}
+```
+
+**
+```
+async
+    task
+    implementation
+    callback
+    frontier
+):
+    return
+        callback
+        ...
+    });
+}
+```
+
+--- Hoplite | Aristomenis ---
+
+```
+---
+name
+description
+---
+
+#
+
+The
+
+Runs
+
+```
+hel
+  steps
+    {
+      id
+      tool
+      research
+      outputFile
+    },
+    {
+      id
+      tool
+      depends
+      script
+      audit
+      dry
+      protected
+      rem
+    },
+    {
+      id
+      tool
+      depends
+      file
+      instruction
+    }
+  ]
+)
+```
+```
+
+--- Hoplite | Gylippus ---
+
+```
+---
+name
+description
+---
+
+#
+
+The
+
+Runs
+
+```
+hel
+  steps
+    {
+      id
+      tool
+      params
+        research
+        outputFile
+        batch
+      }
+    },
+    {
+      id
+      tool
+      depends
+      params
+        file
+        instruction
+      }
+    }
+  ]
+)
+```
+
+After
+```
+
+--- Hoplite | Aristomenis ---
+
+```
+---
+name
+description
+---
+
+#
+
+The
+
+Runs
+
+```
+hel
+  steps
+    {
+      id
+      tool
+      research
+      outputFile
+    },
+    {
+      id
+      tool
+      depends
+      script
+      protected
+      prune
+        {"
+        {"
+        {"
+        {"
+        {"
+      ],
+      audit
+    },
+    {
+      id
+      tool
+      depends
+      research
+      outputFile
+    },
+    {
+      id
+      tool
+      depends
+      script
+      protected
+      audit
+    }
+  ]
+)
+```
+```

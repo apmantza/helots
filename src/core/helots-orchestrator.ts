@@ -246,5 +246,10 @@ RESPOND ONLY WITH THE CHECKLIST. DO NOT USE PLACEHOLDERS.`;
   writeEventFn({ type: 'run_end', passed, failed });
   onUpdate?.({ text: `✅ Execution complete! ${passed}/${taskNodes.length} tasks passed.` });
   governor.setPhase('finished');
-  return governor.generateSweepReport();
+  const failedTasks = taskNodes.filter(t => t.status === 'failed');
+  if (failed > 0) {
+    const details = failedTasks.map(t => `Task ${t.id} (${t.description.slice(0, 60)})`).join(', ');
+    return `⚠️ ${passed}/${taskNodes.length} tasks passed. Failed: ${details}. See .helot-mcp-connector/runs/${runId}/ for details.`;
+  }
+  return `✅ ${passed}/${taskNodes.length} tasks passed. Run ID: ${runId}`;
 }

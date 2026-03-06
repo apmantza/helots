@@ -13,6 +13,8 @@ Prefer `helot_slinger` over Grep/Glob/Read when:
 - Exploring an unfamiliar area of the codebase
 - Answering questions that require understanding code, not just locating it
 
+**Always set `outputFile`** when the research result is more than a quick lookup — this writes the full report to disk and returns only a compact summary to frontier. Example: `outputFile: ".helot-mcp-connector/research.md"`.
+
 Use direct Grep/Read when:
 - Pure string/pattern search where you only need the location, not the content analyzed — Grep returns a compact result, slinger wraps it in SUMMARY/EVIDENCE overhead
 - Reading a single known file you already have a path for
@@ -25,7 +27,7 @@ Use direct Grep/Read when:
 
 Before constructing `tasks[]` for `helot_run`, always research the target files first:
 
-1. **Slinger the target area** — use `helot_slinger` to extract current function signatures, imports, and patterns from the files you plan to modify. This gives you the exact symbol names and structure needed to write precise `changes` fields.
+1. **Slinger the target area** — use `helot_slinger` with `outputFile: ".helot-mcp-connector/research.md"` to extract current function signatures, imports, and patterns from the files you plan to modify. Always set `outputFile` — this keeps the full research on disk and returns only a compact summary to frontier. Then read the summary to construct tasks.
 2. **Verify symbols exist** — Builder validates symbols against the codebase. If you reference a symbol that doesn't exist, the task falls back to full-file mode. Confirm names with slinger first.
 3. **One slinger call per task group** — if all tasks touch the same module, one targeted slinger call covers them all. Don't over-research.
 
