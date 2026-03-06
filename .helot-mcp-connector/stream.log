@@ -12127,3 +12127,146 @@ Ref
 -
 -
 ```
+
+--- Slinger | Brasidas ---
+
+grep
+###
+
+--- Slinger | Brasidas ---
+
+Get
+###
+
+--- Slinger | Brasidas ---
+
+In
+
+1
+    *
+    *
+    *
+    *
+        *
+        *
+        *
+        *
+
+2
+    *
+    *
+    *
+
+3
+    *
+    *
+    *
+
+###
+*
+
+###
+```
+//
+  private
+    const
+    const
+    if
+
+    const
+    for
+      //
+      const
+        .
+        .
+      try
+        const
+        if
+          const
+          fetched
+        }
+      }
+    }
+    return
+  }
+
+//
+    const
+...
+    const
+    const
+
+    const
+      ?
+      :
+```
+
+--- Hoplite | Leonidas ---
+
+```
+#
+
+##
+
+In
+
+###
+*
+*
+*
+*
+    *
+    *
+    *
+    *
+
+###
+*
+*
+*
+
+###
+*
+*
+*
+
+##
+*
+
+##
+
+```
+//
+private
+  const
+  const
+  if
+
+  const
+  for
+    //
+    const
+      .
+      .
+    try
+      const
+      if
+        const
+        fetched
+      }
+    }
+  }
+  return
+}
+
+//
+const
+...
+const
+const
+
+const
+  ?
+  :
+```
+```

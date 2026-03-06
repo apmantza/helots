@@ -3904,3 +3904,13 @@ warning: in the working copy of '.helot-mcp-connector/server.log', LF will be re
 To https://github.com/apmantza/helots.git
    96885bb..64ab220  master -> master
 [Workflow Update] ✅ [commit-push] done
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Brasidas deployed.
+[Slinger Update] 📐 Context: 32768 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Brasidas | 104.5t/s | 53 gen + 651 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 102.8t/s | 30 gen + 1643 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 92.5t/s | 763 gen + 3168 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/hoplite-prompt-research.md...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/hoplite-prompt-research.md...
+[Slinger Update] ✅ Hoplite | Leonidas | 94.4t/s | 785 gen + 1054 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/hoplite-prompt-research.md written (0 → 65 lines)

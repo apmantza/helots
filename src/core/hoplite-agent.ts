@@ -5,7 +5,7 @@
  * where lint checks are irrelevant.
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, renameSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, renameSync, statSync } from 'fs';
 import { join, resolve, dirname, basename } from 'path';
 import { pickName }    from './persona-utils.js';
 import { stripThinking } from './text-utils.js';
@@ -20,6 +20,31 @@ export class HopliteAgent {
     private setPhase:      (p: string) => void,
     private getModelProps: () => Promise<{ modelName: string; maxTokens: number }>,
   ) {}
+
+  private readLocalFiles(instruction: string): string {
+    const pathRegex = /((?:\.[\w\-]+\/|[\w\-]+\/)[\w\-./]+\.(?:txt|md|json|jsonl|log|ts|js|sh|yaml|toml))\b/g;
+    const paths = [...new Set(instruction.match(pathRegex) ?? [])];
+    if (!paths.length) return '';
+
+    const sections: string[] = [];
+    for (const p of paths) {
+      const abs = resolve(p);
+      if (!existsSync(abs)) continue;
+      try {
+        const size = statSync(abs).size;
+        let content: string;
+        if (size > 20_000) {
+          // tail: last 100 lines
+          const lines = readFileSync(abs, 'utf-8').split('\n');
+          content = lines.slice(-100).join('\n');
+        } else {
+          content = readFileSync(abs, 'utf-8');
+        }
+        sections.push(`--- File: ${p} ---\n${content.slice(0, 4000)}`);
+      } catch { /* skip unreadable */ }
+    }
+    return sections.join('\n\n');
+  }
 
   private async fetchUrls(instruction: string): Promise<string> {
     const urlRegex = /https?:\/\/[^\s"')>]+/g;
@@ -69,8 +94,12 @@ Rules:
 - If the instruction names a specific section (e.g. "Option 7"), only modify content under that heading
 - When multiple similar patterns exist (e.g. several **Status:** lines), use the section heading to disambiguate`;
 
+    const localContent  = this.readLocalFiles(instruction);
     const fetchedContent = await this.fetchUrls(instruction);
-    const fetchedSection = fetchedContent ? `\n\nFetched content:\n${fetchedContent}` : '';
+    const fetchedSection = [
+      localContent  ? `\n\nLocal files:\n${localContent}`   : '',
+      fetchedContent ? `\n\nFetched content:\n${fetchedContent}` : '',
+    ].join('');
 
     const userPrompt = exists
       ? `File: ${file}\n\nCurrent content:\n\`\`\`\n${originalContent}\n\`\`\`\n\nInstruction: ${instruction}${fetchedSection}`
