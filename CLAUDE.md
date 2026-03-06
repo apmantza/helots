@@ -7,13 +7,14 @@ A local LLM orchestration framework. Exposes `helot_slinger` (code research) and
 
 ### Use `helot_slinger` for code searches and exploration
 Prefer `helot_slinger` over Grep/Glob/Read when:
-- Searching across multiple files (e.g. "find all usages of X", "which files export Y")
+- Reading and synthesizing file content across multiple files
 - Exploring an unfamiliar area of the codebase
-- Answering questions that would require 3+ Grep/Read calls
+- Answering questions that require understanding code, not just locating it
 
-Use direct Grep/Read only for:
+Use direct Grep/Read when:
+- Pure string/pattern search where you only need the location, not the content analyzed — Grep returns a compact result, slinger wraps it in SUMMARY/EVIDENCE overhead
 - Reading a single known file you already have a path for
-- Quick targeted lookups (one call, done)
+- Simple lookups where the raw result IS the answer (one match, one line)
 
 ### Use `helot_run` for non-trivial code changes
 Prefer `helot_run` over Edit/Write when:
