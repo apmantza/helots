@@ -100,12 +100,21 @@ Rules:
     // Accept both ### [filename] and ### filename (LLM sometimes omits brackets)
     const headerIdx = Math.max(stripped.indexOf('### ['), stripped.indexOf('### '));
     const parseFrom = headerIdx >= 0 ? stripped.slice(headerIdx) : stripped;
-    const match = parseFrom.match(/###\s*(?:\[[^\]]*\]|[^\n]+)\s*\n```[a-z]*\n([\s\S]*)\n```\s*$/i);
-    if (!match) {
-      return `❌ Hoplite: could not parse output for ${file}. Raw:\n${stripped.slice(0, 500)}`;
+    const strictMatch = parseFrom.match(/###\s*(?:\[[^\]]*\]|[^\n]+)\s*\n```[a-z]*\n([\s\S]*)\n```\s*$/i);
+    let newContent: string;
+    if (strictMatch) {
+      newContent = strictMatch[1];
+    } else {
+      // Fallback: model omitted the outer closing fence — common when file content itself
+      // contains triple backticks (model stops at the inner closing fence instead).
+      const fenceLineIdx = parseFrom.indexOf('\n```');
+      if (fenceLineIdx < 0) {
+        return `❌ Hoplite: could not parse output for ${file}. Raw:\n${stripped.slice(0, 500)}`;
+      }
+      const afterFenceLine = parseFrom.slice(fenceLineIdx + 1); // skip leading \n
+      const contentStart = afterFenceLine.indexOf('\n') + 1;    // skip the ``` line itself
+      newContent = afterFenceLine.slice(contentStart).replace(/\n```\s*$/, '');
     }
-
-    const newContent = match[1];
 
     if (exists) {
       try {
