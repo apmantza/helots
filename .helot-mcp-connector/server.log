@@ -2531,3 +2531,30 @@ Helots MCP Server running on stdio
 [startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
 Helots MCP Server running on stdio
 [dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 65536
+[Slinger Update] 🏹 Slinger Leonidas deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Slinger...
+[Slinger Update] ✅ Slinger | Leonidas | 105.8t/s | 184 gen + 594 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 106.9t/s | 331 gen + 2232 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 104.0t/s | 770 gen + 3952 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 95.4t/s | 527 gen + 5752 prompt tokens
+[Slinger Update] 🏹 Slinger Agis deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 222144 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Agis | 109.3t/s | 57 gen + 584 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 107.1t/s | 57 gen + 801 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 107.0t/s | 57 gen + 929 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 107.3t/s | 57 gen + 988 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 100.2t/s | 400 gen + 1045 prompt tokens
+[Hoplite Update] ✏️ Hoplite editing C:/Users/R3LiC/Desktop/helots-pi/docs/structure.md...
+[Hoplite Update] ✅ Hoplite | Agis | 79.4t/s | 565 gen + 670 prompt tokens
+[Hoplite Update] ✅ Hoplite: C:/Users/R3LiC/Desktop/helots-pi/docs/structure.md written (0 → 96 lines)
