@@ -207,6 +207,31 @@
 - **Helots Implementation:** Peltast's PASS verdict could trigger an optional validation script (configurable per project in `.helots/config.json`: `"validateCmd": "npm run lint && tsc --noEmit"`). Only on script success does the commit gate open.
 - **Benefit:** Prevents Peltast from passing syntactically correct but broken code; particularly important for local models that hallucinate valid-looking TypeScript.
 
+## Dynamic Tool Search
+
+### Overview
+Instead of injecting all available tools into context upfront, expose a `search_tools(query)` meta-tool. The model calls it first, gets back 3-5 relevant tools, then executes with only those in context. Validated by LocalCowork finding: 20 tools → 80%+ accuracy; 75 tools → degraded accuracy.
+
+### 1. Tool Registry Meta-Tool
+- **Description:** Add `search_tools(query: string)` as an MCP tool that returns matching tool definitions from a local registry.
+- **Mechanism:** Semantic or keyword match against tool names + descriptions. Returns top-N matches with full schemas.
+- **Helots Implementation:** Register all tools in a JSON registry at startup. `search_tools` does a simple term-overlap score against name + description fields, returns top 5.
+- **Trigger Point:** When tool count exceeds ~20, inject `search_tools` instead of full tool list. Below 20, full injection is fine.
+
+### 2. Per-Step Tool Search in helot_workflow
+- **Description:** In a multi-step workflow chain, each step searches for its own tools rather than loading all tools for all steps.
+- **Helots Implementation:** `helot_workflow` orchestrator passes only the current step description to `search_tools`, injects only the returned tools for that step's LLM call.
+- **Benefit:** Context window stays clean across long chains; accuracy stays high as workflow complexity grows.
+
+### 3. Slinger Toolkit as First Candidate
+- **Current State:** Slinger's SEARCH TOOLKIT (~8 tools) is always fully injected.
+- **Path Forward:** As the toolkit grows (WebFetch, tool search, compression), make it the first place to adopt dynamic tool search — slinger already has a research-then-execute pattern that maps naturally to search-then-use.
+
+### Tradeoffs
+- **Pro:** Accuracy stays above 80% regardless of total tool count; context window preserved.
+- **Con:** Adds one round-trip (search → execute); risk of model searching for wrong thing and missing the right tool.
+- **When to adopt:** When helots MCP tool count exceeds ~20, or when helot_workflow chains exceed 5 steps.
+
 ## Inspiration
 
 - **Pattern:** Fractals (TinyAGI) recursive DAG orchestration — plan once as a DAG, execute leaf tasks in isolated git worktrees, synthesize results via merge agents
