@@ -3066,3 +3066,13 @@ src/core/greeting.ts: +0 lines (11 → 11)
 Syntax (tsc): ❌ ERRORS — 
 
 Options: [CONTINUE] [RETRY] [ABORT]
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 32768
+[Hoplite Update] ✏️ Hoplite editing feature-ideas.md...
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Hoplite...
+[Hoplite Update] ✅ Hoplite | Pausanias | 99.4t/s | 2416 gen + 2830 prompt tokens
