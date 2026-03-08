@@ -32,7 +32,8 @@
       "mcp__helots__helot_execute",
       "mcp__helots__helot_workflow",
       "Bash(python:*)",
-      "Bash(tsc:*)"
+      "Bash(tsc:*)",
+      "Bash(npx.cmd tsc:*)"
     ]
   }
 }

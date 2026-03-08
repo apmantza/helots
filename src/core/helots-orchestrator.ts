@@ -281,6 +281,29 @@ RESPOND ONLY WITH THE CHECKLIST. DO NOT USE PLACEHOLDERS.`;
   const passed = taskNodes.filter(t => t.status === 'completed').length;
   const failed = taskNodes.filter(t => t.status === 'failed').length;
   writeEventFn({ type: 'run_end', passed, failed });
+
+  // --- Aristomenis end-of-run report ---
+  try {
+    const taskLines = taskNodes.map(t =>
+      `- Task ${t.id}: ${t.description} — ${t.status === 'completed' ? 'PASS' : 'FAIL'}`
+    ).join('\n');
+    const aristomenisReport = [
+      `# Aristomenis Report`,
+      `**Run:** ${runId}`,
+      `**Model:** ${modelName}`,
+      `**Summary:** ${taskSummary}`,
+      ``,
+      `## Results`,
+      taskLines,
+      ``,
+      `## Stats`,
+      `Passed: ${passed} / ${taskNodes.length}`,
+      `Failed: ${failed}`,
+      ...(worktreeBranch ? [`Worktree: ${worktreeBranch}`] : []),
+    ].join('\n');
+    writeFileSync(join(runDir, 'aristomenis-report.md'), aristomenisReport);
+  } catch { /* non-fatal */ }
+
   onUpdate?.({ text: `✅ Execution complete! ${passed}/${taskNodes.length} tasks passed.` });
   governor.setPhase('finished');
 
