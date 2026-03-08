@@ -365,7 +365,8 @@ export class TaskRunner {
       if (tier === 'LLM') {
         const fileBlock = filesToProcess.map(f => `${f.filePath}\n\`\`\`\n${f.content}\n\`\`\``).join('\n\n');
         const planSection = implementationPlan ? `\n\nIMPLEMENTATION PLAN (context for this task):\n${implementationPlan.slice(0, 1500)}` : '';
-        const peltastBase = `${globalContext}\nTASK: ${task.description}${planSection}\n\nFILE:\n${fileBlock}\n\nRESPOND WITH EXACTLY:\nVERDICT: PASS\nor\nVERDICT: FAIL — <reason in 10 words or fewer>`;
+        const changesSection = task.changes ? `\n\nCHANGES REQUIRED:\n${task.changes}` : '';
+        const peltastBase = `${globalContext}\nTASK: ${task.description}${changesSection}${planSection}\n\nFILE:\n${fileBlock}\n\nRESPOND WITH EXACTLY:\nVERDICT: PASS\nor\nVERDICT: FAIL — <reason in 10 words or fewer>`;
 
         // Pass 1: spec compliance
         const pass1System = `${peltastBase}\n\nYou are the Peltast — Pass 1: Spec Compliance.\nThe code has already passed compile and lint checks. Confirm the file implements the described task.\nVERDICT RULES: PASS if implemented even partially. FAIL only if clearly not implemented (empty body, wrong function, stub/TODO, completely missing logic). Do NOT fail for style.`;

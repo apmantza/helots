@@ -42,11 +42,12 @@ RULES:
 - Output ONLY the functions that change. Do NOT output imports, the full file, or unchanged functions.
 - Never use "..." placeholders — write complete, working code.
 - You MUST output a block for every function the task requires changing (may be more than one).
+- The file is ${p.contextContent.split('\n').length} lines. DO NOT output the full file — output ONLY named ### FUNCTION: blocks.
 ${p.skillContext ? `\nDOMAIN PATTERNS (follow these conventions):\n${p.skillContext}\n` : ''}${p.retryContext}
 IMPLEMENTATION CONTEXT (signatures and patterns to use):
 ${p.taskContext.slice(0, 2000)}
 
-FULL FILE (read to understand all functions; output only changed ones):
+FULL FILE (read-only — understand context; output ONLY the changed functions below, NOT the full file):
 \`\`\`${p.fence}
 ${p.contextContent}
 \`\`\`${p.upstreamContext ? `\n\nUPSTREAM DEPENDENCIES (read-only — use for correct imports/interfaces):\n${p.upstreamContext}` : ''}`;
