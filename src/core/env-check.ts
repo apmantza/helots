@@ -106,6 +106,19 @@ export function bootstrapToolConfig(projectRoot: string): ToolConfig | null {
   } catch {
     return null;
   }
+
+  // Append a one-time note to project CLAUDE.md so Claude knows to review the config
+  const claudeMdPath = join(projectRoot, 'CLAUDE.md');
+  if (existsSync(claudeMdPath)) {
+    try {
+      const note = '\n## Helots\n`.helot-tools.json` auto-created from project detection — review and adjust format/lint/typecheck tools as needed.\n';
+      const existing = readFileSync(claudeMdPath, 'utf-8');
+      if (!existing.includes('.helot-tools.json')) {
+        writeFileSync(claudeMdPath, existing + note);
+      }
+    } catch { /* non-fatal */ }
+  }
+
   return config;
 }
 
