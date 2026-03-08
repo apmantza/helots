@@ -4088,3 +4088,29 @@ Helots MCP Server running on stdio
 [startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
 Helots MCP Server running on stdio
 [dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[Slinger Update] 🔍 Scribe | researching...
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen9b — ctx: 262144
+[Slinger Update] 🏹 Slinger Leonidas deployed.
+[Slinger Update] 📐 Context: 262144 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen9b for role Slinger...
+[Slinger Update] ✅ Slinger | Leonidas | 47.2t/s | 36 gen + 849 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 43.4t/s | 18 gen + 1661 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 47.5t/s | 50 gen + 2135 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 47.4t/s | 50 gen + 2956 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 47.3t/s | 50 gen + 3776 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 47.1t/s | 50 gen + 4597 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 47.1t/s | 50 gen + 5436 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 42.4t/s | 1086 gen + 6280 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/research.md...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/research.md...
+[Slinger Update] ✅ Hoplite | Pausanias | 43.5t/s | 1097 gen + 1270 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/research.md written (0 → 58 lines)

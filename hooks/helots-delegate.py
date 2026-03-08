@@ -98,13 +98,16 @@ elif tool_name in ('Edit', 'Write'):
     file_path = tool_input.get('file_path', '')
     if file_path.endswith('.md'):
         if tool_name == 'Write':
-            # Full file write — hoplite is almost always better
-            reminder = (
-                "helots MCP is connected. This writes a full markdown file — "
-                "use helot_hoplite instead to preserve context window. "
-                "helot_hoplite reads + writes the file locally with no peltast overhead. "
-                "NOTE: helot_hoplite is for docs/config only — never use it on code files."
-            )
+            # Only nudge when content is short — if Claude already composed the full content,
+            # Write is the right tool (hoplite would just echo it through the local LLM for no gain).
+            content = tool_input.get('content', '')
+            if len(content) < 400:
+                reminder = (
+                    "helots MCP is connected. This writes a markdown file with minimal content — "
+                    "if the intent is to synthesize research or transform an existing file, "
+                    "use helot_hoplite instead (local LLM does the work, zero frontier cost for file content). "
+                    "If you have already composed the full content, Write is correct — ignore this."
+                )
         else:
             # Targeted Edit — only nudge if the file is large (hoplite saves tokens on large reads)
             try:
