@@ -3,572 +3,667 @@
 --- Builder (Task 1) | Teleutias ---
 
 ```
-import
-import
-import
-    Call
-    List
-    Call
-}
-import
-import
-import
-import
-import
-import
-import
-import
-import
-
 /**
+ *
+ *
  *
  *
  */
 
-const
-    llama
-    llama
-    apiKey
-    dense
-    mo
-    state
-    project
-};
+import
+import
+import
+import
+import
+import
+import
+import
+import
+import
+import
+import
+import
+import
+import
+import
 
-//
-try
-    const
-    if
-        const
-        const
-        Object
-    }
-}
+export
+  public
+  public
+  public
+  private
+  private
 
-const
-start
+  constructor
+    public
+    public
+    public
+    private
+    private
+    private
+  )
 
-//
-const
-try
-const
-(process
-    try
+  dispose
+    this
+    this
+  }
+
+  setCurrent
+
+  parse
     return
-};
-process
+      .
+      .
+        const
+        const
+        const
+        const
+        const
+        const
+        const
 
-//
-//
-const
-const
-const
+        let
+        if
+          const
+          if
+        }
+        if
+          const
+          process
+        }
 
-function
+        return
+          id
+          description
+          status
+          file
+          target
+          depends
+          changes
+          skip
+        };
+      });
+  }
+
+  async
+    task
+    run
+    modelName
+    global
+    implementation
+    ps
+    review
+    onUpdate
+    all
+    write
+  ):
+
+    const
+    let
+    let
+    const
+
     if
-    try
+      const
+      if
+        context
+        if
+          const
+          if
+            is
+            onUpdate
+          }
+            onUpdate
+            task
+          }
+        }
+        if
+          onUpdate
+      }
+        //
+      }
+        onUpdate
+      }
+    }
+
+    const
+    mkdir
+
+    //
+    let
+    if
+      const
+      const
+      const
+      for
         const
         if
-        process
-        return
+          const
+          if
+            try
+              const
+              const
+              sections
+            }
+          }
+        }
+      }
+      if
+        upstream
+        onUpdate
+      }
     }
-        try
-        return
-    }
-}
 
-function
-    if
-    if
-        process
-        return
-    }
+    let
+    let
+    let
 
-    try
+    for
+      const
+        ?
+      const
+      const
+      const
+
+      const
+      let
+      if
+        if
+          builder
+          onUpdate
+        }
+          const
+          if
+            builder
+            onUpdate
+          }
+        }
+      }
+
+      if
+      const
+
+      const
+        global
+        lang
+        skill
+      });
+
+      const
+      this
+      const
+
+      write
+      const
+        '
+        `
+        onUpdate
+      );
+      const
+      write
+
+      //
+      try
+        const
+        mkdir
+        write
+          join
+          `
+        );
+      }
+
+      //
+      const
+
+      if
+        const
+        const
+        const
+        if
+          files
+        }
+          onUpdate
+          last
+          continue
+        }
+      }
+        const
         const
         const
         let
+        while
+          files
 
+        const
+          f
+        );
         if
-            //
-            const
-            try
-                fs
-            }
-            child
-                {
+          onUpdate
+          last
+          files
         }
-            const
-            child
-        }
-            //
-            for
-                try
-                    child
-                        {
-                    break
-                }
-            }
-        }
-
         if
-            child
-            process
+          const
+          if
+            onUpdate
+            files
+          }
         }
+        if
+          onUpdate
+          last
+          this
+          if
+            const
+            onUpdate
+            return
+          }
+          continue
+        }
+      }
+
+      //
+      if
+        if
+        const
+        for
+          const
+          if
+            const
+            if
+              lsp
+              errors
+            }
+          }
+        }
+        if
+          type
+          onUpdate
+          last
+          continue
+        }
+        onUpdate
+      }
+
+      //
+      const
+      if
+        const
+        onUpdate
+        last
+        continue
+      }
+
+      //
+      for
+        if
+      }
+      for
+        mkdir
+        const
+        write
+        rename
+      }
+      this
+
+      //
+      if
+
+      //
+      if
+        const
+        if
+          type
+          onUpdate
+          last
+          for
+            const
+            if
+          }
+          continue
+        }
+      }
+
+      //
+      try
+        const
+        const
+        write
+      }
+
+      //
+      const
+        run
+
+      //
+      const
+      const
+      const
+      const
+      const
+      const
+                         &&
+                         &&
+                         &&
+
+      type
+      let
+      let
+
+      if
+        tier
+        verdict
+          has
+      }
+        tier
+      }
+        tier
+      }
+
+      //
+      if
+        const
+        if
+      }
+
+      let
+      if
+        const
+        const
+        const
+
+        //
+        const
+        const
+        this
+        const
+        const
+
+        let
+        if
+          //
+          const
+          const
+          this
+          p
+        }
+
+        p
+        tier
+        const
+        verdict
+          ?
+          :
+      }
+        p
+        onUpdate
+      }
+
+      //
+      if
+        try
+          exec
+        }
+          const
+          onUpdate
+          tier
+          verdict
+          p
+          last
+        }
+      }
+
+      append
+
+      if
+        task
+        this
+        onUpdate
+        this
+        write
+        break
+      }
+        onUpdate
+        this
+        write
+        for
+          const
+          if
+        }
+        const
+        last
+        this
+        if
+          onUpdate
+          return
+        }
+      }
     }
-        process
+
+    if
+
+    //
+    //
+    try
+      exec
+        `
+        {
+      );
+      onUpdate
     }
-}
+    return
+  }
 
-const
-    {
-        name
-        version
-    },
-    {
-        capabilities
-            tools
-        },
-    }
-);
+  async
+    task
+    global
+  ):
+    const
+You
 
-/**
- *
- */
-const
-    {
-        name
-        description
-        input
-            type
-            properties
-                research
-                    type
-                    description
-                },
-                target
-                    type
-                    items
-                    description
-                },
-                outputFile
-                    type
-                    description
-                },
-                batch
-                    type
-                    description
-                },
-                max
-                    type
-                    description
-                },
-            },
-            required
-        },
-    },
-    {
-        name
-        description
-        input
-            type
-            properties
-                task
-                    type
-                    description
-                },
-                implementation
-                    type
-                    description
-                },
-                tasks
-                    type
-                    description
-                    items
-                        type
-                        properties
-                            id
-                            description
-                            file
-                            symbol
-                            depends
-                            changes
-                        },
-                        required
-                    },
-                },
-            },
-            required
-        },
-    },
-    {
-        name
-        description
-        input
-            type
-            properties
-                script
-                    type
-                    description
-                },
-                audit
-                    type
-                    description
-                },
-                dry
-                    type
-                    description
-                },
-                script
-                    type
-                    description
-                },
-                protected
-                    type
-                    items
-                    description
-                },
-                rem
-                    type
-                    description
-                    items
-                        type
-                        properties
-                            pattern
-                            dir
-                        },
-                        required
-                    },
-                },
-                prune
-                    type
-                    description
-                    items
-                        type
-                        properties
-                            glob
-                            dest
-                        },
-                        required
-                    },
-                },
-            },
-            required
-        },
-    },
-    {
-        name
-        description
-        input
-            type
-            properties
-                file
-                    type
-                    description
-                },
-                instruction
-                    type
-                    description
-                },
-            },
-            required
-        },
-    },
-    {
-        name
-        description
-        input
-            type
-            properties
-                workflow
-                    type
-                    description
-                },
-                steps
-                    type
-                    description
-                    items
-                        type
-                        properties
-                            id
-                            tool
-                            depends
-                            research
-                            outputFile
-                            batch
-                            script
-                            script
-                            audit
-                            protected
-                            rem
-                            prune
-                            file
-                            instruction
-                            command
-                        },
-                        required
-                    },
-                },
-            },
-            required
-        },
-    },
-];
+RULE
+-
+-
+-
 
-server
-    tools
-}
+Output
+REV
+REV
+<
+END
 
-server
     const
 
     try
-        if
-            const
-            const
-            const
-
-            if
-                const
-                const
-                const
-                    console
-                },
-                return
-            }
-
-            const
-                console
-            });
-            return
-        }
-
-        if
-            const
-            const
-
-            if
-                return
-                    content
-                    isError
-                };
-            }
-
-            const
-                console
-            },
-
-            return
-                content
-            };
-        }
-
-        if
-            const
-            const
-            const
-            const
-            const
-            const
-            const
-
-            const
-            return
-        }
-
-        if
-            const
-            const
-
-            const
-                console
-            });
-
-            return
-                content
-            };
-        }
-
-        if
-            const
-            const
-            if
-                return
-            }
-            const
-                console
-            });
-            return
-        }
-
-        throw
+      const
+      const
+      const
+      const
+      if
+      const
+      const
+      onUpdate
+      return
     }
-        return
-            content
-            isError
-        };
-    }
-});
-
-async
-    const
-    await
-    console
+  }
 }
-
-main
-    console
-    process
-});
 ```
-
---- Peltast P1 (Task 1) | Lysander ---
-
-
---- Peltast P2 (Task 1) | Pausanias ---
-
 
 --- Builder (Task 2) | Pausanias ---
 
 ```
+/**
+ *
+ *
+ *
+ *
+ */
+
+import
+import
+import
+import
+import
+import
+
 export
-  const
-  const
-  const
+  constructor
+    private
+    private
+    private
+    private
+    private
+  )
 
-  const
+  private
     const
     const
-    res
-
     if
+
+    const
+    for
+      const
       if
-        res
-        res
+      try
+        const
+        let
+        if
+          //
+          const
+          content
+        }
+          content
+        }
+        sections
       }
-        res
-        res
-      }
-      return
     }
+    return
+  }
 
+  private
+    const
+    const
     if
-      const
-      const
-      req
-      return
-    }
 
-    if
+    const
+    for
+      //
       const
-      const
-      req
-      return
-    }
-
-    if
-      const
-      const
-      let
-      let
+        .
+        .
       try
         const
         if
           const
-          for
-            try
-              const
-              if
-              if
-                local
-                local
-                if
-              }
-            }
-          }
+          fetched
         }
       }
-      res
-      res
-      return
     }
+    return
+  }
 
-    if
-      try
-        const
-        if
-        const
-          .
-          .
-            const
-            const
-            const
-            return
-          })
-          .
-        res
-        res
-      }
-      return
-    }
+  async
+    file
+    instruction
+    onUpdate
+  ):
+    const
+    const
+    const
+    const
 
+    const
+
+Output
+###
+\
+<
+\
+
+Rules
+-
+-
+-
+-
+-
+-
+
+    const
+    const
+    const
+      local
+      fetched
+    ].
+
+    const
+      ?
+      :
+
+    onUpdate
+    this
+
+    let
     if
       const
+      const
+      const
+      const
       if
+    }
+
+    this
+    const
+    const
+      '
+      onUpdate
+      undefined
+    );
+
+    const
+    //
+    const
+    const
+    const
+    let
+    if
+      new
+    }
+      //
+      //
+      const
       if
-      res
-      res
-      return
+        return
+      }
+      const
+      const
+      new
     }
 
     if
       try
         const
-        if
+        mkdir
         const
-        res
-        res
+        write
       }
-      return
     }
 
-    if
-      let
-      req
-      req
-        try
-          const
-          let
-          if
-            result
-          }
-            result
-          }
-            result
-          }
-          res
-          res
-        }
-          res
-          res
-        }
-      });
-      return
-    }
+    mkdir
+    const
+    write
+    rename
 
-    res
-    res
-  });
-
-  server
-    process
     const
     const
-    if
-      fs
-      if
-      else
-    }
-  });
+    onUpdate
+    this
+
+    return
+  }
 }
 ```
+
+--- Peltast P1 (Task 2) | Pausanias ---
+
+
+--- Peltast P2 (Task 2) | Teleutias ---

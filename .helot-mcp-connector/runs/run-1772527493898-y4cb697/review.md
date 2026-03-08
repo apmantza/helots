@@ -1,18 +1,10 @@
 # Aristomenis Review Report
-Plan: Fix 2 remaining UX issues: remove watch terminal launch, prevent browser reopen on restart
+Plan: Add per-task debug log to task-runner and hoplite output log to hoplite-agent for better error signal visibility
 
 
-## Task: Remove ensureWatchOpen() call from helot_run handler (Try 1)
+## Task: Add hoplite output log capturing raw LLM output after stripThinking (Try 1)
 **Ground Truth:**
-src/adapters/mcp-server.ts: -1 lines (418 → 417)
+src/core/hoplite-agent.ts: -1 lines (170 → 169)
 
 **Peltast:**
 VERDICT: PASS
-
-## Task: Prevent browser reopening on every MCP server restart using a sentinel file (Try 1)
-**Ground Truth:**
-src/adapters/dashboard-server.ts: +5 lines (180 → 185)
-Symbol check — "startDashboard" in src/adapters/dashboard-server.ts: ✅ FOUND
-
-**Peltast:**
-VERDICT: PASS (auto-pass: all checks green)

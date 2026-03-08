@@ -3,25 +3,24 @@
   "tasks": [
     {
       "id": "1",
-      "description": "Remove ensureWatchOpen() call from helot_run handler",
-      "status": "completed",
-      "file": "src/adapters/mcp-server.ts",
+      "description": "Add per-try debug log capturing LSP errors, typecheck errors, lastPeltastFeedback and groundTruth",
+      "status": "failed",
+      "file": "src/core/task-runner.ts",
       "dependsOn": [],
-      "changes": "In the helot_run tool handler (the if block where name === 'helot_run'), remove the single line that calls ensureWatchOpen(). Do not change anything else in the file. Keep the ensureWatchOpen function definition intact."
+      "changes": "After the appendFileSync(reviewFile, ...) call at the end of the try block (just before the `if (tier === 'PASS')` check), add a debug log write: create a `debug-logs` dir in stateDir, write a file named `debug-${runId}-task${task.id}-try${tryCount}.md` containing: the task description, try number, groundTruth array joined with newlines, the peltastOut string, and lastPeltastFeedback. This gives full visibility into what error signal Builder received each try. Use mkdirSync+writeFileSync wrapped in try/catch (non-fatal). The stateDir is at this.governor.config.stateDir."
     },
     {
       "id": "2",
-      "description": "Prevent browser reopening on every MCP server restart using a sentinel file",
-      "status": "completed",
-      "file": "src/adapters/dashboard-server.ts",
-      "targetSymbol": "startDashboard",
+      "description": "Add hoplite output log capturing raw LLM output after stripThinking",
+      "status": "pending",
+      "file": "src/core/hoplite-agent.ts",
       "dependsOn": [],
-      "changes": "In the server.listen callback inside startDashboard, wrap the exec browser-open calls with a sentinel check. Before opening the browser, add: const sentinelPath = path.join(stateDir, 'dashboard.opened'); const shouldOpen = !fs.existsSync(sentinelPath) || (Date.now() - fs.statSync(sentinelPath).mtimeMs > 60_000); if (shouldOpen) { fs.writeFileSync(sentinelPath, String(Date.now())); then the existing exec calls, closing the if block. The stateDir is the parameter passed to startDashboard."
+      "changes": "After the stripThinking(raw) call that produces the hoplite output, add a log write: create a `hoplite-logs` dir in this.governor.config.stateDir, write a file named `hoplite-${timestamp}-${file.replace(/[\\/]/g,'_')}.md` containing: the instruction (first 200 chars), the target file path, and the full stripped LLM output. Use mkdirSync+writeFileSync wrapped in try/catch (non-fatal). Import mkdirSync and writeFileSync from fs if not already imported."
     }
   ],
   "currentTaskIndex": 0,
   "lastCheckpoint": "",
-  "phase": "finished",
+  "phase": "builder",
   "planOnly": false,
   "strikes": {
     "task-4": 4,
@@ -29,7 +28,7 @@
     "task-3": 5,
     "task-6": 2,
     "task-2": 5,
-    "task-1": 4
+    "task-1": 5
   },
   "approved": false
 }

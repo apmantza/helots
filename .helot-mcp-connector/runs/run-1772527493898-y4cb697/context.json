@@ -1074,7 +1074,7 @@
     },
     {
       "path": "logs\\llama-calls.log",
-      "size": 68346
+      "size": 69552
     },
     {
       "path": "package-lock.json",
@@ -1142,11 +1142,11 @@
     },
     {
       "path": "src\\adapters\\dashboard-server.ts",
-      "size": 7415
+      "size": 7685
     },
     {
       "path": "src\\adapters\\mcp-server.ts",
-      "size": 21140
+      "size": 21109
     },
     {
       "path": "src\\adapters\\mcp.ts",

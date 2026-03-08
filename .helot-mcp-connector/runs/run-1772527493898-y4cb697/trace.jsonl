@@ -185,3 +185,10 @@
 {"ts":"2026-03-08T17:41:43.125Z","phase":"builder","status":"start","taskId":"2","tryNum":1}
 {"ts":"2026-03-08T17:42:19.089Z","phase":"builder","status":"complete","taskId":"2","tryNum":1}
 {"ts":"2026-03-08T17:42:20.670Z","phase":"peltast","status":"pass","taskId":"2","tryNum":1}
+{"ts":"2026-03-08T17:49:43.215Z","phase":"scout","status":"complete","fileCount":328}
+{"ts":"2026-03-08T17:49:43.238Z","phase":"aristomenis","status":"bypassed_frontier_planned"}
+{"ts":"2026-03-08T17:49:43.247Z","phase":"builder","status":"start","taskId":"1","tryNum":1}
+{"ts":"2026-03-08T17:52:23.023Z","phase":"builder","status":"complete","taskId":"1","tryNum":1}
+{"ts":"2026-03-08T17:52:23.042Z","phase":"builder","status":"start","taskId":"2","tryNum":1}
+{"ts":"2026-03-08T17:53:05.651Z","phase":"builder","status":"complete","taskId":"2","tryNum":1}
+{"ts":"2026-03-08T17:53:23.874Z","phase":"peltast","status":"pass","taskId":"2","tryNum":1}

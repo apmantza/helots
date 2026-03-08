@@ -1,2 +1,2 @@
-- [ ] 1. Remove ensureWatchOpen() call from helot_run handler (Target: src/adapters/mcp-server.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
-- [ ] 2. Prevent browser reopening on every MCP server restart using a sentinel file (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
+- [ ] 1. Add per-try debug log capturing LSP errors, typecheck errors, lastPeltastFeedback and groundTruth (Target: src/core/task-runner.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 2. Add hoplite output log capturing raw LLM output after stripThinking (Target: src/core/hoplite-agent.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]

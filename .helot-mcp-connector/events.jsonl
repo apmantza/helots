@@ -1,15 +1,14 @@
-{"ts":"2026-03-08T17:39:41.637Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen9b","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
-{"ts":"2026-03-08T17:39:42.017Z","type":"task_list","tasks":[{"id":"1","desc":"Remove ensureWatchOpen() call from helot_run handler","file":"src/adapters/mcp-server.ts","status":"pending"},{"id":"2","desc":"Prevent browser reopening on every MCP server restart using a sentinel file","file":"src/adapters/dashboard-server.ts","status":"pending"}]}
-{"ts":"2026-03-08T17:39:42.021Z","type":"task_status","taskId":"1","status":"running"}
-{"ts":"2026-03-08T17:39:42.031Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
-{"ts":"2026-03-08T17:41:23.148Z","type":"subagent_done","phase":"Builder (Task 1)","role":"Builder","name":"Teleutias","tps":40.115952546302935,"genTokens":4043,"promptTokens":5665,"ctxPct":2}
-{"ts":"2026-03-08T17:41:39.775Z","type":"phase_change","phase":"Peltast P1 (Task 1)","name":"Lysander"}
-{"ts":"2026-03-08T17:41:42.431Z","type":"subagent_done","phase":"Peltast P1 (Task 1)","role":"Peltast","name":"Lysander","tps":58.95962209241025,"genTokens":5,"promptTokens":5465,"ctxPct":2}
-{"ts":"2026-03-08T17:41:42.436Z","type":"phase_change","phase":"Peltast P2 (Task 1)","name":"Pausanias"}
-{"ts":"2026-03-08T17:41:42.843Z","type":"subagent_done","phase":"Peltast P2 (Task 1)","role":"Peltast","name":"Pausanias","tps":59.08992067769825,"genTokens":5,"promptTokens":5462,"ctxPct":2}
-{"ts":"2026-03-08T17:41:42.850Z","type":"verdict","taskId":"1","result":"PASS","tryNum":1}
-{"ts":"2026-03-08T17:41:43.117Z","type":"task_status","taskId":"2","status":"running"}
-{"ts":"2026-03-08T17:41:43.129Z","type":"phase_change","phase":"Builder (Task 2)","name":"Pausanias"}
-{"ts":"2026-03-08T17:42:19.085Z","type":"subagent_done","phase":"Builder (Task 2)","role":"Builder","name":"Pausanias","tps":40.56679007347728,"genTokens":1406,"promptTokens":2291,"ctxPct":1}
-{"ts":"2026-03-08T17:42:20.667Z","type":"verdict","taskId":"2","result":"PASS","tryNum":1}
-{"ts":"2026-03-08T17:42:20.931Z","type":"run_end","passed":2,"failed":0}
+{"ts":"2026-03-08T17:49:42.849Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen9b","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
+{"ts":"2026-03-08T17:49:43.243Z","type":"task_list","tasks":[{"id":"1","desc":"Add per-try debug log capturing LSP errors, typecheck errors, lastPeltastFeedback and groundTruth","file":"src/core/task-runner.ts","status":"pending"},{"id":"2","desc":"Add hoplite output log capturing raw LLM output after stripThinking","file":"src/core/hoplite-agent.ts","status":"pending"}]}
+{"ts":"2026-03-08T17:49:43.244Z","type":"task_status","taskId":"1","status":"running"}
+{"ts":"2026-03-08T17:49:43.251Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
+{"ts":"2026-03-08T17:52:23.021Z","type":"subagent_done","phase":"Builder (Task 1)","role":"Builder","name":"Teleutias","tps":41.04816401440882,"genTokens":6395,"promptTokens":7126,"ctxPct":3}
+{"ts":"2026-03-08T17:52:23.037Z","type":"task_status","taskId":"1","status":"failed"}
+{"ts":"2026-03-08T17:52:23.039Z","type":"task_status","taskId":"2","status":"running"}
+{"ts":"2026-03-08T17:52:23.046Z","type":"phase_change","phase":"Builder (Task 2)","name":"Pausanias"}
+{"ts":"2026-03-08T17:53:05.649Z","type":"subagent_done","phase":"Builder (Task 2)","role":"Builder","name":"Pausanias","tps":40.78621704044462,"genTokens":1682,"promptTokens":2215,"ctxPct":1}
+{"ts":"2026-03-08T17:53:22.239Z","type":"phase_change","phase":"Peltast P1 (Task 2)","name":"Pausanias"}
+{"ts":"2026-03-08T17:53:23.482Z","type":"subagent_done","phase":"Peltast P1 (Task 2)","role":"Peltast","name":"Pausanias","tps":59.3595813487595,"genTokens":5,"promptTokens":1964,"ctxPct":1}
+{"ts":"2026-03-08T17:53:23.485Z","type":"phase_change","phase":"Peltast P2 (Task 2)","name":"Teleutias"}
+{"ts":"2026-03-08T17:53:23.868Z","type":"subagent_done","phase":"Peltast P2 (Task 2)","role":"Peltast","name":"Teleutias","tps":59.67156769141512,"genTokens":5,"promptTokens":1962,"ctxPct":1}
+{"ts":"2026-03-08T17:53:23.873Z","type":"verdict","taskId":"2","result":"PASS","tryNum":1}
