@@ -8,3 +8,7 @@
 {"ts":"2026-03-08T17:41:42.436Z","type":"phase_change","phase":"Peltast P2 (Task 1)","name":"Pausanias"}
 {"ts":"2026-03-08T17:41:42.843Z","type":"subagent_done","phase":"Peltast P2 (Task 1)","role":"Peltast","name":"Pausanias","tps":59.08992067769825,"genTokens":5,"promptTokens":5462,"ctxPct":2}
 {"ts":"2026-03-08T17:41:42.850Z","type":"verdict","taskId":"1","result":"PASS","tryNum":1}
+{"ts":"2026-03-08T17:41:43.117Z","type":"task_status","taskId":"2","status":"running"}
+{"ts":"2026-03-08T17:41:43.129Z","type":"phase_change","phase":"Builder (Task 2)","name":"Pausanias"}
+{"ts":"2026-03-08T17:42:19.085Z","type":"subagent_done","phase":"Builder (Task 2)","role":"Builder","name":"Pausanias","tps":40.56679007347728,"genTokens":1406,"promptTokens":2291,"ctxPct":1}
+{"ts":"2026-03-08T17:42:20.667Z","type":"verdict","taskId":"2","result":"PASS","tryNum":1}

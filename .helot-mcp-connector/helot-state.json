@@ -4,7 +4,7 @@
     {
       "id": "1",
       "description": "Remove ensureWatchOpen() call from helot_run handler",
-      "status": "pending",
+      "status": "completed",
       "file": "src/adapters/mcp-server.ts",
       "dependsOn": [],
       "changes": "In the helot_run tool handler (the if block where name === 'helot_run'), remove the single line that calls ensureWatchOpen(). Do not change anything else in the file. Keep the ensureWatchOpen function definition intact."

@@ -426,3 +426,149 @@ main
 
 
 --- Peltast P2 (Task 1) | Pausanias ---
+
+
+--- Builder (Task 2) | Pausanias ---
+
+```
+export
+  const
+  const
+  const
+
+  const
+    const
+    const
+    res
+
+    if
+      if
+        res
+        res
+      }
+        res
+        res
+      }
+      return
+    }
+
+    if
+      const
+      const
+      req
+      return
+    }
+
+    if
+      const
+      const
+      req
+      return
+    }
+
+    if
+      const
+      const
+      let
+      let
+      try
+        const
+        if
+          const
+          for
+            try
+              const
+              if
+              if
+                local
+                local
+                if
+              }
+            }
+          }
+        }
+      }
+      res
+      res
+      return
+    }
+
+    if
+      try
+        const
+        if
+        const
+          .
+          .
+            const
+            const
+            const
+            return
+          })
+          .
+        res
+        res
+      }
+      return
+    }
+
+    if
+      const
+      if
+      if
+      res
+      res
+      return
+    }
+
+    if
+      try
+        const
+        if
+        const
+        res
+        res
+      }
+      return
+    }
+
+    if
+      let
+      req
+      req
+        try
+          const
+          let
+          if
+            result
+          }
+            result
+          }
+            result
+          }
+          res
+          res
+        }
+          res
+          res
+        }
+      });
+      return
+    }
+
+    res
+    res
+  });
+
+  server
+    process
+    const
+    const
+    if
+      fs
+      if
+      else
+    }
+  });
+}
+```

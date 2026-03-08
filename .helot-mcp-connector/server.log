@@ -4753,3 +4753,11 @@ Scanning workspace...
 [Helot Update] ✅ Peltast P1 (Task 1) | Lysander | 59.0t/s | 5 gen + 5465 prompt tokens
 [Helot Update] ✅ Peltast P2 (Task 1) | Pausanias | 59.1t/s | 5 gen + 5462 prompt tokens
 [Helot Update] ✅ PASS — Task 1: Remove ensureWatchOpen() call from helot_run handler
+[Helot Update] ✅ Task 1 committed.
+[Helot Update] 🛠️ Task 2/2: Prevent browser reopening on every MCP server restart using a sentinel file
+[Helot Update] 🔬 Surgical mode: targeting `startDashboard` in typescript (135 lines)
+[Helot Update] ✅ Builder (Task 2) | Pausanias | 40.6t/s | 1406 gen + 2291 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ✓ typecheck_fast: passed
+[Helot Update] ⚡ Auto-PASS — Task 2 (deterministic)
+[Helot Update] ✅ PASS — Task 2: Prevent browser reopening on every MCP server restart using a sentinel

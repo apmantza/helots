@@ -173,7 +173,12 @@ export function startDashboard(engine: HelotEngine, stateDir: string, port = 777
 
   server.listen(port, () => {
     process.stderr.write(`[dashboard] Running at http://localhost:${port}\n`);
-    if (process.platform === 'win32') exec(`start http://localhost:${port}`);
-    else if (process.platform === 'darwin') exec(`open http://localhost:${port}`);
+    const sentinelPath = path.join(stateDir, 'dashboard.opened');
+    const shouldOpen = !fs.existsSync(sentinelPath) || (Date.now() - fs.statSync(sentinelPath).mtimeMs > 60_000);
+    if (shouldOpen) {
+      fs.writeFileSync(sentinelPath, String(Date.now()));
+      if (process.platform === 'win32') exec(`start http://localhost:${port}`);
+      else if (process.platform === 'darwin') exec(`open http://localhost:${port}`);
+    }
   });
 }
