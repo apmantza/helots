@@ -4000,3 +4000,18 @@ Helots MCP Server running on stdio
 [MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Hoplite...
 [Hoplite Update] ✅ Hoplite | Teleutias | 66.2t/s | 1564 gen + 1883 prompt tokens
 [Hoplite Update] ✅ Hoplite: .helot-mcp-connector/superpowers-research.md written (0 → 93 lines)
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Agis deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Agis | 68.6t/s | 47 gen + 705 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 67.0t/s | 42 gen + 2245 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 68.4t/s | 29 gen + 2297 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 68.3t/s | 44 gen + 3593 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 68.3t/s | 30 gen + 3649 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 70.2t/s | 40 gen + 5173 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 69.2t/s | 34 gen + 5244 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 62.8t/s | 1271 gen + 5566 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/arch-research.md...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/arch-research.md...
+[Slinger Update] ✅ Hoplite | Archidamus | 63.3t/s | 1337 gen + 6689 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/arch-research.md written (0 → 128 lines)
