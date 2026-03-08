@@ -24,7 +24,7 @@
   ],
   "currentTaskIndex": 0,
   "lastCheckpoint": "",
-  "phase": "builder",
+  "phase": "scout",
   "planOnly": false,
   "strikes": {
     "task-4": 3,

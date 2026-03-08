@@ -3975,3 +3975,28 @@ warning: in the working copy of '.helot-mcp-connector/stream.log', LF will be re
 To https://github.com/apmantza/helots.git
    8f7dc36..09c4120  master -> master
 [Workflow Update] ✅ [commit-push] done
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen35b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen35b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[watch] Launched Helots Watch UI (C:\Users\R3LiC\Desktop\helots-pi\watch.mjs)
+[LlamaClient] Connected to http://127.0.0.1:8081 — models: qwen27b — ctx: 196608
+[Helot Update] ⚠️ ruff not found — ruff checking disabled. Run: pip install ruff
+[Helot Update] 📐 Context budget (196608 tokens): manifest=234k  plan=201k  slinger=134k chars
+[Helot Update] ### 🛡️ Brasidas is scouting
+**Mapping Workspace Territory**
+---
+Scanning workspace...
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen35-Q4_K_M — ctx: 65536
+[Hoplite Update] ✏️ Hoplite editing .helot-mcp-connector/superpowers-research.md...
+[MODEL SWAP] Swapping from qwen27b to qwen35-Q4_K_M for role Hoplite...
+[Hoplite Update] ✅ Hoplite | Teleutias | 66.2t/s | 1564 gen + 1883 prompt tokens
+[Hoplite Update] ✅ Hoplite: .helot-mcp-connector/superpowers-research.md written (0 → 93 lines)
