@@ -40,7 +40,8 @@
       "Read(//c/Program Files/ripgrep/**)",
       "Bash(unalias rg:*)",
       "Bash(typescript-language-server:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(vtsls:*)"
     ]
   }
 }
