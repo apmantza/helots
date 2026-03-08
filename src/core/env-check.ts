@@ -6,7 +6,7 @@
  */
 
 import { execSync } from 'child_process';
-import { existsSync, readFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
 export interface ToolConfig {
@@ -53,8 +53,70 @@ export function gitWorktreeSupported(): boolean {
   }
 }
 
+/**
+ * Detect the project stack and write a .helot-tools.json on first use.
+ * Only fires when the file is absent. Only includes tools found on PATH.
+ * Returns the generated config, or null if nothing was detected.
+ */
+export function bootstrapToolConfig(projectRoot: string): ToolConfig | null {
+  const configPath = join(projectRoot, '.helot-tools.json');
+  if (existsSync(configPath)) return null;
+
+  const config: ToolConfig = {};
+
+  // TypeScript / JavaScript
+  const hasTsConfig   = existsSync(join(projectRoot, 'tsconfig.json'));
+  const hasPackageJson = existsSync(join(projectRoot, 'package.json'));
+  if (hasPackageJson) {
+    if (checkBin('prettier')) config.format        = ['prettier --write {{file}}'];
+    if (checkBin('eslint'))   config.lint_fix       = ['eslint --fix {{file}}'];
+    if (hasTsConfig && checkBin('tsc')) config.typecheck_fast = ['tsc --noEmit --pretty false'];
+  }
+
+  // Python
+  const isPython = existsSync(join(projectRoot, 'pyproject.toml'))
+                || existsSync(join(projectRoot, 'requirements.txt'))
+                || existsSync(join(projectRoot, 'setup.py'));
+  if (isPython) {
+    const formatter = checkBin('black') ? 'black {{file}}' : checkBin('ruff') ? 'ruff format {{file}}' : null;
+    if (formatter) config.format = [...(config.format ?? []), formatter];
+    if (checkBin('ruff'))    config.lint_fix       = [...(config.lint_fix ?? []), 'ruff check --fix {{file}}'];
+    if (checkBin('pyright')) config.typecheck_fast = [...(config.typecheck_fast ?? []), 'pyright'];
+    if (checkBin('mypy'))    config.typecheck_slow = ['mypy src/'];
+  }
+
+  // Rust
+  if (existsSync(join(projectRoot, 'Cargo.toml'))) {
+    if (checkBin('rustfmt')) config.format         = ['rustfmt {{file}}'];
+    config.typecheck_fast = ['cargo check'];
+    config.typecheck_slow = ['cargo clippy -- -D warnings'];
+  }
+
+  // Go
+  if (existsSync(join(projectRoot, 'go.mod'))) {
+    config.format         = ['gofmt -w {{file}}'];
+    config.typecheck_fast = ['go vet ./...'];
+    if (checkBin('staticcheck')) config.typecheck_slow = ['staticcheck ./...'];
+  }
+
+  if (Object.keys(config).length === 0) return null;
+
+  try {
+    writeFileSync(configPath, JSON.stringify(config, null, 2) + '\n');
+  } catch {
+    return null;
+  }
+  return config;
+}
+
 export function runEnvCheck(projectRoot: string): EnvReport {
-  const toolConfig = loadToolConfig(projectRoot);
+  let toolConfig = loadToolConfig(projectRoot);
+  let bootstrapped = false;
+
+  if (Object.keys(toolConfig).length === 0) {
+    const generated = bootstrapToolConfig(projectRoot);
+    if (generated) { toolConfig = generated; bootstrapped = true; }
+  }
   const available: string[] = [];
   const missing:   string[] = [];
   const warnings:  string[] = [];
@@ -80,7 +142,9 @@ export function runEnvCheck(projectRoot: string): EnvReport {
     (checkBin(bin) ? available : missing).push(bin);
   }
 
-  if (allTools.length === 0) {
+  if (bootstrapped) {
+    warnings.push('.helot-tools.json created from project detection — review and adjust as needed');
+  } else if (allTools.length === 0) {
     warnings.push('no .helot-tools.json — format/lint/typecheck steps skipped (create one to enable)');
   }
 

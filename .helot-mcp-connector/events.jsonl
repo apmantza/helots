@@ -159,3 +159,6 @@
 {"ts": "2026-03-08T08:32:08.422Z", "type": "frontier_edit", "file": "src\\core\\task-runner.ts"}
 {"ts": "2026-03-08T08:32:19.082Z", "type": "frontier_edit", "file": "src\\core\\task-runner.ts"}
 {"ts": "2026-03-08T08:32:28.377Z", "type": "frontier_edit", "file": "src\\core\\task-runner.ts"}
+{"ts": "2026-03-08T08:34:12.133Z", "type": "frontier_edit", "file": "src\\core\\env-check.ts"}
+{"ts": "2026-03-08T08:34:26.162Z", "type": "frontier_edit", "file": "src\\core\\env-check.ts"}
+{"ts": "2026-03-08T08:34:33.854Z", "type": "frontier_edit", "file": "src\\core\\env-check.ts"}
