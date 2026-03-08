@@ -186,11 +186,14 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
     for (let turn = 1; turn <= 8; turn++) {
       const turnsLeft = 8 - turn;
       const isFinalTurn = turnsLeft === 0;
+      const noCommandsYet = history.trim() === '' && !preloadedContent;
       const summaryNudge = isFinalTurn
         ? `\nFINAL TURN — DO NOT output a ### COMMAND block. You MUST output ### SUMMARY, ### LOCATIONS, and ### EVIDENCE right now using only the information already in History.\n`
         : turnsLeft === 1
           ? `\nWARNING: 1 turn remaining after this. Plan to summarize on the next turn.\n`
-          : '';
+          : noCommandsYet
+            ? `\nCRITICAL: You have NO command results yet. Do NOT output ### SUMMARY — you must issue a ### COMMAND first to search the actual codebase. Your training knowledge is NOT a substitute for real search results.\n`
+            : '';
       const haltTokens = isFinalTurn ? undefined : ['### END_COMMAND'];
       const preloadSection = preloadedContent
         ? `\n\n## PRE-LOADED FILE CONTENT (authoritative — answer from this before issuing any commands):\n${preloadedContent}`
@@ -275,7 +278,13 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
           history += `\n[Turn ${turn}] Command Failed: ${e.message}\n`;
         }
       } else if (result.includes('### SUMMARY')) {
-        return writeSlingerLog(result);
+        // Reject summary on turn 1 with no commands and no preloaded files —
+        // model skipped the search and hallucinated from training weights.
+        if (noCommandsYet) {
+          history += `\n[Turn ${turn}] REJECTED PREMATURE SUMMARY — no commands were run. Issue a ### COMMAND to search the codebase first.\n`;
+        } else {
+          return writeSlingerLog(result);
+        }
       } else if (isFinalTurn) {
         return writeSlingerLog(`### SUMMARY\n${result}\n\n### EVIDENCE\n${history}`);
       } else {
