@@ -1074,7 +1074,7 @@
     },
     {
       "path": "logs\\llama-calls.log",
-      "size": 58225
+      "size": 64816
     },
     {
       "path": "package-lock.json",
@@ -1214,7 +1214,7 @@
     },
     {
       "path": "src\\core\\lsp-client.ts",
-      "size": 11472
+      "size": 11642
     },
     {
       "path": "src\\core\\model-registry.ts",
@@ -1242,7 +1242,7 @@
     },
     {
       "path": "src\\core\\slinger-agent.ts",
-      "size": 16214
+      "size": 16179
     },
     {
       "path": "src\\core\\sparta-record.ts",
@@ -1258,7 +1258,7 @@
     },
     {
       "path": "src\\core\\task-runner.ts",
-      "size": 25486
+      "size": 26561
     },
     {
       "path": "src\\core\\text-utils.ts",

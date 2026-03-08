@@ -1,11 +1,10 @@
 # Aristomenis Review Report
-Plan: Replace 3 noisy slinger onUpdate lines with one aggregated summary line per run
+Plan: Fix 4 UX issues: war record missing scout/peltast, aggregated stats don't auto-update, watch terminal fires on every helot_run, browser reopens on every MCP restart
 
 
-## Task: Remove deploy/context/preload onUpdate calls and emit single summary in writeSlingerLog (Try 1)
+## Task: Fix war record phase matching to be case-insensitive (Try 1)
 **Ground Truth:**
-src/core/slinger-agent.ts: +14 lines (317 → 331)
-Syntax (tsc): ❌ ERRORS — 
+src/dashboard/index.html: +0 lines (413 → 413)
 
 **Peltast:**
-VERDICT: FAIL — syntax error
+VERDICT: PASS

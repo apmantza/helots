@@ -1,20 +1,10 @@
-{"ts":"2026-03-08T16:41:24.272Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen9b","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
-{"ts":"2026-03-08T16:41:24.675Z","type":"task_list","tasks":[{"id":"1","desc":"Remove deploy/context/preload onUpdate calls and emit single summary in writeSlingerLog","file":"src/core/slinger-agent.ts","status":"pending"}]}
-{"ts":"2026-03-08T16:41:24.676Z","type":"task_status","taskId":"1","status":"running"}
-{"ts":"2026-03-08T16:41:24.684Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
-{"ts":"2026-03-08T16:43:01.831Z","type":"subagent_done","phase":"Builder (Task 1)","role":"Builder","name":"Teleutias","tps":41.31673089398791,"genTokens":3911,"promptTokens":4585,"ctxPct":2}
-{"ts":"2026-03-08T16:43:18.459Z","type":"verdict","taskId":"1","result":"FAIL","tryNum":1,"reason":"syntax error"}
-{"ts":"2026-03-08T16:43:18.470Z","type":"task_status","taskId":"1","status":"failed"}
-{"ts":"2026-03-08T16:43:18.472Z","type":"run_end","passed":0,"failed":1}
-{"ts":"2026-03-08T16:56:47.600Z","type":"slinger_start","task":"Find the nodeGrepCommand function — where is it defined (grep-utils or similar), what file, what does it do, does it sup","name":"Agis"}
-{"ts":"2026-03-08T16:56:47.604Z","type":"phase_change","phase":"Slinger","name":"Agis"}
-{"ts":"2026-03-08T16:56:48.811Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Agis","tps":46.50267498333984,"genTokens":28,"promptTokens":1004,"ctxPct":0}
-{"ts":"2026-03-08T16:56:48.871Z","type":"phase_change","phase":"Slinger","name":"Agis"}
-{"ts":"2026-03-08T16:56:50.672Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Agis","tps":47.12431709010199,"genTokens":33,"promptTokens":2475,"ctxPct":1}
-{"ts":"2026-03-08T16:56:50.690Z","type":"phase_change","phase":"Slinger","name":"Agis"}
-{"ts":"2026-03-08T16:56:55.813Z","type":"subagent_done","phase":"Slinger","role":"Slinger","name":"Agis","tps":45.38900454561265,"genTokens":213,"promptTokens":2625,"ctxPct":1}
-{"ts":"2026-03-08T16:56:55.814Z","type":"slinger_done","task":"Find the nodeGrepCommand function — where is it defined (grep-utils or similar), what file, what does it do, does it sup","name":"Agis"}
-{"ts": "2026-03-08T16:58:06.689Z", "type": "frontier_edit", "file": "src\\core\\slinger-agent.ts"}
-{"ts": "2026-03-08T16:59:49.453Z", "type": "frontier_edit", "file": "C:\\Users\\R3LiC\\.claude\\CLAUDE.md"}
-{"ts": "2026-03-08T17:01:05.948Z", "type": "frontier_edit", "file": "C:\\Users\\R3LiC\\.claude\\CLAUDE.md"}
-{"ts": "2026-03-08T17:01:12.762Z", "type": "frontier_edit", "file": "C:\\Users\\R3LiC\\.claude\\CLAUDE.md"}
+{"ts":"2026-03-08T17:09:40.025Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen9b","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
+{"ts":"2026-03-08T17:09:40.433Z","type":"task_list","tasks":[{"id":"1","desc":"Fix war record phase matching to be case-insensitive","file":"src/dashboard/index.html","status":"pending"},{"id":"2","desc":"Call loadAggregated on verdict, task_status, and run_end events so stats auto-update","file":"src/dashboard/index.html","status":"pending"},{"id":"3","desc":"Remove ensureWatchOpen() call from helot_run handler — watch terminal is replaced by browser dashboard","file":"src/adapters/mcp-server.ts","status":"pending"},{"id":"4","desc":"Prevent browser from reopening on every MCP server restart","file":"src/adapters/dashboard-server.ts","status":"pending"}]}
+{"ts":"2026-03-08T17:09:40.437Z","type":"task_status","taskId":"1","status":"running"}
+{"ts":"2026-03-08T17:09:40.449Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
+{"ts":"2026-03-08T17:11:56.457Z","type":"subagent_done","phase":"Builder (Task 1)","role":"Builder","name":"Teleutias","tps":41.53087135852519,"genTokens":5503,"promptTokens":5355,"ctxPct":2}
+{"ts":"2026-03-08T17:11:58.014Z","type":"phase_change","phase":"Peltast P1 (Task 1)","name":"Lysander"}
+{"ts":"2026-03-08T17:12:01.426Z","type":"subagent_done","phase":"Peltast P1 (Task 1)","role":"Peltast","name":"Lysander","tps":58.890317960550725,"genTokens":5,"promptTokens":5148,"ctxPct":2}
+{"ts":"2026-03-08T17:12:01.431Z","type":"phase_change","phase":"Peltast P2 (Task 1)","name":"Pausanias"}
+{"ts":"2026-03-08T17:12:01.848Z","type":"subagent_done","phase":"Peltast P2 (Task 1)","role":"Peltast","name":"Pausanias","tps":58.373367734709156,"genTokens":5,"promptTokens":5146,"ctxPct":2}
+{"ts":"2026-03-08T17:12:01.855Z","type":"verdict","taskId":"1","result":"PASS","tryNum":1}

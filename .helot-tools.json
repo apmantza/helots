@@ -1,0 +1,5 @@
+{
+  "typecheck_fast": [
+    "tsc --noEmit --pretty false"
+  ]
+}

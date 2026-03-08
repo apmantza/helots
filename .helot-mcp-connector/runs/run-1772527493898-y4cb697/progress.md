@@ -1,1 +1,4 @@
-- [ ] 1. Remove deploy/context/preload onUpdate calls and emit single summary in writeSlingerLog (Target: src/core/slinger-agent.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 1. Fix war record phase matching to be case-insensitive (Target: src/dashboard/index.html, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 2. Call loadAggregated on verdict, task_status, and run_end events so stats auto-update (Target: src/dashboard/index.html, Symbol: N/A, Action: EDIT) [DEPENDS: 1]
+- [ ] 3. Remove ensureWatchOpen() call from helot_run handler — watch terminal is replaced by browser dashboard (Target: src/adapters/mcp-server.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 4. Prevent browser from reopening on every MCP server restart (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
