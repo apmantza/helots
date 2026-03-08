@@ -4251,3 +4251,69 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Pausanias | 42.2t/s | 1720 gen + 1799 prompt tokens
 [Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/research5.md...
 [Slinger Update] ✅ Scribe | .helot-mcp-connector/research5.md written (direct)
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[Slinger Update] 🔍 Scribe | researching...
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen9b — ctx: 262144
+[Slinger Update] 🏹 Slinger Teleutias deployed.
+[Slinger Update] 📐 Context: 262144 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen9b for role Slinger...
+[Slinger Update] ✅ Slinger | Teleutias | 47.1t/s | 35 gen + 916 prompt tokens
+[Slinger Update] ✅ Slinger | Teleutias | 44.4t/s | 303 gen + 1062 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/research.md...
+[Slinger Update] ✅ Scribe | .helot-mcp-connector/research.md written (direct)
+[watch] Launched Helots Watch UI (C:\Users\R3LiC\Desktop\helots-pi\watch.mjs)
+[Helot Update] ⚠️ ruff not found — ruff checking disabled. Run: pip install ruff
+[Helot Update] 📐 Context budget (262144 tokens): manifest=312k  plan=267k  slinger=178k chars
+[Helot Update] ### Environment
+✅ git-worktrees, tsc
+ℹ️  .helot-tools.json created from project detection — review and adjust as needed
+[Helot Update] 🌿 Worktree: helots/run-1772527493898-y4cb697
+[Helot Update] ### 🛡️ Brasidas is scouting
+**Mapping Workspace Territory**
+---
+Scanning workspace...
+[Helot Update] 🏹 Pre-Slinger: scanning source symbols...
+[Helot Update] ✅ Pre-Slinger: 39 files, 93 symbols
+[Helot Update] 📋 **Frontier-Planned Mode** — 1 tasks (Aristomenis bypassed)
+[Helot Update] ⚠️ Symbol "execute" (Task 1) not in codebase — clearing for full-file mode.
+[Helot Update] 📋 **Task List:**
+- [ ] 1. Suppress noisy mid-run onUpdate lines and emit one aggregated summary per slinger run (Target: src/core/slinger-agent.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+[Helot Update] 🛠️ Task 1/1: Suppress noisy mid-run onUpdate lines and emit one aggregated summary per slinger run
+[Helot Update] ✅ Builder (Task 1) | Teleutias | 41.3t/s | 3535 gen + 4357 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ✓ typecheck_fast: passed
+[Helot Update] ⚡ Auto-FAIL — Task 1 (deterministic)
+[Helot Update] ❌ FAIL — Task 1 (try 1/3): syntax error
+[Helot Update] 🏛️ Aristomenis intervening — redesigning task 1...
+[Helot Update] ✅ Builder (Task 1) | Aristomenis | 41.9t/s | 170 gen + 1137 prompt tokens
+[Helot Update] 🏛️ Aristomenis replan: "Remove noisy onUpdate calls, track turn/commands inside loop, emit single aggreg"
+[Helot Update] ✅ Builder (Task 1) | Teleutias | 41.3t/s | 3590 gen + 4556 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ✓ typecheck_fast: passed
+[Helot Update] ⚡ Auto-FAIL — Task 1 (deterministic)
+[Helot Update] ❌ FAIL — Task 1 (try 1/3): syntax error
+[Helot Update] ✅ Builder (Task 1) | Pausanias | 41.2t/s | 3535 gen + 4408 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ✓ typecheck_fast: passed
+[Helot Update] ⚡ Auto-FAIL — Task 1 (deterministic)
+[Helot Update] ❌ FAIL — Task 1 (try 2/3): syntax error
+[Helot Update] ⚠️ **ESCALATION REQUIRED** — Task 1 failed after 2 attempts.
+
+**Task:** Remove noisy onUpdate calls, track turn/commands inside loop, emit single aggregated summary
+**Ground Truth:**
+src/core/slinger-agent.ts: +0 lines (307 → 307)
+Syntax (tsc): ❌ ERRORS — 
+**Peltast:** VERDICT: FAIL — syntax error
+Verification details:
+src/core/slinger-agent.ts: +0 lines (307 → 307)
+Syntax (tsc): ❌ ERRORS — 
+
+Options: [CONTINUE] [RETRY] [ABORT]

@@ -3,28 +3,16 @@
   "tasks": [
     {
       "id": "1",
-      "description": "Implement src/core/greeting.ts with explicit type-safe function exports for greeting, welcome, and farewell utilities.",
+      "description": "Remove noisy onUpdate calls, track turn/commands inside loop, emit single aggregated summary",
       "status": "pending",
-      "file": "src/core/greeting.ts",
+      "file": "src/core/slinger-agent.ts",
       "dependsOn": [],
-      "skipLintCodes": [],
-      "changes": "- Create greeting utility\n+ Implement src/core/greeting.ts with three exported functions: greet(name: string): string, welcome(name: string): string, farewell(name: string): string. Use template literals. Handle undefined input names by substituting 'World', 'User', and 'Friend' respectively."
-    },
-    {
-      "id": "2",
-      "description": "Update scout to use greeting",
-      "status": "pending",
-      "file": "src/core/scout.ts",
-      "targetSymbol": "Scout",
-      "dependsOn": [
-        "1"
-      ],
-      "skipLintCodes": []
+      "changes": "src/core/slinger-agent.ts (full file) BEFORE→AFTER diff\n+ Removed these early onUpdate calls in execute(): \n+   '🏹 Slinger deployed', \n+   '📐 Context:', \n+   '📖 Slinger preloading' \n+ Inside the command loop, accumulated turn count and commands run count. \n+ In writeSlingerLog(), added single aggregated onUpdate line before return:\n+   `onUpdate?.({ text: '🏹 Slinger ${slingerPersona.name}: ${turn-1} turn(s), task: ${researchTask.slice(0,60)}' })` \n+ Kept existing writeEventFn calls (slinger_start, slinger_done) unchanged — those go to events.jsonl not the war record."
     }
   ],
   "currentTaskIndex": 0,
   "lastCheckpoint": "",
-  "phase": "scout",
+  "phase": "builder",
   "planOnly": false,
   "strikes": {
     "task-4": 3,

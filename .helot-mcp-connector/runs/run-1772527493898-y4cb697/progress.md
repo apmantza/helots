@@ -1,2 +1,1 @@
-- [ ] 1. Create greeting utility (Target: src/core/greeting.ts, Action: CREATE) [DEPENDS: none]
-- [ ] 2. Update scout to use greeting (Target: src/core/scout.ts, Symbol: Scout, Action: EDIT) [DEPENDS: 1]
+- [ ] 1. Suppress noisy mid-run onUpdate lines and emit one aggregated summary per slinger run (Target: src/core/slinger-agent.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]

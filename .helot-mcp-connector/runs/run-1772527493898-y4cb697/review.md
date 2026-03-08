@@ -1,26 +1,26 @@
 # Aristomenis Review Report
-Plan: Merge helot_scribe into helot_slinger in mcp-server.ts: remove helot_scribe tool, add outputFile/batchDir/maxFilesPerBatch optional params to helot_slinger, update handler to call executeScribe when outputFile is present else executeSlinger. Update description to explain both modes.
+Plan: Aggregate slinger onUpdate noise into one summary line per run
 
 
-## Task: Create greeting utility (Try 1)
+## Task: Suppress noisy mid-run onUpdate lines and emit one aggregated summary per slinger run (Try 1)
 **Ground Truth:**
-src/core/greeting.ts: NEW FILE (11 lines)
+src/core/slinger-agent.ts: +0 lines (307 → 307)
 Syntax (tsc): ❌ ERRORS — 
 
 **Peltast:**
 VERDICT: FAIL — syntax error
 
-## Task: Implement src/core/greeting.ts with explicit type-safe function exports for greeting, welcome, and farewell utilities. (Try 1)
+## Task: Remove noisy onUpdate calls, track turn/commands inside loop, emit single aggregated summary (Try 1)
 **Ground Truth:**
-src/core/greeting.ts: +0 lines (11 → 11)
+src/core/slinger-agent.ts: +5 lines (307 → 312)
 Syntax (tsc): ❌ ERRORS — 
 
 **Peltast:**
 VERDICT: FAIL — syntax error
 
-## Task: Implement src/core/greeting.ts with explicit type-safe function exports for greeting, welcome, and farewell utilities. (Try 2)
+## Task: Remove noisy onUpdate calls, track turn/commands inside loop, emit single aggregated summary (Try 2)
 **Ground Truth:**
-src/core/greeting.ts: +0 lines (11 → 11)
+src/core/slinger-agent.ts: +0 lines (307 → 307)
 Syntax (tsc): ❌ ERRORS — 
 
 **Peltast:**

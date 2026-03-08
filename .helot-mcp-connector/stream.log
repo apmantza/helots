@@ -1,2803 +1,956 @@
 
 
---- Hoplite | Teleutias ---
+--- Builder (Task 1) | Teleutias ---
 
-```
-#
-
-##
-**
-
-The
-
-##
-The
-
-1
-2
-3
-    *
-    *
-    *
-4
-5
-
-The
-
-##
-The
-
-1
-2
-3
-4
-5
-    *
-    *
-    *
-    *
-    *
-    *
-6
-7
-
-##
-
-###
-The
-
-*
-    *
-*
-    *
-    *
-*
-    *
-    *
-    *
-    *
-    *
-    *
-    *
-    *
-    *
-*
-    *
-    *
-
-###
-*
-*
-*
-*
-
-##
-Super
-
-*
-*
-*
-
-**
-The
-
-##
-While
-
-1
-2
-3
-4
-
-**
-The
-
-##
-*
-*
-*
-```
-
---- Slinger | Agis ---
-
-grep
-###
-
---- Slinger | Agis ---
-
-grep
-###
-
---- Slinger | Agis ---
-
-Get
-###
-
---- Slinger | Agis ---
-
-grep
-###
-
---- Slinger | Agis ---
-
-Get
-###
-
---- Slinger | Agis ---
-
-grep
-###
-
---- Slinger | Agis ---
-
-Get
-###
-
---- Slinger | Agis ---
-
-Based
-
-1
-
-2
-
-3
-    *
-    *
-    *
-    *
-    *
-
-4
-
-5
-
-###
-*
-*
-*
-*
-*
-*
-
-###
-**
-```
-//
-/**
- *
- *
- */
-export
-    //
-    async
-        const
-        //
-        const
-        //
-    }
-}
-```
-
-**
-```
-//
-/**
- *
- *
- */
-export
-    //
-    //
-    getNext
-        const
-            '
-            '
-            '
-            //
-        };
-        return
-    }
-}
-```
-
-**
-```
-//
-/**
- *
- *
- */
-export
-    async
-        for
-            const
-            if
-            const
-            if
-                console
-                return
-            }
-        }
-        return
-    }
-}
-```
-
-**
-```
-//
-export
-    config
-    plan
-    //
-)
-    //
-    const
-    const
-    
-    //
-    const
-    const
-    
-    //
-    const
-    const
-    
-    //
-}
-```
-
---- Hoplite | Archidamus ---
-
-```
-#
-
-##
-
-Based
-
-###
-The
--
--
-
-###
-Planning
--
--
--
-
-###
-1
-2
-3
-4
-5
-
-###
-This
--
--
-
-###
-This
-
----
-
-##
-
-|
-|
-|
-|
-|
-|
-|
-|
-
----
-
-##
-
-###
-**
 ```
 /**
  *
  *
- */
-export
-    //
-    async
-        const
-        //
-        const
-        //
-    }
-```
-
-###
-**
-```
-/**
  *
  *
  */
+
+import
+import
+import
+import
+import
+import
+import
+import
+import
+
 export
-    //
-    getNext
-        const
-            '
-            '
-            '
-        };
-        return
-```
-
-###
-**
-```
-/**
- *
- *
- */
-export
-    async
-        for
-            const
-            if
-            const
-            if
-                console
-                return
-            }
-        }
-        return
-```
-
-###
-**
-```
-export
-    config
-    plan
-    //
-)
-    //
-    const
-    const
-    
-    //
-    const
-    const
-    
-    //
-    const
-    const
-    
-    //
-}
-```
-```
-
---- Hoplite | Agesilaus ---
-
-```
-#
-
-##
-Full
-
-##
-0
-
-First
-
----
-
-##
-**
-
--
--
--
--
--
-
----
-
-##
-**
-
-**
-```
-{
-  "
-  "
-  "
-  "
-}
-```
-
--
-  -
-  -
-  -
-  -
-  -
--
--
-
-**
-```
-##
-✅
-⚠
-✅
-✅
-```
-
----
-
-##
-**
-
-Post
-
-```
-Builder
-    ↓
-1
-2
-    ↓
-3
-    ├──
-    └
-```
-
--
--
--
-
----
-
-##
-**
-
-L
-
-**
-```
-LL
-    ↓
-L
-    ↓
-L
-                               or
-    ├──
-    └
-```
-
-**
-After
-
-**
--
--
--
--
--
--
--
--
--
-
-**
--
--
--
-
-**
-
----
-
-##
-**
-
-Updated
-1
-2
-3
-
-Most
-
----
-
-##
-**
-
--
-  `{
--
-
-```
-##
-Branch
-
-###
-✅
-
-###
-✅
-❌
-   t
-⚠
-
-###
--
--
--
-```
-
--
--
--
-
----
-
-##
-**
-
--
--
--
--
--
-
----
-
-##
-**
-
--
--
--
--
-
----
-
-##
-
-|
-|
-|
-|
-|
-|
-
----
-
-##
-
-|
-|
-|
-|
-|
-|
-|
-|
-|
-|
-|
-|
-```
-
---- Slinger | Leonidas ---
-
-grep
-###
-
---- Slinger | Leonidas ---
-
-grep
-###
-
---- Slinger | Leonidas ---
-
-grep
-###
-
---- Slinger | Leonidas ---
-
-Get
-###
-
---- Slinger | Leonidas ---
-
-grep
-###
-
---- Slinger | Leonidas ---
-
-Get
-###
-
---- Slinger | Leonidas ---
-
-Get
-###
-
---- Slinger | Leonidas ---
-
-The
-
-1
-    *
-    *
-    *
-    *
-
-2
-    *
-    *
-    *
-
-3
-    *
-    *
-    *
-
-**
-`
-
-###
-*
-*
-*
-*
-*
-*
-
-###
-**
-```
-export
-  private
-  //
-  private
-  private
-  private
-
   constructor
-    this
-    this
-
-    const
-    const
-    //
-    this
-    this
-    //
-  }
+    private
+    private
+    private
+    private
+    private
+  )
 
   async
-    task
-    implementation
+    research
+    target
     onUpdate
-    frontier
   ):
-    this
-    return
-      governor
-      sl
-      task
-      run
-      write
-      //
-    },
-  }
-```
-
-**
-```
-const
-    {
-        name
-        description
-        input
-            type
-            properties
-                tasks
-                    type
-                    items
-                    description
-                }
-            },
-            required
-        }
-    },
-    //
-];
-
-//
-if
     const
+    const
+    const
+
+    let
     if
-        return
-            content
-        };
+      const
+      const
+      target
     }
-    //
-    const
-    return
-}
-```
-
-**
-```
-//
-import
-
-//
-export
-    task
-    implementation
-    frontier
-    context
-        governor
-        sl
-        task
-        run
-        write
-        //
-    },
-    onUpdate
-):
-    //
-    //
-    //
-    //
-    //
-}
-```
-
---- Hoplite | Archidamus ---
-
-```
-#
-
-##
-
-The
-
-###
-*
-*
-*
-*
-
-###
-*
-*
-*
-
-###
-*
-*
-*
-
-###
-`
-
-##
-
-*
-*
-*
-*
-*
-*
-
-##
-
-###
-
-```
-export
-  private
-  //
-  private
-  private
-  private
-
-  constructor
-    this
-    this
 
     const
-    const
-    //
-    this
-    this
-  }
 
-  async
-    task
-    implementation
-    onUpdate
-    frontier
-  ):
-    this
-    return
-      governor
-      sl
-      task
-      run
-      write
-    },
-```
+CR
+CR
+CR
 
+FORMAT
+###
+<
 ###
 
-```
-const
-    {
-        name
-        description
-        input
-            type
-            properties
-                tasks
-                    type
-                    items
-                    description
-            },
-            required
-];
-
-//
-if
-    const
-    if
-        return
-            content
-        };
-    //
-    const
-    return
-```
-
+When
 ###
-
-```
-//
-import
-
-//
-export
-    task
-    frontier
-    context
-        governor
-        sl
-        task
-        run
-        write
-    onUpdate
-    //
-    //
-    //
-    //
-    //
-```
-```
-
---- Slinger | Lysander ---
-
-grep
+<
 ###
-
---- Slinger | Lysander ---
-
-grep
+<
 ###
-
---- Slinger | Lysander ---
-
-Get
-###
-
---- Slinger | Lysander ---
-
-grep
-###
-
---- Slinger | Lysander ---
-
-grep
-###
-
---- Slinger | Lysander ---
-
-The
-
-**
-1
-    *
-    *
-    *
-2
-    *
-    *
-    *
-    *
-
-**
-1
-    *
-    *
-
-**
-*
-
-###
-*
-*
-*
-*
-
-###
-**
-```
-//
-const
-
-//
-const
-write
-rename
-
-//
-const
-write
-```
-
-**
-```
-//
-write
-//
-write
-```
-
---- Hoplite | Gylippus ---
-
-```
-#
-
-##
-The
-
-###
-1
-    *
-    *
-    *
-2
-    *
-    *
-    *
-    *
-
-###
-1
-    *
-    *
-
-###
-*
-
-##
-*
-*
-*
-*
-
-##
-
-###
-```
-//
-const
-
-//
-const
-write
-rename
-
-//
-const
-write
-```
-
-###
-```
-//
-write
-//
-write
-```
-```
-
---- Slinger | Pausanias ---
-
-grep
-###
-
---- Slinger | Pausanias ---
-
-grep
-###
-
---- Slinger | Pausanias ---
-
-Get
-###
-
---- Slinger | Pausanias ---
-
-Found
-
-###
--
--
--
--
--
--
--
--
--
--
--
--
--
--
-
-###
-```
-//
-import
-
-//
-      const
-      const
-
-//
-      }
-        throw
-
-//
-    const
-
-//
-          const
-          const
-
-//
-      const
-
-//
-      if
-
-//
-        const
-        const
-
-//
-          files
-
-//
-            files
-
-//
-        if
-
-//
-        run
-
-//
-          exec
-
-//
-      try
-```
-
---- Slinger | Archidamus ---
-
-grep
-###
-
---- Slinger | Archidamus ---
-
-Get
-###
-
---- Slinger | Archidamus ---
-
-Get
-###
-
---- Slinger | Archidamus ---
-
-Get
-###
-
---- Slinger | Archidamus ---
-
-Get
-###
-
---- Slinger | Archidamus ---
-
-**
-
-**
--
--
-  -
-  -
-    -
-    -
-    -
--
-  -
-  -
-  -
-  -
--
-  ```
-  async
-  dispose
-  ```
-
-**
--
--
-  -
-  -
-    -
--
-  -
-  -
-  -
-  -
--
-  ```
-  match
-  private
-  private
-  ```
-
-**
--
-  -
-  -
-  -
-  -
-  -
--
-  -
-  -
-  -
-
-**
-1
-2
-3
-4
-5
-
-###
--
--
--
--
--
--
--
-
-###
-```
-//
-export
-  private
-  private
-
-  constructor
-
-  async
-    const
-    const
-    if
-    //
-  }
-
-  dispose
-    for
-    this
-  }
-}
-
-//
-export
-  private
-
-  constructor
-
-  match
-    const
-    if
-    //
-  }
-
-  private
-    //
-  }
-}
-
-//
-if
-  if
-  const
-  for
-    const
-    if
-      const
-      if
-        lsp
-        //
-      }
-    }
-  }
-  if
-    onUpdate
-    last
-    continue
-  }
-}
-```
-
---- Hoplite | Agis ---
-
-```
-#
-
-This
-
----
-
-##
-
-###
-
-####
--
--
-  -
-  -
-    -
-    -
-    -
--
-  -
-  -
-  -
-  -
--
-  ```
-  async
-  dispose
-  ```
-
-####
--
--
-  -
-  -
-    -
--
-  -
-  -
-  -
-  -
--
-  ```
-  match
-  private
-  private
-  ```
-
-####
--
-  -
-  -
-  -
-  -
-  -
--
-  -
-  -
-  -
-
-###
-1
-2
-3
-4
-5
-
----
-
-##
--
--
--
--
--
--
--
-
----
-
-##
-
-###
-```
-export
-  private
-  private
-
-  constructor
-
-  async
-    const
-    const
-    if
-    //
-  }
-
-  dispose
-    for
-    this
-```
-
-###
-```
-export
-  private
-
-  match
-    const
-    if
-    //
-  }
-
-  private
-    //
-```
-
-###
-```
-if
-  if
-  const
-  for
-    const
-    if
-      const
-      if
-        lsp
-        //
-  if
-    onUpdate
-    last
-    continue
-```
-```
-
---- Slinger | Aristomenis ---
-
-Get
-###
-
---- Slinger | Aristomenis ---
-
-
-###
-Get
-###
-
---- Slinger | Aristomenis ---
-
-Get
-###
-
---- Slinger | Aristomenis ---
-
-Get
-###
-
---- Slinger | Aristomenis ---
-
-Get
-###
-
---- Slinger | Aristomenis ---
-
-Get
-###
-
---- Slinger | Aristomenis ---
-
-Get
-###
-
---- Slinger | Aristomenis ---
-
-The
-
-###
-None
-
-###
-The
-
---- Hoplite | Agis ---
-
-```
-#
-
-##
-
-###
--
--
--
-
-###
--
--
--
--
-
-###
--
--
--
--
--
--
-
-##
-Full
-
-##
-0
-
-First
-
----
-
-##
-**
-
--
--
--
--
--
-
----
-
-##
-**
-
-**
-```
-{
-  "
-  "
-  "
-  "
-}
-```
-
--
-  -
-  -
-  -
-  -
-  -
--
--
-
-**
-```
-##
-✅
-⚠
-✅
-✅
-```
-
----
-
-##
-**
-
-Post
-
-```
-Builder
-    ↓
-1
-2
-    ↓
-3
-    ├──
-    └
-```
-
--
--
--
-
----
-
-##
-**
-
-L
-
-**
-```
-LL
-    ↓
-L
-    ↓
-L
-                               or
-    ├──
-    └
-```
-
-**
-After
-
-**
--
--
--
--
--
--
--
--
--
-
-**
--
--
--
-
-**
-
----
-
-##
-**
-
-Updated
-1
-2
-3
-
-Most
-
----
-
-##
-**
-
--
-  `{
--
-
-```
-##
-Branch
-
-###
-✅
-
-###
-✅
-❌
-   t
-⚠
-
-###
--
--
--
-```
-
--
--
--
-
----
-
-##
-**
-
--
--
--
--
--
-
----
-
-##
-**
-
--
--
--
--
-
----
-
-##
-
-|
-|
-|
-|
-|
-|
-
----
-
-##
-
-|
-|
-|
-|
-|
-|
-|
-|
-|
-|
-|
-|
-```
-
---- Hoplite | Agis ---
-
-```
-#
-
-##
-Sc
-
-##
--
--
--
--
--
--
--
--
--
--
--
-
-##
-Each
-
-##
-`
-
-##
--
--
--
--
--
-
-##
--
--
--
--
--
-
-##
--
-
-##
-1
-2
-3
-4
-
-##
-Short
-```
-RESP
-```
-
-##
-The
-
-##
--
--
--
-
-##
--
--
--
-
-##
-
--
--
--
--
-
-##
--
-
-```
-
---- Slinger | Pausanias ---
-
-
---- Slinger | Leonidas ---
-
-grep
-###
-
---- Slinger | Leonidas ---
+<
+
+SEARCH
+  IMPORTANT
+  grep
+  grep
+  grep
+  grep
+  grep
+  grep
+
+FILE
+${
+  ?
+  Get
+  :
+  find
+  ls
 
 READ
-###
+${
+  ?
+  Get
+  :
+  wc
 
---- Slinger | Leonidas ---
+READ
+  READ
+  READ
+  Note
+  Note
 
-grep
-###
+FETCH
+  WEB
+  WEB
+  Note
 
---- Slinger | Leonidas ---
-
-grep
-###
-
---- Slinger | Leonidas ---
-
-grep
-###
-
---- Slinger | Leonidas ---
-
-grep
-###
-
---- Slinger | Leonidas ---
-
-grep
-###
-
---- Slinger | Leonidas ---
-
-H
-
-**
-
-1
-   -
-   -
-   -
-   -
-   -
-   -
-
+STR
+${
+  ?
+STEP
+STEP
+STEP
+STEP
+DO
+  :
 2
-   -
-   -
-   -
-   -
-
 3
-   -
-   -
-   -
-
 4
-   -
-   -
-   -
-   -
+5
+For
 
-**
+    const
+      cmd
+        .
+        .
+        .
+        .
+        .
 
-###
--
--
--
--
+    const
+      /^(
+      /^
+      /^(
+      /^
+      /^
+      /^
+      /^
+      /^
+    ];
+    const
+      SAFE
 
-###
-```
-/**
- *
- *
- *
- *
- */
+    this
 
-import
-import
-import
-import
-import
-import
+    let
+    let
+    let
+    let
 
-export
-  constructor
-    private
-    private
-    private
-    private
-    private
-  )
-
-  private
+    //
+    //
     const
     const
+    const
+    const
+    const
+
     if
+      for
+        try
+          const
+          const
+          pre
+        }
+          pre
+        }
+      }
+    }
 
     const
-    for
       const
-      if
+      const
+      const
+      for
+        const
+        //
+        if
+          out
+        }
+        if
+      }
+      return
+    };
+
+    const
+      this
       try
         const
-        let
-        if
-          //
-          const
-          content
-        }
-          content
-        }
-        sections
-      }
-    }
-    return
-  }
-```
-
-```
-//
-//
-await
-```
-
-```
-//
-}
-  if
-```
-
---- Hoplite | Pausanias ---
-
-#
-
-##
-
-H
-
-###
-
-####
--
--
--
--
--
--
-
-####
--
--
--
--
-
-####
--
--
--
-
-####
--
--
--
--
-
-###
-H
-
-##
-
--
--
--
--
-
-##
-
-```
-/**
- *
- *
- *
- *
- */
-
-import
-import
-import
-import
-import
-import
-
-export
-  constructor
-    private
-    private
-    private
-    private
-    private
-  )
-
-  private
-    const
-    const
-    if
-
-    const
-    for
-      const
-      if
-      try
+        mkdir
         const
-        let
-        if
-          //
-          const
-          content
-        }
-          content
-        }
-        sections
+        //
+        write
       }
-    }
-    return
-```
+      return
+    };
 
-```
-//
-//
-await
-```
+    this
 
-```
-//
-}
-  if
-```
-
---- Slinger | Archidamus ---
-
-grep
-###
-
---- Slinger | Archidamus ---
-
-grep
-###
-
---- Slinger | Archidamus ---
-
-grep
-###
-
---- Slinger | Archidamus ---
-
-grep
-###
-
---- Slinger | Archidamus ---
-
-grep
-###
-
---- Slinger | Archidamus ---
-
-grep
-###
-
---- Slinger | Archidamus ---
-
-The
-
-The
-
-###
--
--
-
-###
-```
-//
-//
-if
-  const
-  const
-  const
-  const
-
-  try
-    const
-    const
-    const
-    history
-  }
-    history
-  }
-}
-```
-
---- Hoplite | Brasidas ---
-
-/**
- *
- *
- *
- *
- */
-
-import
-import
-import
-import
-import
-import
-
-export
-  constructor
-    private
-    private
-    private
-    private
-    private
-  )
-
-  private
-    const
-    const
-    if
-
-    const
     for
+      turn
       const
-      if
-      try
-        const
-        let
-        if
-          //
-          const
-          content
-        }
-          content
-        }
-        sections
-      }
-    }
-    return
-```
-
-```
-//
-//
-await
-```
-
-```
-//
-}
-  if
-```
-
---- Slinger | Archidamus ---
-
-grep
-###
-
---- Slinger | Archidamus ---
-
-grep
-###
-
---- Slinger | Archidamus ---
-
-grep
-###
-
---- Slinger | Archidamus ---
-
-Get
-###
-
---- Slinger | Archidamus ---
-
-Get
-###
-
---- Slinger | Archidamus ---
-
-
-###
-The
-
-###
-file
-C
-
-###
-```
-  async
-    research
-    target
-    onUpdate
-  ):
-```
-
---- Hoplite | Agesilaus ---
-
-
-```
-//
-//
-await
-```
-
-```
-//
-}
-  if
-```
-
-```
-#
-
-Based
-
-I
-
-###
-The
-
-###
-file
-C
-
-###
-```
-  async
-    research
-    target
-    onUpdate
-  ):
-```
-```
-
---- Slinger | Brasidas ---
-
-grep
-###
-
---- Slinger | Brasidas ---
-
-grep
-###
-
---- Slinger | Brasidas ---
-
-The
-
-###
-```
-async
-  research
-  target
-  onUpdate
-  context
-  options
-    outputFile
-    script
-    script
-    audit
-    protected
-    rem
-    prune
-  },
-):
-  text
-  files
-  errors
-  warnings
-  audit
-  result
-}>
-```
-
---- Slinger | Pausanias ---
-
-grep
-###
-
---- Slinger | Pausanias ---
-
-grep
-###
-
---- Slinger | Pausanias ---
-
-grep
-###
-
---- Slinger | Pausanias ---
-
-grep
-###
-
---- Slinger | Pausanias ---
-
-grep
-###
-
---- Slinger | Pausanias ---
-
-grep
-###
-
---- Slinger | Pausanias ---
-
-grep
-###
-
---- Slinger | Pausanias ---
-
-Based
-
-The
-1
-2
-3
-
-###
--
--
--
-
-###
-```
-//
-async
-  research
-  target
-  onUpdate
-):
-  return
-}
-
-//
-import
-
-//
-return
-```
-
---- Slinger | Leonidas ---
-
-grep
-###
-
---- Slinger | Leonidas ---
-
-grep
-###
-
---- Slinger | Leonidas ---
-
-grep
-###
-
---- Slinger | Leonidas ---
-
-grep
-###
-
---- Slinger | Leonidas ---
-
-grep
-###
-
---- Slinger | Leonidas ---
-
-Full
-
-**(
-When
--
--
--
--
--
--
-
-The
-
-**(
-Git
-```
-const
-if
-  try
-  catch
-}
-  onUpdate
-}
-```
-The
-
-**(
-Need
-
-**(
-Need
-
-###
-grep
-
---- Slinger | Agis ---
-
-grep
-###
-
---- Slinger | Agis ---
-
-grep
-###
-
---- Slinger | Agis ---
-
-cat
-###
-
---- Slinger | Agis ---
-
-cat
-###
-
---- Slinger | Agis ---
-
-cat
-###
-
---- Slinger | Agis ---
-
-I
-
-**
--
--
--
--
-
-**
--
--
-
-**
--
--
--
--
-
-**
--
-
-###
-
-**
-```
-export
-  task
-  implementation
-  frontier
-  deps
-  onUpdate
-):
-```
-
-**
-```
-  if
-    set
-    onUpdate
-
-    task
-      id
-      file
-    }
-```
-
-**
-```
-  return
-```
-
-**
-```
-            content
-          }
-        }
-      }
       const
+      const
+      const
+        ?
+        :
+          ?
+          :
+            ?
+            :
+      const
+      const
+        ?
+        :
+
+      const
+        '
+        `
         onUpdate
-      });
-      return
-    }
-```
+      );
 
---- Slinger | Pausanias ---
-
-grep
-###
-
---- Slinger | Pausanias ---
-
-grep
-###
-
---- Slinger | Pausanias ---
-
-READ
-###
-
---- Slinger | Pausanias ---
-
-Get
-###
-
---- Slinger | Pausanias ---
-
-Get
-###
-
---- Slinger | Pausanias ---
-
-Based
-
-**
-The
-1
-2
-3
-
-It
-
-**
-When
--
--
--
-
-###
-From
-```
-    can
+      const
+      let
+      if
+        let
+        const
         if
-            return
-        }
+        cmd
+      }
+      const
 
+      if
+        const
+        commands
+
+        //
         if
-            return
-        }
-
-        if
-            return
-        }
-
-        return
-```
-
-From
-```
-    if
-      runner
-      return
-    }
-    if
-      runner
-      return
-    }
-```
-
---- Slinger | Pausanias ---
-
-READ
-###
-
---- Slinger | Pausanias ---
-
-Get
-###
-
---- Slinger | Pausanias ---
-
-Get
-###
-
---- Slinger | Pausanias ---
-
-Get
-###
-
---- Slinger | Pausanias ---
-
-Get
-###
-
---- Slinger | Pausanias ---
-
-Get
-###
-
---- Slinger | Pausanias ---
-
-Get
-###
-
---- Slinger | Pausanias ---
-
-The
-
-###
--
--
--
-
-###
-The
-```
-src
-src
-src
-```
-
-The
-```
-import
-import
-```
-
-The
-```
-src
-src
-src
-```
-
---- Slinger | Pausanias ---
-
-grep
-###
-
---- Slinger | Pausanias ---
-
-READ
-###
-
---- Slinger | Pausanias ---
-
-grep
-###
-
---- Slinger | Pausanias ---
-
-Get
-###
-
---- Slinger | Pausanias ---
-
-Successfully
-
-###
--
--
--
-
-###
-
-**
-```
-              last
-              try
-            }
-          }
           const
-          onUpdate
+          const
+          const
+          const
+          try
+            //
+            const
+              path
+              path
+              path
+            ];
+            const
+            const
+            let
+            if
+              start
+              end
+            }
+            const
+            history
+          }
+            history
+          }
+          continue
+        }
+
+        //
+        if
+          const
+          const
+            .
+            .
+          try
+            const
+            const
+            history
+          }
+            history
+          }
+          continue
+        }
+
+        if
+          history
+          continue
+        }
+        try
+          let
+          if
+            output
+          }
+            const
+              cwd
+            });
+            output
+            if
+          }
+            output
+          }
+          history
+        }
+          history
+        }
+      }
+        //
+        //
+        if
+          history
+        }
           return
         }
       }
-    }
-
-    if
-
-    const
-    if
-      try
-      catch
-    }
-      onUpdate
+        return
+      }
+        history
+      }
     }
     return
   }
+}
+```
 
-  async
-    task
-    global
-  ):
-    const
-You
+--- Builder (Task 1) | Aristomenis ---
 
-RULE
--
--
--
-
-Output
 REV
-REV
-<
+src
++ 
++ 
++ 
++ 
++ 
++
++ 
++
 END
 
-    const
+--- Builder (Task 1) | Teleutias ---
 
-    try
-      const
-      const
-      const
-      const
-      if
-      const
-      const
-      onUpdate
-      return
-    }
-  }
-}
 ```
+/**
+ *
+ *
+ *
+ *
+ */
 
-**
-```
-  can
-    const
-    if
+import
+import
+import
+import
+import
+import
+import
+import
+import
 
-    const
-    if
-      return
-    }
+export
+  constructor
+    private
+    private
+    private
+    private
+    private
+  )
 
-    const
-    if
-
-    const
-    if
-
-    return
-  }
-
-  get
-    return
-  }
-
-  getConfig
-    return
-  }
-}
-```
-
-**
-```
   async
-    task
-    scout
-    arist
-    builder
-    p
+    research
+    target
     onUpdate
   ):
     const
-      passed
-      scout
-      arist
-      builder
-      p
+    const
+    const
+
+    let
+    if
+      const
+      const
+      target
+    }
+
+    const
+
+CR
+CR
+CR
+
+FORMAT
+###
+<
+###
+
+When
+###
+<
+###
+<
+###
+<
+
+SEARCH
+  IMPORTANT
+  grep
+  grep
+  grep
+  grep
+  grep
+  grep
+
+FILE
+${
+  ?
+  Get
+  :
+  find
+  ls
+
+READ
+${
+  ?
+  Get
+  :
+  wc
+
+READ
+  READ
+  READ
+  Note
+  Note
+
+FETCH
+  WEB
+  WEB
+  Note
+
+STR
+${
+  ?
+STEP
+STEP
+STEP
+STEP
+DO
+  :
+2
+3
+4
+5
+For
+
+    const
+      cmd
+        .
+        .
+        .
+        .
+        .
+
+    const
+      /^(
+      /^
+      /^(
+      /^
+      /^
+      /^
+      /^
+      /^
+    ];
+    const
+      SAFE
+
+    this
+
+    let
+    let
+    let
+    let
+
+    //
+    //
+    const
+    const
+    const
+    const
+    const
+
+    if
+      for
+        try
+          const
+          const
+          pre
+        }
+          pre
+        }
+      }
+    }
+
+    const
+      const
+      const
+      const
+      for
+        const
+        //
+        if
+          out
+        }
+        if
+      }
+      return
     };
 
-    try
-      result
-      if
+    const
+      this
+      try
+        const
+        mkdir
+        const
+        //
+        write
+      }
+      return
+    };
 
-      result
-      if
+    this
 
-      result
-      if
+    for
+      turn
+      const
+      const
+      const
+      const
+        ?
+        :
+          ?
+          :
+            ?
+            :
+      const
+      const
+        ?
+        :
 
-      result
-      if
+      const
+        '
+        `
+        onUpdate
+      );
 
-      result
-      onUpdate
+      const
+      let
+      if
+        let
+        const
+        if
+        cmd
+      }
+      const
+
+      if
+        const
+
+        //
+        if
+          const
+          const
+          const
+          const
+          try
+            //
+            const
+              path
+              path
+              path
+            ];
+            const
+            const
+            let
+            if
+              start
+              end
+            }
+            const
+            history
+          }
+            history
+          }
+          commands
+          continue
+        }
+
+        //
+        if
+          const
+          const
+            .
+            .
+          try
+            const
+            const
+            history
+          }
+            history
+          }
+          commands
+          continue
+        }
+
+        if
+          history
+          continue
+        }
+        try
+          let
+          if
+            output
+          }
+            const
+              cwd
+            });
+            output
+            if
+          }
+            output
+          }
+          history
+        }
+          history
+        }
+        commands
+      }
+        //
+        //
+        if
+          history
+        }
+          return
+        }
+      }
+        return
+      }
+        history
+      }
     }
-      onUpdate
-    }
-
+    
+    const
+    onUpdate
     return
   }
+}
+```
+
+--- Builder (Task 1) | Pausanias ---
+
+```
+/**
+ *
+ *
+ *
+ *
+ */
+
+import
+import
+import
+import
+import
+import
+import
+import
+import
+
+export
+  constructor
+    private
+    private
+    private
+    private
+    private
+  )
 
   async
-    task
-    modelName
+    research
+    target
     onUpdate
   ):
     const
     const
+    const
 
-    try
+    let
+    if
       const
       const
-      const
-      if
-      return
+      target
     }
+
+    const
+
+CR
+CR
+CR
+
+FORMAT
+###
+<
+###
+
+When
+###
+<
+###
+<
+###
+<
+
+SEARCH
+  IMPORTANT
+  grep
+  grep
+  grep
+  grep
+  grep
+  grep
+
+FILE
+${
+  ?
+  Get
+  :
+  find
+  ls
+
+READ
+${
+  ?
+  Get
+  :
+  wc
+
+READ
+  READ
+  READ
+  Note
+  Note
+
+FETCH
+  WEB
+  WEB
+  Note
+
+STR
+${
+  ?
+STEP
+STEP
+STEP
+STEP
+DO
+  :
+2
+3
+4
+5
+For
+
+    const
+      cmd
+        .
+        .
+        .
+        .
+        .
+
+    const
+      /^(
+      /^
+      /^(
+      /^
+      /^
+      /^
+      /^
+      /^
+    ];
+    const
+      SAFE
+
+    this
+
+    let
+    let
+    let
+    let
+
+    //
+    //
+    const
+    const
+    const
+    const
+    const
+
+    if
+      for
+        try
+          const
+          const
+          pre
+        }
+          pre
+        }
+      }
+    }
+
+    const
+      const
+      const
+      const
+      for
+        const
+        //
+        if
+          out
+        }
+        if
+      }
+      return
+    };
+
+    const
+      this
+      try
+        const
+        mkdir
+        const
+        //
+        write
+      }
+      return
+    };
+
+    this
+
+    for
+      turn
+      const
+      const
+      const
+      const
+        ?
+        :
+          ?
+          :
+            ?
+            :
+      const
+      const
+        ?
+        :
+
+      const
+        '
+        `
+        onUpdate
+      );
+
+      const
+      let
+      if
+        let
+        const
+        if
+        cmd
+      }
+      const
+
+      if
+        const
+        commands
+
+        //
+        if
+          const
+          const
+          const
+          const
+          try
+            //
+            const
+              path
+              path
+              path
+            ];
+            const
+            const
+            let
+            if
+              start
+              end
+            }
+            const
+            history
+          }
+            history
+          }
+          continue
+        }
+
+        //
+        if
+          const
+          const
+            .
+            .
+          try
+            const
+            const
+            history
+          }
+            history
+          }
+          continue
+        }
+
+        if
+          history
+          continue
+        }
+        try
+          let
+          if
+            output
+          }
+            const
+              cwd
+            });
+            output
+            if
+          }
+            output
+          }
+          history
+        }
+          history
+        }
+      }
+        //
+        //
+        if
+          history
+        }
+          return
+        }
+      }
+        return
+      }
+        history
+      }
+    }
+    return
   }
+}
 ```
