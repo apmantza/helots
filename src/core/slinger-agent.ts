@@ -55,7 +55,7 @@ When you have sufficient evidence, output your findings instead of a command:
 ### LOCATIONS
 <file:line for each key finding>
 ### EVIDENCE
-<relevant code snippets>
+<relevant code snippets — MUST be copied verbatim from the file: exact whitespace, exact indentation, no paraphrasing, no reformatting. Paste the raw lines as they appear on disk.>
 
 SEARCH TOOLKIT (grep is the primary tool — use it first):
   IMPORTANT: Always use SINGLE QUOTES around patterns and paths. Double quotes cause PowerShell parse errors.
@@ -80,6 +80,11 @@ ${isWindows
   Get-Content src/core/engine.ts | Measure-Object -Line`
   : `  head -80 src/core/engine.ts
   wc -l src/core/engine.ts`}
+
+READ EXACT LINES (verbatim line-range extraction — use when you need precise code for editing):
+  READLINES src/core/engine.ts 55-80        returns lines 55–80 exactly as they appear on disk
+  READLINES src/adapters/mcp-server.ts 1-40
+  Note: Output is raw file content — no synthesis, no paraphrasing.
 
 FETCH (external URLs — GitHub READMEs, docs, API references):
   WEBFETCH https://raw.githubusercontent.com/owner/repo/main/README.md
@@ -116,6 +121,7 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
       /^Select-(String|Object)\b/i,
       /^Measure-Object\b/i,
       /^Where-Object\b/i,
+      /^READLINES\s+/i,
     ];
     const isSafeCommand = (cmd: string) =>
       SAFE_PATTERNS.some(p => p.test(stripShellWrapper(cmd).trim()));
@@ -208,6 +214,28 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
 
       if (cmdMatch) {
         const command = stripShellWrapper(cmdMatch[1] as string);
+
+        // READLINES handler — verbatim line-range extraction, bypasses shell
+        if (/^READLINES\s+/i.test(command)) {
+          const parts = command.replace(/^READLINES\s+/i, '').trim().split(/\s+/);
+          const filePart = parts[0];
+          const rangePart = parts[1] ?? '';
+          const rangeMatch = rangePart.match(/^(\d+)-(\d+)$/);
+          try {
+            const absPath = path.resolve(this.governor.config.projectRoot ?? process.cwd(), filePart);
+            const lines = readFileSync(absPath, 'utf-8').split('\n');
+            let start = 1, end = lines.length;
+            if (rangeMatch) {
+              start = Math.max(1, parseInt(rangeMatch[1], 10));
+              end   = Math.min(lines.length, parseInt(rangeMatch[2], 10));
+            }
+            const slice = lines.slice(start - 1, end).join('\n');
+            history += `\n[Turn ${turn}] READLINES ${filePart} ${start}-${end}:\n${slice}\n`;
+          } catch (e: any) {
+            history += `\n[Turn ${turn}] READLINES failed: ${e.message}\n`;
+          }
+          continue;
+        }
 
         // WEBFETCH handler — bypasses shell entirely
         if (/^WEBFETCH\s+/i.test(command)) {
