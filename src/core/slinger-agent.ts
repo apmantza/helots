@@ -5,7 +5,7 @@
  * Supports targetFiles preloading and a 8-turn command loop.
  */
 
-import { readFileSync, writeFileSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join }      from 'path';
 import * as path     from 'path';
 import { spawnSync } from 'child_process';
@@ -43,13 +43,15 @@ export class SlingerAgent {
     const slingerSystem = `You are the Slinger — a code reconnaissance agent. Execute read-only shell commands to answer the research question.
 
 CRITICAL: Do NOT write any reasoning, explanation, or preamble before ### COMMAND. Your FIRST output must be ### COMMAND.
+CRITICAL: ### COMMAND and ### SUMMARY are MUTUALLY EXCLUSIVE. Never output both in the same response. Either issue a command OR summarize — never both.
+CRITICAL: Never answer from memory or training data. Every claim in ### SUMMARY must come from actual command output in History.
 
 FORMAT (strict — one command per turn):
 ### COMMAND
 <single command — must be ONE line, no line breaks>
 ### END_COMMAND
 
-When you have sufficient evidence, output your findings instead of a command:
+When you have sufficient evidence FROM COMMAND HISTORY, output your findings instead of a command:
 ### SUMMARY
 <what was found>
 ### LOCATIONS
@@ -84,6 +86,7 @@ ${isWindows
 READ EXACT LINES (verbatim line-range extraction — use when you need precise code for editing):
   READLINES src/core/engine.ts 55-80        returns lines 55–80 exactly as they appear on disk
   READLINES src/adapters/mcp-server.ts 1-40
+  Note: ONE file per command. Issue separate READLINES commands for each file across multiple turns.
   Note: Output is raw file content — no synthesis, no paraphrasing.
 
 FETCH (external URLs — GitHub READMEs, docs, API references):
@@ -226,7 +229,13 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
           const rangePart = parts[1] ?? '';
           const rangeMatch = rangePart.match(/^(\d+)-(\d+)$/);
           try {
-            const absPath = path.resolve(this.governor.config.projectRoot ?? process.cwd(), filePart);
+            // Try projectRoot-relative, then cwd-relative, then absolute
+            const candidates = [
+              path.resolve(this.governor.config.projectRoot ?? process.cwd(), filePart),
+              path.resolve(process.cwd(), filePart),
+              path.resolve(filePart),
+            ];
+            const absPath = candidates.find(p => existsSync(p)) ?? candidates[0];
             const lines = readFileSync(absPath, 'utf-8').split('\n');
             let start = 1, end = lines.length;
             if (rangeMatch) {
