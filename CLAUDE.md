@@ -8,17 +8,19 @@ Architecture: Scout → Builder → Peltast pipeline. Aristomenis only runs as a
 ## Tool Usage Policy
 
 ### Use `helot_slinger` for code searches and exploration
-Prefer `helot_slinger` over Grep/Glob/Read when:
-- Reading and synthesizing file content across multiple files
-- Exploring an unfamiliar area of the codebase
-- Answering questions that require understanding code, not just locating it
 
-**Always set `outputFile`** when the research result is more than a quick lookup — this writes the full report to disk and returns only a compact summary to frontier. Example: `outputFile: ".helot-mcp-connector/research.md"`.
+| Intent | Tool |
+|--------|------|
+| Research / understand code | `helot_slinger` + `outputFile: ".helot-mcp-connector/research.md"` |
+| Edit prep — need exact lines for `old_string` | `helot_slinger` with `researchTask: "READLINES file.ts <start>-<end>"` |
+| Single file, targeted edit, <50 lines, no ambiguity | Direct `Read` |
+| Pure pattern search, need location only | Direct `Grep` |
 
-Use direct Grep/Read when:
-- Pure string/pattern search where you only need the location, not the content analyzed — Grep returns a compact result, slinger wraps it in SUMMARY/EVIDENCE overhead
-- Reading a single known file you already have a path for
-- Simple lookups where the raw result IS the answer (one match, one line)
+**Never Read a full file you haven't already slingered**, unless it's a trivial single-purpose file or an immediate targeted edit with no ambiguity.
+
+**Always set `outputFile`** — writes full report to disk, returns only compact summary to frontier. Use `.helot-mcp-connector/research.md`.
+
+**READLINES is the edit-prep path** — before editing a function, issue `READLINES file.ts <start>-<end>` through slinger instead of `Read(file)`. Returns verbatim lines via `readFileSync` — exact whitespace, ready for `Edit old_string`, zero full-file context cost. Bundle into the same slinger call as any research questions.
 
 ### Use `helot_run` for non-trivial code changes
 **helot_run now REQUIRES a `tasks[]` array.** Aristomenis is NOT a planner anymore.

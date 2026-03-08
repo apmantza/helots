@@ -121,6 +121,13 @@ elif tool_name in ('Edit', 'Write'):
 elif tool_name == 'Read':
     file_path = tool_input.get('file_path', '')
     offset = tool_input.get('offset')
+    limit  = tool_input.get('limit', 80)
+    # Make path relative for display
+    try:
+        rel_path = os.path.relpath(file_path)
+    except Exception:
+        rel_path = file_path
+
     if file_path.endswith('.md'):
         reminder = (
             "helots MCP is connected. You are reading a markdown file. "
@@ -129,26 +136,26 @@ elif tool_name == 'Read':
             "Only use Read on .md files if you genuinely need the content in your own context (e.g. to answer a question)."
         )
     elif offset is not None:
-        # Reading a section (offset set) is a navigation/research pattern — slinger handles this better
+        start = offset
+        end   = offset + (limit or 80) - 1
         reminder = (
-            "helots MCP is connected. This Read uses an offset, which suggests section browsing — "
-            "a research pattern that helot_slinger handles in one round-trip. "
-            "Use helot_slinger with specific line range questions instead of paginating with Read."
+            f"helots MCP is connected. This Read uses an offset — use helot_slinger with READLINES instead:\n"
+            f'  researchTask: "READLINES {rel_path} {start}-{end}"\n'
+            f'  outputFile: ".helot-mcp-connector/research.md"\n'
+            f"READLINES returns verbatim lines via readFileSync — exact whitespace, ready for Edit old_string, zero frontier token cost."
         )
     else:
-        # Large file read: if the intent is analysis/understanding rather than editing,
-        # slinger summarizes locally — full file content never hits frontier context
         try:
             size = os.path.getsize(file_path) if file_path else 0
         except OSError:
             size = 0
         if size > 6000:  # ~100-150 lines
             reminder = (
-                "helots MCP is connected. This file is large — if you're reading it to "
-                "understand or analyse it (not to make an immediate targeted edit), use "
-                "helot_slinger instead. Slinger summarizes locally; the full file content "
-                "never hits the frontier context. Use Read directly only when you need "
-                "the raw content in your own context."
+                f"helots MCP is connected. This file is large ({size // 1000}KB). Choose the right path:\n"
+                f"  • Research/understand → helot_slinger({{ researchTask: \"summarise {rel_path}\", outputFile: \".helot-mcp-connector/research.md\" }})\n"
+                f"  • Edit prep (need exact lines) → helot_slinger with researchTask: \"READLINES {rel_path} <start>-<end>\"\n"
+                f"  • Already know it's a small targeted edit (<50 lines, no ambiguity) → Read is fine.\n"
+                f"Full file in frontier context costs ~{size // 4} tokens and stays for the rest of the session."
             )
 
 elif tool_name == 'WebFetch':
