@@ -63,8 +63,13 @@ export async function runTaskLoop(
       return `[ESCALATION] ${result.escalation}`;
     }
     if (!result.passed) {
-      runner.dispose();
-      return `Pipeline halted at Task ${task.id}: ${task.description}`;
+      task.status = 'failed';
+      runner.governor.state.tasks[i] = task;
+      runner.governor.saveState();
+      onUpdate?.({ text: `❌ Task ${task.id} failed — continuing with independent tasks` });
+      runner.writeEventFn({ type: 'task_status', taskId: task.id, status: 'failed' });
+      // Don't halt — the blocker check at loop top will skip any tasks that depend on this one
+      continue;
     }
   }
 

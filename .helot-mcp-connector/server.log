@@ -4184,3 +4184,70 @@ Helots MCP Server running on stdio
 [Slinger Update] ✅ Slinger | Pausanias | 44.8t/s | 367 gen + 5047 prompt tokens
 [Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/research.md...
 [Slinger Update] ✅ Scribe | .helot-mcp-connector/research.md written (direct)
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[Slinger Update] 🔍 Scribe | researching...
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen9b — ctx: 262144
+[Slinger Update] 🏹 Slinger Leonidas deployed.
+[Slinger Update] 📐 Context: 262144 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[MODEL SWAP] Swapping from qwen27b to qwen9b for role Slinger...
+[Slinger Update] ✅ Slinger | Leonidas | 47.5t/s | 50 gen + 974 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 47.1t/s | 37 gen + 2458 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 46.7t/s | 49 gen + 3987 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 46.7t/s | 49 gen + 4440 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 46.2t/s | 42 gen + 4894 prompt tokens
+[Slinger Update] ✅ Slinger | Leonidas | 43.9t/s | 521 gen + 5161 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/research.md...
+[Slinger Update] ✅ Scribe | .helot-mcp-connector/research.md written (direct)
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Agis deployed.
+[Slinger Update] 📐 Context: 262144 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Agis | 47.4t/s | 42 gen + 888 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 46.8t/s | 38 gen + 2146 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 46.9t/s | 31 gen + 2238 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 45.2t/s | 40 gen + 3762 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 45.2t/s | 39 gen + 5294 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 42.1t/s | 816 gen + 6093 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/research2.md...
+[Slinger Update] ✅ Scribe | .helot-mcp-connector/research2.md written (direct)
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Pausanias deployed.
+[Slinger Update] 📐 Context: 262144 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Pausanias | 46.7t/s | 26 gen + 877 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 46.8t/s | 34 gen + 1415 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 46.0t/s | 37 gen + 1470 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 45.8t/s | 39 gen + 1509 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 45.8t/s | 38 gen + 2811 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 42.1t/s | 396 gen + 3447 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/research3.md...
+[Slinger Update] ✅ Scribe | .helot-mcp-connector/research3.md written (direct)
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Pausanias deployed.
+[Slinger Update] 📐 Context: 262144 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Pausanias | 46.2t/s | 38 gen + 821 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 47.4t/s | 40 gen + 804 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 47.1t/s | 37 gen + 2337 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 46.1t/s | 46 gen + 3870 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 45.9t/s | 46 gen + 5274 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 45.5t/s | 45 gen + 6813 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 43.4t/s | 22 gen + 7220 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 43.3t/s | 221 gen + 7787 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/research4.md...
+[Slinger Update] ✅ Scribe | .helot-mcp-connector/research4.md written (direct)
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Pausanias deployed.
+[Slinger Update] 📐 Context: 262144 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Pausanias | 47.8t/s | 52 gen + 824 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 46.1t/s | 36 gen + 882 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 47.6t/s | 47 gen + 922 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 47.0t/s | 44 gen + 1029 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 42.2t/s | 1720 gen + 1799 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/research5.md...
+[Slinger Update] ✅ Scribe | .helot-mcp-connector/research5.md written (direct)

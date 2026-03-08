@@ -430,13 +430,15 @@ export class TaskRunner {
 
     if (!taskPassed) { task.status = 'failed'; return { passed: false }; }
 
-    const commitCheck = this.governor.canCommit();
-    if (commitCheck.allowed) {
-      try { execSync(`git add . && git commit -m "[Aristomenis] Task ${task.id}: ${task.description}"`, { cwd: this.governor.config.projectRoot, stdio: 'ignore' }); onUpdate?.({ text: `✅ Task ${task.id} committed.` }); }
-      catch { }
-    } else {
-      onUpdate?.({ text: `⚠️ Skipping commit: ${commitCheck.reason}` });
-    }
+    // Commit directly after Peltast pass — canCommit() runs before git add so always
+    // sees no staged files. Peltast pass is the gate; no secondary check needed.
+    try {
+      execSync(
+        `git add -A && git commit -m "[helots] Task ${task.id}: ${task.description.slice(0, 72)}"`,
+        { cwd: this.governor.config.projectRoot, stdio: 'ignore' },
+      );
+      onUpdate?.({ text: `✅ Task ${task.id} committed.` });
+    } catch { /* no changes to commit, or git unavailable */ }
     return { passed: true };
   }
 
