@@ -4114,3 +4114,30 @@ Helots MCP Server running on stdio
 [Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/research.md...
 [Slinger Update] ✅ Hoplite | Pausanias | 43.5t/s | 1097 gen + 1270 prompt tokens
 [Slinger Update] ✅ Hoplite: .helot-mcp-connector/research.md written (0 → 58 lines)
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Archidamus deployed.
+[Slinger Update] 📐 Context: 262144 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Archidamus | 46.9t/s | 30 gen + 717 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 46.9t/s | 27 gen + 755 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 46.9t/s | 28 gen + 1386 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 46.9t/s | 35 gen + 2909 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 45.8t/s | 37 gen + 2951 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 46.0t/s | 42 gen + 3003 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 44.0t/s | 402 gen + 3078 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/research.md...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/research.md...
+[Slinger Update] ✅ Hoplite | Brasidas | 41.8t/s | 564 gen + 2109 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/research.md written (58 → 11 lines)
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Archidamus deployed.
+[Slinger Update] 📐 Context: 262144 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Archidamus | 46.9t/s | 31 gen + 739 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 46.0t/s | 35 gen + 786 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 45.9t/s | 35 gen + 834 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 46.2t/s | 38 gen + 882 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 47.2t/s | 35 gen + 2163 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 42.2t/s | 126 gen + 2221 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/research.md...
+[Slinger Update] ✏️ Hoplite editing .helot-mcp-connector/research.md...
+[Slinger Update] ✅ Hoplite | Agesilaus | 43.0t/s | 278 gen + 446 prompt tokens
+[Slinger Update] ✅ Hoplite: .helot-mcp-connector/research.md written (11 → 6 lines)

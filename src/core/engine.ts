@@ -5,7 +5,7 @@
  * public methods to the appropriate agent or orchestrator.
  */
 
-import { appendFileSync, readdirSync, statSync, mkdirSync } from 'fs';
+import { appendFileSync, readdirSync, statSync, mkdirSync, writeFileSync } from 'fs';
 import { deriveProtectedFiles, expandPruneRules, executeScript as _executeScript, listFilesRecursive } from './file-executor.js';
 import * as path from 'path';
 import { join } from 'path';
@@ -97,11 +97,13 @@ export class HelotEngine {
     onUpdate?.({ text: `🔍 Scribe | researching...` });
     const research = await this.slingerAgent.execute(researchTask, undefined, onUpdate);
     onUpdate?.({ text: `✍️ Scribe | writing ${outputFile}...` });
-    // Cap research passed to hoplite to avoid OOM — ~6k chars ≈ 1500 tokens
-    const researchCapped = research.length > 6000 ? research.slice(0, 6000) + '\n\n[...truncated for context budget]' : research;
-    await this.hopliteAgent.execute(outputFile,
-      `Based on this research, write a clean well-formatted markdown document:\n\n${researchCapped}`,
-      onUpdate);
+    // Write slinger output directly — no LLM reformatting. The slinger already produced
+    // the final report; passing it through hoplite's LLM causes it to be rewritten,
+    // losing SUMMARY/LOCATIONS and keeping only code fragments.
+    const absOut = path.resolve(outputFile);
+    mkdirSync(path.dirname(absOut), { recursive: true });
+    writeFileSync(absOut, research, 'utf-8');
+    onUpdate?.({ text: `✅ Scribe | ${outputFile} written (direct)` });
 
     if (!batchDir) return `✅ Scribe done → ${outputFile}`;
 
