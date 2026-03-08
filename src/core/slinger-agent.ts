@@ -13,6 +13,8 @@ import { execSync }  from 'child_process';
 import { nodeGrepCommand } from './grep-utils.js';
 import { pickName }        from './persona-utils.js';
 import { Aristomenis }     from './governor.js';
+import { LspManager }      from './lsp-client.js';
+import type { LspOperation } from './lsp-client.js';
 import type { RunSubagentFn, WriteEventFn } from './types.js';
 
 export class SlingerAgent {
@@ -95,6 +97,17 @@ FETCH (external URLs — GitHub READMEs, docs, API references):
   WEBFETCH https://docs.example.com/api-reference
   Note: GitHub blob URLs are auto-converted to raw. Output truncated to 8000 chars.
 
+LSP (code intelligence — faster and more accurate than grep for symbol navigation):
+  LSP_DEFINITION src/core/engine.ts 45 12    → exact definition location (file:line:col)
+  LSP_REFERENCES src/core/engine.ts 45 12    → all callers with location and context
+  LSP_HOVER      src/core/engine.ts 45 12    → type signature and docs
+  LSP_SYMBOLS    src/core/engine.ts          → all symbols (classes, functions, vars) in file
+  LSP_WORKSPACE  LspManager                  → workspace-wide symbol search by name
+  LSP_INCOMING   src/core/engine.ts 45 12    → who calls this function
+  LSP_OUTGOING   src/core/engine.ts 45 12    → what this function calls
+  Note: line and col are 1-based. Use READLINES after LSP_DEFINITION to see the code.
+  Note: Prefer LSP over grep for: finding where a function is defined, all callers, type info.
+
 STRATEGY:
 ${targetFiles && targetFiles.length > 0
   ? `⚠️  PRE-LOADED FILES ARE IN YOUR PROMPT — follow this order strictly:
@@ -127,6 +140,7 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
       /^Measure-Object\b/i,
       /^Where-Object\b/i,
       /^READLINES\s+/i,
+      /^LSP_\w+\s+/i,
     ];
     const isSafeCommand = (cmd: string) =>
       SAFE_PATTERNS.some(p => p.test(stripShellWrapper(cmd).trim()));
@@ -303,6 +317,49 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
             history += `\n[Turn ${turn}] WEBFETCH: ${rawUrl}\nStatus: ${res.status}\nContent:\n${text}\n`;
           } catch (e: any) {
             history += `\n[Turn ${turn}] WEBFETCH failed: ${rawUrl} — ${e.message}\n`;
+          }
+          continue;
+        }
+
+        // LSP handler — code intelligence (definition, references, hover, symbols, call hierarchy)
+        if (/^LSP_\w+\s+/i.test(command)) {
+          const [opRaw, ...rest] = command.split(/\s+/);
+          const opKey = opRaw.replace(/^LSP_/i, '').toLowerCase();
+          const LSP_OP_MAP: Record<string, LspOperation> = {
+            definition: 'goToDefinition',
+            references: 'findReferences',
+            hover:      'hover',
+            symbols:    'documentSymbol',
+            workspace:  'workspaceSymbol',
+            incoming:   'incomingCalls',
+            outgoing:   'outgoingCalls',
+          };
+          const operation = LSP_OP_MAP[opKey];
+          if (!operation) {
+            history += `\n[Turn ${turn}] LSP error: unknown operation "${opRaw}". Valid: LSP_DEFINITION, LSP_REFERENCES, LSP_HOVER, LSP_SYMBOLS, LSP_WORKSPACE, LSP_INCOMING, LSP_OUTGOING\n`;
+            continue;
+          }
+          try {
+            const lspCwd = this.governor.config.projectRoot ?? process.cwd();
+            const lsp = new LspManager(lspCwd);
+            let result: string;
+            if (operation === 'workspaceSymbol') {
+              // LSP_WORKSPACE <query>
+              result = await lsp.navigate(operation, rest[0] ?? '', 1, 1, rest.join(' '));
+            } else if (operation === 'documentSymbol') {
+              // LSP_SYMBOLS <file>
+              result = await lsp.navigate(operation, path.resolve(lspCwd, rest[0] ?? ''), 1, 1);
+            } else {
+              // LSP_xxx <file> <line> <col>
+              const [filePart, lineStr, colStr] = rest;
+              const line = parseInt(lineStr ?? '1', 10);
+              const col  = parseInt(colStr  ?? '1', 10);
+              result = await lsp.navigate(operation, path.resolve(lspCwd, filePart ?? ''), line, col);
+            }
+            lsp.dispose();
+            history += `\n[Turn ${turn}] ${opRaw}: ${rest.join(' ')}\n${result}\n`;
+          } catch (e: any) {
+            history += `\n[Turn ${turn}] LSP failed: ${e.message}\n`;
           }
           continue;
         }

@@ -23,10 +23,10 @@
  */
 
 import { spawn, spawnSync, ChildProcess } from 'child_process';
-import { writeFileSync, mkdirSync, rmSync } from 'fs';
-import { extname, resolve } from 'path';
+import { writeFileSync, mkdirSync, rmSync, readFileSync } from 'fs';
+import { extname, resolve, relative } from 'path';
 import { tmpdir } from 'os';
-import { pathToFileURL } from 'url';
+import { pathToFileURL, fileURLToPath } from 'url';
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -38,6 +38,17 @@ export interface LspDiagnostic {
   code?: string;
 }
 
+export type LspOperation =
+  | 'goToDefinition'
+  | 'findReferences'
+  | 'hover'
+  | 'documentSymbol'
+  | 'workspaceSymbol'
+  | 'goToImplementation'
+  | 'prepareCallHierarchy'
+  | 'incomingCalls'
+  | 'outgoingCalls';
+
 interface ServerDef {
   command: string;
   args: string[];
@@ -47,11 +58,11 @@ interface ServerDef {
 // ── Language registry ─────────────────────────────────────────────────────────
 
 const REGISTRY: Record<string, ServerDef> = {
-  '.ts':  { command: 'typescript-language-server', args: ['--stdio'], languageId: 'typescript' },
-  '.tsx': { command: 'typescript-language-server', args: ['--stdio'], languageId: 'typescriptreact' },
-  '.js':  { command: 'typescript-language-server', args: ['--stdio'], languageId: 'javascript' },
-  '.jsx': { command: 'typescript-language-server', args: ['--stdio'], languageId: 'javascriptreact' },
-  '.py':  { command: 'pylsp', args: [], languageId: 'python' },
+  '.ts':  { command: 'vtsls', args: ['--stdio'], languageId: 'typescript' },
+  '.tsx': { command: 'vtsls', args: ['--stdio'], languageId: 'typescriptreact' },
+  '.js':  { command: 'vtsls', args: ['--stdio'], languageId: 'javascript' },
+  '.jsx': { command: 'vtsls', args: ['--stdio'], languageId: 'javascriptreact' },
+  '.py':  { command: 'pyright', args: ['--stdio'], languageId: 'python' },
   '.rs':  { command: 'rust-analyzer', args: [], languageId: 'rust' },
 };
 
@@ -104,6 +115,40 @@ export class LspManager {
     // runTypecheckSlow (full project tsc, post-disk-write) is the correct gate.
     // tscFallback on an isolated file gives false-positive import errors for project files.
     return null;
+  }
+
+  /**
+   * Navigate the codebase using LSP.
+   *
+   * @param operation  One of the 9 LspOperation types
+   * @param filePath   Source file (absolute or relative to cwd)
+   * @param line       1-based line number (converted to 0-based internally)
+   * @param character  1-based character offset (converted to 0-based internally)
+   * @param query      For workspaceSymbol: search query string
+   * @returns          Formatted human-readable result string
+   */
+  async navigate(
+    operation: LspOperation,
+    filePath:  string,
+    line:      number,      // 1-based
+    character: number,      // 1-based
+    query?:    string,
+  ): Promise<string> {
+    const ext = extname(filePath).toLowerCase();
+    const def  = REGISTRY[ext];
+    if (!def) return `LSP: no server registered for ${ext}`;
+
+    try {
+      let server = this.servers.get(ext);
+      if (!server) {
+        server = new LspServer(def, this.cwd);
+        await server.start();
+        this.servers.set(ext, server);
+      }
+      return await server.navigateOp(operation, filePath, line - 1, character - 1, query);
+    } catch (e) {
+      return `LSP error: ${(e as Error).message}`;
+    }
   }
 
   dispose(): void {
@@ -214,6 +259,15 @@ class LspServer {
         textDocument: {
           publishDiagnostics: { relatedInformation: false, versionSupport: false },
           synchronization:    { dynamicRegistration: false },
+          definition:         { dynamicRegistration: false },
+          references:         { dynamicRegistration: false },
+          hover:              { dynamicRegistration: false, contentFormat: ['plaintext', 'markdown'] },
+          documentSymbol:     { dynamicRegistration: false, hierarchicalDocumentSymbolSupport: true },
+          implementation:     { dynamicRegistration: false },
+          callHierarchy:      { dynamicRegistration: false },
+        },
+        workspace: {
+          symbol: { dynamicRegistration: false },
         },
       },
       initializationOptions: {},
@@ -253,9 +307,123 @@ class LspServer {
     });
   }
 
+  // ── Navigation operations ─────────────────────────────────────────────────
+
+  async navigateOp(
+    operation: LspOperation,
+    filePath:  string,
+    line:      number,      // 0-based
+    character: number,      // 0-based
+    query?:    string,
+  ): Promise<string> {
+    const absPath = resolve(filePath);
+    const uri     = pathToFileURL(absPath).toString();
+
+    let content = '';
+    try { content = readFileSync(absPath, 'utf-8'); } catch { /* file may not exist yet */ }
+
+    this.notify('textDocument/didOpen', {
+      textDocument: { uri, languageId: this.def.languageId, version: 1, text: content },
+    });
+
+    const tdp = { textDocument: { uri }, position: { line, character } };
+
+    try {
+      let result: unknown;
+
+      if (operation === 'goToDefinition') {
+        result = await this.request('textDocument/definition', tdp);
+      } else if (operation === 'findReferences') {
+        result = await this.request('textDocument/references', { ...tdp, context: { includeDeclaration: true } });
+      } else if (operation === 'hover') {
+        result = await this.request('textDocument/hover', tdp);
+      } else if (operation === 'documentSymbol') {
+        result = await this.request('textDocument/documentSymbol', { textDocument: { uri } });
+      } else if (operation === 'workspaceSymbol') {
+        result = await this.request('workspace/symbol', { query: query ?? '' });
+      } else if (operation === 'goToImplementation') {
+        result = await this.request('textDocument/implementation', tdp);
+      } else if (operation === 'prepareCallHierarchy') {
+        result = await this.request('textDocument/prepareCallHierarchy', tdp);
+      } else if (operation === 'incomingCalls') {
+        const items = await this.request('textDocument/prepareCallHierarchy', tdp) as any[];
+        if (!items?.length) return 'No call hierarchy items at this position';
+        result = await this.request('callHierarchy/incomingCalls', { item: items[0] });
+      } else if (operation === 'outgoingCalls') {
+        const items = await this.request('textDocument/prepareCallHierarchy', tdp) as any[];
+        if (!items?.length) return 'No call hierarchy items at this position';
+        result = await this.request('callHierarchy/outgoingCalls', { item: items[0] });
+      }
+
+      return formatNavResult(operation, result, this.cwd);
+    } finally {
+      this.notify('textDocument/didClose', { textDocument: { uri } });
+    }
+  }
+
   dispose(): void {
     try { this.proc?.kill(); } catch { /* ignore */ }
   }
+}
+
+// ── Navigation result formatter ───────────────────────────────────────────────
+
+function formatNavResult(operation: LspOperation, result: unknown, cwd: string): string {
+  if (result == null) return 'No results';
+
+  const locToStr = (loc: any): string => {
+    try {
+      const filePath = relative(cwd, fileURLToPath(loc.uri));
+      const line = loc.range.start.line + 1;
+      const col  = loc.range.start.character + 1;
+      return `${filePath}:${line}:${col}`;
+    } catch {
+      return loc.uri ?? '?';
+    }
+  };
+
+  if (operation === 'hover') {
+    const h = result as any;
+    const raw = h?.contents;
+    const text = typeof raw === 'string' ? raw
+      : Array.isArray(raw) ? raw.map((c: any) => typeof c === 'string' ? c : c.value ?? '').join('\n')
+      : raw?.value ?? String(raw ?? '');
+    return text.trim() || 'No hover info';
+  }
+
+  if (operation === 'documentSymbol') {
+    const syms = result as any[];
+    const fmt = (s: any, indent = 0): string => {
+      const prefix = '  '.repeat(indent);
+      const loc    = s.range ? `:${s.range.start.line + 1}` : '';
+      const line   = `${prefix}${s.name}${loc}`;
+      const kids   = (s.children as any[] | undefined)?.map(c => fmt(c, indent + 1)).join('\n') ?? '';
+      return kids ? `${line}\n${kids}` : line;
+    };
+    return syms.map(s => fmt(s)).join('\n') || 'No symbols';
+  }
+
+  if (operation === 'workspaceSymbol') {
+    const syms = result as any[];
+    return syms.map(s => {
+      const fp = (() => { try { return relative(cwd, fileURLToPath(s.location.uri)); } catch { return s.location.uri; } })();
+      return `${s.name} — ${fp}:${s.location.range.start.line + 1}`;
+    }).join('\n') || 'No symbols';
+  }
+
+  if (operation === 'incomingCalls') {
+    const calls = result as any[];
+    return calls.map(c => `← ${c.from.name} @ ${locToStr({ uri: c.from.uri, range: c.from.range })}`).join('\n') || 'No callers';
+  }
+
+  if (operation === 'outgoingCalls') {
+    const calls = result as any[];
+    return calls.map(c => `→ ${c.to.name} @ ${locToStr({ uri: c.to.uri, range: c.to.range })}`).join('\n') || 'No callees';
+  }
+
+  // goToDefinition, findReferences, goToImplementation, prepareCallHierarchy
+  const locs = Array.isArray(result) ? result : [result];
+  return locs.map(locToStr).join('\n') || 'No results';
 }
 
 // ── tsc CLI fallback ──────────────────────────────────────────────────────────
