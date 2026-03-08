@@ -100,11 +100,9 @@ export class LspManager {
       }
     }
 
-    // Fallback for TypeScript/JavaScript
-    if (TSC_EXTS.has(ext)) {
-      return tscFallback(content, this.cwd);
-    }
-
+    // LSP server failed to start — skip pre-flight for all types.
+    // runTypecheckSlow (full project tsc, post-disk-write) is the correct gate.
+    // tscFallback on an isolated file gives false-positive import errors for project files.
     return null;
   }
 
@@ -244,13 +242,10 @@ class LspServer {
       };
 
       this.diagCallbacks.set(uri, done);
-      // Timeout → reject so LspManager falls back to tscFallback instead of silently passing
-      setTimeout(() => {
-        if (settled) return;
-        settled = true;
-        this.diagCallbacks.delete(uri);
-        reject(new Error('LSP diagnose timeout'));
-      }, timeoutMs);
+      // Timeout → assume clean. LSP couldn't respond in time; runTypecheckSlow (full project
+      // tsc after disk write) is the correct gate for real errors. tscFallback on an isolated
+      // file produces false-positive "Cannot find module" errors for every project import.
+      setTimeout(() => done([]), timeoutMs);
 
       this.notify('textDocument/didOpen', {
         textDocument: { uri, languageId: this.def.languageId, version: 1, text: content },

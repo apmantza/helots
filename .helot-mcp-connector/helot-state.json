@@ -4,7 +4,7 @@
     {
       "id": "1",
       "description": "Fix war record phase matching to be case-insensitive",
-      "status": "pending",
+      "status": "completed",
       "file": "src/dashboard/index.html",
       "dependsOn": [],
       "changes": "In addWarRecord, change all phase comparisons to be case-insensitive: replace `phase.startsWith('Builder')` with `phase.toLowerCase().startsWith('builder')`, `phase.startsWith('Peltast')` with `phase.toLowerCase().startsWith('peltast')`, `phase === 'Slinger'` with `phase.toLowerCase() === 'slinger'`, `phase === 'Hoplite'` with `phase.toLowerCase() === 'hoplite'`, `phase === 'Scout'` with `phase.toLowerCase() === 'scout'`. Also make role comparisons case-insensitive the same way."
@@ -12,7 +12,7 @@
     {
       "id": "2",
       "description": "Call loadAggregated on verdict, task_status, and run_end events so stats auto-update",
-      "status": "pending",
+      "status": "failed",
       "file": "src/dashboard/index.html",
       "dependsOn": [
         "1"
@@ -22,7 +22,7 @@
     {
       "id": "3",
       "description": "Remove ensureWatchOpen() call from helot_run handler — watch terminal is replaced by browser dashboard",
-      "status": "pending",
+      "status": "failed",
       "file": "src/adapters/mcp-server.ts",
       "dependsOn": [],
       "changes": "In the helot_run tool handler (around line 342), remove the `ensureWatchOpen()` call. The old watch terminal is no longer needed — the browser dashboard at port 7771 replaces it. Keep the ensureWatchOpen function definition in case it is needed later, just do not call it automatically on every helot_run invocation."
@@ -30,7 +30,7 @@
     {
       "id": "4",
       "description": "Prevent browser from reopening on every MCP server restart",
-      "status": "pending",
+      "status": "failed",
       "file": "src/adapters/dashboard-server.ts",
       "targetSymbol": "startDashboard",
       "dependsOn": [],
@@ -39,14 +39,14 @@
   ],
   "currentTaskIndex": 0,
   "lastCheckpoint": "",
-  "phase": "builder",
+  "phase": "finished",
   "planOnly": false,
   "strikes": {
-    "task-4": 3,
+    "task-4": 4,
     "task-3b": 2,
-    "task-3": 3,
+    "task-3": 4,
     "task-6": 2,
-    "task-2": 2,
+    "task-2": 3,
     "task-1": 3
   },
   "approved": false

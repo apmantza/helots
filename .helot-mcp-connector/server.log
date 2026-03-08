@@ -4552,3 +4552,38 @@ Scanning workspace...
 [Helot Update] ✅ Peltast P1 (Task 1) | Lysander | 58.9t/s | 5 gen + 5148 prompt tokens
 [Helot Update] ✅ Peltast P2 (Task 1) | Pausanias | 58.4t/s | 5 gen + 5146 prompt tokens
 [Helot Update] ✅ PASS — Task 1: Fix war record phase matching to be case-insensitive
+[Helot Update] ✅ Task 1 committed.
+[Helot Update] 🛠️ Task 2/4: Call loadAggregated on verdict, task_status, and run_end events so stats auto-update
+[Helot Update] 🔗 Builder: injecting 1 upstream file(s) as context
+[Helot Update] ✅ Builder (Task 2) | Pausanias | 40.8t/s | 5513 gen + 10328 prompt tokens
+[Helot Update] ⚠️ Builder (try 1) produced no parseable file blocks. Retrying...
+[Helot Update] ⚠️ **ESCALATION** — Task 2 failed to produce parseable output after 1 attempts.
+
+**Task:** Call loadAggregated on verdict, task_status, and run_end events so stats auto-update
+
+Options: [CONTINUE] [RETRY] [ABORT]
+[Helot Update] ❌ Task 2 failed — continuing with independent tasks
+[Helot Update] 🛠️ Task 3/4: Remove ensureWatchOpen() call from helot_run handler — watch terminal is replaced by browser dashboard
+[Helot Update] ✅ Builder (Task 3) | Lysander | 40.1t/s | 4043 gen + 5714 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ✓ typecheck_fast: passed
+[Helot Update] ⚡ Auto-FAIL — Task 3 (deterministic)
+[Helot Update] ❌ FAIL — Task 3 (try 1/3): syntax error
+[Helot Update] ❌ Task 3 exhausted retries — continuing pipeline
+[Helot Update] ❌ Task 3 failed — continuing with independent tasks
+[Helot Update] 🛠️ Task 4/4: Prevent browser from reopening on every MCP server restart
+[Helot Update] 🔬 Surgical mode: targeting `startDashboard` in typescript (135 lines)
+[Helot Update] ✅ Builder (Task 4) | Leonidas | 40.6t/s | 1808 gen + 2296 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ⚠️ typecheck_fast: errors — retrying Builder
+[Helot Update] ✅ Builder (Task 4) | Gylippus | 40.5t/s | 1804 gen + 2469 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ⚠️ typecheck_fast: errors — retrying Builder
+[Helot Update] ✅ Builder (Task 4) | Brasidas | 40.6t/s | 1406 gen + 2469 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ✓ typecheck_fast: passed
+[Helot Update] ⚡ Auto-FAIL — Task 4 (deterministic)
+[Helot Update] ❌ FAIL — Task 4 (try 3/3): syntax error
+[Helot Update] ❌ Task 4 exhausted retries — continuing pipeline
+[Helot Update] ❌ Task 4 failed — continuing with independent tasks
+[Helot Update] ✅ Execution complete! 1/4 tasks passed.

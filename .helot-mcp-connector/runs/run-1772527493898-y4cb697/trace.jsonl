@@ -135,3 +135,15 @@
 {"ts":"2026-03-08T17:09:40.445Z","phase":"builder","status":"start","taskId":"1","tryNum":1}
 {"ts":"2026-03-08T17:11:56.461Z","phase":"builder","status":"complete","taskId":"1","tryNum":1}
 {"ts":"2026-03-08T17:12:01.858Z","phase":"peltast","status":"pass","taskId":"1","tryNum":1}
+{"ts":"2026-03-08T17:12:02.123Z","phase":"builder","status":"start","taskId":"2","tryNum":1}
+{"ts":"2026-03-08T17:14:24.013Z","phase":"builder","status":"complete","taskId":"2","tryNum":1}
+{"ts":"2026-03-08T17:14:24.042Z","phase":"builder","status":"start","taskId":"3","tryNum":1}
+{"ts":"2026-03-08T17:16:07.635Z","phase":"builder","status":"complete","taskId":"3","tryNum":1}
+{"ts":"2026-03-08T17:16:24.245Z","phase":"peltast","status":"fail","taskId":"3","tryNum":1,"reason":"syntax error"}
+{"ts":"2026-03-08T17:16:24.268Z","phase":"builder","status":"start","taskId":"4","tryNum":1}
+{"ts":"2026-03-08T17:17:10.126Z","phase":"builder","status":"complete","taskId":"4","tryNum":1}
+{"ts":"2026-03-08T17:17:11.659Z","phase":"builder","status":"start","taskId":"4","tryNum":2}
+{"ts":"2026-03-08T17:17:57.631Z","phase":"builder","status":"complete","taskId":"4","tryNum":2}
+{"ts":"2026-03-08T17:17:59.194Z","phase":"builder","status":"start","taskId":"4","tryNum":3}
+{"ts":"2026-03-08T17:18:34.153Z","phase":"builder","status":"complete","taskId":"4","tryNum":3}
+{"ts":"2026-03-08T17:18:35.711Z","phase":"peltast","status":"fail","taskId":"4","tryNum":3,"reason":"syntax error"}
