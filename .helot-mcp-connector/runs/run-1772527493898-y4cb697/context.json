@@ -10,7 +10,7 @@
     },
     {
       "path": ".claude\\settings.local.json",
-      "size": 1305
+      "size": 1326
     },
     {
       "path": ".gitignore",
@@ -1074,7 +1074,7 @@
     },
     {
       "path": "logs\\llama-calls.log",
-      "size": 70315
+      "size": 70627
     },
     {
       "path": "package-lock.json",

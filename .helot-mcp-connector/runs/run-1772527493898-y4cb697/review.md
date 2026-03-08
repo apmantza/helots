@@ -1,3 +1,3 @@
 # Aristomenis Review Report
-Plan: Add per-try debug log to task-runner capturing LSP errors, typecheck errors, lastPeltastFeedback and groundTruth
+Plan: Add per-try debug log to task-runner capturing all error signals per Builder attempt
 

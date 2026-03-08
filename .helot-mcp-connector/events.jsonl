@@ -1,9 +1,8 @@
-{"ts":"2026-03-08T17:55:45.509Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen9b","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
-{"ts":"2026-03-08T17:55:45.910Z","type":"task_list","tasks":[{"id":"1","desc":"Add per-try debug log to runOneTask capturing all error signals per Builder attempt","file":"src/core/task-runner.ts","status":"pending"}]}
-{"ts":"2026-03-08T17:55:45.911Z","type":"task_status","taskId":"1","status":"running"}
-{"ts":"2026-03-08T17:55:45.920Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
-{"ts":"2026-03-08T17:58:25.536Z","type":"subagent_done","phase":"Builder (Task 1)","role":"Builder","name":"Teleutias","tps":41.14143394539709,"genTokens":6553,"promptTokens":7109,"ctxPct":3}
-{"ts":"2026-03-08T17:58:25.549Z","type":"phase_change","phase":"Builder (Task 1)","name":"Pausanias"}
-{"ts":"2026-03-08T18:01:05.867Z","type":"subagent_done","phase":"Builder (Task 1)","role":"Builder","name":"Pausanias","tps":41.020159864315076,"genTokens":6407,"promptTokens":7148,"ctxPct":3}
-{"ts":"2026-03-08T18:01:05.884Z","type":"task_status","taskId":"1","status":"failed"}
-{"ts":"2026-03-08T18:01:05.885Z","type":"run_end","passed":0,"failed":1}
+{"ts":"2026-03-08T20:16:40.283Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen9b","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
+{"ts":"2026-03-08T20:16:40.681Z","type":"task_list","tasks":[{"id":"1","desc":"Add per-try debug log to runOneTask capturing all error signals per Builder attempt","file":"src/core/task-runner.ts","status":"pending"}]}
+{"ts":"2026-03-08T20:16:40.682Z","type":"task_status","taskId":"1","status":"running"}
+{"ts":"2026-03-08T20:16:40.690Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
+{"ts":"2026-03-08T20:19:17.856Z","type":"subagent_done","phase":"Builder (Task 1)","role":"Builder","name":"Teleutias","tps":40.894364121922024,"genTokens":6407,"promptTokens":7109,"ctxPct":3}
+{"ts":"2026-03-08T20:19:17.875Z","type":"task_status","taskId":"1","status":"failed"}
+{"ts":"2026-03-08T20:19:17.876Z","type":"run_end","passed":0,"failed":1}
+{"ts": "2026-03-08T20:20:30.596Z", "type": "frontier_edit", "file": "src\\core\\task-runner.ts"}

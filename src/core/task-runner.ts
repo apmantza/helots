@@ -410,6 +410,16 @@ export class TaskRunner {
 
       appendFileSync(reviewFile, `\n## Task: ${task.description} (Try ${tryCount})\n**Ground Truth:**\n${groundTruth.join('\n')}\n\n**Peltast:**\n${peltastOut}\n`);
 
+      // --- Debug log ---
+      try {
+        const debugLogsDir = join(this.governor.config.stateDir, 'debug-logs');
+        mkdirSync(debugLogsDir, { recursive: true });
+        writeFileSync(
+          join(debugLogsDir, `debug-${runId}-task${task.id}-try${tryCount}.md`),
+          `# Debug Log\n**Task:** ${task.description}\n**Try:** ${tryCount}\n\n## Ground Truth\n${groundTruth.join('\n')}\n\n## Peltast Output\n${peltastOut}\n\n## Feedback sent to Builder\n${lastPeltastFeedback}`,
+        );
+      } catch { /* non-fatal */ }
+
       if (tier === 'PASS') {
         taskPassed = true; task.status = 'completed';
         this.governor.recordVerification({ passed: true, message: `Task ${task.id} verified` });
