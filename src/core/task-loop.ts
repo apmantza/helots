@@ -58,10 +58,6 @@ export async function runTaskLoop(
     runner.governor.state.tasks[i] = task;
     runner.governor.saveState();
 
-    if (result.escalation) {
-      runner.dispose();
-      return `[ESCALATION] ${result.escalation}`;
-    }
     if (!result.passed) {
       task.status = 'failed';
       runner.governor.state.tasks[i] = task;

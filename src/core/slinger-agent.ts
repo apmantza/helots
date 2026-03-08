@@ -53,11 +53,11 @@ FORMAT (strict — one command per turn):
 
 When you have sufficient evidence FROM COMMAND HISTORY, output your findings instead of a command:
 ### SUMMARY
-<what was found>
+<what was found — every claim must reference actual command output. Never say "X is not found" unless you ran a command that confirmed absence.>
 ### LOCATIONS
 <file:line for each key finding>
 ### EVIDENCE
-<relevant code snippets — MUST be copied verbatim from the file: exact whitespace, exact indentation, no paraphrasing, no reformatting. Paste the raw lines as they appear on disk.>
+<relevant code snippets — MUST be copied verbatim from the file: exact whitespace, exact indentation, no paraphrasing, no reformatting. Paste the raw lines as they appear on disk. Every claim in SUMMARY must have supporting EVIDENCE here.>
 
 SEARCH TOOLKIT (grep is the primary tool — use it first):
   IMPORTANT: Always use SINGLE QUOTES around patterns and paths. Double quotes cause PowerShell parse errors.
@@ -245,7 +245,7 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
             const slice = lines.slice(start - 1, end).join('\n');
             history += `\n[Turn ${turn}] READLINES ${filePart} ${start}-${end}:\n${slice}\n`;
           } catch (e: any) {
-            history += `\n[Turn ${turn}] READLINES failed: ${e.message}\n`;
+            history += `\n[Turn ${turn}] READLINES failed: ${e.message} — DO NOT infer "not found". The file may exist but path resolution failed. Issue a grep command instead to verify.\n`;
           }
           continue;
         }
