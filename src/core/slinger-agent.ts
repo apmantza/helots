@@ -245,7 +245,16 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
             const slice = lines.slice(start - 1, end).join('\n');
             history += `\n[Turn ${turn}] READLINES ${filePart} ${start}-${end}:\n${slice}\n`;
           } catch (e: any) {
-            history += `\n[Turn ${turn}] READLINES failed: ${e.message} — DO NOT infer "not found". The file may exist but path resolution failed. Issue a grep command instead to verify.\n`;
+            // Auto-fallback: grep the file for exports/functions so the model has real signal
+            try {
+              const fallback = nodeGrepCommand(
+                `grep -n "export\\|^function\\|^class\\|^const\\|^async" "${filePart}"`,
+                this.governor.config.projectRoot ?? process.cwd(),
+              ).slice(0, 3000);
+              history += `\n[Turn ${turn}] READLINES failed (${e.message}) — auto-fallback symbol grep of ${filePart}:\n${fallback || '(no matches — file may not exist at that path, try a directory search)'}\n`;
+            } catch {
+              history += `\n[Turn ${turn}] READLINES failed: ${e.message} — DO NOT infer "not found". Issue a grep command to verify.\n`;
+            }
           }
           continue;
         }
