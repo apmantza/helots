@@ -99,10 +99,11 @@ STEP 2: Answer as many questions as possible directly from that content.
 STEP 3: Only issue a ### COMMAND for information genuinely absent from the pre-loaded files.
 STEP 4: Output ### SUMMARY once you have covered all pre-loaded files.
 DO NOT issue Get-Content or cat for any file already in the PRE-LOADED section.`
-  : `1. grep first — it gives file:line:content instantly, no file listing needed
-2. Only use file listing if you genuinely do not know where to look
-3. Only read a full file if grep cannot answer the question
-4. After 2-3 successful commands, you likely have enough — output ### SUMMARY`}
+  : `1. If the task names a specific file (e.g. "check foo.ts"), grep THAT file first — do not search other files first.
+2. grep first — it gives file:line:content instantly, no file listing needed
+3. Only use file listing if you genuinely do not know where to look
+4. Only read a full file if grep cannot answer the question
+5. After 2-3 successful commands, you likely have enough — output ### SUMMARY`}
 For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetProjectRoot || process.cwd()}'`;
 
     const stripShellWrapper = (cmd: string): string =>
