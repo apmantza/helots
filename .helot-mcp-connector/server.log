@@ -4317,3 +4317,27 @@ src/core/slinger-agent.ts: +0 lines (307 → 307)
 Syntax (tsc): ❌ ERRORS — 
 
 Options: [CONTINUE] [RETRY] [ABORT]
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Archidamus deployed.
+[Slinger Update] 📐 Context: 262144 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Archidamus | 45.6t/s | 33 gen + 1016 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 47.5t/s | 40 gen + 999 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 46.4t/s | 29 gen + 2532 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 46.4t/s | 30 gen + 2588 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 47.0t/s | 48 gen + 4110 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 46.4t/s | 34 gen + 5130 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 43.9t/s | 417 gen + 5271 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/research-tr.md...
+[Slinger Update] ✅ Scribe | .helot-mcp-connector/research-tr.md written (direct)
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] 🏹 Slinger Agesilaus deployed.
+[Slinger Update] 📐 Context: 262144 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ✅ Slinger | Agesilaus | 45.7t/s | 32 gen + 956 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 47.3t/s | 41 gen + 938 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 44.4t/s | 22 gen + 1000 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 44.4t/s | 23 gen + 1912 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 44.0t/s | 23 gen + 3435 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 44.2t/s | 23 gen + 4957 prompt tokens
+[Slinger Update] ✅ Slinger | Agesilaus | 43.0t/s | 391 gen + 6499 prompt tokens
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/research-lsp.md...
+[Slinger Update] ✅ Scribe | .helot-mcp-connector/research-lsp.md written (direct)

@@ -151,8 +151,6 @@ export class TaskRunner {
 
     let taskPassed = false;
     let lastPeltastFeedback = '';
-    let replannedByAristomenis = false;
-    let lastBuilderOut = '';
 
     for (let tryCount = 1; tryCount <= 3; tryCount++) {
       const retryContext = lastPeltastFeedback
@@ -196,7 +194,6 @@ export class TaskRunner {
         onUpdate, psiloiMetrics.builder, builderProfile, modelName, undefined, builderMaxTokensOverride,
       );
       const builderOut = stripThinking(builderRaw);
-      lastBuilderOut = builderOut.slice(0, 3000);
       writeTrace({ phase: 'builder', status: 'complete', taskId: task.id, tryNum: tryCount });
 
       // --- Parse Builder output ---
@@ -410,20 +407,8 @@ export class TaskRunner {
         lastPeltastFeedback = (peltastOut || `Auto-FAIL: ${verdictReason}`) + groundTruthContext;
         this.governor.addStrike(`task-${task.id}`);
         if (this.governor.checkStrikes(`task-${task.id}`).blocked) {
-          if (!replannedByAristomenis) {
-            onUpdate?.({ text: `🏛️ Aristomenis intervening — redesigning task ${task.id}...` });
-            const replan = await this.replanTaskWithAristomenis(task, lastBuilderOut, lastPeltastFeedback, globalContext, modelName, onUpdate);
-            if (replan) {
-              task.description = replan.description; task.changes = replan.changes;
-              this.governor.resetStrikes(`task-${task.id}`);
-              replannedByAristomenis = true;
-              lastPeltastFeedback = `[Aristomenis redesigned]\nNew spec: ${replan.description}\n\nChanges:\n${replan.changes}`;
-              tryCount = 0; continue;
-            }
-          }
-          const escalation = `⚠️ **ESCALATION REQUIRED** — Task ${task.id} failed after ${tryCount} attempts.\n\n**Task:** ${task.description}\n**Ground Truth:**\n${groundTruth.join('\n')}\n**Peltast:** ${lastPeltastFeedback.slice(0, 400)}\n\nOptions: [CONTINUE] [RETRY] [ABORT]`;
-          onUpdate?.({ text: escalation });
-          return { passed: false, escalation };
+          onUpdate?.({ text: `❌ Task ${task.id} exhausted retries — continuing pipeline` });
+          return { passed: false };
         }
       }
     }
