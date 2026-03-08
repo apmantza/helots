@@ -37,7 +37,8 @@
       "Bash(where rg:*)",
       "Bash(echo:*)",
       "Read(//usr/bin/**)",
-      "Read(//c/Program Files/ripgrep/**)"
+      "Read(//c/Program Files/ripgrep/**)",
+      "Bash(unalias rg:*)"
     ]
   }
 }
