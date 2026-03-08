@@ -184,6 +184,39 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
       return dedupeReport(report);
     };
 
+    // Short-circuit: READLINES bypasses LLM loop entirely — returns verbatim lines
+    if (/^READLINES\s+/i.test(researchTask.trim())) {
+      const parts = researchTask.trim().replace(/^READLINES\s+/i, '').split(/\s+/);
+      const filePart = parts[0].replace(/^['"]|['"]$/g, '');
+      const rangePart = parts[1] ?? '';
+      const rangeMatch = rangePart.match(/^(\d+)-(\d+)$/);
+      try {
+        const candidates = [
+          path.resolve(this.governor.config.projectRoot ?? process.cwd(), filePart),
+          path.resolve(process.cwd(), filePart),
+          path.resolve(filePart),
+        ];
+        const absPath = candidates.find(p => existsSync(p)) ?? candidates[0];
+        const fileLines = readFileSync(absPath, 'utf-8').split('\n');
+        let start = 1, end = fileLines.length;
+        if (rangeMatch) {
+          start = Math.max(1, parseInt(rangeMatch[1], 10));
+          end   = Math.min(fileLines.length, parseInt(rangeMatch[2], 10));
+        }
+        const slice = fileLines.slice(start - 1, end).join('\n');
+        // Bypass dedupeReport — verbatim lines must not be filtered
+        this.writeEventFn({ type: 'slinger_done', task: researchTask.slice(0, 120), name: slingerPersona.name });
+        onUpdate?.({ text: `🏹 ${slingerPersona.name}: READLINES ${filePart} ${start}-${end} (${end - start + 1} lines)` });
+        try {
+          const logsDir = join(this.governor.config.stateDir, 'slinger-logs');
+          mkdirSync(logsDir, { recursive: true });
+          const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+          writeFileSync(join(logsDir, `slinger-${ts}.md`), `# Slinger READLINES\n**Task:** ${researchTask}\n\n${slice}`);
+        } catch { /* non-fatal */ }
+        return slice;
+      } catch { /* fall through to normal LLM loop */ }
+    }
+
     this.setPhase('Slinger');
 
     for (let turn = 1; turn <= 8; turn++) {

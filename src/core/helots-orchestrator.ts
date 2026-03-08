@@ -9,7 +9,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, appendFileSync } fr
 import { join, relative } from 'path';
 import { getAllFiles }    from './file-utils.js';
 import { stripThinking } from './text-utils.js';
-import { pickName, getGlobalContext } from './persona-utils.js';
+import { getGlobalContext } from './persona-utils.js';
 import { detectLang }    from './symbol-utils.js';
 import { resolveTools }  from './tool-resolver.js';
 import { runTaskLoop }   from './task-loop.js';
@@ -104,21 +104,7 @@ export async function executeHelots(
     }
   }
 
-  // --- 1. SCOUT ---
-  const scoutPersona = pickName(runId, 'Scout');
-  setPhase('Scout');
-  governor.setPhase('scout');
-  onUpdate?.({ text: `### 🛡️ ${scoutPersona.name} is scouting\n**Mapping Workspace Territory**\n---\nScanning workspace...` });
-
-  const IGNORE_DIRS = ['node_modules', 'venv', '.venv', '__pycache__', '.git', 'dist', 'build', '.helot', '.helots'];
-  const fileList = getAllFiles(governor.config.projectRoot, governor.config.stateDir)
-    .filter(f => !IGNORE_DIRS.some(d => f.replace(/\\/g, '/').includes(`/${d}/`)));
-  const manifest = { files: fileList.map(f => ({ path: relative(governor.config.projectRoot, f), size: existsSync(f) ? readFileSync(f).length : 0 })) };
-  const manifestRaw = JSON.stringify(manifest, null, 2).slice(0, MANIFEST_CAP);
-  writeFileSync(contextFile, manifestRaw);
-  await writeTrace({ phase: 'scout', status: 'complete', fileCount: fileList.length });
-
-  // --- 2. PRE-SLINGER: symbol scan ---
+  // --- 1. PRE-SLINGER: symbol scan ---
   governor.setPhase('aristomenis');
   onUpdate?.({ text: `🏹 Pre-Slinger: scanning source symbols...` });
   let preSlingerReport = '';
@@ -209,6 +195,13 @@ export async function executeHelots(
     governor.setPhase('builder');
 
   } else {
+    const IGNORE_DIRS = ['node_modules', 'venv', '.venv', '__pycache__', '.git', 'dist', 'build', '.helot', '.helots'];
+    const fileList = getAllFiles(governor.config.projectRoot, governor.config.stateDir)
+      .filter(f => !IGNORE_DIRS.some(d => f.replace(/\\/g, '/').includes(`/${d}/`)));
+    const manifest = { files: fileList.map(f => ({ path: relative(governor.config.projectRoot, f), size: existsSync(f) ? readFileSync(f).length : 0 })) };
+    const manifestRaw = JSON.stringify(manifest, null, 2).slice(0, MANIFEST_CAP);
+    writeFileSync(contextFile, manifestRaw);
+
     const aristomenisSystem = `${globalContext}
 You are Aristomenis, the Architect. DESIGN the technical implementation checklist with SPARTAN SIMPLICITY.
 

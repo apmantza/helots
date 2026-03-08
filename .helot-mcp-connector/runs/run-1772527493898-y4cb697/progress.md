@@ -1,1 +1,1 @@
-- [ ] 1. Add per-try debug log to runOneTask capturing all error signals per Builder attempt (Target: src/core/task-runner.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 1. Remove Scout phase from helots-orchestrator.ts and add Aristomenis end-of-run report (Target: src/core/helots-orchestrator.ts, Symbol: executeHelots, Action: EDIT) [DEPENDS: none]

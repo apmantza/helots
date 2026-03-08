@@ -1074,7 +1074,7 @@
     },
     {
       "path": "logs\\llama-calls.log",
-      "size": 70627
+      "size": 75113
     },
     {
       "path": "package-lock.json",
@@ -1170,7 +1170,7 @@
     },
     {
       "path": "src\\core\\builder-prompt.ts",
-      "size": 3625
+      "size": 3791
     },
     {
       "path": "src\\core\\engine.ts",
@@ -1242,7 +1242,7 @@
     },
     {
       "path": "src\\core\\slinger-agent.ts",
-      "size": 16179
+      "size": 17996
     },
     {
       "path": "src\\core\\sparta-record.ts",
@@ -1258,7 +1258,7 @@
     },
     {
       "path": "src\\core\\task-runner.ts",
-      "size": 26597
+      "size": 28288
     },
     {
       "path": "src\\core\\text-utils.ts",

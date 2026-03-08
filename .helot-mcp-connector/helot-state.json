@@ -3,16 +3,17 @@
   "tasks": [
     {
       "id": "1",
-      "description": "Add per-try debug log to runOneTask capturing all error signals per Builder attempt",
-      "status": "failed",
-      "file": "src/core/task-runner.ts",
+      "description": "Remove Scout phase from helots-orchestrator.ts and add Aristomenis end-of-run report",
+      "status": "pending",
+      "file": "src/core/helots-orchestrator.ts",
+      "targetSymbol": "executeHelots",
       "dependsOn": [],
-      "changes": "After the appendFileSync(reviewFile, ...) call inside the Builder retry loop, add a debug log write: use mkdirSync to create a 'debug-logs' dir in this.governor.config.stateDir, then writeFileSync a file named `debug-${runId}-task${task.id}-try${tryCount}.md` containing: '# Debug Log\\n**Task:** <description>\\n**Try:** <tryCount>\\n\\n## Ground Truth\\n<groundTruth.join(newline)>\\n\\n## Peltast Output\\n<peltastOut>\\n\\n## Feedback sent to Builder\\n<lastPeltastFeedback>'. Wrap in try/catch (non-fatal)."
+      "changes": "1. REMOVE the entire Scout phase block (lines ~107-121): remove pickName for scoutPersona, setPhase('Scout'), governor.setPhase('scout'), the onUpdate scout announcement, the IGNORE_DIRS/fileList/manifest/manifestRaw/writeFileSync(contextFile)/writeTrace scout block. Move manifestRaw computation (IGNORE_DIRS + fileList + manifest + JSON.stringify) into the else branch (Aristomenis path) just before aristomenisSystem is defined — it's only needed there. Remove the pickName import if scout is the only use (check first). 2. After the line 'writeEventFn({ type: run_end, passed, failed })' and before 'onUpdate({ text: Execution complete })', add: write an Aristomenis end-of-run report to runs/{runId}/aristomenis-report.md. The report should use this format: '# Aristomenis Report\\n**Run:** {runId}\\n**Model:** {modelName}\\n**Summary:** {taskSummary}\\n\\n## Results\\n{per-task lines: - Task N: description — PASS/FAIL}\\n\\n## Stats\\nPassed: X / Total Y\\nFailed: Z\\n{worktreeBranch ? \"\\nWorktree: \" + worktreeBranch : \"\"}'. Use taskNodes to build per-task lines (status === completed = PASS, else FAIL)."
     }
   ],
   "currentTaskIndex": 0,
   "lastCheckpoint": "",
-  "phase": "finished",
+  "phase": "builder",
   "planOnly": false,
   "strikes": {
     "task-4": 4,

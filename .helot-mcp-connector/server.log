@@ -4958,3 +4958,43 @@ Options: [CONTINUE] [RETRY] [ABORT]
 [Slinger Update] 🏹 Teleutias: 2 turn(s) — READLINES src\core\task-runner.ts 300-504
 [Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/tr-verbatim.md...
 [Slinger Update] ✅ Scribe | .helot-mcp-connector/tr-verbatim.md written (direct)
+[Slinger Update] ✅ Slinger | Lysander | 43.7t/s | 18 gen + 985 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 45.2t/s | 15 gen + 2257 prompt tokens
+[Slinger Update] ✅ Slinger | Lysander | 42.6t/s | 312 gen + 2390 prompt tokens
+[Slinger Update] 🏹 Lysander: 3 turn(s) — READLINES src\core\slinger-agent.ts 1-100
+[Slinger Update] ✅ Slinger | Pausanias | 43.4t/s | 18 gen + 985 prompt tokens
+[Slinger Update] ✅ Slinger | Pausanias | 41.8t/s | 564 gen + 1652 prompt tokens
+[Slinger Update] 🏹 Pausanias: 2 turn(s) — READLINES src\core\hoplite-agent.ts 1-80
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] ✅ Slinger | Archidamus | 44.1t/s | 20 gen + 986 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 45.9t/s | 19 gen + 3536 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 45.9t/s | 20 gen + 3585 prompt tokens
+[Slinger Update] ✅ Slinger | Archidamus | 45.6t/s | 114 gen + 3592 prompt tokens
+[Slinger Update] 🏹 Archidamus: 4 turn(s) — READLINES src\core\slinger-agent.ts 100-300
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/slinger-src.md...
+[Slinger Update] ✅ Scribe | .helot-mcp-connector/slinger-src.md written (direct)
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] ✅ Slinger | Brasidas | 43.8t/s | 20 gen + 985 prompt tokens
+[Slinger Update] ✅ Slinger | Brasidas | 44.6t/s | 574 gen + 1977 prompt tokens
+[Slinger Update] 🏹 Brasidas: 2 turn(s) — READLINES src\core\hoplite-agent.ts 80-200
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/hoplite-src.md...
+[Slinger Update] ✅ Scribe | .helot-mcp-connector/hoplite-src.md written (direct)
+[Helot Update] ⚠️ ruff not found — ruff checking disabled. Run: pip install ruff
+[Helot Update] 📐 Context budget (262144 tokens): manifest=312k  plan=267k  slinger=178k chars
+[Helot Update] ### Environment
+✅ git-worktrees, tsc
+[Helot Update] ⚠️ Worktree failed: Command failed: git worktree add "C:\Users\R3LiC\Desktop\helots-pi\.helot-mcp-connector\worktrees\run-1772527493898-y4cb697" -b "helots/run-1772527493898-y4cb697"
+Preparing worktree (new branch 'helots/run-1772527493898-y4cb697')
+fatal: a branch named 'helots/run-1772527493898-y4cb697' already exists
+ — running in main tree
+[Helot Update] ### 🛡️ Brasidas is scouting
+**Mapping Workspace Territory**
+---
+Scanning workspace...
+[Helot Update] 🏹 Pre-Slinger: scanning source symbols...
+[Helot Update] ✅ Pre-Slinger: 39 files, 93 symbols
+[Helot Update] 📋 **Frontier-Planned Mode** — 1 tasks (Aristomenis bypassed)
+[Helot Update] 📋 **Task List:**
+- [ ] 1. Remove Scout phase from helots-orchestrator.ts and add Aristomenis end-of-run report (Target: src/core/helots-orchestrator.ts, Symbol: executeHelots, Action: EDIT) [DEPENDS: none]
+[Helot Update] 🛠️ Task 1/1: Remove Scout phase from helots-orchestrator.ts and add Aristomenis end-of-run report
+[Helot Update] 🔬 Surgical mode: targeting `executeHelots` in typescript (261 lines)
