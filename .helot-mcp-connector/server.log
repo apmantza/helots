@@ -4761,3 +4761,5 @@ Scanning workspace...
 [Helot Update] ✓ typecheck_fast: passed
 [Helot Update] ⚡ Auto-PASS — Task 2 (deterministic)
 [Helot Update] ✅ PASS — Task 2: Prevent browser reopening on every MCP server restart using a sentinel
+[Helot Update] ✅ Task 2 committed.
+[Helot Update] ✅ Execution complete! 2/2 tasks passed.

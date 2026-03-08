@@ -12,3 +12,4 @@
 {"ts":"2026-03-08T17:41:43.129Z","type":"phase_change","phase":"Builder (Task 2)","name":"Pausanias"}
 {"ts":"2026-03-08T17:42:19.085Z","type":"subagent_done","phase":"Builder (Task 2)","role":"Builder","name":"Pausanias","tps":40.56679007347728,"genTokens":1406,"promptTokens":2291,"ctxPct":1}
 {"ts":"2026-03-08T17:42:20.667Z","type":"verdict","taskId":"2","result":"PASS","tryNum":1}
+{"ts":"2026-03-08T17:42:20.931Z","type":"run_end","passed":2,"failed":0}
