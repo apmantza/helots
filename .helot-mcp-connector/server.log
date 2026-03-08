@@ -4085,3 +4085,6 @@ Helots MCP Server running on stdio
 [Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 20000 chars × 1 file(s)
 [Slinger Update] ⚠️ Slinger | Pausanias | server error: fetch failed
 [Slinger Update] ❌ Slinger | Pausanias | empty response — server may be down
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
