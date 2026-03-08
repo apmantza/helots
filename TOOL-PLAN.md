@@ -101,27 +101,43 @@ read_file, lsp_navigate, patch_file, write_file (for CREATE tasks)
 
 **Goal:** Qwen can call the same MCP tools Claude Code uses — filesystem, browser, database, custom MCPs — without helots needing to reimplement each one.
 
+**MCP discovery — read Claude's own settings.json:**
+
+Rather than duplicating server config, helots reads MCP definitions directly from Claude's settings file:
+
+```
+C:/Users/R3LiC/.claude/settings.json  →  mcpServers block
+```
+
+This is always in sync with what Claude has configured, requires zero maintenance, and works for any MCP the user installs. One filter is needed: exclude helots' own MCP entry (`mcp__helots__*`) to prevent Qwen from trying to call itself recursively.
+
+An optional `helotsMcpOverride` block in `.helots/config.json` can add helots-specific servers or override env vars without touching Claude's config.
+
 **Architecture:**
 ```
-Claude Code
-  → helot_run({ mcpServers?: MCPServerConfig[] })
-      → HelotsMCPClient connects to each server
-      → lists tools → builds tools[] for Qwen
-      → Qwen emits tool_call { name: "mcp__fs__read_file", args: {...} }
-      → HelotsMCPClient routes to correct server
-      → result injected as tool response
+Startup:
+  HelotsMCPClient reads ~/.claude/settings.json → mcpServers
+  → spawns stdio servers as child processes (kept alive across runs)
+  → connects to SSE servers over HTTP
+  → calls tools/list on each → caches tool schemas
+
+Per run:
+  Qwen emits tool_call { name: "mcp__fs__read_file", args: {...} }
+  → HelotsMCPClient routes to correct server → tools/call
+  → result injected as tool role message
 ```
 
 **Implementation steps:**
 1. Add `@modelcontextprotocol/sdk` client to helots dependencies
-2. Accept `mcpServers` config in `helot_run` input (or read from Claude's `settings.json` directly)
-3. `HelotsMCPClient` class: connect → `tools/list` → cache schemas → dispatch `tools/call`
+2. `HelotsMCPClient` class: reads `~/.claude/settings.json`, spawns/connects servers at startup, `tools/list` → schema cache, `tools/call` dispatch
+3. Filter out `helots` server entry from the tool list passed to Qwen
 4. Merge MCP tool schemas with local tool schemas before passing to Qwen
-5. On tool call: route to MCP client if name matches, local handler otherwise
+5. On tool call: route to MCP client if name matches `mcp__*`, local handler otherwise
+6. Expose `helotsMcpOverride` in `.helots/config.json` for additions/env overrides
 
 **Key decisions to make at integration time:**
-- **Tool budget:** Too many tools hurts Qwen's tool selection. Either pass a curated subset or let the calling agent specify `allowedTools: string[]`
-- **Auth/secrets:** MCP servers may require env vars — those need to propagate from Claude's environment to helots
+- **Tool budget:** Too many tools hurts Qwen's tool selection. Cap at ~20 tools or let tasks specify `allowedTools: string[]` to pass a curated subset
+- **Auth/secrets:** MCP servers in Claude's config may reference env vars that aren't set in helots' process — need to merge `process.env` with any `env` block from the server config
 - **Stdio vs SSE servers:** Stdio servers need to be spawned as child processes; SSE servers connect over HTTP. Both modes need handling.
 - **Error isolation:** An MCP server crashing should not crash the helots run — each call needs a timeout and fallback
 
