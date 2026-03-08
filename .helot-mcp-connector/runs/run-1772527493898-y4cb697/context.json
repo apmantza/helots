@@ -1,144 +1,1156 @@
 {
   "files": [
     {
+      "path": "...",
+      "size": 751
+    },
+    {
       "path": ".claude\\hooks.json",
-      "size": 24
+      "size": 21
     },
     {
       "path": ".claude\\settings.local.json",
-      "size": 1342
+      "size": 1305
     },
     {
       "path": ".gitignore",
-      "size": 556
+      "size": 510
     },
     {
-      "path": "CLAUDE.md",
-      "size": 5400
+      "path": "bin\\archive\\hoplite-backups\\CLAUDE.md.2026-03-04T14-17-20.bak",
+      "size": 1923
     },
     {
-      "path": "feature-ideas.md",
-      "size": 19142
+      "path": "bin\\archive\\hoplite-backups\\cleanup-plan.sh.2026-03-06T12-34-06.bak",
+      "size": 1683
     },
     {
-      "path": "hooks\\helots-autocommit.py",
-      "size": 3824
+      "path": "bin\\archive\\hoplite-backups\\cleanup-plan.sh.2026-03-06T12-43-54.bak",
+      "size": 2615
     },
     {
-      "path": "hooks\\helots-compress.py",
-      "size": 12568
+      "path": "bin\\archive\\hoplite-backups\\cleanup-plan.sh.2026-03-06T12-52-26.bak",
+      "size": 2615
     },
     {
-      "path": "hooks\\helots-delegate.py",
-      "size": 10833
+      "path": "bin\\archive\\hoplite-backups\\cleanup-plan.sh.2026-03-06T12-55-01.bak",
+      "size": 2616
     },
     {
-      "path": "hooks\\helots-editlog.py",
-      "size": 1773
+      "path": "bin\\archive\\hoplite-backups\\cleanup-plan.sh.2026-03-06T12-57-35.bak",
+      "size": 2446
     },
     {
-      "path": "hooks\\helots-error-handler.py",
-      "size": 4309
+      "path": "bin\\archive\\hoplite-backups\\dead-code-candidates.md.2026-03-06T13-12-55.bak",
+      "size": 1809
     },
     {
-      "path": "hooks\\helots-filesize.py",
-      "size": 2483
+      "path": "bin\\archive\\hoplite-backups\\devoptions.md.2026-03-04T12-40-28.bak",
+      "size": 11927
     },
     {
-      "path": "hooks\\helots-format.py",
-      "size": 6207
+      "path": "bin\\archive\\hoplite-backups\\devoptions.md.2026-03-04T12-44-56.bak",
+      "size": 10773
     },
     {
-      "path": "hooks\\helots-gitstage.py",
-      "size": 1337
+      "path": "bin\\archive\\hoplite-backups\\devoptions.md.2026-03-04T13-07-35.bak",
+      "size": 10868
     },
     {
-      "path": "hooks\\helots-lint.py",
-      "size": 3883
+      "path": "bin\\archive\\hoplite-backups\\devoptions.md.2026-03-04T13-15-21.bak",
+      "size": 12129
     },
     {
-      "path": "hooks\\helots-lsp-preflight.py",
-      "size": 3277
+      "path": "bin\\archive\\hoplite-backups\\devoptions.md.2026-03-04T13-27-38.bak",
+      "size": 13600
     },
     {
-      "path": "hooks\\helots-readme-update.py",
+      "path": "bin\\archive\\hoplite-backups\\devoptions.md.2026-03-04T13-31-29.bak",
+      "size": 14616
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\feature-ideas.md.2026-03-06T00-35-59.bak",
+      "size": 4801
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\feature-ideas.md.2026-03-06T00-45-54.bak",
+      "size": 6966
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\feature-ideas.md.2026-03-06T11-57-15.bak",
+      "size": 10641
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\helots-delegate.py.2026-03-04T14-04-57.bak",
+      "size": 3406
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\index.html.2026-03-04T14-57-35.bak",
+      "size": 14904
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\index.html.2026-03-04T15-16-56.bak",
+      "size": 18937
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\index.html.2026-03-04T15-27-06.bak",
+      "size": 20288
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\MEMORY.md.2026-03-04T15-06-03.bak",
+      "size": 2438
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\MEMORY.md.2026-03-05T21-52-34.bak",
+      "size": 2768
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\models.json.2026-03-04T20-00-48.bak",
+      "size": 1305
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\project-structure.md.2026-03-06T08-19-10.bak",
+      "size": 797
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\project-structure.md.2026-03-06T08-19-46.bak",
+      "size": 7033
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\project-structure.md.2026-03-06T08-21-45.bak",
+      "size": 10133
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\project-structure.md.2026-03-06T08-23-50.bak",
+      "size": 29941
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\project-structure.md.2026-03-06T08-25-57.bak",
+      "size": 38459
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\project-structure.md.2026-03-06T08-47-28.bak",
+      "size": 42050
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\project-structure.md.2026-03-06T08-50-25.bak",
+      "size": 43508
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\project-structure.md.2026-03-06T08-59-27.bak",
+      "size": 48466
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\project-structure.md.2026-03-06T09-02-00.bak",
+      "size": 49133
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\project-structure.md.2026-03-06T09-27-17.bak",
+      "size": 53226
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\project-structure.md.2026-03-06T09-29-52.bak",
+      "size": 58540
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\project-structure.md.2026-03-06T11-02-15.bak",
+      "size": 36164
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\rtk_features_port.md.2026-03-05T21-29-08.bak",
+      "size": 7714
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\SKILL.md.2026-03-05T22-38-43.bak",
+      "size": 3568
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\SKILL.md.2026-03-06T12-27-55.bak",
+      "size": 2032
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\SKILL.md.2026-03-06T12-28-28.bak",
+      "size": 2563
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\SKILL.md.2026-03-06T12-30-02.bak",
+      "size": 2603
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\SKILL.md.2026-03-06T12-31-08.bak",
+      "size": 3015
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\SPARTA_DASHBOARD_PLAN.md.2026-03-04T15-22-34.bak",
+      "size": 9328
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\SPARTA_DASHBOARD_PLAN.md.2026-03-04T15-28-41.bak",
+      "size": 10449
+    },
+    {
+      "path": "bin\\archive\\hoplite-backups\\structure.md.2026-03-06T07-29-41.bak",
+      "size": 2704
+    },
+    {
+      "path": "bin\\archive\\logs\\llama-calls.log",
+      "size": 7214
+    },
+    {
+      "path": "bin\\archive\\logs\\reasoning.log",
+      "size": 28844
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-03T23-28-37.md",
+      "size": 4832
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-03T23-30-28.md",
+      "size": 4677
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-03T23-45-49.md",
+      "size": 3881
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-03T23-48-04.md",
+      "size": 6492
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-03T23-50-01.md",
+      "size": 5040
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T09-23-45.md",
+      "size": 7452
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T09-43-49.md",
+      "size": 4209
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T10-06-37.md",
+      "size": 4265
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T10-21-30.md",
+      "size": 5368
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T10-21-55.md",
+      "size": 2647
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T10-58-15.md",
+      "size": 1099
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T10-59-27.md",
+      "size": 4426
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T11-01-01.md",
+      "size": 5985
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T11-01-31.md",
+      "size": 4964
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T11-02-41.md",
+      "size": 4390
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T11-17-35.md",
+      "size": 976
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T11-17-55.md",
+      "size": 1249
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T11-22-04.md",
+      "size": 1751
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T11-23-02.md",
+      "size": 4945
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T11-40-15.md",
+      "size": 3189
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T11-41-07.md",
+      "size": 2313
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T11-49-27.md",
+      "size": 901
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T11-51-09.md",
+      "size": 1077
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T11-55-44.md",
+      "size": 822
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T12-07-25.md",
+      "size": 29585
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T12-11-19.md",
+      "size": 3182
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T12-12-12.md",
+      "size": 4807
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T12-12-42.md",
+      "size": 3456
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T12-22-12.md",
+      "size": 3652
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T12-22-37.md",
+      "size": 1112
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T12-26-06.md",
+      "size": 1011
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T12-30-45.md",
+      "size": 5510
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T12-31-58.md",
+      "size": 1683
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T13-13-06.md",
+      "size": 4171
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T13-39-09.md",
+      "size": 3432
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T13-39-40.md",
+      "size": 3737
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T13-40-16.md",
+      "size": 4038
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T13-40-34.md",
+      "size": 3894
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T13-40-47.md",
+      "size": 3777
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T13-41-27.md",
+      "size": 4160
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T13-47-43.md",
+      "size": 3068
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T13-49-54.md",
+      "size": 4743
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-07-16.md",
+      "size": 804
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-10-45.md",
+      "size": 1006
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-11-04.md",
+      "size": 2030
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-11-43.md",
+      "size": 2023
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-12-23.md",
+      "size": 1306
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-13-56.md",
+      "size": 3815
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-17-42.md",
+      "size": 2649
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-18-23.md",
+      "size": 4642
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-19-43.md",
       "size": 3419
     },
     {
-      "path": "hooks\\helots-run-validate.py",
-      "size": 3092
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-22-08.md",
+      "size": 2649
     },
     {
-      "path": "hooks\\helots-session-start.py",
-      "size": 3297
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-26-02.md",
+      "size": 2265
     },
     {
-      "path": "hooks\\helots-session-summary.py",
-      "size": 11034
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-27-04.md",
+      "size": 765
     },
     {
-      "path": "hooks\\helots-slinger-outputfile.py",
-      "size": 1499
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-48-28.md",
+      "size": 3532
     },
     {
-      "path": "hooks\\helots-test-runner.py",
-      "size": 8365
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-49-11.md",
+      "size": 1305
     },
     {
-      "path": "hooks\\helots-typecheck.py",
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-49-57.md",
+      "size": 2940
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-53-18.md",
+      "size": 2421
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-54-12.md",
+      "size": 1924
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-54-49.md",
+      "size": 802
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T14-56-20.md",
+      "size": 2283
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-01-01.md",
+      "size": 1916
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-08-38.md",
+      "size": 2274
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-11-08.md",
+      "size": 2196
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-15-00.md",
+      "size": 3091
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-17-46.md",
+      "size": 4402
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-20-29.md",
+      "size": 2992
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-21-42.md",
+      "size": 4653
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-24-21.md",
+      "size": 3584
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-25-28.md",
+      "size": 3510
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-29-18.md",
+      "size": 2107
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-31-52.md",
       "size": 2083
     },
     {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-32-09.md",
+      "size": 1191
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-40-28.md",
+      "size": 6277
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-42-09.md",
+      "size": 3916
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-44-04.md",
+      "size": 3934
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-44-26.md",
+      "size": 3080
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-58-36.md",
+      "size": 1304
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T15-59-10.md",
+      "size": 5839
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T16-10-31.md",
+      "size": 4405
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T16-11-03.md",
+      "size": 5301
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T16-13-12.md",
+      "size": 5810
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T16-16-20.md",
+      "size": 4167
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T16-18-39.md",
+      "size": 1909
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T16-21-21.md",
+      "size": 2401
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T16-21-35.md",
+      "size": 771
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T16-22-22.md",
+      "size": 2526
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T16-23-13.md",
+      "size": 3234
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T19-33-24.md",
+      "size": 1299
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T19-59-56.md",
+      "size": 3096
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T20-05-21.md",
+      "size": 3494
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T20-07-00.md",
+      "size": 3289
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T20-08-36.md",
+      "size": 3680
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T20-12-23.md",
+      "size": 5083
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-04T20-17-18.md",
+      "size": 4315
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T21-14-44.md",
+      "size": 1520
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T21-14-57.md",
+      "size": 946
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T21-15-32.md",
+      "size": 4750
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T21-28-23.md",
+      "size": 1940
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T21-42-43.md",
+      "size": 1914
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T21-42-58.md",
+      "size": 1146
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T21-48-38.md",
+      "size": 607
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T22-05-50.md",
+      "size": 7461
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T22-12-22.md",
+      "size": 992
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T22-38-21.md",
+      "size": 528
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T22-49-36.md",
+      "size": 4353
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T22-51-02.md",
+      "size": 20661
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T22-53-04.md",
+      "size": 6823
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T22-56-16.md",
+      "size": 2889
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T22-56-54.md",
+      "size": 829
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T22-57-25.md",
+      "size": 2045
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T22-58-07.md",
+      "size": 2927
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-01-33.md",
+      "size": 2968
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-02-12.md",
+      "size": 1470
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-05-26.md",
+      "size": 2198
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-06-00.md",
+      "size": 8953
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-07-18.md",
+      "size": 3669
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-13-18.md",
+      "size": 1878
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-14-16.md",
+      "size": 2219
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-23-47.md",
+      "size": 5902
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-30-02.md",
+      "size": 4302
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-31-40.md",
+      "size": 718
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-40-00.md",
+      "size": 5642
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-46-15.md",
+      "size": 30877
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-50-39.md",
+      "size": 31549
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-52-48.md",
+      "size": 7600
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-56-10.md",
+      "size": 23693
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-05T23-57-29.md",
+      "size": 2697
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T00-10-02.md",
+      "size": 13974
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T07-22-05.md",
+      "size": 6621
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T07-28-02.md",
+      "size": 2178
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T07-28-21.md",
+      "size": 1606
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T07-29-30.md",
+      "size": 883
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T07-33-43.md",
+      "size": 4404
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T07-33-55.md",
+      "size": 1637
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T07-38-57.md",
+      "size": 2084
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-01-46.md",
+      "size": 1831
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-02-00.md",
+      "size": 2495
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-03-29.md",
+      "size": 1282
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-03-59.md",
+      "size": 5749
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-11-00.md",
+      "size": 6007
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-11-49.md",
+      "size": 3753
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-12-47.md",
+      "size": 3095
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-17-52.md",
+      "size": 959
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-18-52.md",
+      "size": 6577
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-19-20.md",
+      "size": 3352
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-20-31.md",
+      "size": 6713
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-22-12.md",
+      "size": 6573
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-24-09.md",
+      "size": 2752
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-26-20.md",
+      "size": 5023
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-45-36.md",
+      "size": 1651
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-48-20.md",
+      "size": 5509
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-50-51.md",
+      "size": 7310
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-57-20.md",
+      "size": 1235
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T08-59-43.md",
+      "size": 4659
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T09-02-46.md",
+      "size": 5402
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T09-24-47.md",
+      "size": 5524
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T09-28-15.md",
+      "size": 5887
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T09-31-35.md",
+      "size": 14987
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T09-34-14.md",
+      "size": 4682
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T11-02-00.md",
+      "size": 3254
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T11-02-29.md",
+      "size": 3886
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T11-03-11.md",
+      "size": 4251
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T11-03-25.md",
+      "size": 4203
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T11-03-40.md",
+      "size": 5746
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T11-04-34.md",
+      "size": 4407
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T11-14-21.md",
+      "size": 4844
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T11-28-13.md",
+      "size": 1902
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T11-58-23.md",
+      "size": 3736
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T12-00-55.md",
+      "size": 1147
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T12-17-50.md",
+      "size": 21987
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T12-22-53.md",
+      "size": 2779
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T12-28-10.md",
+      "size": 2247
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T12-33-59.md",
+      "size": 2446
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T12-43-47.md",
+      "size": 2421
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T12-52-18.md",
+      "size": 17967
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T12-54-54.md",
+      "size": 3401
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T12-57-28.md",
+      "size": 20362
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T13-11-36.md",
+      "size": 2491
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T13-12-46.md",
+      "size": 3262
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T13-17-38.md",
+      "size": 6478
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T13-18-15.md",
+      "size": 579
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T13-18-34.md",
+      "size": 1014
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T13-18-52.md",
+      "size": 1009
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T13-21-06.md",
+      "size": 3131
+    },
+    {
+      "path": "bin\\archive\\slinger-logs\\slinger-2026-03-06T13-30-59.md",
+      "size": 3074
+    },
+    {
+      "path": "bin\\archive\\stale-dirs\\agents\\workflows\\helots.md",
+      "size": 1837
+    },
+    {
+      "path": "bin\\archive\\stale-dirs\\helot-debug\\context.json",
+      "size": 2022
+    },
+    {
+      "path": "bin\\archive\\stale-dirs\\helot-debug\\trace.json",
+      "size": 65
+    },
+    {
+      "path": "bin\\archive\\stale-dirs\\helot-state-test\\context.json",
+      "size": 1746
+    },
+    {
+      "path": "bin\\archive\\stale-dirs\\helot-state-test\\trace.json",
+      "size": 68
+    },
+    {
+      "path": "bin\\dead-code-candidates.md",
+      "size": 3182
+    },
+    {
+      "path": "CLAUDE.md",
+      "size": 5432
+    },
+    {
+      "path": "docs\\feature-ideas.md",
+      "size": 12206
+    },
+    {
+      "path": "docs\\project-structure.md",
+      "size": 34182
+    },
+    {
+      "path": "docs\\structure-raw.txt",
+      "size": 1209536
+    },
+    {
+      "path": "feature-ideas.md",
+      "size": 18890
+    },
+    {
+      "path": "HELOTS_PLAN.md",
+      "size": 10973
+    },
+    {
+      "path": "hooks\\helots-autocommit.py",
+      "size": 3686
+    },
+    {
+      "path": "hooks\\helots-compress.py",
+      "size": 12217
+    },
+    {
+      "path": "hooks\\helots-delegate.py",
+      "size": 10625
+    },
+    {
+      "path": "hooks\\helots-editlog.py",
+      "size": 1706
+    },
+    {
+      "path": "hooks\\helots-error-handler.py",
+      "size": 4182
+    },
+    {
+      "path": "hooks\\helots-filesize.py",
+      "size": 2399
+    },
+    {
+      "path": "hooks\\helots-format.py",
+      "size": 6020
+    },
+    {
+      "path": "hooks\\helots-gitstage.py",
+      "size": 1283
+    },
+    {
+      "path": "hooks\\helots-lint.py",
+      "size": 3753
+    },
+    {
+      "path": "hooks\\helots-lsp-preflight.py",
+      "size": 3169
+    },
+    {
+      "path": "hooks\\helots-readme-update.py",
+      "size": 3300
+    },
+    {
+      "path": "hooks\\helots-run-validate.py",
+      "size": 2988
+    },
+    {
+      "path": "hooks\\helots-session-start.py",
+      "size": 3175
+    },
+    {
+      "path": "hooks\\helots-session-summary.py",
+      "size": 10744
+    },
+    {
+      "path": "hooks\\helots-slinger-outputfile.py",
+      "size": 1453
+    },
+    {
+      "path": "hooks\\helots-test-runner.py",
+      "size": 8153
+    },
+    {
+      "path": "hooks\\helots-typecheck.py",
+      "size": 2002
+    },
+    {
       "path": "hooks\\helots_common.py",
-      "size": 1067
+      "size": 1027
     },
     {
       "path": "hooks\\install.py",
-      "size": 3598
+      "size": 3481
     },
     {
       "path": "index.ts",
-      "size": 3571
+      "size": 3488
+    },
+    {
+      "path": "logs\\llama-calls.log",
+      "size": 58225
     },
     {
       "path": "package-lock.json",
-      "size": 179676
+      "size": 174980
     },
     {
       "path": "package.json",
-      "size": 621
+      "size": 602
     },
     {
       "path": "README.md",
-      "size": 4764
+      "size": 4679
+    },
+    {
+      "path": "scripts\\debug-helots-live.ts",
+      "size": 4324
+    },
+    {
+      "path": "scripts\\debug-helots.cjs",
+      "size": 4967
+    },
+    {
+      "path": "scripts\\debug-helots.ts",
+      "size": 4674
+    },
+    {
+      "path": "scripts\\debug-run.mjs",
+      "size": 3730
+    },
+    {
+      "path": "scripts\\debug-slinger.mjs",
+      "size": 3687
     },
     {
       "path": "scripts\\gorgo_run.ts",
-      "size": 2175
+      "size": 2092
     },
     {
       "path": "scripts\\hardening_run.ts",
       "size": 973
     },
     {
+      "path": "scripts\\restart-mcp.bat",
+      "size": 431
+    },
+    {
       "path": "scripts\\review_swarm.ts",
       "size": 1057
+    },
+    {
+      "path": "scripts\\start-mcp.bat",
+      "size": 71
+    },
+    {
+      "path": "scripts\\test-slinger.ts",
+      "size": 2628
     },
     {
       "path": "scripts\\test.ts",
       "size": 1091
     },
     {
+      "path": "scripts\\watch.bat",
+      "size": 212
+    },
+    {
       "path": "src\\adapters\\dashboard-server.ts",
-      "size": 7594
+      "size": 7415
     },
     {
       "path": "src\\adapters\\mcp-server.ts",
-      "size": 21557
+      "size": 21140
     },
     {
       "path": "src\\adapters\\mcp.ts",
-      "size": 2298
+      "size": 2220
     },
     {
       "path": "src\\adapters\\pi.ts",
@@ -158,51 +1170,51 @@
     },
     {
       "path": "src\\core\\builder-prompt.ts",
-      "size": 3707
+      "size": 3625
     },
     {
       "path": "src\\core\\engine.ts",
-      "size": 12416
+      "size": 12145
     },
     {
       "path": "src\\core\\env-check.ts",
-      "size": 6173
+      "size": 6000
     },
     {
       "path": "src\\core\\file-executor.ts",
-      "size": 10056
+      "size": 9818
     },
     {
       "path": "src\\core\\file-utils.ts",
-      "size": 1241
+      "size": 1205
     },
     {
       "path": "src\\core\\governor.ts",
-      "size": 8695
+      "size": 8435
     },
     {
       "path": "src\\core\\greeting.ts",
-      "size": 287
+      "size": 277
     },
     {
       "path": "src\\core\\grep-utils.ts",
-      "size": 5358
+      "size": 5234
     },
     {
       "path": "src\\core\\helots-orchestrator.ts",
-      "size": 15150
+      "size": 14855
     },
     {
       "path": "src\\core\\hoplite-agent.ts",
-      "size": 7133
+      "size": 6964
     },
     {
       "path": "src\\core\\llama-client.ts",
-      "size": 14344
+      "size": 14030
     },
     {
       "path": "src\\core\\lsp-client.ts",
-      "size": 11789
+      "size": 11472
     },
     {
       "path": "src\\core\\model-registry.ts",
@@ -210,7 +1222,7 @@
     },
     {
       "path": "src\\core\\peltast-orchestrator.ts",
-      "size": 1085
+      "size": 1047
     },
     {
       "path": "src\\core\\persona-utils.ts",
@@ -218,7 +1230,7 @@
     },
     {
       "path": "src\\core\\run-reporter.ts",
-      "size": 2571
+      "size": 2504
     },
     {
       "path": "src\\core\\scout.ts",
@@ -226,59 +1238,63 @@
     },
     {
       "path": "src\\core\\skill-injector.ts",
-      "size": 5893
+      "size": 5731
     },
     {
       "path": "src\\core\\slinger-agent.ts",
-      "size": 15501
+      "size": 16214
     },
     {
       "path": "src\\core\\sparta-record.ts",
-      "size": 2578
+      "size": 2486
     },
     {
       "path": "src\\core\\symbol-utils.ts",
-      "size": 5626
+      "size": 5480
     },
     {
       "path": "src\\core\\task-loop.ts",
-      "size": 2737
+      "size": 2550
     },
     {
       "path": "src\\core\\task-runner.ts",
-      "size": 27025
+      "size": 25486
     },
     {
       "path": "src\\core\\text-utils.ts",
-      "size": 1343
+      "size": 1307
     },
     {
       "path": "src\\core\\tool-resolver.ts",
-      "size": 2810
+      "size": 2741
     },
     {
       "path": "src\\core\\tool-runner.ts",
-      "size": 3115
+      "size": 3022
     },
     {
       "path": "src\\core\\types.ts",
-      "size": 2111
+      "size": 2044
     },
     {
       "path": "src\\core\\verification.ts",
-      "size": 8751
+      "size": 8579
     },
     {
       "path": "src\\core\\vision-agent.ts",
-      "size": 8154
+      "size": 7957
     },
     {
       "path": "src\\core\\workflow-engine.ts",
-      "size": 4470
+      "size": 4341
     },
     {
       "path": "src\\core\\worktree-manager.ts",
-      "size": 1557
+      "size": 1506
+    },
+    {
+      "path": "src\\dashboard\\index.html",
+      "size": 20756
     },
     {
       "path": "src\\mcp-client.ts",
@@ -286,11 +1302,15 @@
     },
     {
       "path": "tsconfig.json",
-      "size": 350
+      "size": 335
     },
     {
       "path": "watch.mjs",
-      "size": 17260
+      "size": 16831
+    },
+    {
+      "path": "~\\.pi\\agent\\extensions\\helots.ts",
+      "size": 1469
     }
   ]
 }

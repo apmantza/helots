@@ -70,10 +70,10 @@ SEARCH TOOLKIT (grep is the primary tool — use it first):
 
 FILE LISTING (when you need to discover files):
 ${isWindows
-  ? `  Get-ChildItem -Recurse -Name | Where-Object { $_ -notmatch '\\\\node_modules\\\\|\\\\\.git\\\\|\\\\__pycache__\\\\' }
-  Get-ChildItem -Recurse -Filter *.ts -Name | Where-Object { $_ -notmatch '\\\\node_modules\\\\|\\\\\.git\\\\' }`
+  ? `  Get-ChildItem -Recurse -Name | Where-Object { $_ -notmatch '\\\\node_modules\\\\|\\\\\.git\\\\|\\\\__pycache__\\\\|\\\\\.helot-mcp-connector\\\\' }
+  Get-ChildItem -Recurse -Filter *.ts -Name | Where-Object { $_ -notmatch '\\\\node_modules\\\\|\\\\\.git\\\\|\\\\\.helot-mcp-connector\\\\' }`
   : `  find src/ -name "*.ts" -not -path "*/node_modules/*" -not -path "*/.git/*"
-  find . -not -path "*/node_modules/*" -not -path "*/.git/*" -not -path "*/__pycache__/*"
+  find . -not -path "*/node_modules/*" -not -path "*/.git/*" -not -path "*/__pycache__/*" -not -path "*/.helot-mcp-connector/*"
   ls -la src/core/`}
 
 READ FILES (when you need to see full context):
@@ -87,6 +87,7 @@ READ EXACT LINES (verbatim line-range extraction — use when you need precise c
   READLINES src/core/engine.ts 55-80        returns lines 55–80 exactly as they appear on disk
   READLINES src/adapters/mcp-server.ts 1-40
   Note: ONE file per command. Issue separate READLINES commands for each file across multiple turns.
+  Note: Do NOT quote the path — no single or double quotes. Write: READLINES src/core/engine.ts 55-80
   Note: Output is raw file content — no synthesis, no paraphrasing.
 
 FETCH (external URLs — GitHub READMEs, docs, API references):
@@ -130,7 +131,6 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
     const isSafeCommand = (cmd: string) =>
       SAFE_PATTERNS.some(p => p.test(stripShellWrapper(cmd).trim()));
 
-    onUpdate?.({ text: `🏹 Slinger ${slingerPersona.name} deployed.` });
     this.writeEventFn({ type: 'slinger_start', task: researchTask.slice(0, 120), name: slingerPersona.name });
 
     let history = '';
@@ -143,10 +143,8 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
     const numFiles = targetFiles?.length || 1;
     const availableChars = Math.max(2000 * numFiles, (maxTokens - RESERVED_TOKENS) * CHARS_PER_TOKEN);
     const FILE_CAP = Math.min(Math.floor(availableChars / numFiles), 20000);
-    onUpdate?.({ text: `📐 Context: ${maxTokens} tokens → FILE_CAP: ${FILE_CAP} chars × ${numFiles} file(s)` });
 
     if (targetFiles && targetFiles.length > 0) {
-      onUpdate?.({ text: `📖 Slinger preloading ${targetFiles.length} file(s)...` });
       for (const f of targetFiles) {
         try {
           const content = readFileSync(path.resolve(f), 'utf-8');
@@ -173,8 +171,9 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
       return out.join('\n');
     };
 
-    const writeSlingerLog = (report: string): string => {
+    const writeSlingerLog = (report: string, turns?: number): string => {
       this.writeEventFn({ type: 'slinger_done', task: researchTask.slice(0, 120), name: slingerPersona.name });
+      onUpdate?.({ text: `🏹 ${slingerPersona.name}: ${turns ?? '?'} turn(s) — ${researchTask.slice(0, 60)}` });
       try {
         const logsDir = join(this.governor.config.stateDir, 'slinger-logs');
         mkdirSync(logsDir, { recursive: true });
@@ -225,7 +224,7 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
         // READLINES handler — verbatim line-range extraction, bypasses shell
         if (/^READLINES\s+/i.test(command)) {
           const parts = command.replace(/^READLINES\s+/i, '').trim().split(/\s+/);
-          const filePart = parts[0];
+          const filePart = parts[0].replace(/^['"]|['"]$/g, ''); // strip accidental shell quotes
           const rangePart = parts[1] ?? '';
           const rangeMatch = rangePart.match(/^(\d+)-(\d+)$/);
           try {
@@ -302,14 +301,14 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
         if (noCommandsYet) {
           history += `\n[Turn ${turn}] REJECTED PREMATURE SUMMARY — no commands were run. Issue a ### COMMAND to search the codebase first.\n`;
         } else {
-          return writeSlingerLog(result);
+          return writeSlingerLog(result, turn);
         }
       } else if (isFinalTurn) {
-        return writeSlingerLog(`### SUMMARY\n${result}\n\n### EVIDENCE\n${history}`);
+        return writeSlingerLog(`### SUMMARY\n${result}\n\n### EVIDENCE\n${history}`, turn);
       } else {
         history += `\n[Turn ${turn}] (No command issued)\n`;
       }
     }
-    return writeSlingerLog(`### SUMMARY\nSlinger exhausted turns without a final summary.\n\n### EVIDENCE\n${history}`);
+    return writeSlingerLog(`### SUMMARY\nSlinger exhausted turns without a final summary.\n\n### EVIDENCE\n${history}`, 8);
   }
 }

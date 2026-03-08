@@ -3,16 +3,16 @@
   "tasks": [
     {
       "id": "1",
-      "description": "Remove noisy onUpdate calls, track turn/commands inside loop, emit single aggregated summary",
-      "status": "pending",
+      "description": "Remove deploy/context/preload onUpdate calls and emit single summary in writeSlingerLog",
+      "status": "failed",
       "file": "src/core/slinger-agent.ts",
       "dependsOn": [],
-      "changes": "src/core/slinger-agent.ts (full file) BEFORE→AFTER diff\n+ Removed these early onUpdate calls in execute(): \n+   '🏹 Slinger deployed', \n+   '📐 Context:', \n+   '📖 Slinger preloading' \n+ Inside the command loop, accumulated turn count and commands run count. \n+ In writeSlingerLog(), added single aggregated onUpdate line before return:\n+   `onUpdate?.({ text: '🏹 Slinger ${slingerPersona.name}: ${turn-1} turn(s), task: ${researchTask.slice(0,60)}' })` \n+ Kept existing writeEventFn calls (slinger_start, slinger_done) unchanged — those go to events.jsonl not the war record."
+      "changes": "Remove these three onUpdate calls:\n  onUpdate?.({ text: `🏹 Slinger ${slingerPersona.name} deployed.` });\n  onUpdate?.({ text: `📐 Context: ${maxTokens} tokens → FILE_CAP: ${FILE_CAP} chars × ${numFiles} file(s)` });\n  onUpdate?.({ text: `📖 Slinger preloading ${targetFiles.length} file(s)...` });\n\nAdd `let turnsUsed = 0;` before the `const dedupeReport` declaration.\n\nAdd `turnsUsed = turn;` as the first line inside the for loop body (after `for (let turn = 1; turn <= 8; turn++) {`).\n\nIn the writeSlingerLog closure, add this line immediately before `return dedupeReport(report);`:\n  onUpdate?.({ text: `🏹 ${slingerPersona.name}: ${turnsUsed} turn(s) — ${researchTask.slice(0, 60)}` });"
     }
   ],
   "currentTaskIndex": 0,
   "lastCheckpoint": "",
-  "phase": "builder",
+  "phase": "finished",
   "planOnly": false,
   "strikes": {
     "task-4": 3,
@@ -20,7 +20,7 @@
     "task-3": 3,
     "task-6": 2,
     "task-2": 2,
-    "task-1": 2
+    "task-1": 3
   },
   "approved": false
 }

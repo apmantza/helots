@@ -1,1 +1,1 @@
-- [ ] 1. Suppress noisy mid-run onUpdate lines and emit one aggregated summary per slinger run (Target: src/core/slinger-agent.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 1. Remove deploy/context/preload onUpdate calls and emit single summary in writeSlingerLog (Target: src/core/slinger-agent.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]

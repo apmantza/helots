@@ -151,8 +151,9 @@ export class TaskRunner {
 
     let taskPassed = false;
     let lastPeltastFeedback = '';
+    let typecheckRetries = 0;
 
-    for (let tryCount = 1; tryCount <= 3; tryCount++) {
+    for (let tryCount = 1; tryCount <= Math.min(3 + typecheckRetries, 6); tryCount++) {
       const retryContext = lastPeltastFeedback
         ? `\nPREVIOUS ATTEMPT FAILED — Peltast feedback:\n${lastPeltastFeedback}\nFix the issues above.\n` : '';
       const targetHeader = task.file ? `### [${task.file}]` : `### [output.ts]`;
@@ -195,6 +196,16 @@ export class TaskRunner {
       );
       const builderOut = stripThinking(builderRaw);
       writeTrace({ phase: 'builder', status: 'complete', taskId: task.id, tryNum: tryCount });
+
+      // --- Builder log ---
+      try {
+        const builderLogsDir = join(this.governor.config.stateDir, 'builder-logs');
+        mkdirSync(builderLogsDir, { recursive: true });
+        writeFileSync(
+          join(builderLogsDir, `builder-${runId}-task${task.id}-try${tryCount}.md`),
+          `# Builder Log\n**Task:** ${task.description}\n**File:** ${task.file ?? '(none)'}\n**Try:** ${tryCount}\n\n${builderOut}`,
+        );
+      } catch { /* non-fatal */ }
 
       // --- Parse Builder output ---
       const filesToProcess: Array<{ filePath: string; fullPath: string; content: string }> = [];
@@ -261,17 +272,12 @@ export class TaskRunner {
           }
         }
         if (lspErrors.length > 0) {
+          typecheckRetries = Math.min(typecheckRetries + 1, 3);
           onUpdate?.({ text: `⚠️ LSP: type errors detected — retrying Builder without disk write` });
           lastPeltastFeedback = `Fix these type errors before resubmitting:\n${lspErrors.join('\n')}`;
           continue;
         }
         onUpdate?.({ text: `✓ LSP: type-check passed` });
-      }
-
-      // --- typecheck_fast (fallback for langs not covered by LSP, or extra project-wide checks) ---
-      if (this.toolConfig) {
-        const fastErr = runTypecheckFast(this.toolConfig, this.governor.config.projectRoot, onUpdate);
-        if (fastErr) { onUpdate?.({ text: `⚠️ typecheck_fast: errors — retrying Builder` }); lastPeltastFeedback = `Fix these type errors:\n${fastErr}`; continue; }
       }
 
       // --- File size guard ---
@@ -297,6 +303,21 @@ export class TaskRunner {
 
       // --- Format + lint_fix (deterministic transforms, silent) ---
       if (this.toolConfig) runFormatLint(this.toolConfig, filesToProcess, this.governor.config.projectRoot, onUpdate);
+
+      // --- typecheck_fast (runs after disk write so it validates Builder's actual output) ---
+      if (this.toolConfig) {
+        const fastErr = runTypecheckFast(this.toolConfig, this.governor.config.projectRoot, onUpdate);
+        if (fastErr) {
+          typecheckRetries = Math.min(typecheckRetries + 1, 3);
+          onUpdate?.({ text: `⚠️ typecheck_fast: errors — retrying Builder` });
+          lastPeltastFeedback = `Fix these type errors:\n${fastErr}`;
+          for (const { filePath, fullPath } of filesToProcess) {
+            const bak = join(backupBaseDir, filePath.replace(/[/\\]/g, '__') + '.bak');
+            if (existsSync(bak)) copyFileSync(bak, fullPath);
+          }
+          continue;
+        }
+      }
 
       // --- Handoff artifact ---
       try {
@@ -343,7 +364,8 @@ export class TaskRunner {
       let peltastOut: string;
       if (tier === 'LLM') {
         const fileBlock = filesToProcess.map(f => `${f.filePath}\n\`\`\`\n${f.content}\n\`\`\``).join('\n\n');
-        const peltastBase = `${globalContext}\nTASK: ${task.description}\n\nFILE:\n${fileBlock}\n\nRESPOND WITH EXACTLY:\nVERDICT: PASS\nor\nVERDICT: FAIL — <reason in 10 words or fewer>`;
+        const planSection = implementationPlan ? `\n\nIMPLEMENTATION PLAN (context for this task):\n${implementationPlan.slice(0, 1500)}` : '';
+        const peltastBase = `${globalContext}\nTASK: ${task.description}${planSection}\n\nFILE:\n${fileBlock}\n\nRESPOND WITH EXACTLY:\nVERDICT: PASS\nor\nVERDICT: FAIL — <reason in 10 words or fewer>`;
 
         // Pass 1: spec compliance
         const pass1System = `${peltastBase}\n\nYou are the Peltast — Pass 1: Spec Compliance.\nThe code has already passed compile and lint checks. Confirm the file implements the described task.\nVERDICT RULES: PASS if implemented even partially. FAIL only if clearly not implemented (empty body, wrong function, stub/TODO, completely missing logic). Do NOT fail for style.`;

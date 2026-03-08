@@ -233,7 +233,7 @@ class LspServer {
     const absPath = resolve(filePath);
     const uri     = pathToFileURL(absPath).toString();
 
-    return new Promise<LspDiagnostic[]>((resolve) => {
+    return new Promise<LspDiagnostic[]>((resolve, reject) => {
       let settled = false;
       const done  = (diags: LspDiagnostic[]) => {
         if (settled) return;
@@ -244,8 +244,13 @@ class LspServer {
       };
 
       this.diagCallbacks.set(uri, done);
-      // Timeout → assume clean (server didn't push diagnostics = no errors)
-      setTimeout(() => done([]), timeoutMs);
+      // Timeout → reject so LspManager falls back to tscFallback instead of silently passing
+      setTimeout(() => {
+        if (settled) return;
+        settled = true;
+        this.diagCallbacks.delete(uri);
+        reject(new Error('LSP diagnose timeout'));
+      }, timeoutMs);
 
       this.notify('textDocument/didOpen', {
         textDocument: { uri, languageId: this.def.languageId, version: 1, text: content },

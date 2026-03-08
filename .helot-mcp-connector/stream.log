@@ -93,6 +93,7 @@ READ
   READ
   Note
   Note
+  Note
 
 FETCH
   WEB
@@ -137,8 +138,6 @@ For
 
     this
 
-    let
-    let
     let
     let
 
@@ -186,13 +185,30 @@ For
         //
         write
       }
+      onUpdate
       return
     };
 
     this
 
+    let
+    const
+      const
+      const
+      const
+      for
+        const
+        //
+        if
+          out
+        }
+        if
+      }
+      return
+    };
+
     for
-      turn
+      turns
       const
       const
       const
@@ -226,7 +242,6 @@ For
 
       if
         const
-        commands
 
         //
         if
@@ -251,7 +266,16 @@ For
             const
             history
           }
-            history
+            //
+            try
+              const
+                `
+                this
+              ).
+              history
+            }
+              history
+            }
           }
           continue
         }
@@ -312,772 +336,31 @@ For
 }
 ```
 
---- Builder (Task 1) | Aristomenis ---
+--- Slinger | Agis ---
 
-REV
-src
-+ 
-+ 
-+ 
-+ 
-+ 
-+
-+ 
-+
-END
+grep
+###
 
---- Builder (Task 1) | Teleutias ---
+--- Slinger | Agis ---
 
-```
-/**
- *
- *
- *
- *
- */
+grep
+###
 
-import
-import
-import
-import
-import
-import
-import
-import
-import
+--- Slinger | Agis ---
 
+The
+-
+-
+-
+-
+-
+-
+
+The
+
+###
+file
+line
+
+###
 export
-  constructor
-    private
-    private
-    private
-    private
-    private
-  )
-
-  async
-    research
-    target
-    onUpdate
-  ):
-    const
-    const
-    const
-
-    let
-    if
-      const
-      const
-      target
-    }
-
-    const
-
-CR
-CR
-CR
-
-FORMAT
-###
-<
-###
-
-When
-###
-<
-###
-<
-###
-<
-
-SEARCH
-  IMPORTANT
-  grep
-  grep
-  grep
-  grep
-  grep
-  grep
-
-FILE
-${
-  ?
-  Get
-  :
-  find
-  ls
-
-READ
-${
-  ?
-  Get
-  :
-  wc
-
-READ
-  READ
-  READ
-  Note
-  Note
-
-FETCH
-  WEB
-  WEB
-  Note
-
-STR
-${
-  ?
-STEP
-STEP
-STEP
-STEP
-DO
-  :
-2
-3
-4
-5
-For
-
-    const
-      cmd
-        .
-        .
-        .
-        .
-        .
-
-    const
-      /^(
-      /^
-      /^(
-      /^
-      /^
-      /^
-      /^
-      /^
-    ];
-    const
-      SAFE
-
-    this
-
-    let
-    let
-    let
-    let
-
-    //
-    //
-    const
-    const
-    const
-    const
-    const
-
-    if
-      for
-        try
-          const
-          const
-          pre
-        }
-          pre
-        }
-      }
-    }
-
-    const
-      const
-      const
-      const
-      for
-        const
-        //
-        if
-          out
-        }
-        if
-      }
-      return
-    };
-
-    const
-      this
-      try
-        const
-        mkdir
-        const
-        //
-        write
-      }
-      return
-    };
-
-    this
-
-    for
-      turn
-      const
-      const
-      const
-      const
-        ?
-        :
-          ?
-          :
-            ?
-            :
-      const
-      const
-        ?
-        :
-
-      const
-        '
-        `
-        onUpdate
-      );
-
-      const
-      let
-      if
-        let
-        const
-        if
-        cmd
-      }
-      const
-
-      if
-        const
-
-        //
-        if
-          const
-          const
-          const
-          const
-          try
-            //
-            const
-              path
-              path
-              path
-            ];
-            const
-            const
-            let
-            if
-              start
-              end
-            }
-            const
-            history
-          }
-            history
-          }
-          commands
-          continue
-        }
-
-        //
-        if
-          const
-          const
-            .
-            .
-          try
-            const
-            const
-            history
-          }
-            history
-          }
-          commands
-          continue
-        }
-
-        if
-          history
-          continue
-        }
-        try
-          let
-          if
-            output
-          }
-            const
-              cwd
-            });
-            output
-            if
-          }
-            output
-          }
-          history
-        }
-          history
-        }
-        commands
-      }
-        //
-        //
-        if
-          history
-        }
-          return
-        }
-      }
-        return
-      }
-        history
-      }
-    }
-    
-    const
-    onUpdate
-    return
-  }
-}
-```
-
---- Builder (Task 1) | Pausanias ---
-
-```
-/**
- *
- *
- *
- *
- */
-
-import
-import
-import
-import
-import
-import
-import
-import
-import
-
-export
-  constructor
-    private
-    private
-    private
-    private
-    private
-  )
-
-  async
-    research
-    target
-    onUpdate
-  ):
-    const
-    const
-    const
-
-    let
-    if
-      const
-      const
-      target
-    }
-
-    const
-
-CR
-CR
-CR
-
-FORMAT
-###
-<
-###
-
-When
-###
-<
-###
-<
-###
-<
-
-SEARCH
-  IMPORTANT
-  grep
-  grep
-  grep
-  grep
-  grep
-  grep
-
-FILE
-${
-  ?
-  Get
-  :
-  find
-  ls
-
-READ
-${
-  ?
-  Get
-  :
-  wc
-
-READ
-  READ
-  READ
-  Note
-  Note
-
-FETCH
-  WEB
-  WEB
-  Note
-
-STR
-${
-  ?
-STEP
-STEP
-STEP
-STEP
-DO
-  :
-2
-3
-4
-5
-For
-
-    const
-      cmd
-        .
-        .
-        .
-        .
-        .
-
-    const
-      /^(
-      /^
-      /^(
-      /^
-      /^
-      /^
-      /^
-      /^
-    ];
-    const
-      SAFE
-
-    this
-
-    let
-    let
-    let
-    let
-
-    //
-    //
-    const
-    const
-    const
-    const
-    const
-
-    if
-      for
-        try
-          const
-          const
-          pre
-        }
-          pre
-        }
-      }
-    }
-
-    const
-      const
-      const
-      const
-      for
-        const
-        //
-        if
-          out
-        }
-        if
-      }
-      return
-    };
-
-    const
-      this
-      try
-        const
-        mkdir
-        const
-        //
-        write
-      }
-      return
-    };
-
-    this
-
-    for
-      turn
-      const
-      const
-      const
-      const
-        ?
-        :
-          ?
-          :
-            ?
-            :
-      const
-      const
-        ?
-        :
-
-      const
-        '
-        `
-        onUpdate
-      );
-
-      const
-      let
-      if
-        let
-        const
-        if
-        cmd
-      }
-      const
-
-      if
-        const
-        commands
-
-        //
-        if
-          const
-          const
-          const
-          const
-          try
-            //
-            const
-              path
-              path
-              path
-            ];
-            const
-            const
-            let
-            if
-              start
-              end
-            }
-            const
-            history
-          }
-            history
-          }
-          continue
-        }
-
-        //
-        if
-          const
-          const
-            .
-            .
-          try
-            const
-            const
-            history
-          }
-            history
-          }
-          continue
-        }
-
-        if
-          history
-          continue
-        }
-        try
-          let
-          if
-            output
-          }
-            const
-              cwd
-            });
-            output
-            if
-          }
-            output
-          }
-          history
-        }
-          history
-        }
-      }
-        //
-        //
-        if
-          history
-        }
-          return
-        }
-      }
-        return
-      }
-        history
-      }
-    }
-    return
-  }
-}
-```
-
---- Slinger | Archidamus ---
-
-READ
-###
-
---- Slinger | Archidamus ---
-
-Get
-###
-
---- Slinger | Archidamus ---
-
-grep
-###
-
---- Slinger | Archidamus ---
-
-grep
-###
-
---- Slinger | Archidamus ---
-
-grep
-###
-
---- Slinger | Archidamus ---
-
-grep
-###
-
---- Slinger | Archidamus ---
-
-Research
-
-1
-   -
-   -
-   -
-
-2
-   -
-   -
-   -
-   -
-
-3
-   -
-   -
-   -
-
-**
-
-###
--
--
--
--
-
---- Slinger | Agesilaus ---
-
-READ
-###
-
---- Slinger | Agesilaus ---
-
-Get
-###
-
---- Slinger | Agesilaus ---
-
-Get
-###
-
---- Slinger | Agesilaus ---
-
-Get
-###
-
---- Slinger | Agesilaus ---
-
-Get
-###
-
---- Slinger | Agesilaus ---
-
-Get
-###
-
---- Slinger | Agesilaus ---
-
-L
-
-**
-
-1
-
-2
-   -
-   -
-   -
-   -
-
-3
-   ```
-   this
-     cwd
-     std
-     env
-   });
-   ```
-
-4
-   -
-   -
-   -
-
-**
--
--
--
-
-###
-src
-src
-src
-src
