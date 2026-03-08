@@ -15,6 +15,7 @@ import { resolveTools }  from './tool-resolver.js';
 import { runTaskLoop }   from './task-loop.js';
 import { runEnvCheck, formatEnvReport } from './env-check.js';
 import { WorktreeManager } from './worktree-manager.js';
+import { formatRunReport } from './run-reporter.js';
 import { Aristomenis }   from './governor.js';
 import type { SlingerAgent } from './slinger-agent.js';
 import type { TaskRunner }   from './task-runner.js';
@@ -84,6 +85,7 @@ export async function executeHelots(
   // --- ENV CHECK ---
   const envReport = runEnvCheck(governor.config.projectRoot);
   onUpdate?.({ text: formatEnvReport(envReport) });
+  taskRunner.toolConfig = envReport.toolConfig;
 
   // --- WORKTREE ---
   let worktreeBranch: string | undefined;
@@ -156,6 +158,24 @@ export async function executeHelots(
     onUpdate?.({ text: `✅ Pre-Slinger: ${srcFiles.length} files, ${totalSymbols} symbols` });
   } catch (e: any) {
     onUpdate?.({ text: `⚠️ Pre-Slinger scan failed: ${e.message}` });
+  }
+
+  // --- plan.md fallback (cross-session persistence) ---
+  if (!frontierTasks || frontierTasks.length === 0) {
+    const planMdPath = join(governor.config.stateDir, 'plan.md');
+    if (existsSync(planMdPath)) {
+      try {
+        const raw = readFileSync(planMdPath, 'utf-8');
+        const jsonMatch = raw.match(/```json\s*([\s\S]+?)\s*```/) ?? raw.match(/^\s*(\[[\s\S]+\])\s*$/m);
+        if (jsonMatch) {
+          const parsed = JSON.parse(jsonMatch[1]) as FrontierTask[];
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            frontierTasks = parsed;
+            onUpdate?.({ text: `📄 plan.md: loaded ${parsed.length} tasks` });
+          }
+        }
+      } catch { /* unparseable — fall through to Aristomenis */ }
+    }
   }
 
   // --- 3. PLAN: Frontier-planned or Aristomenis ---
@@ -271,14 +291,5 @@ RESPOND ONLY WITH THE CHECKLIST. DO NOT USE PLACEHOLDERS.`;
   onUpdate?.({ text: `✅ Execution complete! ${passed}/${taskNodes.length} tasks passed.` });
   governor.setPhase('finished');
 
-  const branchLine = worktreeBranch
-    ? `\nBranch: \`${worktreeBranch}\` — merge when ready, or discard: git branch -D ${worktreeBranch}`
-    : '';
-
-  const failedTasks = taskNodes.filter(t => t.status === 'failed');
-  if (failed > 0) {
-    const details = failedTasks.map(t => `Task ${t.id} (${t.description.slice(0, 60)})`).join(', ');
-    return `⚠️ ${passed}/${taskNodes.length} tasks passed. Failed: ${details}. Run ID: ${runId}${branchLine}\nSee .helot-mcp-connector/runs/${runId}/ for details.`;
-  }
-  return `✅ ${passed}/${taskNodes.length} tasks passed. Run ID: ${runId}${branchLine}`;
+  return formatRunReport({ taskSummary, runId, taskNodes, envReport, worktreeBranch });
 }

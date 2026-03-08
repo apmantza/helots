@@ -19,10 +19,13 @@ import { Aristomenis }        from './governor.js';
 import type { ToolSet }       from './tool-resolver.js';
 import type { HelotTask }     from './types.js';
 import type { RunSubagentFn, WriteEventFn } from './types.js';
+import type { ToolConfig } from './env-check.js';
+import { runFormatLint, runTypecheckFast, runTypecheckSlow } from './tool-runner.js';
 
 export class TaskRunner {
   public tools: ToolSet = { python: 'python', ruff: null, pytest: null };
   public serverMaxTokens: number = 0;
+  public toolConfig: ToolConfig | null = null;
   private lspManager: LspManager | null = null;
   private skillInjector: SkillInjector | null = null;
 
@@ -268,6 +271,12 @@ export class TaskRunner {
         onUpdate?.({ text: `✓ LSP: type-check passed` });
       }
 
+      // --- typecheck_fast (fallback for langs not covered by LSP, or extra project-wide checks) ---
+      if (this.toolConfig) {
+        const fastErr = runTypecheckFast(this.toolConfig, this.governor.config.projectRoot, onUpdate);
+        if (fastErr) { onUpdate?.({ text: `⚠️ typecheck_fast: errors — retrying Builder` }); lastPeltastFeedback = `Fix these type errors:\n${fastErr}`; continue; }
+      }
+
       // --- File size guard ---
       const oversized = filesToProcess.filter(f => f.content.split('\n').length > 500);
       if (oversized.length > 0) {
@@ -288,6 +297,9 @@ export class TaskRunner {
         renameSync(tmp, fullPath);
       }
       this.governor.recordSourceEdit();
+
+      // --- Format + lint_fix (deterministic transforms, silent) ---
+      if (this.toolConfig) runFormatLint(this.toolConfig, filesToProcess, this.governor.config.projectRoot, onUpdate);
 
       // --- Handoff artifact ---
       try {
@@ -323,6 +335,12 @@ export class TaskRunner {
         tier = 'PASS'; verdictReason = 'auto-pass: all checks green';
       } else {
         tier = 'LLM'; verdictReason = '';
+      }
+
+      // --- typecheck_slow gate (thorough check before LLM Peltast) ---
+      if (tier !== 'FAIL' && this.toolConfig) {
+        const slowErr = runTypecheckSlow(this.toolConfig, this.governor.config.projectRoot, onUpdate);
+        if (slowErr) { onUpdate?.({ text: `⚠️ typecheck_slow failed — task ${task.id}` }); tier = 'FAIL'; verdictReason = 'typecheck_slow failed'; lastPeltastFeedback = `Fix these errors:\n${slowErr}`; }
       }
 
       let peltastOut: string;

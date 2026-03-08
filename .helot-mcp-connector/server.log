@@ -4081,3 +4081,7 @@ Helots MCP Server running on stdio
 [Hoplite Update] ✏️ Hoplite editing C:/Users/R3LiC/.claude/projects/C--Users-R3LiC-Desktop-helots-pi/memory/MEMORY.md...
 [Hoplite Update] ✅ Hoplite | Agis | 68.0t/s | 1450 gen + 10878 prompt tokens
 [Hoplite Update] ✅ Hoplite: C:/Users/R3LiC/.claude/projects/C--Users-R3LiC-Desktop-helots-pi/memory/MEMORY.md written (61 → 76 lines)
+[Slinger Update] 🏹 Slinger Pausanias deployed.
+[Slinger Update] 📐 Context: 65536 tokens → FILE_CAP: 20000 chars × 1 file(s)
+[Slinger Update] ⚠️ Slinger | Pausanias | server error: fetch failed
+[Slinger Update] ❌ Slinger | Pausanias | empty response — server may be down
