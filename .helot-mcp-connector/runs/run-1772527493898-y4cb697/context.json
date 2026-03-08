@@ -1074,7 +1074,7 @@
     },
     {
       "path": "logs\\llama-calls.log",
-      "size": 64816
+      "size": 66047
     },
     {
       "path": "package-lock.json",
@@ -1214,7 +1214,7 @@
     },
     {
       "path": "src\\core\\lsp-client.ts",
-      "size": 11642
+      "size": 11804
     },
     {
       "path": "src\\core\\model-registry.ts",
@@ -1294,7 +1294,7 @@
     },
     {
       "path": "src\\dashboard\\index.html",
-      "size": 20756
+      "size": 20952
     },
     {
       "path": "src\\mcp-client.ts",

@@ -3,43 +3,33 @@
   "tasks": [
     {
       "id": "1",
-      "description": "Fix war record phase matching to be case-insensitive",
-      "status": "completed",
+      "description": "Call loadAggregated on verdict, task_status, and run_end events so stats auto-update",
+      "status": "pending",
       "file": "src/dashboard/index.html",
       "dependsOn": [],
-      "changes": "In addWarRecord, change all phase comparisons to be case-insensitive: replace `phase.startsWith('Builder')` with `phase.toLowerCase().startsWith('builder')`, `phase.startsWith('Peltast')` with `phase.toLowerCase().startsWith('peltast')`, `phase === 'Slinger'` with `phase.toLowerCase() === 'slinger'`, `phase === 'Hoplite'` with `phase.toLowerCase() === 'hoplite'`, `phase === 'Scout'` with `phase.toLowerCase() === 'scout'`. Also make role comparisons case-insensitive the same way."
+      "changes": "In the handleEvent function, add loadAggregated() calls inside the verdict, task_status, and run_end event branches. Currently loadAggregated() is only called on subagent_done. Find the if-blocks for ev.type === 'verdict', ev.type === 'task_status', and ev.type === 'run_end' and add loadAggregated() at the end of each block."
     },
     {
       "id": "2",
-      "description": "Call loadAggregated on verdict, task_status, and run_end events so stats auto-update",
-      "status": "failed",
-      "file": "src/dashboard/index.html",
-      "dependsOn": [
-        "1"
-      ],
-      "changes": "In handleEvent, add `loadAggregated()` calls for event types: `verdict`, `task_status`, and `run_end`. Currently loadAggregated() is only called on `subagent_done`. Add it to the verdict, task_status, and run_end branches so the aggregated stats panel refreshes whenever task state changes."
+      "description": "Remove ensureWatchOpen() call from helot_run handler",
+      "status": "pending",
+      "file": "src/adapters/mcp-server.ts",
+      "dependsOn": [],
+      "changes": "In the helot_run tool handler (the if block where name === 'helot_run'), remove the single line that calls ensureWatchOpen(). Do not change anything else in the file. Keep the ensureWatchOpen function definition."
     },
     {
       "id": "3",
-      "description": "Remove ensureWatchOpen() call from helot_run handler — watch terminal is replaced by browser dashboard",
-      "status": "failed",
-      "file": "src/adapters/mcp-server.ts",
-      "dependsOn": [],
-      "changes": "In the helot_run tool handler (around line 342), remove the `ensureWatchOpen()` call. The old watch terminal is no longer needed — the browser dashboard at port 7771 replaces it. Keep the ensureWatchOpen function definition in case it is needed later, just do not call it automatically on every helot_run invocation."
-    },
-    {
-      "id": "4",
-      "description": "Prevent browser from reopening on every MCP server restart",
-      "status": "failed",
+      "description": "Prevent browser reopening on every MCP server restart using a sentinel file",
+      "status": "pending",
       "file": "src/adapters/dashboard-server.ts",
       "targetSymbol": "startDashboard",
       "dependsOn": [],
-      "changes": "In the server.listen callback, before calling `exec('start http://...')` (or `exec('open ...')` on mac), check a sentinel file: `const sentinelPath = path.join(stateDir, 'dashboard.opened'); const shouldOpen = !fs.existsSync(sentinelPath) || (Date.now() - fs.statSync(sentinelPath).mtimeMs > 60_000);`. If shouldOpen is true, write the sentinel file (`fs.writeFileSync(sentinelPath, String(Date.now()))`) and then exec the browser open. If shouldOpen is false, skip the exec. This prevents the browser tab from reopening on every /mcp reconnect."
+      "changes": "In the server.listen callback, wrap the exec browser-open calls in a sentinel check. Before opening the browser, check: const sentinelPath = path.join(stateDir, 'dashboard.opened'); const shouldOpen = !fs.existsSync(sentinelPath) || (Date.now() - fs.statSync(sentinelPath).mtimeMs > 60_000); if shouldOpen is true, write fs.writeFileSync(sentinelPath, String(Date.now())) then exec the browser open. If false, skip. The stateDir variable is the parameter passed to startDashboard."
     }
   ],
   "currentTaskIndex": 0,
   "lastCheckpoint": "",
-  "phase": "finished",
+  "phase": "builder",
   "planOnly": false,
   "strikes": {
     "task-4": 4,

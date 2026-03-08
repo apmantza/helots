@@ -1,31 +1,10 @@
-{"ts":"2026-03-08T17:09:40.025Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen9b","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
-{"ts":"2026-03-08T17:09:40.433Z","type":"task_list","tasks":[{"id":"1","desc":"Fix war record phase matching to be case-insensitive","file":"src/dashboard/index.html","status":"pending"},{"id":"2","desc":"Call loadAggregated on verdict, task_status, and run_end events so stats auto-update","file":"src/dashboard/index.html","status":"pending"},{"id":"3","desc":"Remove ensureWatchOpen() call from helot_run handler — watch terminal is replaced by browser dashboard","file":"src/adapters/mcp-server.ts","status":"pending"},{"id":"4","desc":"Prevent browser from reopening on every MCP server restart","file":"src/adapters/dashboard-server.ts","status":"pending"}]}
-{"ts":"2026-03-08T17:09:40.437Z","type":"task_status","taskId":"1","status":"running"}
-{"ts":"2026-03-08T17:09:40.449Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
-{"ts":"2026-03-08T17:11:56.457Z","type":"subagent_done","phase":"Builder (Task 1)","role":"Builder","name":"Teleutias","tps":41.53087135852519,"genTokens":5503,"promptTokens":5355,"ctxPct":2}
-{"ts":"2026-03-08T17:11:58.014Z","type":"phase_change","phase":"Peltast P1 (Task 1)","name":"Lysander"}
-{"ts":"2026-03-08T17:12:01.426Z","type":"subagent_done","phase":"Peltast P1 (Task 1)","role":"Peltast","name":"Lysander","tps":58.890317960550725,"genTokens":5,"promptTokens":5148,"ctxPct":2}
-{"ts":"2026-03-08T17:12:01.431Z","type":"phase_change","phase":"Peltast P2 (Task 1)","name":"Pausanias"}
-{"ts":"2026-03-08T17:12:01.848Z","type":"subagent_done","phase":"Peltast P2 (Task 1)","role":"Peltast","name":"Pausanias","tps":58.373367734709156,"genTokens":5,"promptTokens":5146,"ctxPct":2}
-{"ts":"2026-03-08T17:12:01.855Z","type":"verdict","taskId":"1","result":"PASS","tryNum":1}
-{"ts":"2026-03-08T17:12:02.115Z","type":"task_status","taskId":"2","status":"running"}
-{"ts":"2026-03-08T17:12:02.126Z","type":"phase_change","phase":"Builder (Task 2)","name":"Pausanias"}
-{"ts":"2026-03-08T17:14:24.008Z","type":"subagent_done","phase":"Builder (Task 2)","role":"Builder","name":"Pausanias","tps":40.84873190794903,"genTokens":5513,"promptTokens":10328,"ctxPct":4}
-{"ts":"2026-03-08T17:14:24.033Z","type":"task_status","taskId":"2","status":"failed"}
-{"ts":"2026-03-08T17:14:24.036Z","type":"task_status","taskId":"3","status":"running"}
-{"ts":"2026-03-08T17:14:24.045Z","type":"phase_change","phase":"Builder (Task 3)","name":"Lysander"}
-{"ts":"2026-03-08T17:16:07.631Z","type":"subagent_done","phase":"Builder (Task 3)","role":"Builder","name":"Lysander","tps":40.07758679802615,"genTokens":4043,"promptTokens":5714,"ctxPct":2}
-{"ts":"2026-03-08T17:16:24.241Z","type":"verdict","taskId":"3","result":"FAIL","tryNum":1,"reason":"syntax error"}
-{"ts":"2026-03-08T17:16:24.256Z","type":"task_status","taskId":"3","status":"failed"}
-{"ts":"2026-03-08T17:16:24.260Z","type":"task_status","taskId":"4","status":"running"}
-{"ts":"2026-03-08T17:16:24.271Z","type":"phase_change","phase":"Builder (Task 4)","name":"Leonidas"}
-{"ts":"2026-03-08T17:17:10.122Z","type":"subagent_done","phase":"Builder (Task 4)","role":"Builder","name":"Leonidas","tps":40.624309353037226,"genTokens":1808,"promptTokens":2296,"ctxPct":1}
-{"ts":"2026-03-08T17:17:11.663Z","type":"phase_change","phase":"Builder (Task 4)","name":"Gylippus"}
-{"ts":"2026-03-08T17:17:57.627Z","type":"subagent_done","phase":"Builder (Task 4)","role":"Builder","name":"Gylippus","tps":40.51209425021052,"genTokens":1804,"promptTokens":2469,"ctxPct":1}
-{"ts":"2026-03-08T17:17:59.198Z","type":"phase_change","phase":"Builder (Task 4)","name":"Brasidas"}
-{"ts":"2026-03-08T17:18:34.149Z","type":"subagent_done","phase":"Builder (Task 4)","role":"Builder","name":"Brasidas","tps":40.60296383153829,"genTokens":1406,"promptTokens":2469,"ctxPct":1}
-{"ts":"2026-03-08T17:18:35.707Z","type":"verdict","taskId":"4","result":"FAIL","tryNum":3,"reason":"syntax error"}
-{"ts":"2026-03-08T17:18:35.721Z","type":"task_status","taskId":"4","status":"failed"}
-{"ts":"2026-03-08T17:18:35.725Z","type":"run_end","passed":1,"failed":3}
-{"ts": "2026-03-08T17:22:10.833Z", "type": "frontier_edit", "file": "src\\core\\lsp-client.ts"}
-{"ts": "2026-03-08T17:22:17.628Z", "type": "frontier_edit", "file": "src\\core\\lsp-client.ts"}
+{"ts":"2026-03-08T17:23:54.146Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen9b","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
+{"ts":"2026-03-08T17:23:54.523Z","type":"task_list","tasks":[{"id":"1","desc":"Call loadAggregated on verdict, task_status, and run_end events so stats auto-update","file":"src/dashboard/index.html","status":"pending"},{"id":"2","desc":"Remove ensureWatchOpen() call from helot_run handler","file":"src/adapters/mcp-server.ts","status":"pending"},{"id":"3","desc":"Prevent browser reopening on every MCP server restart using a sentinel file","file":"src/adapters/dashboard-server.ts","status":"pending"}]}
+{"ts":"2026-03-08T17:23:54.526Z","type":"task_status","taskId":"1","status":"running"}
+{"ts":"2026-03-08T17:23:54.536Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
+{"ts":"2026-03-08T17:26:10.630Z","type":"subagent_done","phase":"Builder (Task 1)","role":"Builder","name":"Teleutias","tps":41.52279387779971,"genTokens":5511,"promptTokens":5381,"ctxPct":2}
+{"ts":"2026-03-08T17:26:12.236Z","type":"phase_change","phase":"Peltast P1 (Task 1)","name":"Lysander"}
+{"ts":"2026-03-08T17:26:15.694Z","type":"subagent_done","phase":"Peltast P1 (Task 1)","role":"Peltast","name":"Lysander","tps":58.99503143843741,"genTokens":5,"promptTokens":5175,"ctxPct":2}
+{"ts":"2026-03-08T17:26:15.699Z","type":"phase_change","phase":"Peltast P2 (Task 1)","name":"Pausanias"}
+{"ts":"2026-03-08T17:26:16.129Z","type":"subagent_done","phase":"Peltast P2 (Task 1)","role":"Peltast","name":"Pausanias","tps":58.55212309998345,"genTokens":5,"promptTokens":5173,"ctxPct":2}
+{"ts":"2026-03-08T17:26:16.135Z","type":"verdict","taskId":"1","result":"PASS","tryNum":1}

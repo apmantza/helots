@@ -1,4 +1,3 @@
-- [ ] 1. Fix war record phase matching to be case-insensitive (Target: src/dashboard/index.html, Symbol: N/A, Action: EDIT) [DEPENDS: none]
-- [ ] 2. Call loadAggregated on verdict, task_status, and run_end events so stats auto-update (Target: src/dashboard/index.html, Symbol: N/A, Action: EDIT) [DEPENDS: 1]
-- [ ] 3. Remove ensureWatchOpen() call from helot_run handler — watch terminal is replaced by browser dashboard (Target: src/adapters/mcp-server.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
-- [ ] 4. Prevent browser from reopening on every MCP server restart (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
+- [ ] 1. Call loadAggregated on verdict, task_status, and run_end events so stats auto-update (Target: src/dashboard/index.html, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 2. Remove ensureWatchOpen() call from helot_run handler (Target: src/adapters/mcp-server.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 3. Prevent browser reopening on every MCP server restart using a sentinel file (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
