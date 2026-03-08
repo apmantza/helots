@@ -38,7 +38,9 @@
       "Bash(echo:*)",
       "Read(//usr/bin/**)",
       "Read(//c/Program Files/ripgrep/**)",
-      "Bash(unalias rg:*)"
+      "Bash(unalias rg:*)",
+      "Bash(typescript-language-server:*)",
+      "Bash(npm install:*)"
     ]
   }
 }
