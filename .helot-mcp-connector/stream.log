@@ -3,421 +3,423 @@
 --- Builder (Task 1) | Teleutias ---
 
 ```
-<!
-<html
-<head
-<meta
-<meta
-<title
-<script
-<script
-<script
-<style
-  body
-  .
-  @
-  @
-  pre
-  ::
-</
-</
-<body
-
-<!--
-<div
-  <
-    <
-      <
-      <
-      <
-      <
-    </
-    <
-      <
-      <
-      <
-    </
-  </
-  <
-    <
-    <
-    <
-    <
-    <
-    <
-  </
-</
-
-<!--
-<div
-
-  <!--
-  <
-    <
-      <
-      <
-    </
-    <
-    <
-  </
-
-  <!--
-  <
-    <
-    <
-  </
-
-</
-
-<!--
-<div
-  <
-  <
-</
-
-<!--
-<div
-  <
-    <
-    <
-      <
-      <
-    </
-  </
-  <
-    <
-      <
-        <
-          <
-          <
-          <
-          <
-          <
-        </
-      </
-      <
-    </
-  </
-</
-
-<!--
-<div
-  <
-    <
-    <
-  </
-  <
-</
-
-<!--
-<div
-
-<!--
-<div
-  <
-    <
-      <
-      <
-    </
-    <
-  </
-</
-
-<script
-//
-const
-let
-let
-
-function
-  try
+import
+import
+import
+    Call
+    List
+    Call
 }
-function
-  try
-    const
-    if
-  }
-}
+import
+import
+import
+import
+import
+import
+import
+import
+import
 
-//
-const
-evt
+/**
+ *
+ *
+ */
 
 const
-stream
-  const
-  panel
-  panel
+    llama
+    llama
+    apiKey
+    dense
+    mo
+    state
+    project
 };
 
 //
-function
-  //
-  if
-    add
-    load
-  }
-
-  //
-  if
-    document
-    document
-  }
-
-  //
-  if
-    document
-    document
-    document
-    showToast
-  }
-  if
-    for
-      up
+try
+    const
+    if
+        const
+        const
+        Object
     }
-  }
-  if
-    const
-    if
-      task
-      render
-      save
-    }
-  }
-  if
-    const
-    if
-      const
-      t
-      t
-      render
-      save
-    }
-    load
-  }
-  if
-    fetch
-    load
-    const
-    if
-    else
-    else
-    load
-  }
-
-  //
-  if
-    const
-    up
-  }
-  if
-    //
-    const
-    if
-  }
-
-  //
-  if
-    const
-    up
-  }
-  if
-    const
-    if
-      const
-      t
-      t
-      render
-      save
-    }
-  }
-
-  //
-  if
-    if
-    if
-    if
-  }
 }
+
+const
+start
 
 //
-function
-  if
-  else
-  render
-  save
-}
-
-function
-  const
-  const
-  tbody
-    const
-    const
-    const
-    const
+const
+try
+const
+(process
+    try
     return
-      <
-      <
-      <
-      <
-      <
-    </
-  }).
-  document
-}
-
-function
-
-function
+};
+process
 
 //
-function
-  const
-  const
-  let
-  if
-  else
-  else
-  else
-  else
-  else
-  const
-  row
-  row
-  el
-}
-
 //
-async
-  try
-    const
-    document
-    document
-    document
-    document
-    const
-    document
-    document
-    document
-    document
-    document
-    const
-    s
-    s
+const
+const
+const
+
+function
     if
-      document
-      document
-    }
-  }
-}
-
-//
-async
-  try
-    const
-    const
-    el
-    for
-      const
-      d
-      d
-      if
+    try
         const
-        btn
-        btn
-        btn
-        d
-      }
-      if
+        if
+        process
+        return
+    }
+        try
+        return
+    }
+}
+
+function
+    if
+    if
+        process
+        return
+    }
+
+    try
         const
-        btn
-        btn
-        btn
-        d
-      }
-      el
+        const
+        let
+
+        if
+            //
+            const
+            try
+                fs
+            }
+            child
+                {
+        }
+            const
+            child
+        }
+            //
+            for
+                try
+                    child
+                        {
+                    break
+                }
+            }
+        }
+
+        if
+            child
+            process
+        }
     }
-  }
+        process
+    }
 }
+
+const
+    {
+        name
+        version
+    },
+    {
+        capabilities
+            tools
+        },
+    }
+);
+
+/**
+ *
+ */
+const
+    {
+        name
+        description
+        input
+            type
+            properties
+                research
+                    type
+                    description
+                },
+                target
+                    type
+                    items
+                    description
+                },
+                outputFile
+                    type
+                    description
+                },
+                batch
+                    type
+                    description
+                },
+                max
+                    type
+                    description
+                },
+            },
+            required
+        },
+    },
+    {
+        name
+        description
+        input
+            type
+            properties
+                task
+                    type
+                    description
+                },
+                implementation
+                    type
+                    description
+                },
+                tasks
+                    type
+                    description
+                    items
+                        type
+                        properties
+                            id
+                            description
+                            file
+                            symbol
+                            depends
+                            changes
+                        },
+                        required
+                    },
+                },
+            },
+            required
+        },
+    },
+    {
+        name
+        description
+        input
+            type
+            properties
+                script
+                    type
+                    description
+                },
+                audit
+                    type
+                    description
+                },
+                dry
+                    type
+                    description
+                },
+                script
+                    type
+                    description
+                },
+                protected
+                    type
+                    items
+                    description
+                },
+                rem
+                    type
+                    description
+                    items
+                        type
+                        properties
+                            pattern
+                            dir
+                        },
+                        required
+                    },
+                },
+                prune
+                    type
+                    description
+                    items
+                        type
+                        properties
+                            glob
+                            dest
+                        },
+                        required
+                    },
+                },
+            },
+            required
+        },
+    },
+    {
+        name
+        description
+        input
+            type
+            properties
+                file
+                    type
+                    description
+                },
+                instruction
+                    type
+                    description
+                },
+            },
+            required
+        },
+    },
+    {
+        name
+        description
+        input
+            type
+            properties
+                workflow
+                    type
+                    description
+                },
+                steps
+                    type
+                    description
+                    items
+                        type
+                        properties
+                            id
+                            tool
+                            depends
+                            research
+                            outputFile
+                            batch
+                            script
+                            script
+                            audit
+                            protected
+                            rem
+                            prune
+                            file
+                            instruction
+                            command
+                        },
+                        required
+                    },
+                },
+            },
+            required
+        },
+    },
+];
+
+server
+    tools
+}
+
+server
+    const
+
+    try
+        if
+            const
+            const
+            const
+
+            if
+                const
+                const
+                const
+                    console
+                },
+                return
+            }
+
+            const
+                console
+            });
+            return
+        }
+
+        if
+            const
+            const
+
+            if
+                return
+                    content
+                    isError
+                };
+            }
+
+            const
+                console
+            },
+
+            return
+                content
+            };
+        }
+
+        if
+            const
+            const
+            const
+            const
+            const
+            const
+            const
+
+            const
+            return
+        }
+
+        if
+            const
+            const
+
+            const
+                console
+            });
+
+            return
+                content
+            };
+        }
+
+        if
+            const
+            const
+            if
+                return
+            }
+            const
+                console
+            });
+            return
+        }
+
+        throw
+    }
+        return
+            content
+            isError
+        };
+    }
+});
 
 async
-  try
     const
-    const
-      '
-      '
-      '
-      '
-      '
-    };
-    for
-      if
-      const
-      let
-      if
-      else
-      else
-      else
-      const
-      r
-      r
-      if
-    }
-    const
-    el
-      const
-      return
-        <
-        <
-        <
-        <
-      </
-    }).
-  }
+    await
+    console
 }
 
-function
-  runs
-  document
-  document
-}
-
-//
-function
-  const
-  const
-  d
-  d
-  c
-  setTimeout
-}
-
-//
-async
-  try
-    const
-    document
-    document
-    document
-  }
-}
-function
-  if
-}
-
-//
-load
-render
-fetch
-load
-load
-set
-set
-set
-</
-</
-</
+main
+    console
+    process
+});
 ```
 
 --- Peltast P1 (Task 1) | Lysander ---

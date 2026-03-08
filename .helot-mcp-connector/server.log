@@ -4624,3 +4624,132 @@ Scanning workspace...
 [Helot Update] ✅ Peltast P1 (Task 1) | Lysander | 59.0t/s | 5 gen + 5175 prompt tokens
 [Helot Update] ✅ Peltast P2 (Task 1) | Pausanias | 58.6t/s | 5 gen + 5173 prompt tokens
 [Helot Update] ✅ PASS — Task 1: Call loadAggregated on verdict, task_status, and run_end events so sta
+[Helot Update] ✅ Task 1 committed.
+[Helot Update] 🛠️ Task 2/3: Remove ensureWatchOpen() call from helot_run handler
+[Helot Update] ✅ Builder (Task 2) | Pausanias | 40.1t/s | 4043 gen + 5663 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ✓ typecheck_fast: passed
+[Helot Update] ⚡ Auto-FAIL — Task 2 (deterministic)
+[Helot Update] ❌ FAIL — Task 2 (try 1/3): syntax error
+[Helot Update] ❌ Task 2 exhausted retries — continuing pipeline
+[Helot Update] ❌ Task 2 failed — continuing with independent tasks
+[Helot Update] 🛠️ Task 3/3: Prevent browser reopening on every MCP server restart using a sentinel file
+[Helot Update] 🔬 Surgical mode: targeting `startDashboard` in typescript (135 lines)
+[Helot Update] ✅ Builder (Task 3) | Lysander | 40.5t/s | 1804 gen + 2288 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ⚠️ typecheck_fast: errors — retrying Builder
+[Helot Update] ✅ Builder (Task 3) | Leonidas | 40.5t/s | 1804 gen + 2461 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ⚠️ typecheck_fast: errors — retrying Builder
+[Helot Update] ✅ Builder (Task 3) | Gylippus | 40.5t/s | 1804 gen + 2461 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ⚠️ typecheck_fast: errors — retrying Builder
+[Helot Update] ✅ Builder (Task 3) | Brasidas | 40.4t/s | 1802 gen + 2461 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ⚠️ typecheck_fast: errors — retrying Builder
+[Helot Update] ✅ Builder (Task 3) | Aristomenis | 40.5t/s | 1406 gen + 2461 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ✓ typecheck_fast: passed
+[Helot Update] ⚡ Auto-FAIL — Task 3 (deterministic)
+[Helot Update] ❌ FAIL — Task 3 (try 5/3): syntax error
+[Helot Update] ❌ Task 3 exhausted retries — continuing pipeline
+[Helot Update] ❌ Task 3 failed — continuing with independent tasks
+[Helot Update] ✅ Execution complete! 1/3 tasks passed.
+[Slinger Update] 🔍 Scribe | researching...
+[Slinger Update] ✅ Slinger | Agis | 41.9t/s | 17 gen + 1021 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 45.6t/s | 19 gen + 2405 prompt tokens
+[Slinger Update] ✅ Slinger | Agis | 42.4t/s | 425 gen + 2481 prompt tokens
+[Slinger Update] 🏹 Agis: 3 turn(s) — READLINES src/core/verification.ts 1-120 — show the full run
+[Slinger Update] ✍️ Scribe | writing .helot-mcp-connector/research.md...
+[Slinger Update] ✅ Scribe | .helot-mcp-connector/research.md written (direct)
+[Helot Update] ⚠️ ruff not found — ruff checking disabled. Run: pip install ruff
+[Helot Update] 📐 Context budget (262144 tokens): manifest=312k  plan=267k  slinger=178k chars
+[Helot Update] ### Environment
+✅ git-worktrees, tsc
+[Helot Update] ⚠️ Worktree failed: Command failed: git worktree add "C:\Users\R3LiC\Desktop\helots-pi\.helot-mcp-connector\worktrees\run-1772527493898-y4cb697" -b "helots/run-1772527493898-y4cb697"
+Preparing worktree (new branch 'helots/run-1772527493898-y4cb697')
+fatal: a branch named 'helots/run-1772527493898-y4cb697' already exists
+ — running in main tree
+[Helot Update] ### 🛡️ Brasidas is scouting
+**Mapping Workspace Territory**
+---
+Scanning workspace...
+[Helot Update] 🏹 Pre-Slinger: scanning source symbols...
+[Helot Update] ✅ Pre-Slinger: 39 files, 93 symbols
+[Helot Update] 📋 **Frontier-Planned Mode** — 2 tasks (Aristomenis bypassed)
+[Helot Update] 📋 **Task List:**
+- [ ] 1. Remove ensureWatchOpen() call from helot_run handler (Target: src/adapters/mcp-server.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 2. Prevent browser reopening on every MCP server restart using a sentinel file (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
+[Helot Update] 🛠️ Task 1/2: Remove ensureWatchOpen() call from helot_run handler
+[Helot Update] ✅ Builder (Task 1) | Teleutias | 39.9t/s | 4043 gen + 5665 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ✓ typecheck_fast: passed
+[Helot Update] ⚡ Auto-FAIL — Task 1 (deterministic)
+[Helot Update] ❌ FAIL — Task 1 (try 1/3): syntax error
+[Helot Update] ❌ Task 1 exhausted retries — continuing pipeline
+[Helot Update] ❌ Task 1 failed — continuing with independent tasks
+[Helot Update] 🛠️ Task 2/2: Prevent browser reopening on every MCP server restart using a sentinel file
+[Helot Update] 🔬 Surgical mode: targeting `startDashboard` in typescript (135 lines)
+[Helot Update] ✅ Builder (Task 2) | Pausanias | 40.5t/s | 1406 gen + 2285 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ✓ typecheck_fast: passed
+[Helot Update] ⚡ Auto-FAIL — Task 2 (deterministic)
+[Helot Update] ❌ FAIL — Task 2 (try 1/3): syntax error
+[Helot Update] ❌ Task 2 exhausted retries — continuing pipeline
+[Helot Update] ❌ Task 2 failed — continuing with independent tasks
+[Helot Update] ✅ Execution complete! 0/2 tasks passed.
+[Helot Update] ⚠️ ruff not found — ruff checking disabled. Run: pip install ruff
+[Helot Update] 📐 Context budget (262144 tokens): manifest=312k  plan=267k  slinger=178k chars
+[Helot Update] ### Environment
+✅ git-worktrees, tsc
+[Helot Update] ⚠️ Worktree failed: Command failed: git worktree add "C:\Users\R3LiC\Desktop\helots-pi\.helot-mcp-connector\worktrees\run-1772527493898-y4cb697" -b "helots/run-1772527493898-y4cb697"
+Preparing worktree (new branch 'helots/run-1772527493898-y4cb697')
+fatal: a branch named 'helots/run-1772527493898-y4cb697' already exists
+ — running in main tree
+[Helot Update] ### 🛡️ Brasidas is scouting
+**Mapping Workspace Territory**
+---
+Scanning workspace...
+[Helot Update] 🏹 Pre-Slinger: scanning source symbols...
+[Helot Update] ✅ Pre-Slinger: 39 files, 93 symbols
+[Helot Update] 📋 **Frontier-Planned Mode** — 2 tasks (Aristomenis bypassed)
+[Helot Update] 📋 **Task List:**
+- [ ] 1. Remove ensureWatchOpen() call from helot_run handler (Target: src/adapters/mcp-server.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 2. Prevent browser reopening on every MCP server restart using a sentinel file (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
+[Helot Update] 🛠️ Task 1/2: Remove ensureWatchOpen() call from helot_run handler
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[startup] Helots MCP server starting. cwd=C:\Users\R3LiC\Desktop\helots-pi stateDir=C:/Users/R3LiC/Desktop/helots-pi/.helot-mcp-connector model=qwen27b
+Helots MCP Server running on stdio
+[dashboard] Running at http://localhost:7771
+[LlamaClient] No response from http://127.0.0.1:8081, trying next...
+[LlamaClient] No response from http://127.0.0.1:11434, trying next...
+[LlamaClient] Primary URL unreachable — using fallback: http://127.0.0.1:8080
+[LlamaClient] Connected to http://127.0.0.1:8080 — models: qwen9b — ctx: 262144
+[Helot Update] ⚠️ ruff not found — ruff checking disabled. Run: pip install ruff
+[Helot Update] 📐 Context budget (262144 tokens): manifest=312k  plan=267k  slinger=178k chars
+[Helot Update] ### Environment
+✅ git-worktrees, tsc
+[Helot Update] ⚠️ Worktree failed: Command failed: git worktree add "C:\Users\R3LiC\Desktop\helots-pi\.helot-mcp-connector\worktrees\run-1772527493898-y4cb697" -b "helots/run-1772527493898-y4cb697"
+Preparing worktree (new branch 'helots/run-1772527493898-y4cb697')
+fatal: a branch named 'helots/run-1772527493898-y4cb697' already exists
+ — running in main tree
+[Helot Update] ### 🛡️ Brasidas is scouting
+**Mapping Workspace Territory**
+---
+Scanning workspace...
+[Helot Update] 🏹 Pre-Slinger: scanning source symbols...
+[Helot Update] ✅ Pre-Slinger: 39 files, 93 symbols
+[Helot Update] 📋 **Frontier-Planned Mode** — 2 tasks (Aristomenis bypassed)
+[Helot Update] 📋 **Task List:**
+- [ ] 1. Remove ensureWatchOpen() call from helot_run handler (Target: src/adapters/mcp-server.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 2. Prevent browser reopening on every MCP server restart using a sentinel file (Target: src/adapters/dashboard-server.ts, Symbol: startDashboard, Action: EDIT) [DEPENDS: none]
+[Helot Update] 🛠️ Task 1/2: Remove ensureWatchOpen() call from helot_run handler
+[MODEL SWAP] Swapping from qwen27b to qwen9b for role Builder...
+[Helot Update] ✅ Builder (Task 1) | Teleutias | 40.1t/s | 4043 gen + 5665 prompt tokens
+[Helot Update] ✓ LSP: type-check passed
+[Helot Update] ✓ typecheck_fast: passed
+[Helot Update] ✅ Peltast P1 (Task 1) | Lysander | 59.0t/s | 5 gen + 5465 prompt tokens
+[Helot Update] ✅ Peltast P2 (Task 1) | Pausanias | 59.1t/s | 5 gen + 5462 prompt tokens
+[Helot Update] ✅ PASS — Task 1: Remove ensureWatchOpen() call from helot_run handler

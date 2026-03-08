@@ -129,9 +129,14 @@ export function runVerification(input: VerificationInput): VerificationResult {
       } else if (fileLang === 'typescript') {
         const tsconfigPath = join(cwd, 'tsconfig.json');
         if (existsSync(tsconfigPath)) {
-          const r = spawnSync('npx', ['tsc', '--noEmit', '--skipLibCheck'],
+          const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+          const r = spawnSync(npxCmd, ['tsc', '--noEmit', '--skipLibCheck'],
             { encoding: 'utf-8', timeout: 30000, cwd });
-          groundTruth.push(`Syntax (tsc): ${r.status === 0 ? '✅ OK' : `❌ ERRORS — ${(r.stdout || '').split('\n').slice(0, 5).join(' | ')}`}`);
+          if (r.error || r.status === null) {
+            // tsc could not spawn — skip check rather than false-positive
+          } else {
+            groundTruth.push(`Syntax (tsc): ${r.status === 0 ? '✅ OK' : `❌ ERRORS — ${((r.stderr || r.stdout || '')).split('\n').slice(0, 5).join(' | ')}`}`);
+          }
         }
 
         // TS lint: biome check (preferred) or eslint

@@ -3,28 +3,20 @@
   "tasks": [
     {
       "id": "1",
-      "description": "Call loadAggregated on verdict, task_status, and run_end events so stats auto-update",
-      "status": "pending",
-      "file": "src/dashboard/index.html",
-      "dependsOn": [],
-      "changes": "In the handleEvent function, add loadAggregated() calls inside the verdict, task_status, and run_end event branches. Currently loadAggregated() is only called on subagent_done. Find the if-blocks for ev.type === 'verdict', ev.type === 'task_status', and ev.type === 'run_end' and add loadAggregated() at the end of each block."
-    },
-    {
-      "id": "2",
       "description": "Remove ensureWatchOpen() call from helot_run handler",
       "status": "pending",
       "file": "src/adapters/mcp-server.ts",
       "dependsOn": [],
-      "changes": "In the helot_run tool handler (the if block where name === 'helot_run'), remove the single line that calls ensureWatchOpen(). Do not change anything else in the file. Keep the ensureWatchOpen function definition."
+      "changes": "In the helot_run tool handler (the if block where name === 'helot_run'), remove the single line that calls ensureWatchOpen(). Do not change anything else in the file. Keep the ensureWatchOpen function definition intact."
     },
     {
-      "id": "3",
+      "id": "2",
       "description": "Prevent browser reopening on every MCP server restart using a sentinel file",
       "status": "pending",
       "file": "src/adapters/dashboard-server.ts",
       "targetSymbol": "startDashboard",
       "dependsOn": [],
-      "changes": "In the server.listen callback, wrap the exec browser-open calls in a sentinel check. Before opening the browser, check: const sentinelPath = path.join(stateDir, 'dashboard.opened'); const shouldOpen = !fs.existsSync(sentinelPath) || (Date.now() - fs.statSync(sentinelPath).mtimeMs > 60_000); if shouldOpen is true, write fs.writeFileSync(sentinelPath, String(Date.now())) then exec the browser open. If false, skip. The stateDir variable is the parameter passed to startDashboard."
+      "changes": "In the server.listen callback inside startDashboard, wrap the exec browser-open calls with a sentinel check. Before opening the browser, add: const sentinelPath = path.join(stateDir, 'dashboard.opened'); const shouldOpen = !fs.existsSync(sentinelPath) || (Date.now() - fs.statSync(sentinelPath).mtimeMs > 60_000); if (shouldOpen) { fs.writeFileSync(sentinelPath, String(Date.now())); then the existing exec calls, closing the if block. The stateDir is the parameter passed to startDashboard."
     }
   ],
   "currentTaskIndex": 0,
@@ -34,10 +26,10 @@
   "strikes": {
     "task-4": 4,
     "task-3b": 2,
-    "task-3": 4,
+    "task-3": 5,
     "task-6": 2,
-    "task-2": 3,
-    "task-1": 3
+    "task-2": 5,
+    "task-1": 4
   },
   "approved": false
 }

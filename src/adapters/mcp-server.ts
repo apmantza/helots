@@ -339,7 +339,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
         }
 
         if (name === "helot_run") {
-            ensureWatchOpen();
             const taskSummary = String(args?.taskSummary);
             const frontierTasks = Array.isArray(args?.tasks) ? args.tasks as any[] : undefined;
 

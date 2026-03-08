@@ -1,10 +1,10 @@
 # Aristomenis Review Report
-Plan: Fix 3 remaining UX issues: loadAggregated auto-update, remove watch terminal launch, prevent browser reopen on restart
+Plan: Fix 2 remaining UX issues: remove watch terminal launch, prevent browser reopen on restart
 
 
-## Task: Call loadAggregated on verdict, task_status, and run_end events so stats auto-update (Try 1)
+## Task: Remove ensureWatchOpen() call from helot_run handler (Try 1)
 **Ground Truth:**
-src/dashboard/index.html: +2 lines (413 → 415)
+src/adapters/mcp-server.ts: -1 lines (418 → 417)
 
 **Peltast:**
 VERDICT: PASS

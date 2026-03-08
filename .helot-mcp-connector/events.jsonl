@@ -1,10 +1,10 @@
-{"ts":"2026-03-08T17:23:54.146Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen9b","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
-{"ts":"2026-03-08T17:23:54.523Z","type":"task_list","tasks":[{"id":"1","desc":"Call loadAggregated on verdict, task_status, and run_end events so stats auto-update","file":"src/dashboard/index.html","status":"pending"},{"id":"2","desc":"Remove ensureWatchOpen() call from helot_run handler","file":"src/adapters/mcp-server.ts","status":"pending"},{"id":"3","desc":"Prevent browser reopening on every MCP server restart using a sentinel file","file":"src/adapters/dashboard-server.ts","status":"pending"}]}
-{"ts":"2026-03-08T17:23:54.526Z","type":"task_status","taskId":"1","status":"running"}
-{"ts":"2026-03-08T17:23:54.536Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
-{"ts":"2026-03-08T17:26:10.630Z","type":"subagent_done","phase":"Builder (Task 1)","role":"Builder","name":"Teleutias","tps":41.52279387779971,"genTokens":5511,"promptTokens":5381,"ctxPct":2}
-{"ts":"2026-03-08T17:26:12.236Z","type":"phase_change","phase":"Peltast P1 (Task 1)","name":"Lysander"}
-{"ts":"2026-03-08T17:26:15.694Z","type":"subagent_done","phase":"Peltast P1 (Task 1)","role":"Peltast","name":"Lysander","tps":58.99503143843741,"genTokens":5,"promptTokens":5175,"ctxPct":2}
-{"ts":"2026-03-08T17:26:15.699Z","type":"phase_change","phase":"Peltast P2 (Task 1)","name":"Pausanias"}
-{"ts":"2026-03-08T17:26:16.129Z","type":"subagent_done","phase":"Peltast P2 (Task 1)","role":"Peltast","name":"Pausanias","tps":58.55212309998345,"genTokens":5,"promptTokens":5173,"ctxPct":2}
-{"ts":"2026-03-08T17:26:16.135Z","type":"verdict","taskId":"1","result":"PASS","tryNum":1}
+{"ts":"2026-03-08T17:39:41.637Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen9b","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
+{"ts":"2026-03-08T17:39:42.017Z","type":"task_list","tasks":[{"id":"1","desc":"Remove ensureWatchOpen() call from helot_run handler","file":"src/adapters/mcp-server.ts","status":"pending"},{"id":"2","desc":"Prevent browser reopening on every MCP server restart using a sentinel file","file":"src/adapters/dashboard-server.ts","status":"pending"}]}
+{"ts":"2026-03-08T17:39:42.021Z","type":"task_status","taskId":"1","status":"running"}
+{"ts":"2026-03-08T17:39:42.031Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
+{"ts":"2026-03-08T17:41:23.148Z","type":"subagent_done","phase":"Builder (Task 1)","role":"Builder","name":"Teleutias","tps":40.115952546302935,"genTokens":4043,"promptTokens":5665,"ctxPct":2}
+{"ts":"2026-03-08T17:41:39.775Z","type":"phase_change","phase":"Peltast P1 (Task 1)","name":"Lysander"}
+{"ts":"2026-03-08T17:41:42.431Z","type":"subagent_done","phase":"Peltast P1 (Task 1)","role":"Peltast","name":"Lysander","tps":58.95962209241025,"genTokens":5,"promptTokens":5465,"ctxPct":2}
+{"ts":"2026-03-08T17:41:42.436Z","type":"phase_change","phase":"Peltast P2 (Task 1)","name":"Pausanias"}
+{"ts":"2026-03-08T17:41:42.843Z","type":"subagent_done","phase":"Peltast P2 (Task 1)","role":"Peltast","name":"Pausanias","tps":59.08992067769825,"genTokens":5,"promptTokens":5462,"ctxPct":2}
+{"ts":"2026-03-08T17:41:42.850Z","type":"verdict","taskId":"1","result":"PASS","tryNum":1}
