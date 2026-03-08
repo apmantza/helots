@@ -1,14 +1,9 @@
-{"ts":"2026-03-08T17:49:42.849Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen9b","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
-{"ts":"2026-03-08T17:49:43.243Z","type":"task_list","tasks":[{"id":"1","desc":"Add per-try debug log capturing LSP errors, typecheck errors, lastPeltastFeedback and groundTruth","file":"src/core/task-runner.ts","status":"pending"},{"id":"2","desc":"Add hoplite output log capturing raw LLM output after stripThinking","file":"src/core/hoplite-agent.ts","status":"pending"}]}
-{"ts":"2026-03-08T17:49:43.244Z","type":"task_status","taskId":"1","status":"running"}
-{"ts":"2026-03-08T17:49:43.251Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
-{"ts":"2026-03-08T17:52:23.021Z","type":"subagent_done","phase":"Builder (Task 1)","role":"Builder","name":"Teleutias","tps":41.04816401440882,"genTokens":6395,"promptTokens":7126,"ctxPct":3}
-{"ts":"2026-03-08T17:52:23.037Z","type":"task_status","taskId":"1","status":"failed"}
-{"ts":"2026-03-08T17:52:23.039Z","type":"task_status","taskId":"2","status":"running"}
-{"ts":"2026-03-08T17:52:23.046Z","type":"phase_change","phase":"Builder (Task 2)","name":"Pausanias"}
-{"ts":"2026-03-08T17:53:05.649Z","type":"subagent_done","phase":"Builder (Task 2)","role":"Builder","name":"Pausanias","tps":40.78621704044462,"genTokens":1682,"promptTokens":2215,"ctxPct":1}
-{"ts":"2026-03-08T17:53:22.239Z","type":"phase_change","phase":"Peltast P1 (Task 2)","name":"Pausanias"}
-{"ts":"2026-03-08T17:53:23.482Z","type":"subagent_done","phase":"Peltast P1 (Task 2)","role":"Peltast","name":"Pausanias","tps":59.3595813487595,"genTokens":5,"promptTokens":1964,"ctxPct":1}
-{"ts":"2026-03-08T17:53:23.485Z","type":"phase_change","phase":"Peltast P2 (Task 2)","name":"Teleutias"}
-{"ts":"2026-03-08T17:53:23.868Z","type":"subagent_done","phase":"Peltast P2 (Task 2)","role":"Peltast","name":"Teleutias","tps":59.67156769141512,"genTokens":5,"promptTokens":1962,"ctxPct":1}
-{"ts":"2026-03-08T17:53:23.873Z","type":"verdict","taskId":"2","result":"PASS","tryNum":1}
+{"ts":"2026-03-08T17:55:45.509Z","type":"run_start","runId":"run-1772527493898-y4cb697","model":"qwen9b","projectRoot":"C:\\Users\\R3LiC\\Desktop\\helots-pi"}
+{"ts":"2026-03-08T17:55:45.910Z","type":"task_list","tasks":[{"id":"1","desc":"Add per-try debug log to runOneTask capturing all error signals per Builder attempt","file":"src/core/task-runner.ts","status":"pending"}]}
+{"ts":"2026-03-08T17:55:45.911Z","type":"task_status","taskId":"1","status":"running"}
+{"ts":"2026-03-08T17:55:45.920Z","type":"phase_change","phase":"Builder (Task 1)","name":"Teleutias"}
+{"ts":"2026-03-08T17:58:25.536Z","type":"subagent_done","phase":"Builder (Task 1)","role":"Builder","name":"Teleutias","tps":41.14143394539709,"genTokens":6553,"promptTokens":7109,"ctxPct":3}
+{"ts":"2026-03-08T17:58:25.549Z","type":"phase_change","phase":"Builder (Task 1)","name":"Pausanias"}
+{"ts":"2026-03-08T18:01:05.867Z","type":"subagent_done","phase":"Builder (Task 1)","role":"Builder","name":"Pausanias","tps":41.020159864315076,"genTokens":6407,"promptTokens":7148,"ctxPct":3}
+{"ts":"2026-03-08T18:01:05.884Z","type":"task_status","taskId":"1","status":"failed"}
+{"ts":"2026-03-08T18:01:05.885Z","type":"run_end","passed":0,"failed":1}

@@ -247,8 +247,8 @@ export class TaskRunner {
         if (filesToProcess.length === 0) {
           onUpdate?.({ text: `⚠️ Builder (try ${tryCount}) produced no parseable file blocks. Retrying...` });
           lastPeltastFeedback = `Your response must start with:\n### [${task.file ?? 'path/to/file'}]\n\`\`\`${fence}\n...code...\n\`\`\``;
-          this.governor.addStrike(`task-${task.id}`);
-          if (this.governor.checkStrikes(`task-${task.id}`).blocked) {
+          this.governor.addStrike(`${runId}-task-${task.id}`);
+          if (this.governor.checkStrikes(`${runId}-task-${task.id}`).blocked) {
             const escalation = `⚠️ **ESCALATION** — Task ${task.id} failed to produce parseable output after ${tryCount} attempts.\n\n**Task:** ${task.description}\n\nOptions: [CONTINUE] [RETRY] [ABORT]`;
             onUpdate?.({ text: escalation });
             return { passed: false, escalation };
@@ -427,8 +427,8 @@ export class TaskRunner {
         }
         const groundTruthContext = groundTruth.length > 0 ? `\nVerification details:\n${groundTruth.join('\n')}` : '';
         lastPeltastFeedback = (peltastOut || `Auto-FAIL: ${verdictReason}`) + groundTruthContext;
-        this.governor.addStrike(`task-${task.id}`);
-        if (this.governor.checkStrikes(`task-${task.id}`).blocked) {
+        this.governor.addStrike(`${runId}-task-${task.id}`);
+        if (this.governor.checkStrikes(`${runId}-task-${task.id}`).blocked) {
           onUpdate?.({ text: `❌ Task ${task.id} exhausted retries — continuing pipeline` });
           return { passed: false };
         }

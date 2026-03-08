@@ -213,6 +213,15 @@ export
       }
 
       //
+      try
+        const
+        mkdir
+        const
+        const
+        write
+      }
+
+      //
       const
 
       if
@@ -489,7 +498,7 @@ END
 }
 ```
 
---- Builder (Task 2) | Pausanias ---
+--- Builder (Task 1) | Pausanias ---
 
 ```
 /**
@@ -505,165 +514,475 @@ import
 import
 import
 import
+import
+import
+import
+import
+import
+import
+import
+import
+import
+import
 
 export
+  public
+  public
+  public
+  private
+  private
+
   constructor
-    private
-    private
+    public
+    public
+    public
     private
     private
     private
   )
 
-  private
-    const
-    const
-    if
+  dispose
+    this
+    this
+  }
+
+  setCurrent
+
+  parse
+    return
+      .
+      .
+        const
+        const
+        const
+        const
+        const
+        const
+        const
+
+        let
+        if
+          const
+          if
+        }
+        if
+          const
+          process
+        }
+
+        return
+          id
+          description
+          status
+          file
+          target
+          depends
+          changes
+          skip
+        };
+      });
+  }
+
+  async
+    task
+    run
+    modelName
+    global
+    implementation
+    ps
+    review
+    onUpdate
+    all
+    write
+  ):
 
     const
-    for
+    let
+    let
+    const
+
+    if
       const
       if
+        context
+        if
+          const
+          if
+            is
+            onUpdate
+          }
+            onUpdate
+            task
+          }
+        }
+        if
+          onUpdate
+      }
+        //
+      }
+        onUpdate
+      }
+    }
+
+    const
+    mkdir
+
+    //
+    let
+    if
+      const
+      const
+      const
+      for
+        const
+        if
+          const
+          if
+            try
+              const
+              const
+              sections
+            }
+          }
+        }
+      }
+      if
+        upstream
+        onUpdate
+      }
+    }
+
+    let
+    let
+    let
+
+    for
+      const
+        ?
+      const
+      const
+      const
+
+      const
+      let
+      if
+        if
+          builder
+          onUpdate
+        }
+          const
+          if
+            builder
+            onUpdate
+          }
+        }
+      }
+
+      if
+      const
+
+      const
+        global
+        lang
+        skill
+      });
+
+      const
+      this
+      const
+
+      write
+      const
+        '
+        `
+        onUpdate
+      );
+      const
+      write
+
+      //
       try
         const
+        mkdir
+        write
+          join
+          `
+        );
+      }
+
+      //
+      const
+
+      if
+        const
+        const
+        const
+        if
+          files
+        }
+          onUpdate
+          last
+          continue
+        }
+      }
+        const
+        const
+        const
+        let
+        while
+          files
+
+        const
+          f
+        );
+        if
+          onUpdate
+          last
+          files
+        }
+        if
+          const
+          if
+            onUpdate
+            files
+          }
+        }
+        if
+          onUpdate
+          last
+          this
+          if
+            const
+            onUpdate
+            return
+          }
+          continue
+        }
+      }
+
+      //
+      if
+        if
+        const
+        for
+          const
+          if
+            const
+            if
+              lsp
+              errors
+            }
+          }
+        }
+        if
+          type
+          onUpdate
+          last
+          continue
+        }
+        onUpdate
+      }
+
+      //
+      const
+      if
+        const
+        onUpdate
+        last
+        continue
+      }
+
+      //
+      for
+        if
+      }
+      for
+        mkdir
+        const
+        write
+        rename
+      }
+      this
+
+      //
+      if
+
+      //
+      if
+        const
+        if
+          type
+          onUpdate
+          last
+          for
+            const
+            if
+          }
+          continue
+        }
+      }
+
+      //
+      try
+        const
+        const
+        write
+      }
+
+      //
+      const
+        run
+
+      //
+      const
+      const
+      const
+      const
+      const
+      const
+                         &&
+                         &&
+                         &&
+
+      type
+      let
+      let
+
+      if
+        tier
+        verdict
+          has
+      }
+        tier
+      }
+        tier
+      }
+
+      //
+      if
+        const
+        if
+      }
+
+      let
+      if
+        const
+        const
+        const
+
+        //
+        const
+        const
+        this
+        const
+        const
+
         let
         if
           //
           const
-          content
+          const
+          this
+          p
         }
-          content
+
+        p
+        tier
+        const
+        verdict
+          ?
+          :
+      }
+        p
+        onUpdate
+      }
+
+      //
+      if
+        try
+          exec
         }
-        sections
+          const
+          onUpdate
+          tier
+          verdict
+          p
+          last
+        }
+      }
+
+      append
+
+      if
+        task
+        this
+        onUpdate
+        this
+        write
+        break
+      }
+        onUpdate
+        this
+        write
+        for
+          const
+          if
+        }
+        const
+        last
+        this
+        if
+          onUpdate
+          return
+        }
       }
     }
-    return
-  }
 
-  private
-    const
-    const
     if
 
-    const
-    for
-      //
-      const
-        .
-        .
-      try
-        const
-        if
-          const
-          fetched
-        }
-      }
+    //
+    //
+    try
+      exec
+        `
+        {
+      );
+      onUpdate
     }
     return
   }
 
   async
-    file
-    instruction
-    onUpdate
+    task
+    global
   ):
     const
-    const
-    const
-    const
+You
 
-    const
+RULE
+-
+-
+-
 
 Output
-###
-\
+REV
+REV
 <
-\
-
-Rules
--
--
--
--
--
--
+END
 
     const
-    const
-    const
-      local
-      fetched
-    ].
 
-    const
-      ?
-      :
-
-    onUpdate
-    this
-
-    let
-    if
+    try
       const
       const
       const
       const
       if
-    }
-
-    this
-    const
-    const
-      '
+      const
+      const
       onUpdate
-      undefined
-    );
-
-    const
-    //
-    const
-    const
-    const
-    let
-    if
-      new
+      return
     }
-      //
-      //
-      const
-      if
-        return
-      }
-      const
-      const
-      new
-    }
-
-    if
-      try
-        const
-        mkdir
-        const
-        write
-      }
-    }
-
-    mkdir
-    const
-    write
-    rename
-
-    const
-    const
-    onUpdate
-    this
-
-    return
   }
 }
 ```
-
---- Peltast P1 (Task 2) | Pausanias ---
-
-
---- Peltast P2 (Task 2) | Teleutias ---

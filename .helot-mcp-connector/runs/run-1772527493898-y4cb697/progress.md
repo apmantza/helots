@@ -1,2 +1,1 @@
-- [ ] 1. Add per-try debug log capturing LSP errors, typecheck errors, lastPeltastFeedback and groundTruth (Target: src/core/task-runner.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
-- [ ] 2. Add hoplite output log capturing raw LLM output after stripThinking (Target: src/core/hoplite-agent.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]
+- [ ] 1. Add per-try debug log to runOneTask capturing all error signals per Builder attempt (Target: src/core/task-runner.ts, Symbol: N/A, Action: EDIT) [DEPENDS: none]

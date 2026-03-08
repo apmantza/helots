@@ -3,24 +3,16 @@
   "tasks": [
     {
       "id": "1",
-      "description": "Add per-try debug log capturing LSP errors, typecheck errors, lastPeltastFeedback and groundTruth",
+      "description": "Add per-try debug log to runOneTask capturing all error signals per Builder attempt",
       "status": "failed",
       "file": "src/core/task-runner.ts",
       "dependsOn": [],
-      "changes": "After the appendFileSync(reviewFile, ...) call at the end of the try block (just before the `if (tier === 'PASS')` check), add a debug log write: create a `debug-logs` dir in stateDir, write a file named `debug-${runId}-task${task.id}-try${tryCount}.md` containing: the task description, try number, groundTruth array joined with newlines, the peltastOut string, and lastPeltastFeedback. This gives full visibility into what error signal Builder received each try. Use mkdirSync+writeFileSync wrapped in try/catch (non-fatal). The stateDir is at this.governor.config.stateDir."
-    },
-    {
-      "id": "2",
-      "description": "Add hoplite output log capturing raw LLM output after stripThinking",
-      "status": "pending",
-      "file": "src/core/hoplite-agent.ts",
-      "dependsOn": [],
-      "changes": "After the stripThinking(raw) call that produces the hoplite output, add a log write: create a `hoplite-logs` dir in this.governor.config.stateDir, write a file named `hoplite-${timestamp}-${file.replace(/[\\/]/g,'_')}.md` containing: the instruction (first 200 chars), the target file path, and the full stripped LLM output. Use mkdirSync+writeFileSync wrapped in try/catch (non-fatal). Import mkdirSync and writeFileSync from fs if not already imported."
+      "changes": "After the appendFileSync(reviewFile, ...) call inside the Builder retry loop, add a debug log write: use mkdirSync to create a 'debug-logs' dir in this.governor.config.stateDir, then writeFileSync a file named `debug-${runId}-task${task.id}-try${tryCount}.md` containing: '# Debug Log\\n**Task:** <description>\\n**Try:** <tryCount>\\n\\n## Ground Truth\\n<groundTruth.join(newline)>\\n\\n## Peltast Output\\n<peltastOut>\\n\\n## Feedback sent to Builder\\n<lastPeltastFeedback>'. Wrap in try/catch (non-fatal)."
     }
   ],
   "currentTaskIndex": 0,
   "lastCheckpoint": "",
-  "phase": "builder",
+  "phase": "finished",
   "planOnly": false,
   "strikes": {
     "task-4": 4,
@@ -28,7 +20,8 @@
     "task-3": 5,
     "task-6": 2,
     "task-2": 5,
-    "task-1": 5
+    "task-1": 5,
+    "run-1772527493898-y4cb697-task-1": 2
   },
   "approved": false
 }
