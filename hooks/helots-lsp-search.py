@@ -62,10 +62,14 @@ def main():
         'hookSpecificOutput': {
             'hookEventName': 'PreToolUse',
             'additionalContext': (
-                '[helots-lsp] LSP plugins are active (typescript-lsp, pyright-lsp, rust-lsp). '
-                'For symbol lookup use LSP tools first — they give exact file:line, type info, '
-                'and find-all-references without reading whole files. '
-                'Grep after LSP only if you need content context around the match.'
+                '[helots-lsp] Use LSP before grep for symbol work — 50ms vs 30-60s:\n'
+                '  • go-to-definition  → exact file:line for any symbol\n'
+                '  • find-all-references → precise caller list with context\n'
+                '  • type-info / hover  → understand return types, interfaces\n'
+                '  • call-hierarchy     → trace call chains without following grep matches\n'
+                '  • rename             → atomic rename across all references, build-safe\n'
+                'LSP plugins active: typescript-lsp, pyright-lsp, rust-lsp. '
+                'Use grep only for content search (not symbol navigation).'
             ),
         }
     }
