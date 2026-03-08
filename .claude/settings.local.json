@@ -33,7 +33,11 @@
       "mcp__helots__helot_workflow",
       "Bash(python:*)",
       "Bash(tsc:*)",
-      "Bash(npx.cmd tsc:*)"
+      "Bash(npx.cmd tsc:*)",
+      "Bash(where rg:*)",
+      "Bash(echo:*)",
+      "Read(//usr/bin/**)",
+      "Read(//c/Program Files/ripgrep/**)"
     ]
   }
 }
