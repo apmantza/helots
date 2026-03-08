@@ -13,6 +13,8 @@ import { pickName, getGlobalContext } from './persona-utils.js';
 import { detectLang }    from './symbol-utils.js';
 import { resolveTools }  from './tool-resolver.js';
 import { runTaskLoop }   from './task-loop.js';
+import { runEnvCheck, formatEnvReport } from './env-check.js';
+import { WorktreeManager } from './worktree-manager.js';
 import { Aristomenis }   from './governor.js';
 import type { SlingerAgent } from './slinger-agent.js';
 import type { TaskRunner }   from './task-runner.js';
@@ -42,7 +44,7 @@ export async function executeHelots(
   const globalContext = await getGlobalContext();
   const psiloiMetrics = { scout: { in: 0, out: 0, tps: 0 }, builder: { in: 0, out: 0, tps: 0 }, peltast: { in: 0, out: 0, tps: 0 } };
 
-  taskRunner.tools = resolveTools(process.cwd(), onUpdate);
+  taskRunner.tools = resolveTools(governor.config.projectRoot, onUpdate);
   taskRunner.serverMaxTokens = maxTokens;
 
   const CHARS_PER_TOKEN = 4;
@@ -77,7 +79,28 @@ export async function executeHelots(
 
   try { writeFileSync(join(governor.config.stateDir, 'stream.log'), ''); } catch { }
   try { writeFileSync(join(governor.config.stateDir, 'events.jsonl'), ''); } catch { }
-  writeEventFn({ type: 'run_start', runId, model: modelName, projectRoot: process.cwd() });
+  writeEventFn({ type: 'run_start', runId, model: modelName, projectRoot: governor.config.projectRoot });
+
+  // --- ENV CHECK ---
+  const envReport = runEnvCheck(governor.config.projectRoot);
+  onUpdate?.({ text: formatEnvReport(envReport) });
+
+  // --- WORKTREE ---
+  let worktreeBranch: string | undefined;
+  const originalProjectRoot = governor.config.projectRoot;
+  if (envReport.available.includes('git-worktrees')) {
+    try {
+      const wm = new WorktreeManager(governor.config.projectRoot);
+      worktreeBranch = WorktreeManager.branchName(runId);
+      const wtPath = WorktreeManager.worktreePath(governor.config.stateDir, runId);
+      wm.create(worktreeBranch, wtPath);
+      governor.config.projectRoot = wtPath;
+      onUpdate?.({ text: `🌿 Worktree: ${worktreeBranch}` });
+    } catch (e: any) {
+      worktreeBranch = undefined;
+      onUpdate?.({ text: `⚠️ Worktree failed: ${e.message} — running in main tree` });
+    }
+  }
 
   // --- 1. SCOUT ---
   const scoutPersona = pickName(runId, 'Scout');
@@ -86,9 +109,9 @@ export async function executeHelots(
   onUpdate?.({ text: `### 🛡️ ${scoutPersona.name} is scouting\n**Mapping Workspace Territory**\n---\nScanning workspace...` });
 
   const IGNORE_DIRS = ['node_modules', 'venv', '.venv', '__pycache__', '.git', 'dist', 'build', '.helot', '.helots'];
-  const fileList = getAllFiles(process.cwd(), governor.config.stateDir)
+  const fileList = getAllFiles(governor.config.projectRoot, governor.config.stateDir)
     .filter(f => !IGNORE_DIRS.some(d => f.replace(/\\/g, '/').includes(`/${d}/`)));
-  const manifest = { files: fileList.map(f => ({ path: relative(process.cwd(), f), size: existsSync(f) ? readFileSync(f).length : 0 })) };
+  const manifest = { files: fileList.map(f => ({ path: relative(governor.config.projectRoot, f), size: existsSync(f) ? readFileSync(f).length : 0 })) };
   const manifestRaw = JSON.stringify(manifest, null, 2).slice(0, MANIFEST_CAP);
   writeFileSync(contextFile, manifestRaw);
   await writeTrace({ phase: 'scout', status: 'complete', fileCount: fileList.length });
@@ -99,13 +122,13 @@ export async function executeHelots(
   let preSlingerReport = '';
   const symbolMap: Record<string, string[]> = {};
   try {
-    const srcDir = join(process.cwd(), 'src');
+    const srcDir = join(governor.config.projectRoot, 'src');
     const SOURCE_EXTS = /\.(py|ts|tsx|js|jsx|mjs|cjs)$/;
     const srcFiles = existsSync(srcDir)
       ? getAllFiles(srcDir, governor.config.stateDir).filter(f => SOURCE_EXTS.test(f)) : [];
     const sigLines: string[] = [];
     for (const absFile of srcFiles) {
-      const relFile = relative(process.cwd(), absFile).replace(/\\/g, '/');
+      const relFile = relative(governor.config.projectRoot, absFile).replace(/\\/g, '/');
       const fileLang = detectLang(absFile);
       const lines = readFileSync(absFile, 'utf-8').split('\n');
       const fileSymbols: string[] = [];
@@ -239,6 +262,7 @@ RESPOND ONLY WITH THE CHECKLIST. DO NOT USE PLACEHOLDERS.`;
   writeFileSync(reviewFile, `# Aristomenis Review Report\nPlan: ${taskSummary}\n\n`);
 
   const halt = await runTaskLoop(taskRunner, taskNodes, runId, modelName, globalContext, cappedPlan, psiloiMetrics, reviewFile, onUpdate, writeTrace);
+  governor.config.projectRoot = originalProjectRoot;
   if (halt) return halt;
 
   const passed = taskNodes.filter(t => t.status === 'completed').length;
@@ -246,10 +270,15 @@ RESPOND ONLY WITH THE CHECKLIST. DO NOT USE PLACEHOLDERS.`;
   writeEventFn({ type: 'run_end', passed, failed });
   onUpdate?.({ text: `✅ Execution complete! ${passed}/${taskNodes.length} tasks passed.` });
   governor.setPhase('finished');
+
+  const branchLine = worktreeBranch
+    ? `\nBranch: \`${worktreeBranch}\` — merge when ready, or discard: git branch -D ${worktreeBranch}`
+    : '';
+
   const failedTasks = taskNodes.filter(t => t.status === 'failed');
   if (failed > 0) {
     const details = failedTasks.map(t => `Task ${t.id} (${t.description.slice(0, 60)})`).join(', ');
-    return `⚠️ ${passed}/${taskNodes.length} tasks passed. Failed: ${details}. See .helot-mcp-connector/runs/${runId}/ for details.`;
+    return `⚠️ ${passed}/${taskNodes.length} tasks passed. Failed: ${details}. Run ID: ${runId}${branchLine}\nSee .helot-mcp-connector/runs/${runId}/ for details.`;
   }
-  return `✅ ${passed}/${taskNodes.length} tasks passed. Run ID: ${runId}`;
+  return `✅ ${passed}/${taskNodes.length} tasks passed. Run ID: ${runId}${branchLine}`;
 }

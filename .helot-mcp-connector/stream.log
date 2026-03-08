@@ -380,3 +380,1392 @@ export
 }
 ```
 ```
+
+--- Hoplite | Agesilaus ---
+
+```
+#
+
+##
+Full
+
+##
+0
+
+First
+
+---
+
+##
+**
+
+-
+-
+-
+-
+-
+
+---
+
+##
+**
+
+**
+```
+{
+  "
+  "
+  "
+  "
+}
+```
+
+-
+  -
+  -
+  -
+  -
+  -
+-
+-
+
+**
+```
+##
+✅
+⚠
+✅
+✅
+```
+
+---
+
+##
+**
+
+Post
+
+```
+Builder
+    ↓
+1
+2
+    ↓
+3
+    ├──
+    └
+```
+
+-
+-
+-
+
+---
+
+##
+**
+
+L
+
+**
+```
+LL
+    ↓
+L
+    ↓
+L
+                               or
+    ├──
+    └
+```
+
+**
+After
+
+**
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+**
+-
+-
+-
+
+**
+
+---
+
+##
+**
+
+Updated
+1
+2
+3
+
+Most
+
+---
+
+##
+**
+
+-
+  `{
+-
+
+```
+##
+Branch
+
+###
+✅
+
+###
+✅
+❌
+   t
+⚠
+
+###
+-
+-
+-
+```
+
+-
+-
+-
+
+---
+
+##
+**
+
+-
+-
+-
+-
+-
+
+---
+
+##
+**
+
+-
+-
+-
+-
+
+---
+
+##
+
+|
+|
+|
+|
+|
+|
+
+---
+
+##
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+```
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+grep
+###
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+Get
+###
+
+--- Slinger | Leonidas ---
+
+The
+
+1
+    *
+    *
+    *
+    *
+
+2
+    *
+    *
+    *
+
+3
+    *
+    *
+    *
+
+**
+`
+
+###
+*
+*
+*
+*
+*
+*
+
+###
+**
+```
+export
+  private
+  //
+  private
+  private
+  private
+
+  constructor
+    this
+    this
+
+    const
+    const
+    //
+    this
+    this
+    //
+  }
+
+  async
+    task
+    implementation
+    onUpdate
+    frontier
+  ):
+    this
+    return
+      governor
+      sl
+      task
+      run
+      write
+      //
+    },
+  }
+```
+
+**
+```
+const
+    {
+        name
+        description
+        input
+            type
+            properties
+                tasks
+                    type
+                    items
+                    description
+                }
+            },
+            required
+        }
+    },
+    //
+];
+
+//
+if
+    const
+    if
+        return
+            content
+        };
+    }
+    //
+    const
+    return
+}
+```
+
+**
+```
+//
+import
+
+//
+export
+    task
+    implementation
+    frontier
+    context
+        governor
+        sl
+        task
+        run
+        write
+        //
+    },
+    onUpdate
+):
+    //
+    //
+    //
+    //
+    //
+}
+```
+
+--- Hoplite | Archidamus ---
+
+```
+#
+
+##
+
+The
+
+###
+*
+*
+*
+*
+
+###
+*
+*
+*
+
+###
+*
+*
+*
+
+###
+`
+
+##
+
+*
+*
+*
+*
+*
+*
+
+##
+
+###
+
+```
+export
+  private
+  //
+  private
+  private
+  private
+
+  constructor
+    this
+    this
+
+    const
+    const
+    //
+    this
+    this
+  }
+
+  async
+    task
+    implementation
+    onUpdate
+    frontier
+  ):
+    this
+    return
+      governor
+      sl
+      task
+      run
+      write
+    },
+```
+
+###
+
+```
+const
+    {
+        name
+        description
+        input
+            type
+            properties
+                tasks
+                    type
+                    items
+                    description
+            },
+            required
+];
+
+//
+if
+    const
+    if
+        return
+            content
+        };
+    //
+    const
+    return
+```
+
+###
+
+```
+//
+import
+
+//
+export
+    task
+    frontier
+    context
+        governor
+        sl
+        task
+        run
+        write
+    onUpdate
+    //
+    //
+    //
+    //
+    //
+```
+```
+
+--- Slinger | Lysander ---
+
+grep
+###
+
+--- Slinger | Lysander ---
+
+grep
+###
+
+--- Slinger | Lysander ---
+
+Get
+###
+
+--- Slinger | Lysander ---
+
+grep
+###
+
+--- Slinger | Lysander ---
+
+grep
+###
+
+--- Slinger | Lysander ---
+
+The
+
+**
+1
+    *
+    *
+    *
+2
+    *
+    *
+    *
+    *
+
+**
+1
+    *
+    *
+
+**
+*
+
+###
+*
+*
+*
+*
+
+###
+**
+```
+//
+const
+
+//
+const
+write
+rename
+
+//
+const
+write
+```
+
+**
+```
+//
+write
+//
+write
+```
+
+--- Hoplite | Gylippus ---
+
+```
+#
+
+##
+The
+
+###
+1
+    *
+    *
+    *
+2
+    *
+    *
+    *
+    *
+
+###
+1
+    *
+    *
+
+###
+*
+
+##
+*
+*
+*
+*
+
+##
+
+###
+```
+//
+const
+
+//
+const
+write
+rename
+
+//
+const
+write
+```
+
+###
+```
+//
+write
+//
+write
+```
+```
+
+--- Slinger | Pausanias ---
+
+grep
+###
+
+--- Slinger | Pausanias ---
+
+grep
+###
+
+--- Slinger | Pausanias ---
+
+Get
+###
+
+--- Slinger | Pausanias ---
+
+Found
+
+###
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+###
+```
+//
+import
+
+//
+      const
+      const
+
+//
+      }
+        throw
+
+//
+    const
+
+//
+          const
+          const
+
+//
+      const
+
+//
+      if
+
+//
+        const
+        const
+
+//
+          files
+
+//
+            files
+
+//
+        if
+
+//
+        run
+
+//
+          exec
+
+//
+      try
+```
+
+--- Slinger | Archidamus ---
+
+grep
+###
+
+--- Slinger | Archidamus ---
+
+Get
+###
+
+--- Slinger | Archidamus ---
+
+Get
+###
+
+--- Slinger | Archidamus ---
+
+Get
+###
+
+--- Slinger | Archidamus ---
+
+Get
+###
+
+--- Slinger | Archidamus ---
+
+**
+
+**
+-
+-
+  -
+  -
+    -
+    -
+    -
+-
+  -
+  -
+  -
+  -
+-
+  ```
+  async
+  dispose
+  ```
+
+**
+-
+-
+  -
+  -
+    -
+-
+  -
+  -
+  -
+  -
+-
+  ```
+  match
+  private
+  private
+  ```
+
+**
+-
+  -
+  -
+  -
+  -
+  -
+-
+  -
+  -
+  -
+
+**
+1
+2
+3
+4
+5
+
+###
+-
+-
+-
+-
+-
+-
+-
+
+###
+```
+//
+export
+  private
+  private
+
+  constructor
+
+  async
+    const
+    const
+    if
+    //
+  }
+
+  dispose
+    for
+    this
+  }
+}
+
+//
+export
+  private
+
+  constructor
+
+  match
+    const
+    if
+    //
+  }
+
+  private
+    //
+  }
+}
+
+//
+if
+  if
+  const
+  for
+    const
+    if
+      const
+      if
+        lsp
+        //
+      }
+    }
+  }
+  if
+    onUpdate
+    last
+    continue
+  }
+}
+```
+
+--- Hoplite | Agis ---
+
+```
+#
+
+This
+
+---
+
+##
+
+###
+
+####
+-
+-
+  -
+  -
+    -
+    -
+    -
+-
+  -
+  -
+  -
+  -
+-
+  ```
+  async
+  dispose
+  ```
+
+####
+-
+-
+  -
+  -
+    -
+-
+  -
+  -
+  -
+  -
+-
+  ```
+  match
+  private
+  private
+  ```
+
+####
+-
+  -
+  -
+  -
+  -
+  -
+-
+  -
+  -
+  -
+
+###
+1
+2
+3
+4
+5
+
+---
+
+##
+-
+-
+-
+-
+-
+-
+-
+
+---
+
+##
+
+###
+```
+export
+  private
+  private
+
+  constructor
+
+  async
+    const
+    const
+    if
+    //
+  }
+
+  dispose
+    for
+    this
+```
+
+###
+```
+export
+  private
+
+  match
+    const
+    if
+    //
+  }
+
+  private
+    //
+```
+
+###
+```
+if
+  if
+  const
+  for
+    const
+    if
+      const
+      if
+        lsp
+        //
+  if
+    onUpdate
+    last
+    continue
+```
+```
+
+--- Slinger | Aristomenis ---
+
+Get
+###
+
+--- Slinger | Aristomenis ---
+
+
+###
+Get
+###
+
+--- Slinger | Aristomenis ---
+
+Get
+###
+
+--- Slinger | Aristomenis ---
+
+Get
+###
+
+--- Slinger | Aristomenis ---
+
+Get
+###
+
+--- Slinger | Aristomenis ---
+
+Get
+###
+
+--- Slinger | Aristomenis ---
+
+Get
+###
+
+--- Slinger | Aristomenis ---
+
+The
+
+###
+None
+
+###
+The
+
+--- Hoplite | Agis ---
+
+```
+#
+
+##
+
+###
+-
+-
+-
+
+###
+-
+-
+-
+-
+
+###
+-
+-
+-
+-
+-
+-
+
+##
+Full
+
+##
+0
+
+First
+
+---
+
+##
+**
+
+-
+-
+-
+-
+-
+
+---
+
+##
+**
+
+**
+```
+{
+  "
+  "
+  "
+  "
+}
+```
+
+-
+  -
+  -
+  -
+  -
+  -
+-
+-
+
+**
+```
+##
+✅
+⚠
+✅
+✅
+```
+
+---
+
+##
+**
+
+Post
+
+```
+Builder
+    ↓
+1
+2
+    ↓
+3
+    ├──
+    └
+```
+
+-
+-
+-
+
+---
+
+##
+**
+
+L
+
+**
+```
+LL
+    ↓
+L
+    ↓
+L
+                               or
+    ├──
+    └
+```
+
+**
+After
+
+**
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+**
+-
+-
+-
+
+**
+
+---
+
+##
+**
+
+Updated
+1
+2
+3
+
+Most
+
+---
+
+##
+**
+
+-
+  `{
+-
+
+```
+##
+Branch
+
+###
+✅
+
+###
+✅
+❌
+   t
+⚠
+
+###
+-
+-
+-
+```
+
+-
+-
+-
+
+---
+
+##
+**
+
+-
+-
+-
+-
+-
+
+---
+
+##
+**
+
+-
+-
+-
+-
+
+---
+
+##
+
+|
+|
+|
+|
+|
+|
+
+---
+
+##
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+```
+
+--- Hoplite | Agis ---
+
+```
+#
+
+##
+Sc
+
+##
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+##
+Each
+
+##
+`
+
+##
+-
+-
+-
+-
+-
+
+##
+-
+-
+-
+-
+-
+
+##
+-
+
+##
+1
+2
+3
+4
+
+##
+Short
+```
+RESP
+```
+
+##
+The
+
+##
+-
+-
+-
+
+##
+-
+-
+-
+
+##
+
+-
+-
+-
+-
+
+##
+-
+
+```

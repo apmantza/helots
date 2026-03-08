@@ -96,7 +96,7 @@ export class TaskRunner {
     const lang = detectLang(task.file || '');
 
     if (task.file) {
-      const abs = resolve(task.file);
+      const abs = resolve(this.governor.config.projectRoot, task.file);
       if (existsSync(abs) && !statSync(abs).isDirectory()) {
         contextContent = readFileSync(abs, 'utf-8');
         if (task.targetSymbol && lang !== 'unknown') {
@@ -111,14 +111,14 @@ export class TaskRunner {
         }
         if (!isSurgical && contextContent.length > 40000)
           onUpdate?.({ text: `⚠️ Builder: "${task.file}" is ${Math.round(contextContent.length / 1000)}k chars — large file.` });
-      } else if (!existsSync(resolve(task.file))) {
+      } else if (!existsSync(resolve(this.governor.config.projectRoot, task.file))) {
         // CREATE task — no existing content
       } else {
         onUpdate?.({ text: `⚠️ Scout: Target ${task.file} is missing or invalid.` });
       }
     }
 
-    const backupBaseDir = join(process.cwd(), '.helots', 'backups', runId, task.id);
+    const backupBaseDir = join(this.governor.config.projectRoot, '.helots', 'backups', runId, task.id);
     mkdirSync(backupBaseDir, { recursive: true });
 
     // Inject upstream file content from dependsOn tasks
@@ -130,7 +130,7 @@ export class TaskRunner {
       for (const depId of task.dependsOn) {
         const depTask = allTasks.find(t => t.id === depId);
         if (depTask?.file) {
-          const depAbs = resolve(depTask.file);
+          const depAbs = resolve(this.governor.config.projectRoot, depTask.file);
           if (existsSync(depAbs)) {
             try {
               const raw = readFileSync(depAbs, 'utf-8');
@@ -156,7 +156,7 @@ export class TaskRunner {
         ? `\nPREVIOUS ATTEMPT FAILED — Peltast feedback:\n${lastPeltastFeedback}\nFix the issues above.\n` : '';
       const targetHeader = task.file ? `### [${task.file}]` : `### [output.ts]`;
       const fence = codeFenceFor(lang, task.file || '');
-      const isCreateTask = task.file ? !existsSync(resolve(task.file)) : false;
+      const isCreateTask = task.file ? !existsSync(resolve(this.governor.config.projectRoot, task.file)) : false;
 
       const { maxTokens: serverCtx } = await this.getModelProps();
       let builderMaxTokensOverride: number | undefined;
@@ -173,7 +173,7 @@ export class TaskRunner {
         }
       }
 
-      if (!this.skillInjector) this.skillInjector = new SkillInjector(process.cwd());
+      if (!this.skillInjector) this.skillInjector = new SkillInjector(this.governor.config.projectRoot);
       const skillContext = this.skillInjector.match(task.file ?? '', task.description, lang);
 
       const builderSystem = buildBuilderPrompt({
@@ -200,7 +200,7 @@ export class TaskRunner {
       const filesToProcess: Array<{ filePath: string; fullPath: string; content: string }> = [];
 
       if (isSurgical && task.file) {
-        const abs = resolve(task.file);
+        const abs = resolve(this.governor.config.projectRoot, task.file);
         const original = existsSync(abs) ? readFileSync(abs, 'utf-8') : '';
         const patched = applySurgicalPatches(original, builderOut, lang);
         if (patched) {
@@ -216,7 +216,7 @@ export class TaskRunner {
         const fileRegex = /###\s*\[([^\]]+)\]\s*\n\s*```[a-z]*\n([\s\S]*?)\n```/gi;
         let match;
         while ((match = fileRegex.exec(cleanOut)) !== null)
-          filesToProcess.push({ filePath: match[1].trim(), fullPath: resolve(match[1].trim()), content: match[2] });
+          filesToProcess.push({ filePath: match[1].trim(), fullPath: resolve(this.governor.config.projectRoot, match[1].trim()), content: match[2] });
 
         const hasPlaceholder = filesToProcess.some(f =>
           f.content.trim().length < 20 || f.content.includes('(complete file content)') || f.content.includes('write the COMPLETE file')
@@ -230,7 +230,7 @@ export class TaskRunner {
           const fallback = cleanOut.match(/```(?:python|typescript|javascript|js|ts)?\n([\s\S]+?)\n```\s*(?:#[^\n]*)?\s*$/i);
           if (fallback && fallback[1].trim().length > 20) {
             onUpdate?.({ text: `⚠️ Builder (try ${tryCount}) skipped ### header — rescued code fence for ${task.file}` });
-            filesToProcess.push({ filePath: task.file, fullPath: resolve(task.file), content: fallback[1] });
+            filesToProcess.push({ filePath: task.file, fullPath: resolve(this.governor.config.projectRoot, task.file), content: fallback[1] });
           }
         }
         if (filesToProcess.length === 0) {
@@ -248,7 +248,7 @@ export class TaskRunner {
 
       // --- LSP pre-flight ---
       if (filesToProcess.length > 0 && (lang === 'typescript' || lang === 'python' || lang === 'rust')) {
-        if (!this.lspManager) this.lspManager = new LspManager(process.cwd());
+        if (!this.lspManager) this.lspManager = new LspManager(this.governor.config.projectRoot);
         const lspErrors: string[] = [];
         for (const { filePath, content } of filesToProcess) {
           const diags = await this.lspManager.diagnose(filePath, content);
@@ -298,7 +298,7 @@ export class TaskRunner {
 
       // --- Verification ---
       const { groundTruth, hasSyntaxError, hasContentLoss, hasNewLintErrors, hasSymbolMissing, hasTestFailure } =
-        runVerification({ filesToProcess, task, isSurgical, backupBaseDir, tools: this.tools, cwd: process.cwd() });
+        runVerification({ filesToProcess, task, isSurgical, backupBaseDir, tools: this.tools, cwd: this.governor.config.projectRoot });
 
       // --- Peltast verdict ---
       const syntaxChecked = groundTruth.some(g => g.startsWith('Syntax'));
@@ -360,7 +360,7 @@ export class TaskRunner {
       // --- validateCmd gate ---
       if (tier === 'PASS' && this.governor.config.validateCmd) {
         try {
-          execSync(this.governor.config.validateCmd, { cwd: process.cwd(), stdio: 'pipe' });
+          execSync(this.governor.config.validateCmd, { cwd: this.governor.config.projectRoot, stdio: 'pipe' });
         } catch (err: any) {
           const out = ((err.stdout ?? '') + (err.stderr ?? '')).toString().slice(0, 600);
           onUpdate?.({ text: `⚠️ validateCmd failed — reopening task ${task.id}` });
@@ -414,7 +414,7 @@ export class TaskRunner {
 
     const commitCheck = this.governor.canCommit();
     if (commitCheck.allowed) {
-      try { execSync(`git add . && git commit -m "[Aristomenis] Task ${task.id}: ${task.description}"`, { cwd: process.cwd(), stdio: 'ignore' }); onUpdate?.({ text: `✅ Task ${task.id} committed.` }); }
+      try { execSync(`git add . && git commit -m "[Aristomenis] Task ${task.id}: ${task.description}"`, { cwd: this.governor.config.projectRoot, stdio: 'ignore' }); onUpdate?.({ text: `✅ Task ${task.id} committed.` }); }
       catch { }
     } else {
       onUpdate?.({ text: `⚠️ Skipping commit: ${commitCheck.reason}` });
