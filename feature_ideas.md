@@ -55,9 +55,39 @@ At end of session (or on demand), synthesise `events.jsonl` + recent commits + `
 ```
 
 **Implementation sketch:**
-- `helot_checkpoint` MCP tool — calls hoplite to read `events.jsonl` + git log + `MEMORY.md`, write `session-brief.md`
-- Also trigger automatically when `ctxPct` exceeds threshold (context pressure already tracked in engine)
-- `SessionStart` hook reads `session-brief.md` if present and injects as system context
+
+**Triggers (multiple, layered):**
+- Manual: `helot_checkpoint` MCP tool call
+- Automatic: when `ctxPct` exceeds threshold (already tracked in engine)
+- Post-run: after every `helot_run` / `helot_queue` completes, append a run summary block
+- Post-commit: git hook appends what was committed and why
+
+**Brief structure (strict schema so SessionStart can parse it reliably):**
+```
+## Session: <date>
+## What was built (completed runs + commits)
+## What's in progress / half-done
+## Decisions made and why (with file refs)
+## Files changed (with brief per-file note)
+## Known issues / blockers
+## Next steps (ordered)
+```
+
+**Layered persistence:**
+- `session-brief.md` — current session, ephemeral, overwritten each checkpoint
+- `session-archive/YYYY-MM-DD-HH.md` — snapshot per checkpoint, never deleted
+- `MEMORY.md` — stable patterns only, updated manually or by explicit `remember` commands
+- Clear boundary: session-brief = "what happened today", MEMORY.md = "what's always true"
+
+**SessionStart hook integration:**
+- Hook reads `session-brief.md` if present, injects as first system message
+- Includes last N archived briefs if current session is a continuation (detected via git branch/last commit time)
+- Claude sees: "Last session ended with X in progress, next steps were Y" — zero re-explanation
+
+**Diff-aware updates:**
+- Checkpoint appends to current brief rather than overwriting — preserves intra-session history
+- Each append block timestamped so you can see session evolution
+
 - Lightweight — no sub-session spawning needed, fits existing infrastructure exactly
 
 ---
