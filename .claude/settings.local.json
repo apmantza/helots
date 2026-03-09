@@ -53,7 +53,8 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(gh api:*)",
       "Bash(npx jiti:*)",
-      "Bash(gh issue:*)"
+      "Bash(gh issue:*)",
+      "Bash(git:*)"
     ]
   }
 }
