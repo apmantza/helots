@@ -54,7 +54,8 @@
       "Bash(gh api:*)",
       "Bash(npx jiti:*)",
       "Bash(gh issue:*)",
-      "Bash(git:*)"
+      "Bash(git:*)",
+      "Bash(npm list:*)"
     ]
   }
 }
