@@ -35,3 +35,27 @@ Parallel sub-agent exploration of root docs, source dirs, tests, CI, and git his
 - Multiple parallel slinger calls via `helot_workflow` steps
 - Hoplite synthesises into structured `project-context.md`
 - Engine auto-loads `project-context.md` into global context if present
+
+---
+
+## 4. Session Checkpoint (`helot_checkpoint`)
+**Inspired by:** ksenxx/kiss_ai `RelentlessAgent`
+
+At end of session (or on demand), synthesise `events.jsonl` + recent commits + `MEMORY.md` into a structured resumable brief at `.helot-mcp-connector/session-brief.md`. The `SessionStart` hook auto-injects it into context so the next session starts already oriented — no re-explanation needed.
+
+**Problem it solves:** Currently 5-6 sessions per day restart cold. Each requires re-reading commits, re-explaining context, re-orienting. This is pure waste.
+
+**Brief structure:**
+```
+## What was built this session
+## What's in progress / half-done
+## Decisions made and why
+## Files changed
+## Next steps
+```
+
+**Implementation sketch:**
+- `helot_checkpoint` MCP tool — calls hoplite to read `events.jsonl` + git log + `MEMORY.md`, write `session-brief.md`
+- Also trigger automatically when `ctxPct` exceeds threshold (context pressure already tracked in engine)
+- `SessionStart` hook reads `session-brief.md` if present and injects as system context
+- Lightweight — no sub-session spawning needed, fits existing infrastructure exactly
