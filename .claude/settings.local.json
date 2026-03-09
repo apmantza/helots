@@ -55,7 +55,9 @@
       "Bash(npx jiti:*)",
       "Bash(gh issue:*)",
       "Bash(git:*)",
-      "Bash(npm list:*)"
+      "Bash(npm list:*)",
+      "Bash(powershell:*)",
+      "Bash(tasklist:*)"
     ]
   }
 }
