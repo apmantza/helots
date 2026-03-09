@@ -94,6 +94,6 @@ The local model is fast (~30 t/s). Delegating a search costs a few seconds and s
 - Slinger: `INSTRUCT_GENERAL`
 - Aristomenis replan: `THINKING_GENERAL`
 
-## Debugging this project — Do not use helot_run to debug helots-pi itself. Use direct Grep/Read/Slinger to investigate and direct Edit/Write to fix. helot_run is for feature work only.
+## Debugging this project — Do not use helot_run to debug helots-claude itself. Use direct Grep/Read/Slinger to investigate and direct Edit/Write to fix. helot_run is for feature work only.
 ## Helots
 `.helot-tools.json` auto-created from project detection — review and adjust format/lint/typecheck tools as needed.

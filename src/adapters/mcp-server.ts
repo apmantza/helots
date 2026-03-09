@@ -54,7 +54,7 @@ const _origStderrWrite = process.stderr.write.bind(process.stderr);
 process.stderr.write(`[startup] Helots MCP server starting. cwd=${process.cwd()} stateDir=${config.stateDir} model=${config.moeModel}\n`);
 
 // ── Watch UI auto-launch ──────────────────────────────────────────────────────
-// stateDir defaults to ".helots" — one level deep from cwd, so ".." gives us the helots-pi root where watch.mjs lives.
+// stateDir defaults to ".helots" — one level deep from cwd, so ".." gives us the helots-claude root where watch.mjs lives.
 const HELOTS_ROOT  = path.resolve(config.stateDir, '..');
 const WATCH_SCRIPT = path.join(HELOTS_ROOT, 'watch.mjs');
 const WATCH_PID    = path.join(config.stateDir, 'watch.pid');

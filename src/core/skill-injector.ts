@@ -8,7 +8,7 @@
  * without changing the model or increasing retry count.
  *
  * skill-rules.json lives in the target project root — each project owns its
- * own domain knowledge. helots-pi ships no default rules.
+ * own domain knowledge. helots-claude ships no default rules.
  *
  * Schema (skill-rules.json):
  * {
