@@ -104,3 +104,28 @@ Add an optional `maxTokensPerRun` parameter to `helot_queue`. If a run exceeds t
 - `executeQueue` checks `sessionTotalTokens` after each task — abort run if exceeded
 - Aborted run reported as `⚠️ Run N: budget exceeded after X tokens (Y tasks completed)`
 - Queue continues to next run unaffected
+
+---
+
+## 6. Proof-of-Work Report (`helot_queue` completion)
+**Inspired by:** openai/symphony proof-of-work before landing
+
+After `helot_queue` completes, generate a structured report before anything is committed/pushed. Surfaces verdicts, test results, and changed files so the human can make an informed decision to push or discard.
+
+**Report structure:**
+```
+## Queue: <taskSummary>
+## Runs completed: N/N (or N/M if some failed)
+### Per-run summary
+- Run 1: ✅ PASS — <what was built> — <files changed>
+- Run 2: ❌ FAIL — <reason> — <what was attempted>
+## Test suite: ✅ / ⚠️ FAILED
+## Files changed (aggregate)
+## Recommendation: ready to push / needs review
+```
+
+**Implementation sketch:**
+- `executeQueue` collects per-run results + test suite outcome already returned by `runTestSuite`
+- Hoplite formats into `proof-of-work.md` in `.helot-mcp-connector/`
+- Returned as final output of `helot_queue` so Claude surfaces it before any git operations
+- Human decides to push, discard worktree, or cherry-pick runs
