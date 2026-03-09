@@ -43,7 +43,12 @@
       "Bash(npm install:*)",
       "Bash(vtsls:*)",
       "Bash(claude:*)",
-      "Bash(npx vtsls:*)"
+      "Bash(npx vtsls:*)",
+      "Bash(ls:*)",
+      "Bash(npm root:*)",
+      "Bash(bun:*)",
+      "Bash(gcc:*)",
+      "Bash(/c/Users/R3LiC/AppData/Roaming/npm/typescript-language-server.exe:*)"
     ]
   }
 }
