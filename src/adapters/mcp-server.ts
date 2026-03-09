@@ -197,6 +197,43 @@ const TOOLS: Tool[] = [
         },
     },
     {
+        name: "helot_queue",
+        description: "Runs multiple helot_run calls sequentially as isolated runs — each with its own worktree, context, and LSP session. Use for larger projects where tasks are logically independent. Claude plans each run's tasks[] upfront; helots executes them one by one autonomously.",
+        inputSchema: {
+            type: "object",
+            properties: {
+                runs: {
+                    type: "array",
+                    description: "Ordered list of runs to execute sequentially.",
+                    items: {
+                        type: "object",
+                        properties: {
+                            taskSummary: { type: "string", description: "High-level summary of this run." },
+                            tasks: {
+                                type: "array",
+                                description: "Structured task list for this run.",
+                                items: {
+                                    type: "object",
+                                    properties: {
+                                        id:          { type: "string", description: "Task number, e.g. '1'" },
+                                        description: { type: "string", description: "Short imperative description" },
+                                        file:        { type: "string", description: "Relative path to target file" },
+                                        symbol:      { type: "string", description: "Exact function or class name (omit for CREATE tasks)" },
+                                        dependsOn:   { type: "array", items: { type: "string" }, description: "Task IDs that must complete first" },
+                                        changes:     { type: "string", description: "Exact before→after diff instructions for the Builder" },
+                                    },
+                                    required: ["id", "description", "file", "changes"],
+                                },
+                            },
+                        },
+                        required: ["taskSummary", "tasks"],
+                    },
+                },
+            },
+            required: ["runs"],
+        },
+    },
+    {
         name: "helot_execute",
         description: "Executes pre-planned file operations (mv, mkdir, cp) fully off-frontier. Validates every line against an allowlist and blocks path traversal and shell injection. Appends each operation to an audit log. Use after helot_slinger plans a folder cleanup or reorganization.",
         inputSchema: {
@@ -356,6 +393,17 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
             return {
                 content: [{ type: "text", text: result }],
             };
+        }
+
+        if (name === "helot_queue") {
+            const runs = Array.isArray(args?.runs) ? args.runs as Array<{ taskSummary: string; tasks: any[] }> : [];
+            if (runs.length === 0) {
+                return { content: [{ type: "text", text: '[ERROR] helot_queue requires a non-empty runs array.' }], isError: true };
+            }
+            const result = await engine.executeQueue(runs, (data) => {
+                console.error(`[Queue Update] ${data.text}`);
+            });
+            return { content: [{ type: "text", text: result }] };
         }
 
         if (name === "helot_execute") {

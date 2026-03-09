@@ -368,7 +368,7 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
               // LSP_WORKSPACE <query>
               result = await lsp.navigate(operation, rest[0] ?? '', 1, 1, rest.join(' '));
             } else if (operation === 'documentSymbol') {
-              // LSP_SYMBOLS <file> — auto-falls back to TOC on Windows where documentSymbol is broken
+              // LSP_SYMBOLS <file> — falls back to TOC if LSP returns empty
               result = await lsp.navigate(operation, path.resolve(lspCwd, rest[0] ?? ''), 1, 1);
               if (!result || result.startsWith('No symbols')) {
                 result = `[LSP_SYMBOLS unavailable — TOC fallback]\n` + generateToc(rest[0] ?? '', lspCwd);

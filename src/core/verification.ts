@@ -126,7 +126,7 @@ export function runVerification(input: VerificationInput): VerificationResult {
           }
         }
 
-      } else if (fileLang === 'typescript') {
+      } else if (fileLang === 'typescript' || fileLang === 'javascript') {
         const tsconfigPath = join(cwd, 'tsconfig.json');
         if (existsSync(tsconfigPath)) {
           const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx';
@@ -136,6 +136,38 @@ export function runVerification(input: VerificationInput): VerificationResult {
             // tsc could not spawn — skip check rather than false-positive
           } else {
             groundTruth.push(`Syntax (tsc): ${r.status === 0 ? '✅ OK' : `❌ ERRORS — ${((r.stderr || r.stdout || '')).split('\n').slice(0, 5).join(' | ')}`}`);
+          }
+        }
+
+        // TS/JS tests: jest or vitest (per-file)
+        const jestBin   = join(cwd, 'node_modules', '.bin', process.platform === 'win32' ? 'jest.cmd'   : 'jest');
+        const vitestBin = join(cwd, 'node_modules', '.bin', process.platform === 'win32' ? 'vitest.cmd' : 'vitest');
+        const jsTestRunner = existsSync(jestBin) ? jestBin : existsSync(vitestBin) ? vitestBin : null;
+        if (jsTestRunner) {
+          const base = path.basename(fullPath, path.extname(fullPath));
+          const testCandidates = [
+            join(path.dirname(fullPath), `${base}.test.ts`),
+            join(path.dirname(fullPath), `${base}.spec.ts`),
+            join(path.dirname(fullPath), `${base}.test.js`),
+            join(path.dirname(fullPath), '__tests__', `${base}.test.ts`),
+            join(cwd, '__tests__', `${base}.test.ts`),
+          ];
+          const jsTestFile = testCandidates.find(p => existsSync(p));
+          if (jsTestFile) {
+            const isVitest = jsTestRunner.includes('vitest');
+            const args = isVitest
+              ? ['run', jsTestFile]
+              : ['--testPathPattern', jsTestFile, '--passWithNoTests'];
+            const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+            const res = spawnSync(npxCmd, [isVitest ? 'vitest' : 'jest', ...args],
+              { encoding: 'utf-8', timeout: 30000, cwd });
+            const runner = isVitest ? 'vitest' : 'jest';
+            if (res.status === 0) {
+              groundTruth.push(`Tests (${runner}): ✅ passed`);
+            } else {
+              const out = (res.stdout || '').trim().split('\n').slice(0, 8).join(' | ');
+              groundTruth.push(`Tests (${runner}): ❌ FAILED — ${out.slice(0, 300)}`);
+            }
           }
         }
 
@@ -172,6 +204,6 @@ export function runVerification(input: VerificationInput): VerificationResult {
     hasContentLoss:   groundTruth.some(g => g.includes('⚠️ CONTENT LOSS')),
     hasNewLintErrors: groundTruth.some(g => g.includes('Lint (ruff): ❌') || g.includes('Lint (ts): ❌')),
     hasSymbolMissing: groundTruth.some(g => g.includes('Symbol check') && g.includes('❌ MISSING')),
-    hasTestFailure:   groundTruth.some(g => g.includes('Tests (pytest): ❌')),
+    hasTestFailure:   groundTruth.some(g => /Tests \((pytest|jest|vitest)\): ❌/.test(g)),
   };
 }

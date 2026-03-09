@@ -7,6 +7,7 @@
 
 import type { HelotTask } from './types.js';
 import type { TaskRunner } from './task-runner.js';
+import { runTestSuite } from './tool-runner.js';
 
 export async function runTaskLoop(
   runner:             TaskRunner,
@@ -90,6 +91,15 @@ export async function runTaskLoop(
       runner.writeEventFn({ type: 'task_status', taskId: task.id, status: 'failed' });
       // Don't halt — the blocker check at loop top will skip any tasks that depend on this one
       continue;
+    }
+  }
+
+  // --- End-of-run test suite ---
+  if (runner.toolConfig) {
+    const suiteErr = runTestSuite(runner.toolConfig, runner.governor.config.projectRoot, runner.tools.pytest ?? null, onUpdate);
+    if (suiteErr) {
+      onUpdate?.({ text: `⚠️ End-of-run tests FAILED:\n${suiteErr.slice(0, 400)}` });
+      runner.writeEventFn({ type: 'test_suite', result: 'FAIL', output: suiteErr.slice(0, 400) });
     }
   }
 

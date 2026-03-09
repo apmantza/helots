@@ -70,6 +70,33 @@ export class HelotEngine {
     }, onUpdate);
   }
 
+  async executeQueue(
+    runs:      Array<{ taskSummary: string; tasks?: FrontierTask[] }>,
+    onUpdate?: (data: any) => void,
+  ): Promise<string> {
+    const results: string[] = [];
+    for (let i = 0; i < runs.length; i++) {
+      const run = runs[i];
+      onUpdate?.({ text: `🔄 Queue ${i + 1}/${runs.length}: ${run.taskSummary}` });
+      this.sessionTotalTokens = 0;
+      try {
+        const result = await _executeHelots(run.taskSummary, '', run.tasks, {
+          governor:      this.governor,
+          slingerAgent:  this.slingerAgent,
+          taskRunner:    this.taskRunner,
+          runSubagentFn: this.runSubagent.bind(this),
+          writeEventFn:  this.writeEvent.bind(this),
+          setPhase:      (p: string) => { this.currentPhase = p; },
+          getModelProps: () => this.client.getProps(),
+        }, onUpdate);
+        results.push(`**Run ${i + 1}: ${run.taskSummary}**\n${result}`);
+      } catch (e: any) {
+        results.push(`**Run ${i + 1}: ${run.taskSummary}** ❌ ${e.message}`);
+      }
+    }
+    return results.join('\n\n---\n\n');
+  }
+
   async executeSlinger(
     researchTask: string,
     targetFiles?: string[],

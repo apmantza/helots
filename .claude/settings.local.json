@@ -63,7 +63,8 @@
       "Bash(where typescript-language-server:*)",
       "Bash(printenv PATH:*)",
       "Bash(printf Content-Length: 108\\\\r\\\\n\\\\r\\\\n{\"\"jsonrpc\"\":\"\"2.0\"\",\"\"id\"\":0,\"\"method\"\":\"\"initialize\"\",\"\"params\"\":{\"\"processId\"\":null,\"\"rootUri\"\":null,\"\"capabilities\"\":{}}}:*)",
-      "Bash(printf Content-Length: 97\\\\r\\\\n\\\\r\\\\n{\"\"jsonrpc\"\":\"\"2.0\"\",\"\"id\"\":0,\"\"method\"\":\"\"initialize\"\",\"\"params\"\":{\"\"processId\"\":null,\"\"rootUri\"\":null,\"\"capabilities\"\":{}}}:*)"
+      "Bash(printf Content-Length: 97\\\\r\\\\n\\\\r\\\\n{\"\"jsonrpc\"\":\"\"2.0\"\",\"\"id\"\":0,\"\"method\"\":\"\"initialize\"\",\"\"params\"\":{\"\"processId\"\":null,\"\"rootUri\"\":null,\"\"capabilities\"\":{}}}:*)",
+      "WebFetch(domain:www.npmjs.com)"
     ]
   }
 }

@@ -5,8 +5,9 @@
  * All functions are synchronous wrappers over execSync.
  */
 
-import { execSync }  from 'child_process';
-import { readFileSync } from 'fs';
+import { execSync, spawnSync } from 'child_process';
+import { readFileSync, existsSync } from 'fs';
+import { join } from 'path';
 import type { ToolConfig } from './env-check.js';
 
 export interface ProcessedFile {
@@ -90,4 +91,59 @@ export function runTypecheckSlow(
   }
   onUpdate?.({ text: `✓ typecheck_slow: passed` });
   return null;
+}
+
+/**
+ * Run the full test suite at end-of-run.
+ * Priority: test_suite from toolConfig → jest (local) → vitest (local) → pytest.
+ * Returns an error string on failure, null if all pass or no runner found.
+ */
+export function runTestSuite(
+  toolConfig:  ToolConfig,
+  projectRoot: string,
+  pytest:      string | null,
+  onUpdate:    ((data: any) => void) | undefined,
+): string | null {
+  // User-configured command takes priority
+  if (toolConfig.test_suite?.length) {
+    for (const cmd of toolConfig.test_suite) {
+      try {
+        execSync(cmd, { cwd: projectRoot, stdio: 'pipe', timeout: 120000 });
+      } catch (e: any) {
+        return ((e.stdout ?? '') + (e.stderr ?? '')).toString().slice(0, 1000);
+      }
+    }
+    onUpdate?.({ text: `✓ test_suite: passed` });
+    return null;
+  }
+
+  const npx      = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+  const jestBin  = join(projectRoot, 'node_modules', '.bin', 'jest');
+  const vitestBin = join(projectRoot, 'node_modules', '.bin', 'vitest');
+
+  if (existsSync(jestBin)) {
+    onUpdate?.({ text: `🧪 End-of-run: jest` });
+    const r = spawnSync(npx, ['jest', '--passWithNoTests'], { encoding: 'utf-8', timeout: 120000, cwd: projectRoot });
+    if (r.status !== 0) return ((r.stdout ?? '') + (r.stderr ?? '')).slice(0, 1000);
+    onUpdate?.({ text: `✓ jest: all tests passed` });
+    return null;
+  }
+
+  if (existsSync(vitestBin)) {
+    onUpdate?.({ text: `🧪 End-of-run: vitest` });
+    const r = spawnSync(npx, ['vitest', 'run'], { encoding: 'utf-8', timeout: 120000, cwd: projectRoot });
+    if (r.status !== 0) return ((r.stdout ?? '') + (r.stderr ?? '')).slice(0, 1000);
+    onUpdate?.({ text: `✓ vitest: all tests passed` });
+    return null;
+  }
+
+  if (pytest) {
+    onUpdate?.({ text: `🧪 End-of-run: pytest` });
+    const r = spawnSync(pytest, ['--tb=short', '-q', '--no-header'], { encoding: 'utf-8', timeout: 120000, cwd: projectRoot });
+    if (r.status !== 0) return ((r.stdout ?? '') + (r.stderr ?? '')).slice(0, 1000);
+    onUpdate?.({ text: `✓ pytest: all tests passed` });
+    return null;
+  }
+
+  return null; // no test runner found
 }

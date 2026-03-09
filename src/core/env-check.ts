@@ -14,6 +14,7 @@ export interface ToolConfig {
   lint_fix?:       string[];   // e.g. ["eslint --fix {{file}}"]
   typecheck_fast?: string[];   // e.g. ["tsc --noEmit --pretty false"]
   typecheck_slow?: string[];   // e.g. ["mypy src/"]
+  test_suite?:     string[];   // e.g. ["jest --passWithNoTests"] — overrides auto-detect
 }
 
 export interface EnvReport {
