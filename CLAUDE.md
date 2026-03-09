@@ -3,7 +3,7 @@
 ## What this project is
 A local LLM orchestration framework. Exposes `helot_slinger` (code research) and `helot_run` (code execution) as MCP tools that delegate to a local Qwen model at `http://127.0.0.1:8081`.
 
-Architecture: Scout → Builder → Peltast pipeline. Aristomenis only runs as a repair agent when Builder fails. Claude (frontier) is responsible for planning tasks.
+Architecture: Scout → Builder → Peltast pipeline. Aristomenis is deprecated — `replanTaskWithAristomenis` exists in task-runner.ts but is never called. Claude (frontier) is responsible for planning tasks.
 
 ## Tool Usage Policy
 
