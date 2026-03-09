@@ -48,7 +48,11 @@
       "Bash(npm root:*)",
       "Bash(bun:*)",
       "Bash(gcc:*)",
-      "Bash(/c/Users/R3LiC/AppData/Roaming/npm/typescript-language-server.exe:*)"
+      "Bash(/c/Users/R3LiC/AppData/Roaming/npm/typescript-language-server.exe:*)",
+      "Bash(gh repo:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(gh api:*)",
+      "Bash(npx jiti:*)"
     ]
   }
 }

@@ -6,6 +6,7 @@
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
+import { generateToc } from './toc.js';
 import { join }      from 'path';
 import * as path     from 'path';
 import { spawnSync } from 'child_process';
@@ -92,6 +93,13 @@ READ EXACT LINES (verbatim line-range extraction — use when you need precise c
   Note: Do NOT quote the path — no single or double quotes. Write: READLINES src/core/engine.ts 55-80
   Note: Output is raw file content — no synthesis, no paraphrasing.
 
+FILE STRUCTURE (symbol index — use before READLINES to find the right line range):
+  TOC src/core/engine.ts          → all classes, functions, methods with line numbers and imports
+  TOC src/core/slinger-agent.ts   → full symbol index for navigation
+  Note: Faster than READLINES for orientation. Use TOC first, then READLINES on the exact range.
+  Note: Fallback when LSP_SYMBOLS is unavailable. Supports .ts/.js/.py/.go/.rs files.
+  Note: Do NOT quote the path. Write: TOC src/core/engine.ts
+
 FETCH (external URLs — GitHub READMEs, docs, API references):
   WEBFETCH https://raw.githubusercontent.com/owner/repo/main/README.md
   WEBFETCH https://docs.example.com/api-reference
@@ -140,6 +148,7 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
       /^Measure-Object\b/i,
       /^Where-Object\b/i,
       /^READLINES\s+/i,
+      /^TOC\s+/i,
       /^LSP_\w+\s+/i,
     ];
     const isSafeCommand = (cmd: string) =>
@@ -317,6 +326,18 @@ For any grep/search commands use absolute paths: grep -rn 'pattern' '${targetPro
             history += `\n[Turn ${turn}] WEBFETCH: ${rawUrl}\nStatus: ${res.status}\nContent:\n${text}\n`;
           } catch (e: any) {
             history += `\n[Turn ${turn}] WEBFETCH failed: ${rawUrl} — ${e.message}\n`;
+          }
+          continue;
+        }
+
+        // TOC handler — AST-lite symbol index, bypasses shell and LLM
+        if (/^TOC\s+/i.test(command)) {
+          const filePart = command.replace(/^TOC\s+/i, '').trim();
+          try {
+            const toc = generateToc(filePart, this.governor.config.projectRoot ?? process.cwd());
+            history += `\n[Turn ${turn}] TOC ${filePart}:\n${toc}\n`;
+          } catch (e: any) {
+            history += `\n[Turn ${turn}] TOC failed: ${e.message}\n`;
           }
           continue;
         }
