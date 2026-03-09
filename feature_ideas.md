@@ -59,3 +59,18 @@ At end of session (or on demand), synthesise `events.jsonl` + recent commits + `
 - Also trigger automatically when `ctxPct` exceeds threshold (context pressure already tracked in engine)
 - `SessionStart` hook reads `session-brief.md` if present and injects as system context
 - Lightweight — no sub-session spawning needed, fits existing infrastructure exactly
+
+---
+
+## 5. Per-Run Token Budget (`helot_queue` safety)
+**Inspired by:** paperclipai/paperclip budget enforcement
+
+Add an optional `maxTokensPerRun` parameter to `helot_queue`. If a run exceeds the budget, abort it, report what was completed, and continue with the next run rather than letting a runaway loop consume the entire queue.
+
+**Problem it solves:** A `helot_queue` of 10 runs with no cap could run for hours unattended. Explicit budgets make cost predictable and prevent a single bad run from burning the whole queue.
+
+**Implementation sketch:**
+- `maxTokensPerRun?: number` field on each queue run (or a global default on the queue)
+- `executeQueue` checks `sessionTotalTokens` after each task — abort run if exceeded
+- Aborted run reported as `⚠️ Run N: budget exceeded after X tokens (Y tasks completed)`
+- Queue continues to next run unaffected
