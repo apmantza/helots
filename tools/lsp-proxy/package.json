@@ -1,0 +1,9 @@
+{
+  "name": "helots-lsp-proxy",
+  "version": "1.0.0",
+  "description": "LSP proxy that injects textDocument/didOpen for Claude Code (workaround for https://github.com/anthropics/claude-code/issues/32499)",
+  "bin": {
+    "typescript-language-server": "typescript-language-server.js"
+  },
+  "license": "MIT"
+}
