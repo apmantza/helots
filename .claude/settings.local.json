@@ -41,7 +41,8 @@
       "Bash(unalias rg:*)",
       "Bash(typescript-language-server:*)",
       "Bash(npm install:*)",
-      "Bash(vtsls:*)"
+      "Bash(vtsls:*)",
+      "Bash(claude:*)"
     ]
   }
 }
