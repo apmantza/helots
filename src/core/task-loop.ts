@@ -58,6 +58,30 @@ export async function runTaskLoop(
     runner.governor.state.tasks[i] = task;
     runner.governor.saveState();
 
+    if (result.checkpoint) {
+      // Builder signalled CHECKPOINT — partial progress made, queue a continuation task
+      task.status = 'checkpoint';
+      runner.governor.state.tasks[i] = task;
+      runner.governor.saveState();
+      onUpdate?.({ text: `🔖 Task ${task.id} checkpointed — splicing continuation` });
+      runner.writeEventFn({ type: 'task_status', taskId: task.id, status: 'checkpoint' });
+      const continuation: HelotTask = {
+        id: `${task.id}-cont`,
+        description: task.description,
+        status: 'pending',
+        file: task.file,
+        targetSymbol: task.targetSymbol,
+        dependsOn: [],  // continuation runs immediately after; original is already applied
+        changes: task.changes,
+        skipLintCodes: task.skipLintCodes,
+        checkpointSummary: result.checkpoint,
+      };
+      taskNodes.splice(i + 1, 0, continuation);
+      runner.governor.state.tasks = taskNodes;
+      runner.governor.saveState();
+      continue;
+    }
+
     if (!result.passed) {
       task.status = 'failed';
       runner.governor.state.tasks[i] = task;

@@ -91,7 +91,7 @@ export class TaskRunner {
     onUpdate:           ((data: any) => void) | undefined,
     allTasks:           HelotTask[] = [],
     writeTrace:         (data: any) => void = () => {},
-  ): Promise<{ passed: boolean; escalation?: string }> {
+  ): Promise<{ passed: boolean; escalation?: string; checkpoint?: string }> {
 
     const taskContext = task.changes || implementationPlan;
     let contextContent = '';
@@ -182,6 +182,7 @@ export class TaskRunner {
         globalContext, description: task.description, file: task.file, targetSymbol: task.targetSymbol,
         lang, isSurgical, fence, contextContent, taskContext, upstreamContext, retryContext,
         skillContext: skillContext ?? null, builderMaxTokensOverride, targetHeader,
+        checkpointSummary: task.checkpointSummary,
       });
 
       const builder = pickName(runId, `Builder-${task.id}-${tryCount}`);
@@ -196,6 +197,28 @@ export class TaskRunner {
       );
       const builderOut = stripThinking(builderRaw);
       writeTrace({ phase: 'builder', status: 'complete', taskId: task.id, tryNum: tryCount });
+
+      // --- CHECKPOINT detection — Builder signals task too large for one pass ---
+      const checkpointIdx = builderOut.indexOf('### CHECKPOINT');
+      if (checkpointIdx >= 0) {
+        const summaryRaw = builderOut.slice(checkpointIdx + '### CHECKPOINT'.length);
+        // Summary ends at the next ### block or end of string
+        const nextBlockIdx = summaryRaw.search(/\n###\s+\[/);
+        const summary = (nextBlockIdx >= 0 ? summaryRaw.slice(0, nextBlockIdx) : summaryRaw).trim();
+        onUpdate?.({ text: `🔖 Builder CHECKPOINT (task ${task.id}) — queuing continuation.` });
+        // Apply any partial file blocks that follow the CHECKPOINT marker
+        const partialOut = nextBlockIdx >= 0 ? summaryRaw.slice(nextBlockIdx) : '';
+        if (partialOut) {
+          const partialRegex = /###\s*\[([^\]]+)\]\s*\n\s*```[a-z]*\n([\s\S]*?)\n```/gi;
+          let m;
+          while ((m = partialRegex.exec(partialOut)) !== null) {
+            const fp = m[1].trim();
+            const full = resolve(this.governor.config.projectRoot, fp);
+            try { mkdirSync(dirname(full), { recursive: true }); writeFileSync(full, m[2]); } catch { /* non-fatal */ }
+          }
+        }
+        return { passed: false, checkpoint: summary };
+      }
 
       // --- Builder log ---
       try {

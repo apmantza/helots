@@ -12,13 +12,14 @@ export type HelotPhase =
 export interface HelotTask {
     id: string;
     description: string;
-    status: 'pending' | 'completed' | 'failed' | 'blocked';
+    status: 'pending' | 'completed' | 'failed' | 'blocked' | 'checkpoint';
     file?: string;
     targetSymbol?: string;
     lineRange?: [number, number];
     dependsOn?: string[];
     changes?: string;   // per-task change spec from frontier (bypasses Aristomenis prose plan)
     skipLintCodes?: string[];  // ruff error codes peltast will not flag as "introduced" (e.g. ["F401"])
+    checkpointSummary?: string; // set when a prior Builder pass signalled CHECKPOINT — injected into continuation prompt
 }
 
 /** Structured task shape accepted directly from the frontier — bypasses Aristomenis planning. */
