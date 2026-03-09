@@ -57,7 +57,10 @@
       "Bash(git:*)",
       "Bash(npm list:*)",
       "Bash(powershell:*)",
-      "Bash(tasklist:*)"
+      "Bash(tasklist:*)",
+      "Read(//c/Users/R3LiC/AppData/Roaming/npm//**)",
+      "Read(//c/Users/R3LiC/AppData/Roaming/npm/node_modules//**)",
+      "Bash(where typescript-language-server:*)"
     ]
   }
 }
